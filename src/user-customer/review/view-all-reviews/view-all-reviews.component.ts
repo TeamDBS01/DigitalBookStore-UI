@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-all-reviews',
   templateUrl: './view-all-reviews.component.html',
-  styleUrls: ['./view-all-reviews.component.sass']
+  styleUrls: ['./view-all-reviews.component.sass'],
+  standalone:false
 })
 export class ViewAllReviewsComponent {
     reviews: Review[] = [];
