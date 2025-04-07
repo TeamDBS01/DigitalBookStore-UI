@@ -1,0 +1,23 @@
+<table class="table table-dark table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Review ID</th>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>User ID</th>
+            <th>Book ID</th>
+            <th colspan="2">Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let review of reviews">
+                <td>{{review.reviewId}}</td>
+                <td>{{review.rating}}</td>
+                <td>{{review.comment}}</td>
+                <td>{{review.userId}}</td>    
+                <td>{{review.bookId}}</td>    
+                <td><button (click)="reviewService.setReviewId(review.reviewId)" class="btn btn-warning btn-sm mr-2" routerLink="/updateReview">Update</button></td>
+                <td><button (click)="reviewService.deleteReview(review.reviewId)" class="btn btn-danger btn-sm"routerLink="/deleteReview">Delete</button></td>
+            </tr>
+        </tbody>
+</table>
