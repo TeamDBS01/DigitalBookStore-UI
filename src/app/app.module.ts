@@ -12,11 +12,15 @@ import { UserService } from 'src/user-customer/user/service/user.service';
 import { OrderService as adminOrderService } from 'src/user-admin/order/service/order.service';
 import { OrderService as customerOrderService } from 'src/user-customer/order/service/order.service';
 import { InventoryService } from 'src/user-admin/inventory/service/inventory.service';
+import { NavbarComponent } from 'src/user-customer/Home/navbar/navbar.component';
+import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewAllReviewsComponent,
+    NavbarComponent,
+    BookHeroComponent
   ],
   imports: [
     BrowserModule,
