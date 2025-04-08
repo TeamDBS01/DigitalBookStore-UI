@@ -16,6 +16,8 @@ import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-re
 import { ReviewComponent } from 'src/user-customer/review/review/review.component';
 import { StarsComponent } from 'src/user-customer/review/stars/stars.component';
 import { AverageRatingComponent } from 'src/user-customer/review/average-rating/average-rating.component';
+import { NavbarComponent } from 'src/user-customer/Home/navbar/navbar.component';
+import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AverageRatingComponent } from 'src/user-customer/review/average-rating/
     ReviewComponent,
     StarsComponent,
     AverageRatingComponent,
+    NavbarComponent,
+    BookHeroComponent
   ],
   imports: [
     BrowserModule,
