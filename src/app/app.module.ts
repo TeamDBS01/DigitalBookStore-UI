@@ -21,6 +21,7 @@ import { BookHeroComponent } from 'src/user-customer/home/book-hero/book-hero.co
 import { BookCarouselComponent } from 'src/user-customer/home/book-carousel/book-carousel.component';
 import { HomeComponent } from 'src/user-customer/home/home/home.component';
 import { LoginComponent } from 'src/user-customer/user/login/login.component';
+import { AddReviewComponent } from 'src/user-customer/review/add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LoginComponent } from 'src/user-customer/user/login/login.component';
     BookCarouselComponent,
     HomeComponent,
     LoginComponent,
+    AddReviewComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,12 +23,17 @@ export class ReviewService {
     private USER_ID = 11;
     private reviewID!:number;
     private retreiveAllReviewsUrl = this.apiReviewUrl + '/all';
+    private addReviewUrl = this.apiReviewUrl + '/add';
     private deleteReviewUrl = this.apiReviewUrl + '/delete/' + this.USER_ID + '/';
     private averageRatingUrl = this.apiReviewUrl + '/book/average/';
 
 
     getAllReviews() {
         return this.http.get<Review[]>(this.retreiveAllReviewsUrl);
+    }
+
+    addReview(review: Review) {
+        return this.http.post<Review>(this.addReviewUrl, review);
     }
 
     getAverageRating(bookId: string) {

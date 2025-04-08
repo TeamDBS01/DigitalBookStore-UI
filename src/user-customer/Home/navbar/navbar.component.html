@@ -13,7 +13,8 @@
         <a routerLink="">Contact Us</a>
       </nav>
       <div class="user-actions">
-        <button routerLink="login">Sign In</button>
+        <button *ngIf="!isLoggedIn()" routerLink="login">Sign In</button>
+        <button *ngIf="isLoggedIn()" (click)="logout()">Log Out</button>
       </div>
     </header>
   
