@@ -14,13 +14,15 @@ import { OrderService as customerOrderService } from 'src/user-customer/order/se
 import { InventoryService } from 'src/user-admin/inventory/service/inventory.service';
 import { NavbarComponent } from 'src/user-customer/Home/navbar/navbar.component';
 import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
+import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewAllReviewsComponent,
     NavbarComponent,
-    BookHeroComponent
+    BookHeroComponent,
+    ViewbookidComponent
   ],
   imports: [
     BrowserModule,
