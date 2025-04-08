@@ -5,7 +5,9 @@
             <th>Rating</th>
             <th>Comment</th>
             <th>User ID</th>
+            <th>User Name</th>
             <th>Book ID</th>
+            <th>Book Avg</th>
             <th colspan="2">Edit</th>
         </tr>
         </thead>
@@ -15,7 +17,9 @@
                 <td>{{review.rating}}</td>
                 <td>{{review.comment}}</td>
                 <td>{{review.userId}}</td>    
+                <td>{{review.userName}}</td>    
                 <td>{{review.bookId}}</td>    
+                <td><app-average-rating [bookId]="review.bookId"/></td>    
                 <td><button (click)="reviewService.setReviewId(review.reviewId)" class="btn btn-warning btn-sm mr-2" routerLink="/updateReview">Update</button></td>
                 <td><button (click)="reviewService.deleteReview(review.reviewId)" class="btn btn-danger btn-sm"routerLink="/deleteReview">Delete</button></td>
             </tr>

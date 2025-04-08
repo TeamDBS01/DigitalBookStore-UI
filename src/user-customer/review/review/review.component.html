@@ -1,0 +1,9 @@
+<div class="card m-2">
+    <div class="card-header">
+        {{review.userName}}
+    </div>
+    <div class="card-body">
+        <app-stars [rating]="review.rating" />
+        <p class="card-text">{{review.comment}}</p>
+    </div>
+</div>

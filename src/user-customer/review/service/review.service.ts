@@ -24,10 +24,15 @@ export class ReviewService {
     private reviewID!:number;
     private retreiveAllReviewsUrl = this.apiReviewUrl + '/all';
     private deleteReviewUrl = this.apiReviewUrl + '/delete/' + this.USER_ID + '/';
+    private averageRatingUrl = this.apiReviewUrl + '/book/average/';
 
 
     getAllReviews() {
         return this.http.get<Review[]>(this.retreiveAllReviewsUrl);
+    }
+
+    getAverageRating(bookId: string) {
+        return this.http.get<number>(this.averageRatingUrl + bookId);
     }
 
     deleteReview(reviewId: number) {
