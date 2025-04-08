@@ -23,7 +23,7 @@ import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book
     ViewAllReviewsComponent,
     NavbarComponent,
     BookHeroComponent,
-    ViewbookidComponent
+    ViewbookidComponent,
     BookCarouselComponent
   ],
   imports: [
