@@ -1,13 +1,6 @@
-<div class="d-flex flex-column min-vh-100 bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark text-white">
-        <div class="container-fluid">
-            <a class="navbar-brand" routerLink="/">DBS - Home</a>
-            <span class="navbar-text"> | </span>
-            <a class="nav-link" routerLink="/review/all">View All Reviews</a>
-        </div>
-    </nav>
-
+<div class="d-flex flex-column min-vh-100">
+    <app-navbar></app-navbar>
+    <app-book-hero></app-book-hero>
     <router-outlet></router-outlet>
-
-    <footer class="bg-dark text-light text-center p-3 mt-auto"> &copy; Digital Book Store Management</footer>
+    <footer class="text-center p-3 mt-auto"> &copy; Digital Book Store Management</footer>
 </div>
