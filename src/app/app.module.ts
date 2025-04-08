@@ -15,6 +15,7 @@ import { InventoryService } from 'src/user-admin/inventory/service/inventory.ser
 import { NavbarComponent } from 'src/user-customer/Home/navbar/navbar.component';
 import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
 import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book-carousel.component';
+import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book
     ViewAllReviewsComponent,
     NavbarComponent,
     BookHeroComponent,
-    BookCarouselComponent
+    BookCarouselComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
