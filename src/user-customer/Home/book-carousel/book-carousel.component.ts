@@ -4,7 +4,7 @@ import { Book } from 'src/user-customer/book/model/Book';
 import { BookService } from 'src/user-customer/book/service/book.service';
 
 @Component({
-  selector: 'app-book-carousel', standalone:false,
+  selector: 'app-book-carousel',
   templateUrl: './book-carousel.component.html',
   styleUrls: ['./book-carousel.component.sass'],
   standalone: false

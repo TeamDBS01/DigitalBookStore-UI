@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from 'src/user-customer/user/service/user.service';
 
 @Component({
-  selector: 'app-navbar', standalone:false,
+  selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.sass'],
   standalone: false

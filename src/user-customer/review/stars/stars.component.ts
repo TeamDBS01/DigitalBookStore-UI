@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-stars', standalone:false,
+  selector: 'app-stars',
   templateUrl: './stars.component.html',
   styleUrls: ['./stars.component.sass'],
   standalone: false

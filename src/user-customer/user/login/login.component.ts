@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 
 @Component({
-    selector: 'app-login',  standalone:false,
+    selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.sass'],
     standalone: false
