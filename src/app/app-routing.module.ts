@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from 'src/user-customer/home/home/home.component';
+import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { AddReviewComponent } from 'src/user-customer/review/add-review/add-review.component';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';

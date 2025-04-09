@@ -1,3 +1,5 @@
+// frontend/src/app/model/role.ts
 export enum Role {
-    ADMIN, CUSTOMER
+    ADMIN = 'ADMIN',
+    CUSTOMER = 'CUSTOMER'
 }

@@ -11,17 +11,13 @@ import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-re
 import { AverageRatingComponent } from 'src/user-customer/review/average-rating/average-rating.component';
 import { ReviewComponent } from 'src/user-customer/review/review/review.component';
 import { StarsComponent } from 'src/user-customer/review/stars/stars.component';
-import { ViewAllReviewsComponent } from 'src/user-customer/review/view-all-reviews/view-all-reviews.component';
-import { AppComponent } from './app.component';
-import { UserService } from 'src/user-customer/user/service/user.service';
-import { ReviewService } from 'src/user-customer/review/service/review.service';
-import { AppRoutingModule } from './app-routing.module';
+import { AverageRatingComponent } from 'src/user-customer/review/average-rating/average-rating.component';
 import { NavbarComponent } from 'src/user-customer/Home/navbar/navbar.component';
 import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
 import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book-carousel.component';
-import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
-import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/addbook/addbook.component';
-import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
+import { HomeComponent } from 'src/user-customer/Home/home/home.component';
+import { LoginComponent } from 'src/user-customer/user/login/login.component';
+import { AddReviewComponent } from 'src/user-customer/review/add-review/add-review.component';
 
 @NgModule({
   declarations: [
