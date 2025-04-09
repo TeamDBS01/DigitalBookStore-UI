@@ -18,10 +18,7 @@ export class BookdetailsComponent {
     console.log('Book ID:', bookId); // Add this line
     if (bookId) {
       this.bookService.getBookById(bookId).subscribe((data: Book) => {
-
-
         this.book = data;
-
       });
     }
   }

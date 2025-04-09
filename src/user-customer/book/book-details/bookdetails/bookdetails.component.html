@@ -4,4 +4,5 @@
     <p>Author: {{ book.authorName }}</p>
     <p>Category: {{ book.categoryName }}</p>
     <!-- <p>Description: {{ book.description }}</p> -->
+    <app-average-rating [bookId]="book.bookID"></app-average-rating>
   </div>
