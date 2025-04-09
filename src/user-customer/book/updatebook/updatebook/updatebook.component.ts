@@ -33,7 +33,7 @@ export class UpdatebookComponent {
   constructor(private bookService: BookService) {
     this.book.bookID = this.bookService.getBookId(); // getEmpId() now returns a string
 
-    this.bookService.getBook(this.book).subscribe(data => {
+    this.bookService.getBookById(this.book.bookID).subscribe(data => {
       this.book.bookID=data['bookID'];
       this.book.title=data['title'];
       this.book.price=data['price'];

@@ -10,26 +10,27 @@ import { UserService } from '../service/user.service';
 })
 export class LoginComponent {
 
-    email = ''
-    password = ''
-    invalidLogin = false
-
+    email = '';  
+    password = '';
+    invalidLogin = false;
 
     constructor(private router: Router, private loginService: UserService) { }
 
 
 
     checkLogin() {
-        if (this.loginService.authenticate(this.email, this.password)) {
-            this.invalidLogin = false;
-            this.router.navigate(['home'])
-        } else
-            this.invalidLogin = true
-        if (this.loginService.authenticate(this.email, this.password)) {
-            this.invalidLogin = false;
-            this.router.navigate(['home'])
-        } else
-            this.invalidLogin = true
+        this.loginService.authenticate(this.email, this.password).subscribe(
+            (response) => {
+                this.invalidLogin = false;
+                this.router.navigate(['home']); 
+                 
+            },
+            (error) => {
+                this.invalidLogin = true;
+                console.error("Login error:", error);
+                
+            }
+        );
         this.email = '';
         this.password = '';
     }

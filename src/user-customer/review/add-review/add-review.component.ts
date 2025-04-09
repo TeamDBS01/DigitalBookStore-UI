@@ -23,7 +23,8 @@ export class AddReviewComponent {
             comment: new FormControl('', Validators.compose([
                 Validators.required,
                 Validators.minLength(3),
-                Validators.maxLength(200)
+                Validators.maxLength(2000),
+                Validators.pattern('^\\D.*')
             ])),
             bookId: new FormControl('', Validators.compose([
                 Validators.required,
