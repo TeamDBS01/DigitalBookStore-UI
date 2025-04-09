@@ -1,0 +1,24 @@
+
+<!-- <div *ngIf="books.length > 0">
+    <div *ngFor="let book of books" class="book-item">
+      <img [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''" alt="{{ book.title }}" />
+      <h3>{{ book.title }}</h3>
+      <p>Author: {{ book.authorName }}</p>
+    </div>
+  </div> -->
+  <div class="container">
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search for books..." />
+        <button (click)="fetchbooks()">Search</button>
+      </div>
+  <app-filter (filterCriteria)="onFilterChange($event)"></app-filter>
+  <div class="content">
+    <div *ngIf="books.length > 0">
+      <div *ngFor="let book of books" class="book-item">
+        <img [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''" alt="{{ book.title }}" />
+        <h3>{{ book.title }}</h3>
+        <p>Author: {{ book.authorName }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -25,6 +25,9 @@ import { AddReviewComponent } from 'src/user-customer/review/add-review/add-revi
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
 import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/addbook/addbook.component';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
+import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
+import { FilterComponent } from 'src/user-customer/book/filter/filter.component';
+import { SearchbarComponent } from 'src/user-customer/book/search-bar/searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,11 @@ import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updateboo
     ViewbookidComponent,
     AddbookComponent,
     UpdatebookComponent,
-    LoginComponent
+    LoginComponent,
+    SearchtitleComponent,
+    FilterComponent,
+    SearchbarComponent,
+    ViewbookidComponent
   ],
   imports: [
     BrowserModule,

@@ -7,4 +7,5 @@ export class Book{
     coverImage!:string;
     coverImageBytes!:Uint8Array
     base64img!:string
+    authorName!:string;
 }

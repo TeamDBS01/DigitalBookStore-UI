@@ -1,0 +1,11 @@
+<div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search for books..." />
+    <button (click)="searchBooks()">Search</button>
+  </div>
+  
+  <div class="book-list">
+    <div *ngFor="let book of books">
+      <h3>{{ book.title }}</h3>
+      <!-- <p>{{ book.author }}</p> -->
+    </div>
+  </div>
