@@ -1,0 +1,29 @@
+import { Component } from '@angular/core';
+import { ReviewService } from '../service/review.service';
+import { Review } from '../model/Review';
+
+@Component({
+  selector: 'app-all-reviews',
+  templateUrl: './all-reviews.component.html',
+  styleUrls: ['./all-reviews.component.sass'],
+  standalone: false
+})
+export class AllReviewsComponent {
+
+    constructor(private reviewService: ReviewService) {}
+
+    reviews: Review[] = [];
+    
+    // stars = [1,2,3,4,5];
+    ngOnInit() {
+        this.reviewService.getAllReviews().subscribe({
+            next: (data) => {
+                this.reviews = data;
+            },
+            error: (error) => {
+                console.error('Error fetching reviews:-', error);
+            }
+        });
+    }
+
+}

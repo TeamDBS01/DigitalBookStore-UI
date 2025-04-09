@@ -1,0 +1,36 @@
+<div class="container m-2">
+    <form [formGroup]="formData" #addForm='ngForm' (ngSubmit)="onSubmit(addForm.value)" class="p-4 border rounded">
+        <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            <input type="number" id="rating" formControlName="rating" class="form-control" required
+                placeholder="Enter rating (0.1 - 5)" />
+            <div *ngIf="formData.get('rating')?.invalid && formData.get('rating')?.touched" class="text-danger">
+                Rating is required and must be between 0.1 and 5.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea id="comment" formControlName="comment" class="form-control" rows="2" required
+                placeholder="Enter comment"></textarea>
+            <div *ngIf="formData.get('comment')?.invalid && formData.get('comment')?.touched" class="text-danger">
+                Comment is required and must be between 3 and 2000 characters.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="bookId" class="form-label">Book ID</label>
+            <input type="text" id="bookId" formControlName="bookId" class="form-control" required placeholder="Enter book ID" />
+            <div *ngIf="formData.get('bookId')?.invalid && formData.get('bookId')?.touched" class="text-danger">
+                Book ID is required and must be between 3 and 20 characters.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="userId" class="form-label">User ID</label>
+            <input type="number" id="userId" formControlName="userId" class="form-control" required
+                placeholder="Enter user ID" />
+            <div *ngIf="formData.get('userId')?.invalid && formData.get('userId')?.touched" class="text-danger">
+                User ID is required and must be at least 1.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="addForm.invalid">Add Review</button>
+    </form>
+</div>
