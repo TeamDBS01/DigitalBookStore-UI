@@ -6,7 +6,8 @@ import { ReviewService } from '../service/review.service';
 @Component({
   selector: 'app-add-review',
   templateUrl: './add-review.component.html',
-  styleUrls: ['./add-review.component.sass']
+  styleUrls: ['./add-review.component.sass'],
+  standalone: false
 })
 export class AddReviewComponent {
 
@@ -22,7 +23,8 @@ export class AddReviewComponent {
             comment: new FormControl('', Validators.compose([
                 Validators.required,
                 Validators.minLength(3),
-                Validators.maxLength(200)
+                Validators.maxLength(2000),
+                Validators.pattern('^\\D.*')
             ])),
             bookId: new FormControl('', Validators.compose([
                 Validators.required,

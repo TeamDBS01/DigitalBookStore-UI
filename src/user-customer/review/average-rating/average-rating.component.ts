@@ -5,7 +5,8 @@ import { Review } from '../model/Review';
 @Component({
   selector: 'app-average-rating',
   templateUrl: './average-rating.component.html',
-  styleUrls: ['./average-rating.component.sass']
+  styleUrls: ['./average-rating.component.sass'],
+  standalone: false
 })
 export class AverageRatingComponent {
     constructor(private reviewService: ReviewService) {}
