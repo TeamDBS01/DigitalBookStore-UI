@@ -107,6 +107,8 @@ export class UserService {
                         sessionStorage.setItem('email', response.email);
                         sessionStorage.setItem('token', response.token);
                         sessionStorage.setItem('role', response.role);
+                        sessionStorage.setItem('userId', response.userId.toString());
+                         
                     } else {
                         this.authenticated = false;
                         this.loggedInUser = null;
@@ -139,6 +141,11 @@ export class UserService {
     isAdmin(): boolean {
         const role = this.getLoggedInUserRole();
         return role === Role.ADMIN;
+    }
+
+    isCustomer(): boolean {
+        const role = this.getLoggedInUserRole();
+        return role === Role.CUSTOMER;
     }
 
     logOut() {
