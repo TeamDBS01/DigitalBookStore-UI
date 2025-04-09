@@ -44,9 +44,9 @@ export class UserService {
         return this.authenticated;
     }
 
-    getUser(User: any) {
-        return this.http.post<User>(this.authenticateURL + this.loginEndpoint, User);
-    }
+    // getUser(User: any) {
+    //     return this.http.post<User>(this.authenticateURL + this.login, User);
+    // }
 
     isUserLoggedIn() {
         let user = sessionStorage.getItem('name')

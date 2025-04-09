@@ -18,6 +18,7 @@ const routes: Routes = [
     {path:'bookid', component:ViewbookidComponent, canActivate:[AuthAdminGuard]},
     {path:'search', component:SearchtitleComponent, canActivate:[AuthAdminGuard]},
     {path: '**', redirectTo:'home', pathMatch:'full'}
+    
 ];
 
 @NgModule({

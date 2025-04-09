@@ -4,9 +4,10 @@ import { race } from 'rxjs';
 import { ReviewService } from '../service/review.service';
 
 @Component({
-  selector: 'app-add-review', standalone:false,
+  selector: 'app-add-review',
   templateUrl: './add-review.component.html',
-  styleUrls: ['./add-review.component.sass']
+  styleUrls: ['./add-review.component.sass'],
+  standalone: false
 })
 export class AddReviewComponent {
 
