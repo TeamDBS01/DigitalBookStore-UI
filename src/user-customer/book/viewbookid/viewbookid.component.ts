@@ -5,7 +5,8 @@ import { BookService } from '../service/book.service';
 @Component({
   selector: 'app-viewbookid',
   templateUrl: './viewbookid.component.html',
-  styleUrls: ['./viewbookid.component.sass']
+  styleUrls: ['./viewbookid.component.sass'],
+  standalone: false
 })
 export class ViewbookidComponent {
   book:Book=new Book();

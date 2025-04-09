@@ -22,6 +22,10 @@ import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { LoginComponent } from 'src/user-customer/user/login/login.component';
 import { AddReviewComponent } from 'src/user-customer/review/add-review/add-review.component';
+import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
+import { FilterComponent } from 'src/user-customer/book/filter/filter.component';
+import { SearchbarComponent } from 'src/user-customer/book/search-bar/searchbar/searchbar.component';
+import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { AddReviewComponent } from 'src/user-customer/review/add-review/add-revi
     HomeComponent,
     LoginComponent,
     AddReviewComponent,
+    SearchtitleComponent,
+    FilterComponent,
+    SearchbarComponent,
+    ViewbookidComponent
   ],
   imports: [
     BrowserModule,

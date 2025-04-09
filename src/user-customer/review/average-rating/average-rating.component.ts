@@ -3,7 +3,7 @@ import { ReviewService } from '../service/review.service';
 import { Review } from '../model/Review';
 
 @Component({
-  selector: 'app-average-rating',
+  selector: 'app-average-rating', standalone:false,
   templateUrl: './average-rating.component.html',
   styleUrls: ['./average-rating.component.sass']
 })
