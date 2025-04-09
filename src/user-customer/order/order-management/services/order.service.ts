@@ -5,13 +5,15 @@ import { CartItem } from '../../shared/interfaces/cart-item';
 import { Order } from '../../shared/interfaces/order';
 import { PaymentDetails } from '../../shared/interfaces/payment-details';
 import { Book } from '../../shared/interfaces/book';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  private baseUrl = 'http://localhost:8082/dbs/order'; 
+  apiUrl = environment.apiHostUrl;
+  private baseUrl = this.apiUrl + '/order'; 
   private userId = 3; 
 
   constructor(private http: HttpClient) {}

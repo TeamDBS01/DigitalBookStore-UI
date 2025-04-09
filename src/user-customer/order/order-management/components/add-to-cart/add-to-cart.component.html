@@ -1,44 +1,11 @@
-<div class="add-to-cart-container">
+<!-- <div class="add-to-cart-container">
   <header class="add-to-cart-header">
     <h2 class="add-to-cart-title"><i class="bi bi-cart-plus-fill me-2"></i> Add Book to Cart</h2>
-  </header>
+  </header> -->
 
-  <form [formGroup]="addToCartForm" (ngSubmit)="addToCart()" >
-    <!-- <div class="form-group"> -->
-      <!-- <label for="bookId" class="form-label"><i class="bi bi-book-fill me-1"></i> Book ID:</label>
-      <select id="bookId" formControlName="bookId" class="form-select">
-        <option value="" disabled selected>Select a Book ID</option>
-        <option *ngFor="let bookId of bookIds" [value]="bookId">{{ bookId }}</option>
-      </select> -->
-      <!-- <div *ngIf="bookIdControl?.invalid && (bookIdControl?.dirty || bookIdControl?.touched)" class="error-feedback">
-        <div *ngIf="bookIdControl?.errors?.['required']">Please select a Book ID.</div>
-      </div> -->
-    <!-- </div> -->
-
-    <div class="form-group">
-      <label for="quantity" class="form-label"><i class="bi bi-hash me-1"></i> Quantity:</label>
-      <input type="number" id="quantity" formControlName="quantity" min="1" class="form-control">
-      <div *ngIf="quantityControl?.invalid && (quantityControl?.dirty || quantityControl?.touched)" class="error-feedback">
-        <div *ngIf="quantityControl?.errors?.['required']">Quantity is required.</div>
-        <div *ngIf="quantityControl?.errors?.['min']">Quantity must be at least 1.</div>
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary add-button" [disabled]="addToCartForm.invalid">
+    <button type="submit" class="btn btn-primary add-button" (click)="addToCart()">
       <i class="bi bi-plus-circle-fill me-2"></i> Add to Cart
     </button>
-
-    <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
-      <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ errorMessage }}
-    </div>
     <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
       <i class="bi bi-check-circle-fill me-2"></i> {{ successMessage }}
     </div>
-  </form>
-
-  <div class="cart-navigation mt-3">
-    <button routerLink="/order/cart" class="btn btn-outline-secondary view-cart-button">
-      <i class="bi bi-cart-fill me-2"></i> View Shopping Cart
-    </button>
-  </div>
-</div>
