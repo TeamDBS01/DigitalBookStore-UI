@@ -9,8 +9,6 @@ import { ViewAllReviewsComponent } from 'src/user-customer/review/view-all-revie
 import { ReviewService } from 'src/user-customer/review/service/review.service';
 import { BookService } from 'src/user-customer/book/service/book.service';
 import { UserService } from 'src/user-customer/user/service/user.service';
-import { OrderService as adminOrderService } from 'src/user-admin/order/service/order.service';
-import { OrderService as customerOrderService } from 'src/user-customer/order/service/order.service';
 import { InventoryService } from 'src/user-admin/inventory/service/inventory.service';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { ReviewComponent } from 'src/user-customer/review/review/review.component';
@@ -19,9 +17,27 @@ import { AverageRatingComponent } from 'src/user-customer/review/average-rating/
 import { NavbarComponent } from 'src/user-customer/Home/navbar/navbar.component';
 import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
 import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book-carousel.component';
+import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { LoginComponent } from 'src/user-customer/user/login/login.component';
 import { AddReviewComponent } from 'src/user-customer/review/add-review/add-review.component';
-import { HomeComponent } from 'src/user-customer/home/home/home.component';
+import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
+import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/addbook/addbook.component';
+import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
+import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
+import { FilterComponent } from 'src/user-customer/book/filter/filter.component';
+import { SearchbarComponent } from 'src/user-customer/book/search-bar/searchbar/searchbar.component';
+import { OrderService } from 'src/user-customer/order/order-management/services/order.service';
+import { BookInfoService } from 'src/user-customer/order/order-management/services/book-info.service';
+import { OrderManagementComponent } from 'src/user-customer/order/order-management/order-management.component';
+import { AddToCartComponent } from 'src/user-customer/order/order-management/components/add-to-cart/add-to-cart.component';
+import { AdminReturnProcessComponent } from 'src/user-customer/order/order-management/components/admin-return-process/admin-return-process.component';
+import { OrderDetailsComponent } from 'src/user-customer/order/order-management/components/order-details/order-details.component';
+import { CartComponent } from 'src/user-customer/order/order-management/components/cart/cart.component';
+import { OrderListComponent } from 'src/user-customer/order/order-management/components/order-list/order-list.component';
+import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
+import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
+import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
+import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +51,26 @@ import { HomeComponent } from 'src/user-customer/home/home/home.component';
     BookHeroComponent,
     BookCarouselComponent,
     HomeComponent,
-    LoginComponent,
     AddReviewComponent,
+    ViewbookidComponent,
+    AddbookComponent,
+    UpdatebookComponent,
+    LoginComponent,
+    SearchtitleComponent,
+    FilterComponent,
+    SearchbarComponent,
+    ViewbookidComponent,
+    BookdetailsComponent,
+    OrderManagementComponent,
+    AddToCartComponent,
+    CartComponent,
+    PlaceOrderComponent,
+    OrderListComponent,
+    OrderDetailsComponent,
+    AdminReturnProcessComponent,
+    PaymentComponent,
+    UpdateTrackingComponent,
+    PlaceOrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +79,7 @@ import { HomeComponent } from 'src/user-customer/home/home/home.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [BookService, UserService, customerOrderService, adminOrderService, InventoryService, ReviewService],
+  providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

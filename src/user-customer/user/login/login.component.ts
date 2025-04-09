@@ -5,11 +5,12 @@ import { UserService } from '../service/user.service';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.sass']
+    styleUrls: ['./login.component.sass'],
+    standalone: false
 })
 export class LoginComponent {
 
-    username = ''
+    email = ''
     password = ''
     invalidLogin = false
 
@@ -17,14 +18,19 @@ export class LoginComponent {
     constructor(private router: Router, private loginService: UserService) { }
 
 
+
     checkLogin() {
-        if (this.loginService.authenticate(this.username, this.password)) {
+        if (this.loginService.authenticate(this.email, this.password)) {
             this.invalidLogin = false;
             this.router.navigate(['home'])
         } else
             this.invalidLogin = true
-        this.username = '';
+        if (this.loginService.authenticate(this.email, this.password)) {
+            this.invalidLogin = false;
+            this.router.navigate(['home'])
+        } else
+            this.invalidLogin = true
+        this.email = '';
         this.password = '';
     }
-
 }
