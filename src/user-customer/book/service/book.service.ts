@@ -15,9 +15,13 @@ export class BookService {
   public getBookByIdURL=this.apiHostUrl+'/books'
 
   constructor(private http:HttpClient) { }
-  public getBookById(book:any){
+  public getBook(book:any){
     this.bookID=book.bookID;
     return this.http.get<Book>(this.getBookByIdURL+'/'+book.bookID);
+  }
+
+  public getBookById(bookID: string): Observable<Book> {
+    return this.http.get<Book>(`${this.getBookByIdURL}/${bookID}`);
   }
 
   getAllBooks():Observable<Book[]> {
@@ -36,12 +40,6 @@ export class BookService {
     return this.http.get<Book[]>(`${this.getBookByIdURL}/search/${title.trim()}`);
   }
 
-  // filterBy(author: string, category: string): Observable<Book[]> {
-  //   let params = new URLSearchParams();
-  //   if (author) params.append('author', author);
-  //   if (category) params.append('category', category);
-  //   return this.http.get<Book[]>(`${this.getBookByIdURL}/filter?${params.toString()}`);
-  // }
   filterBy(author: string, category: string): Observable<Book[]> {
     let params = new URLSearchParams();
     if (author) params.append('author', author);
