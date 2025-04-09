@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: 'review/addReview', component: AddReviewComponent, canActivate:[AuthAdminGuard]},
     {path: 'review/all', component: ViewAllReviewsComponent, canActivate:[AuthAdminGuard]},
     {path: 'review/allReviews', component: AllReviewsComponent, canActivate:[AuthAdminGuard]},
-    {path: 'bookid', component:ViewbookidComponent},
+    {path: 'bookid', component:ViewbookidComponent, canActivate:[AuthAdminGuard]},
     {path: '**', redirectTo:'home', pathMatch:'full'}
     
 ];

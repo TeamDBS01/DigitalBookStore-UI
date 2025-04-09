@@ -1,14 +1,17 @@
 <div class="container">
-  <h2>Login</h2>
-  <div>
-      Email: <input type="text" name="username" [(ngModel)]="email">
+    <form>
+
+        <h2>Login</h2>
+        <div>
+            Email: <input type="text" name="username" [(ngModel)]="email">
       Password: <input type="password" name="password" [(ngModel)]="password">
-  </div>
+    </div>
   <button (click)="checkLogin()">
       Login
   </button>
   <div *ngIf="invalidLogin" style="color: red;">
       Invalid email or password. Please try again.
-  </div>
-  <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+    </div>
+    <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+</form>
 </div>
