@@ -43,7 +43,7 @@ export class SearchtitleComponent  {
     this.bookService.filterBy(criteria.author, criteria.category).subscribe((data: Book[]) => {
       this.books = data;
       console.log('Filtered Books:', this.books);
-
+    
     });
   }
 }

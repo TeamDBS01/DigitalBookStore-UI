@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { race } from 'rxjs';
 import { ReviewService } from '../service/review.service';
+import { ActivatedRoute } from '@angular/router';
+import { Review } from '../model/Review';
 
 @Component({
   selector: 'app-add-review',
@@ -12,8 +14,14 @@ import { ReviewService } from '../service/review.service';
 export class AddReviewComponent {
 
     formData: any;
-    constructor(private reviewService: ReviewService) { }
+    error = false;
+    userId = sessionStorage.getItem('userId');
+    bookId!: string;
+    errorMessage!: string;
+    successMessage!: string;
+    constructor(private reviewService: ReviewService, private route :ActivatedRoute) {}
     ngOnInit() {
+        this.route.queryParams.subscribe(params => this.bookId = params['bookId']);
         this.formData = new FormGroup({
             rating: new FormControl('', Validators.compose([
                 Validators.required,
@@ -23,24 +31,28 @@ export class AddReviewComponent {
             comment: new FormControl('', Validators.compose([
                 Validators.required,
                 Validators.minLength(3),
-                Validators.maxLength(200)
+                Validators.maxLength(2000),
+                Validators.pattern('^\\D.*')
             ])),
-            bookId: new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.minLength(3),
-                Validators.maxLength(20)
-            ])),
-            userId: new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.min(1)
-            ]))
         });
     }
 
     onSubmit(formData: any) {
-        this.reviewService.addReview(formData).subscribe({
-            next: data => console.log(data),
-            error: error => console.error(error)
+        let review = new Review();
+        review.rating = formData.rating;
+        review.comment = formData.comment;
+        review.bookId = this.bookId;
+        review.userId = Number(this.userId);
+        // console.log(review);
+        this.reviewService.addReview(review).subscribe({
+            next: data => {
+                console.log(data)
+                this.successMessage = "Review added successfully";
+            },
+            error: error => {
+                console.error(error)
+                this.errorMessage = "Error adding review";
+            }
         })
     }
 }

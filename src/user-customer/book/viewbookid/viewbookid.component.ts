@@ -16,7 +16,7 @@ export class ViewbookidComponent {
   constructor(private bookService:BookService){}
 
   search(){
-    this.bookService.getBookById(this.book)
+    this.bookService.getBook(this.book)
     .subscribe(data=>{
       this.book=data;
     });
