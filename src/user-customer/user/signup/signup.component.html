@@ -1,0 +1,61 @@
+<div class="container">
+    <form #signupForm="ngForm" (ngSubmit)="signup()">
+        <h2>Sign Up</h2>
+        
+        <!-- Name Field -->
+        <div>
+            Name: 
+            <input type="text" name="name" [(ngModel)]="name" required #nameField="ngModel">
+            <div *ngIf="nameField.invalid && nameField.touched" style="color: red;">
+                <div *ngIf="nameField.errors?.['required']">Name is required.</div>
+            </div>
+        </div>
+        
+        <!-- Email Field -->
+        <div>
+            Email: 
+            <input type="email" name="email" [(ngModel)]="email" required email #emailField="ngModel">
+            <div *ngIf="emailField.invalid && emailField.touched" style="color: red;">
+                <div *ngIf="emailField.errors?.['required']">Email is required.</div>
+                <div *ngIf="emailField.errors?.['email']">Invalid email format.</div>
+            </div>
+        </div>
+        
+        <!-- Password Field -->
+        <div>
+            Password: 
+            <input type="password" name="password" [(ngModel)]="password" required minlength="6" #passwordField="ngModel">
+            <div *ngIf="passwordField.invalid && passwordField.touched" style="color: red;">
+                <div *ngIf="passwordField.errors?.['required']">Password is required.</div>
+                <div *ngIf="passwordField.errors?.['minlength']">Password must be at least 6 characters long.</div>
+            </div>
+        </div>
+        
+        <!-- Confirm Password Field -->
+        <div>
+            Confirm Password: 
+            <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required #confirmPasswordField="ngModel">
+            <div *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched" style="color: red;">
+                <div *ngIf="confirmPasswordField.errors?.['required']">Confirm Password is required.</div>
+            </div>
+            <div *ngIf="password !== confirmPassword && confirmPasswordField.touched" style="color: red;">
+                Passwords do not match.
+            </div>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="signupForm.invalid || password !== confirmPassword">
+            Sign Up
+        </button>
+        
+        <!-- Registration Error Message -->
+
+        <div *ngIf="registrationErrorMessage" style="color: red;">
+            {{ registrationErrorMessage }}
+        </div>
+        
+        
+        <!-- Login Link -->
+        <p>Already have an account? <a routerLink="/login">Login</a></p>
+    </form>
+</div>

@@ -1,12 +1,12 @@
-<div class="filter-sidebar">
+<div class="filter-sidebar p-2 border rounded">
     <h3>Filter by</h3>
-    <div>
-      <label for="author">Author:</label>
-      <input id="author" [(ngModel)]="authorQuery" placeholder="Enter author name" />
+    <div class="mb-2">
+      <label for="author" class="form-label">Author:</label>
+      <input id="author" class="form-control" [(ngModel)]="authorQuery" placeholder="Enter author name" />
     </div>
-    <div>
-      <label for="category">Category:</label>
-      <input id="category" [(ngModel)]="categoryQuery" placeholder="Enter category" />
+    <div class="mb-2">
+      <label for="category" class="form-label">Category:</label>
+      <input id="category" class="form-control" [(ngModel)]="categoryQuery" placeholder="Enter category" />
     </div>
-    <button (click)="applyFilter()">Apply Filter</button>
+    <button class="btn btn-secondary" (click)="applyFilter()">Apply Filter</button>
   </div>
