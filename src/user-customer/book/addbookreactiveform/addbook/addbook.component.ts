@@ -84,19 +84,18 @@ export class AddbookComponent {
     this.book=new Book(); 
   }
 
-onSubmit(data:any){
-this.book.bookID=data.bookID;
-this.book.title=data.title;
-this.book.price=data.price;
-this.book.authorID=data.authorID;
-this.book.categoryID=data.categoryID;
-this.book.base64img=data.base64img;
-console.log(this.book);
-console.log(data.base64img);
-console.log(data.base64img.value);
+  onSubmit(){
+    this.book.bookID=this.formData.get('bookID').value;
+    this.book.title=this.formData.get('title').value;
+    this.book.price=this.formData.get('price').value;
+    this.book.authorID=this.formData.get('authorID').value;
+    this.book.categoryID=this.formData.get('categoryID').value;
+    this.book.base64img=this.formData.get('base64img').value;
+    console.log(this.book);
+    console.log(this.formData.get('base64img').value);
+    this.save();
+  }
 
-this.save();
-}
 get bookID():FormControl{
 
   return this.formData.get('bookID');
