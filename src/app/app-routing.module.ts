@@ -19,50 +19,26 @@ import { AuthAdminGuard } from 'src/user-customer/user/guard/auth-admin.guard';
 import { LoginComponent } from 'src/user-customer/user/login/login.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthAdminGuard] },
-  {
-    path: 'review/addReview',
-    component: AddReviewComponent,
-    canActivate: [AuthAdminGuard],
-  },
-  {
-    path: 'review/all',
-    component: ViewAllReviewsComponent,
-    canActivate: [AuthAdminGuard],
-  },
-  {
-    path: 'review/allReviews',
-    component: AllReviewsComponent,
-    canActivate: [AuthAdminGuard],
-  },
-  {
-    path: 'bookid',
-    component: ViewbookidComponent,
-    canActivate: [AuthAdminGuard],
-  },
-  {
-    path: 'book-details/:id',
-    component: BookdetailsComponent,
-    canActivate: [AuthAdminGuard],
-  },
-  {
-    path: 'search',
-    component: SearchtitleComponent,
-    canActivate: [AuthAdminGuard],
-  },
-  { path: 'order/cart', component: CartComponent, canActivate: [AuthAdminGuard], },
-  { path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthAdminGuard], },
-  { path: 'order/list', component: OrderListComponent, canActivate: [AuthAdminGuard], },
-  { path: 'order/details/:id', component: OrderDetailsComponent, canActivate: [AuthAdminGuard], },
-  { path: 'order/admin/return/:id', component: AdminReturnProcessComponent, canActivate: [AuthAdminGuard], },
-  { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
-  { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthAdminGuard], },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'review/addReview', component: AddReviewComponent, canActivate: [AuthAdminGuard], },
+    { path: 'review/all', component: ViewAllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
+    { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'search', component: SearchtitleComponent, canActivate: [AuthAdminGuard], },
+    { path: 'order/cart', component: CartComponent, canActivate: [AuthAdminGuard], },
+    { path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthAdminGuard], },
+    { path: 'order/list', component: OrderListComponent, canActivate: [AuthAdminGuard], },
+    { path: 'order/details/:id', component: OrderDetailsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'order/admin/return/:id', component: AdminReturnProcessComponent, canActivate: [AuthAdminGuard], },
+    { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
+    { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthAdminGuard], },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

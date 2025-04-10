@@ -38,6 +38,7 @@ import { PaymentComponent } from 'src/user-customer/order/order-management/compo
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
+import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-book-id/reviews-by-book-id.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,8 @@ import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookde
     PaymentComponent,
     UpdateTrackingComponent,
     PlaceOrderComponent,
+    ReviewsByBookIdComponent,
+    
   ],
   imports: [
     BrowserModule,
