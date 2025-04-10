@@ -38,6 +38,9 @@ import { PaymentComponent } from 'src/user-customer/order/order-management/compo
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
+import { SignupComponent } from 'src/user-customer/user/signup/signup.component';
+ 
+
 
 @NgModule({
   declarations: [
@@ -71,6 +74,11 @@ import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookde
     PaymentComponent,
     UpdateTrackingComponent,
     PlaceOrderComponent,
+    SignupComponent,
+    
+    
+  
+    
   ],
   imports: [
     BrowserModule,
@@ -78,18 +86,11 @@ import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookde
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+     
   ],
   providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-/**
- * Add stars in 'add' n 'update page, validation only for comments should come seperate for min n max n look nice with more changes
- * Add n Update come like a popup
- * pencil n delete icon should be visible for admin or own comment
- * review by book should be arranged to diplay user's own review first
- * complete update n delete functionality
- * All review in admin
- * ID n all should be input for add n update
- */
+ 
