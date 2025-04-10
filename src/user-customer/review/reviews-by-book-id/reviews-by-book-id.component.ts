@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
+import { UserService } from 'src/user-customer/user/service/user.service';
 
 @Component({
   selector: 'app-reviews-by-book-id',
@@ -9,16 +10,13 @@ import { ReviewService } from '../service/review.service';
 })
 export class ReviewsByBookIdComponent {
 
-    constructor(private reviewService: ReviewService) {}
+    constructor(public reviewService: ReviewService, public loginService: UserService) {}
     
     reviews!: Review[];
     @Input() bookId!: string;
     ngOnInit() {
         this.reviewService.getReviewsByBookId(this.bookId).subscribe({
-            next: data => {
-                this.reviews = data
-                console.log(this.reviews)
-            },
+            next: data => this.reviews = data,
             error: error => console.error(error)
         })
     }
