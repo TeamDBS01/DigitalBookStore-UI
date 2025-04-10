@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../../model/Book';
 import { BookService } from '../../service/book.service';
 
@@ -8,38 +8,17 @@ import { BookService } from '../../service/book.service';
   styleUrls: ['./updatebook.component.sass'],
   standalone: false
 })
-export class UpdatebookComponent {
-  book: Book=new Book();
-  submitted=false;
-  result!:string;
-  formData: any;
- 
+export class UpdatebookComponent implements OnInit {
+  book: Book = new Book();
+  submitted = false;
+  result!: string;
 
-  // constructor(private bookService: BookService){
-  //   // bookService.getBookById(this.book.bookID).subscribe(data => {
-  //   //   this.book.bookID = data.bookID;
-  //   // });
-  //   bookService.getBookById(this.book.bookID);
-  //   this.bookService.getBookById(this.book).subscribe(data => {
-  //     this.book.bookID=data['bookID'];
-  //     this.book.title=data['title'];
-  //     this.book.price=data['price'];
-  //     this.book.authorID=data['authorID'];
-  //     this.book.categoryID=data['categoryID'];
-  //     this.book.base64img=data['base64img'];
-  //   });
-  // }
+  constructor(private bookService: BookService) { }
 
-  constructor(private bookService: BookService) {
-    this.book.bookID = this.bookService.getBookId(); // getEmpId() now returns a string
-
+  ngOnInit(): void {
+    this.book.bookID = this.bookService.getBookId();
     this.bookService.getBookById(this.book.bookID).subscribe(data => {
-      this.book.bookID=data['bookID'];
-      this.book.title=data['title'];
-      this.book.price=data['price'];
-      this.book.authorID=data['authorID'];
-      this.book.categoryID=data['categoryID'];
-      this.book.base64img=data['base64img'];
+      this.book = data;
     });
   }
 
@@ -48,32 +27,27 @@ export class UpdatebookComponent {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.formData.patchValue({
-          base64img: e.target.result // This is the Base64 string (Data URL)
-        });
+        this.book.base64img = e.target.result; // Update the book object directly
       };
       reader.readAsDataURL(file);
     } else {
-      this.formData.patchValue({
-        base64img: '' // Clear base64 if no file selected
-      });
+      this.book.base64img = ''; // Clear base64 if no file selected
     }
-    // console.log(this.formData.get('base64img').value);
-    // console.log(this.base64img);
-    // console.log(this.base64img.value);
   }
 
-
-  update(){
+  update() {
     this.bookService.updateBook(this.book)
-    .subscribe(data => {
-      this.result=data;
-    }, error => console.log(error));
-    this.book=new Book();
+      .subscribe(data => {
+        this.result = data;
+        this.submitted = true; // Show the result message
+      }, error => {
+        console.log(error);
+        this.result = 'Error updating book.'; // Display an error message
+        this.submitted = true;
+      });
   }
 
-  onSubmit(){
-    this.submitted=true;
+  onSubmit() {
     this.update();
   }
 }
