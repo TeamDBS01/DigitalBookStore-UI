@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'review/addReview',
     component: AddReviewComponent,
-    canActivate: [AuthAdminGuard],
+    canActivate: [AuthCustomerGuard ],
   },
   {
     path: 'review/all',
@@ -47,7 +47,7 @@ const routes: Routes = [
   {
     path: 'book-details/:id',
     component: BookdetailsComponent,
-    canActivate: [AuthAdminGuard],
+    canActivate: [AuthCustomerGuard ],
   },
   {
     path: 'search',
@@ -57,7 +57,7 @@ const routes: Routes = [
   { path: 'order/cart', component: CartComponent, canActivate: [AuthCustomerGuard], },
   { path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthCustomerGuard], },
   { path: 'order/list', component: OrderListComponent, canActivate: [AuthCustomerGuard], },
-  { path: 'order/details/:id', component: OrderDetailsComponent, canActivate: [AuthAdminGuard], },
+  { path: 'order/details/:id', component: OrderDetailsComponent, canActivate: [AuthCustomerGuard ], },
   { path: 'order/admin/return/:id', component: AdminReturnProcessComponent, canActivate: [AuthAdminGuard], },
   { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
   { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
