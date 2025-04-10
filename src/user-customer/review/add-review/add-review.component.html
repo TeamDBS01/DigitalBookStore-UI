@@ -1,16 +1,18 @@
-<div class="container m-2">
+<div class="container mt-4">
     <form [formGroup]="formData" #addForm='ngForm' (ngSubmit)="onSubmit(addForm.value)" class="p-4 border rounded">
-        <div class="mb-3">
-            <label for="rating" class="form-label">Rating</label>
-            <input type="number" id="rating" formControlName="rating" class="form-control" required
-                placeholder="Enter rating (0.1 - 5)" />
-            <div *ngIf="formData.get('rating')?.invalid && formData.get('rating')?.touched" class="text-danger">
-                Rating is required and must be between 0.1 and 5.
-            </div>
+        <h4>Give your Rating: </h4>
+        <div class="fa-2x star-rating mb-3" style="cursor: pointer;" id="rating">
+            <i style="color:orange" class="fa-regular fa-star rating-star" data-value="1"></i>
+            <i style="color:orange" class="fa-regular fa-star rating-star" data-value="2"></i>
+            <i style="color:orange" class="fa-regular fa-star rating-star" data-value="3"></i>
+            <i style="color:orange" class="fa-regular fa-star rating-star" data-value="4"></i>
+            <i style="color:orange" class="fa-regular fa-star rating-star" data-value="5"></i>
         </div>
+        <p *ngIf="rating != 0">Your Rating: {{ rating }}</p>
+          
         <div class="mb-3">
             <label for="comment" class="form-label">Comment</label>
-            <textarea id="comment" formControlName="comment" class="form-control" rows="2" required
+            <textarea id="comment" formControlName="comment" class="form-control" rows="3" required (keydown)="disableEnter($event)"
                 placeholder="Enter comment"></textarea>
             <div *ngIf="formData.controls.comment.errors?.['required'] && formData.controls.comment.touched" class="text-danger">
                 Comment is required!
