@@ -15,7 +15,8 @@ export class BookService {
 
   public getBookByIdURL=this.apiHostUrl+'/books';
   private registerBookURL=this.apiHostUrl+'/books';
-  private updateBookURL=this.apiHostUrl+'/book';
+  private updateBookURL=this.apiHostUrl+'/books';
+  private deleteBookURL=this.apiHostUrl+'/books';
 
   constructor(private http:HttpClient) { }
 
@@ -32,7 +33,11 @@ export class BookService {
   }
 
   public updateBook(Book:any){
-    return this.http.put<string>(this.updateBookURL+'/'+Book.bookID+'/'+Book.title, Book);
+    return this.http.put<string>(this.updateBookURL+'/update'+'/'+Book.bookID, Book);
+  }
+
+  public deleteBook(Book:any){
+    return this.http.delete<string>(this.deleteBookURL+"/delete"+'/'+Book.bookID);
   }
 
   getAllBooks():Observable<Book[]> {
