@@ -10,6 +10,7 @@ import { BookService } from 'src/user-customer/book/service/book.service';
   standalone: false
 })
 export class BookCarouselComponent {
+  
   searchQuery: string = '';
   books!: Book[];
 
