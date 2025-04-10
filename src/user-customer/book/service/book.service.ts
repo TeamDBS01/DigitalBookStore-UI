@@ -10,40 +10,40 @@ import { Observable } from 'rxjs';
 })
 export class BookService {
 
-  apiHostUrl=environment.apiHostUrl;
-  bookID!:string;
+  apiHostUrl = environment.apiHostUrl;
+  bookID!: string;
 
-  public getBookByIdURL=this.apiHostUrl+'/books';
-  private registerBookURL=this.apiHostUrl+'/books';
-  private updateBookURL=this.apiHostUrl+'/books';
-  private deleteBookURL=this.apiHostUrl+'/books';
+  public getBookByIdURL = this.apiHostUrl + '/books';
+  private registerBookURL = this.apiHostUrl + '/books';
+  private updateBookURL = this.apiHostUrl + '/books';
+  private deleteBookURL = this.apiHostUrl + '/books';
 
-  constructor(private http:HttpClient) { }
-  public getBook(book:any){
-    this.bookID=book.bookID;
-    return this.http.get<Book>(this.getBookByIdURL+'/'+book.bookID);
+  constructor(private http: HttpClient) { }
+  public getBook(book: any) {
+    this.bookID = book.bookID;
+    return this.http.get<Book>(this.getBookByIdURL + '/' + book.bookID);
   }
-  public getBookId(){
+  public getBookId() {
     return this.bookID;
   }
 
-  public registerBook(book:Book){
-    return this.http.post<string>(this.registerBookURL +"/addBooks",book);
+  public registerBook(book: Book) {
+    return this.http.post<string>(this.registerBookURL + "/addBooks", book);
   }
 
-  public updateBook(Book:any){
-    return this.http.put<string>(this.updateBookURL+'/update'+'/'+Book.bookID, Book);
+  public updateBook(Book: any) {
+    return this.http.put<string>(this.updateBookURL + '/update' + '/' + Book.bookID, Book);
   }
 
-  public deleteBook(Book:any){
-    return this.http.delete<string>(this.deleteBookURL+"/delete"+'/'+Book.bookID);
+  public deleteBook(Book: any) {
+    return this.http.delete<string>(this.deleteBookURL + "/delete" + '/' + Book.bookID);
   }
 
   public getBookById(bookID: string): Observable<Book> {
     return this.http.get<Book>(`${this.getBookByIdURL}/${bookID}`);
   }
 
-  getAllBooks():Observable<Book[]> {
+  getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.getBookByIdURL}`);
   }
 
@@ -65,4 +65,14 @@ export class BookService {
     if (category) params.append('category', category);
     return this.http.get<Book[]>(`${this.getBookByIdURL}/filter?${params.toString()}`);
   }
+
+
+  getAllCategories(): Observable<{ name: string }[]> {
+    return this.http.get<{ name: string }[]>(`${this.getBookByIdURL}/categories`);
+  }
+
+  getBooksByCategory(category: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.getBookByIdURL}/category/${category}`);
+  }
+
 }

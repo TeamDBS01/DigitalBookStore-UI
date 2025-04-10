@@ -1,8 +1,8 @@
 <div class="d-flex flex-row m-3">
-    <div class="w-25 fa-2x">
+    <!-- <div class="w-25 fa-2x">
         <app-average-rating [bookId]='bookId' class="mb-3" />
-    </div>
-    <div class="w-50">
+    </div> -->
+    <div class="w-75">
         <i routerLink="/review/addReview" [queryParams]="{'bookId': bookId}" class="fa-solid fa-plus fa-3x" style="cursor: pointer;"> | Add Review</i>
         <app-review *ngFor="let review of reviews" [review]="review" class="mb-3" />
     </div>

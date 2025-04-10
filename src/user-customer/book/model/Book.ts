@@ -9,4 +9,5 @@ export class Book{
     base64img!:string
     authorName!:string;
     categoryName!:string;
+    description!:string;
 }
