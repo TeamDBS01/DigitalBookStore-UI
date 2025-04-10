@@ -14,20 +14,20 @@
         </div>
         <div>
             <label for="authorID">Author ID:</label>
-            <input type="text" id="authorID" [(ngModel)]="book.authorID" name="authorID" readonly>
+            <input type="text" id="authorID" [(ngModel)]="book.authorID" name="authorID">
         </div>
         <div>
             <label for="categoryID">Category ID:</label>
-            <input type="text" id="categoryID" [(ngModel)]="book.categoryID" name="categoryID" readonly>
+            <input type="text" id="categoryID" [(ngModel)]="book.categoryID" name="categoryID">
         </div>
         <div>
-            <label for="base64img">:</label>
+            <label for="base64img">Cover Image:</label>
+            <img [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover" style="max-width: 100px; max-height: 100px;">
             <input type="file" id="base64img" [(ngModel)]="book.base64img" name="base64img" (change)="onFileChange($event)">
         </div>
-
         <button type="submit">Update</button>
     </form>
 </div>
-<div [hidden]="!submitted">
+<!-- <div [hidden]="!submitted">
     <h4>{{result}}</h4>
-</div>
+</div> -->
