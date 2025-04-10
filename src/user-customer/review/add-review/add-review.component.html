@@ -26,21 +26,12 @@
             </div>
             <!-- <div>{{formData.controls.comment.errors | json}} Invalid: {{formData.controls.comment.invalid | json}}</div> -->
         </div>
-        <div class="mb-3">
-            <label for="bookId" class="form-label">Book ID</label>
-            <input type="text" id="bookId" formControlName="bookId" class="form-control" required placeholder="Enter book ID" />
-            <div *ngIf="formData.get('bookId')?.invalid && formData.get('bookId')?.touched" class="text-danger">
-                Book ID is required and must be between 3 and 20 characters.
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="userId" class="form-label">User ID</label>
-            <input type="number" id="userId" formControlName="userId" class="form-control" required
-                placeholder="Enter user ID" />
-            <div *ngIf="formData.get('userId')?.invalid && formData.get('userId')?.touched" class="text-danger">
-                User ID is required and must be at least 1.
-            </div>
-        </div>
         <button type="submit" class="btn btn-success" [disabled]="addForm.invalid">Add Review</button>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+            {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="alert alert-success mt-4">
+            {{ successMessage }}
+        </div>
     </form>
 </div>

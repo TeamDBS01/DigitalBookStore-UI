@@ -41,6 +41,7 @@ import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookde
 import { SignupComponent } from 'src/user-customer/user/signup/signup.component';
  
 
+import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-book-id/reviews-by-book-id.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,8 @@ import { SignupComponent } from 'src/user-customer/user/signup/signup.component'
     
     
   
+    
+    ReviewsByBookIdComponent,
     
   ],
   imports: [

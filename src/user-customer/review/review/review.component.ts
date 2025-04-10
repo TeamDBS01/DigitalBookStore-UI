@@ -9,4 +9,5 @@ import { Review } from '../model/Review';
 })
 export class ReviewComponent {
     @Input() review!: Review;
+    @Input() canModify = false;
 }
