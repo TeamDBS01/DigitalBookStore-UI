@@ -6,7 +6,8 @@ import { UserService } from 'src/user-customer/user/service/user.service';
 @Component({
   selector: 'app-reviews-by-book-id',
   templateUrl: './reviews-by-book-id.component.html',
-  styleUrls: ['./reviews-by-book-id.component.sass']
+  styleUrls: ['./reviews-by-book-id.component.sass'],
+  standalone: false
 })
 export class ReviewsByBookIdComponent {
 
