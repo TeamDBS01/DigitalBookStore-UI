@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { BookService } from 'src/user-customer/book/service/book.service';
 
 @Component({
-  selector: 'app-categorybooks',
-  templateUrl: './categorybooks.component.html',
-  styleUrls: ['./categorybooks.component.sass']
+    selector: 'app-categorybooks',
+    templateUrl: './categorybooks.component.html',
+    styleUrls: ['./categorybooks.component.sass'],
+    standalone: false
 })
 export class CategorybooksComponent {
  

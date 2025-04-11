@@ -6,7 +6,8 @@ import { BookService } from 'src/user-customer/book/service/book.service';
 @Component({
   selector: 'app-categorybookslist',
   templateUrl: './categorybookslist.component.html',
-  styleUrls: ['./categorybookslist.component.sass']
+  styleUrls: ['./categorybookslist.component.sass'],
+  standalone: false
 })
 
 export class CategorybookslistComponent{

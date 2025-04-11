@@ -162,3 +162,50 @@
 .me-1 {
   margin-right: 0.8em !important; /* Increase the margin, !important might be needed for override */
 }
+
+
+.bg-primary {
+  background-color: #f0f0f0 !important; 
+  /* Use your desired subtle color */
+  color: #333 !important; /* Adjust text color if needed */
+}
+
+.mt-auto {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+.view-details-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 0.3rem;
+  border: 1px solid #6610f2; /* Soft indigo */
+  background-color: #fff;
+  color: #6610f2;
+  text-decoration: none;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  min-width: 90px;
+  box-shadow: 0 0.05rem 0.1rem rgba(102, 16, 242, 0.1);
+}
+
+.view-details-button:hover {
+  transform: translateY(-2px); /* Gentle lift on hover */
+  box-shadow: 0 0.3rem 0.6rem rgba(102, 16, 242, 0.2);
+  color: #6610f2; /* Keep text color */
+  background-color: #f8f9fa; /* Light background */
+}
+
+.view-details-button i {
+  margin-right: 0.4rem;
+  font-size: 1rem;
+}
+
+.view-details-button:active {
+  transform: translateY(0);
+  box-shadow: 0 0.1rem 0.2rem rgba(102, 16, 242, 0.3);
+}

@@ -17,8 +17,12 @@ export class ReviewsByBookIdComponent {
     @Input() bookId!: string;
     ngOnInit() {
         this.reviewService.getReviewsByBookId(this.bookId).subscribe({
-            next: data => this.reviews = data,
-            error: error => console.error(error)
+            next: data => {this.reviews = data},
+            error: error => {
+                if (!(error.error.text === `No Reviews with Book ID: ${this.bookId} Found!`)) {
+                    console.error(error);
+                }
+            }
         })
     }
 }

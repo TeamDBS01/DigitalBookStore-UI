@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
-import { UserService } from 'src/user-customer/user/service/user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-review',
@@ -13,11 +12,24 @@ import { Router } from '@angular/router';
 export class ReviewComponent {
     @Input() review!: Review;
     @Input() canModify = false;
+    @Input() userView = false;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private reviewService: ReviewService) {}
 
     editReview() {
-        if (!this.canModify) { alert('Unauthorized!') }
         this.router.navigate(['review/updateReview'], { queryParams: { 'reviewId': this.review.reviewId } });
+    }
+    deleteReview() {
+        if (!confirm('Are you sure you want to delete this review?')) {
+            return;
+        }
+        this.reviewService.deleteReview(this.review.reviewId).subscribe({
+            next: data => {
+                console.log(data);
+                this.router.navigate(['book-details', this.review.bookId]);
+                window.location.reload();
+            },
+            error: err => console.error(err),
+        })
     }
 }

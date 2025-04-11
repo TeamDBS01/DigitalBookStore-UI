@@ -13,10 +13,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PaymentComponent implements OnInit {
   paymentForm: FormGroup;
   orderId: number = 0;
-  userId: number = 2; // Replace with actual user authentication
+  userId: number = +sessionStorage.getItem('userId')!;
   errorMessage: string = '';
   paymentSuccess: boolean = false;
   selectedPaymentMethod: 'credit' | 'card' | 'cod' = 'card'; // Default to card
+  paymentSuccessfulCelebration: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -71,9 +72,14 @@ export class PaymentComponent implements OnInit {
           console.log('Payment with credits successful:', response);
           this.paymentSuccess = true;
           this.errorMessage = '';
-          this.router.navigate(['/order/details', this.orderId]); // Navigate immediately after successful payment
+          this.paymentSuccessfulCelebration = true; 
+          setTimeout(() => {
+            this.router.navigate(['/order/details', this.orderId]); // Navigate to order details
+          }, 6000);
+          // this.router.navigate(['/order/details', this.orderId]);
+           // Navigate immediately after successful payment
 
-          this.orderService.clearCart().subscribe({ // Optionally handle clear cart result
+          this.orderService.clearCart().subscribe({
             next: () => {
               console.log('Cart cleared successfully');
             },
@@ -87,6 +93,7 @@ export class PaymentComponent implements OnInit {
           console.error('Payment with credits failed:', error);
           this.errorMessage = error.error?.message || 'Payment with credits failed.';
           this.paymentSuccess = false;
+          this.paymentSuccessfulCelebration = false; 
         }
       });
     } else {
@@ -101,16 +108,22 @@ export class PaymentComponent implements OnInit {
           console.log('Cash on Delivery initiated:', response);
           this.paymentSuccess = true;
           this.errorMessage = '';
-          this.router.navigate(['/order/details', this.orderId]);
+          this.paymentSuccessfulCelebration = true; 
+          // this.router.navigate(['/order/details', this.orderId]);
+          setTimeout(() => {
+            this.router.navigate(['/order/details', this.orderId]); // Navigate to order details
+          }, 6000);
         },
         error: (error) => {
           console.error('Cash on Delivery failed to initiate:', error);
           this.errorMessage = error.error?.message || 'Failed to initiate Cash on Delivery.';
           this.paymentSuccess = false;
+          this.paymentSuccessfulCelebration = false;
         }
       });
     } else {
       this.errorMessage = 'Please select "Cash on Delivery" as the payment method.';
+      this.paymentSuccessfulCelebration = false;
     }
   }
 
@@ -124,20 +137,29 @@ export class PaymentComponent implements OnInit {
           console.log('Card payment successful:', response);
           this.paymentSuccess = true;
           this.errorMessage = '';
-          this.router.navigate(['/order/details', this.orderId]);
+          this.paymentSuccessfulCelebration = true; 
+          // this.router.navigate(['/order/details', this.orderId]);
+          setTimeout(() => {
+            this.router.navigate(['/order/details', this.orderId]); // Navigate to order details
+          }, 6000);
         },
         error: (error) => {
           console.error('Card payment failed:', error);
           this.errorMessage = error.error?.message || 'Card payment failed. Please check your payment details.';
           this.paymentSuccess = false;
+          this.paymentSuccessfulCelebration = false;
         }
       });
     } else if (this.selectedPaymentMethod !== 'card') {
       this.errorMessage = 'Please select "Card" to use this payment method.';
+      this.paymentSuccessfulCelebration = false;
     } else {
       this.errorMessage = 'Please fill out all required card details correctly.';
+      this.paymentSuccessfulCelebration = false;
+
     }
   }
+
 
   get cardNumberControl() {
     return this.paymentForm.get('cardNumber');

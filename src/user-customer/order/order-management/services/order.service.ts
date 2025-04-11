@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CartItem } from '../../shared/interfaces/cart-item';
 import { Order } from '../../shared/interfaces/order';
 import { PaymentDetails } from '../../shared/interfaces/payment-details';
@@ -14,9 +14,17 @@ export class OrderService {
 
   apiUrl = environment.apiHostUrl;
   private baseUrl = this.apiUrl + '/order'; 
-  private userId = 3; 
+  private userId = sessionStorage.getItem('userId');
+  private cartItemsCount = new BehaviorSubject<number>(0);
+  cartItemsCount$ = this.cartItemsCount.asObservable();
 
   constructor(private http: HttpClient) {}
+
+   loadInitialCartCount(): void {
+    this.getCartItems().subscribe(items => {
+      this.cartItemsCount.next(items.reduce((sum, item) => sum + item.quantity, 0));
+    });
+  }
 
   addToCart(bookId: string, quantity: number): Observable<CartItem[]> {
     const params = new HttpParams()
@@ -42,8 +50,12 @@ export class OrderService {
     return this.http.post(`${this.baseUrl}/${orderId}/payment/${this.userId}`, {});
   }
 
+  // cashOnDelivery(orderId: number, userId: number): Observable<any> {
+  //   return this.http.post(`${this.baseUrl}/${orderId}/payment/${this.userId}`, {});
+  // }
+
   cashOnDelivery(orderId: number, userId: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/${orderId}/payment/${this.userId}`, {});
+    return this.http.post(`${this.baseUrl}/${orderId}/cash-on-delivery/${userId}`, {}, { responseType: 'text' });
   }
 
   processPayment(orderId: number, paymentData: any): Observable<PaymentDetails> {
@@ -95,13 +107,15 @@ export class OrderService {
   }
 
   updateCartItem(bookId: string, quantity: number): Observable<CartItem[]> {
-    const userId = 3; // Replace with the actual user ID logic
-    return this.http.put<CartItem[]>(`${this.baseUrl}/${userId}/cart/update?bookId=${bookId}&quantity=${quantity}`, {});
+    return this.http.put<CartItem[]>(`${this.baseUrl}/${this.userId}/cart/update?bookId=${bookId}&quantity=${quantity}`, {});
   }
 
   getAvailableBookIds(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}/books/available-book-ids`);
   }
 
-  
+   updateCartCount(items: CartItem[]): void {
+    this.cartItemsCount.next(items.reduce((sum, item) => sum + item.quantity, 0));
+  }
+
 }

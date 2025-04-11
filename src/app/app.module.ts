@@ -26,7 +26,7 @@ import { UpdateTrackingComponent } from 'src/user-customer/order/order-managemen
 import { OrderManagementComponent } from 'src/user-customer/order/order-management/order-management.component';
 import { BookInfoService } from 'src/user-customer/order/order-management/services/book-info.service';
 import { OrderService } from 'src/user-customer/order/order-management/services/order.service';
-import { AddReviewComponent } from 'src/user-customer/review/add-review/add-review.component';
+import { AddUpdateReviewComponent } from 'src/user-customer/review/add-update-review/add-update-review.component';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { AverageRatingComponent } from 'src/user-customer/review/average-rating/average-rating.component';
 import { ReviewComponent } from 'src/user-customer/review/review/review.component';
@@ -43,54 +43,59 @@ import { AppComponent } from './app.component';
 import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-book-id/reviews-by-book-id.component';
 import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
 import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
+import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
 
+import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
+import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    ViewAllReviewsComponent,
-    AllReviewsComponent,
-    ReviewComponent,
-    StarsComponent,
-    AverageRatingComponent,
-    NavbarComponent,
-    BookHeroComponent,
-    BookCarouselComponent,
-    HomeComponent,
-    AddReviewComponent,
-    ViewbookidComponent,
-    AddbookComponent,
-    UpdatebookComponent,
-    LoginComponent,
-    SearchtitleComponent,
-    FilterComponent,
-    ViewbookidComponent,
-    BookdetailsComponent,
-    OrderManagementComponent,
-    AddToCartComponent,
-    CartComponent,
-    PlaceOrderComponent,
-    OrderListComponent,
-    OrderDetailsComponent,
-    AdminReturnProcessComponent,
-    PaymentComponent,
-    UpdateTrackingComponent,
-    PlaceOrderComponent,
-    SignupComponent,
-    ReviewsByBookIdComponent,
-    CategorybooksComponent,
-    CategorybookslistComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-     
-  ],
-  providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService],
-  bootstrap: [AppComponent]
+@NgModule({ 
+    declarations: [
+        AppComponent,
+        ViewAllReviewsComponent,
+        AllReviewsComponent,
+        ReviewComponent,
+        StarsComponent,
+        AverageRatingComponent,
+        NavbarComponent,
+        BookHeroComponent,
+        BookCarouselComponent,
+        HomeComponent,
+        AddUpdateReviewComponent,
+        ViewbookidComponent,
+        AddbookComponent,
+        UpdatebookComponent,
+        LoginComponent,
+        SearchtitleComponent,
+        FilterComponent,
+        ViewbookidComponent,
+        BookdetailsComponent,
+        OrderManagementComponent,
+        AddToCartComponent,
+        CartComponent,
+        PlaceOrderComponent,
+        OrderListComponent,
+        OrderDetailsComponent,
+        AdminReturnProcessComponent,
+        PaymentComponent,
+        UpdateTrackingComponent,
+        PlaceOrderComponent,
+        SignupComponent,
+         UserProfileComponent,
+        ReviewsByBookIdComponent,
+        CategorybookslistComponent,
+        CategorybooksComponent,
+        ReviewsByUserIdComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+
+    ],
+    providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
 

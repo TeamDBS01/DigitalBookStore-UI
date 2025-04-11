@@ -42,8 +42,10 @@ export class OrderListComponent implements OnInit {
         return 'bg-success text-dark';
       case 'Cancelled':
         return 'bg-danger text-dark';
-        case 'Return Requested':
-          return 'bg-warning text-dark';
+      case 'Return Requested':
+        return 'bg-warning text-dark';
+      case 'Return Approved':
+        return 'bg-success text-dark';
       default:
         return '';
     }

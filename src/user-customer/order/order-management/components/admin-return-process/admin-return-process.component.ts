@@ -14,7 +14,7 @@ export class AdminReturnProcessComponent implements OnInit {
   order: Order | null = null;
   errorMessage: string = '';
   successMessage: string = '';
-  adminUserId: number = 2; // Replace with actual admin user handling
+  adminUserId: number = 1; 
 
   constructor(private route: ActivatedRoute, private orderService: OrderService) {}
 
@@ -46,7 +46,7 @@ export class AdminReturnProcessComponent implements OnInit {
         next: (updatedOrder) => {
           this.order = updatedOrder;
           this.successMessage = `Return ${action}d successfully for Order ID: ${this.orderId}`;
-          this.loadOrderDetails(); // Reload details
+          this.loadOrderDetails();
         },
         error: (error) => {
           this.errorMessage = `Failed to ${action} return.`;

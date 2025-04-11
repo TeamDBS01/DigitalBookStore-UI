@@ -12,12 +12,12 @@ export class AverageRatingComponent {
     constructor(private reviewService: ReviewService) {}
 
     @Input() bookId!: string;
-    averageRating!: number;
+    averageRating: number = 0;
 
     ngOnInit() {
         this.reviewService.getAverageRating(this.bookId).subscribe({
             next: data => this.averageRating = data,
-             error: error => console.log(error)
+            error: error => console.log(error)
         });
     }
 }
