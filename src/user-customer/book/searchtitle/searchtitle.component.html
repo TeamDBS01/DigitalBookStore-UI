@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row mb-4">
+    <div class="col">
+
+      <div class="input-group">
+         <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Search for books..."
+          (keyup.enter)="fetchbooks()" />
+            <button type="submit" class="btn btn-primary" (click)="fetchbooks()">Search</button>
+        </div>
+
+    </div>
+  </div>
+  <app-filter (filterCriteria)="onFilterChange($event)"></app-filter>
+  <div class="row card-container" *ngIf="books.length > 0">
+    <div *ngFor="let book of books" class="col-md-3 mb-4">
+      <div class="card custom-card">
+        <a [routerLink]="['/book-details', book.bookID]">
+          <img [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''" class="card-img-top custom-img"
+            alt="{{ book.title }}" />
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a [routerLink]="['/book-details', book.bookID]">{{ book.title }}</a>
+          </h5>
+          <p class="card-text">Author: {{ book.authorName }}</p>
+          <p class="card-text">Category: {{ book.categoryName }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

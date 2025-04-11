@@ -2,14 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Review } from '../model/Review';
-
-// const httpOptions = {
-    //     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    // }
-    // class name {
-    //     name!: string;
-    //     title!: string;
-    // }
     
 @Injectable({
   providedIn: 'root'
@@ -20,9 +12,12 @@ export class ReviewService {
 
     apiReviewUrl = environment.apiHostUrl + '/review';
 
-    private USER_ID = 11;
+    private USER_ID = sessionStorage.getItem('userId');
     private reviewID!:number;
     private retreiveAllReviewsUrl = this.apiReviewUrl + '/all';
+    private retreiveAllReviewsByBookIdUrl = this.apiReviewUrl + '/book/';
+    private retreiveAllReviewsByUserIdUrl = this.apiReviewUrl + '/user/' + this.USER_ID;
+    private updateReviewUrl = this.apiReviewUrl + '/update/' + this.USER_ID;
     private addReviewUrl = this.apiReviewUrl + '/add';
     private deleteReviewUrl = this.apiReviewUrl + '/delete/' + this.USER_ID + '/';
     private averageRatingUrl = this.apiReviewUrl + '/book/average/';
@@ -34,6 +29,22 @@ export class ReviewService {
 
     addReview(review: Review) {
         return this.http.post<Review>(this.addReviewUrl, review);
+    }
+
+    updateReview(review: Review) {
+        return this.http.put<Review>(this.updateReviewUrl, review);
+    }
+
+    getReviewsByBookId(bookId: string) {
+        return this.http.get<Review[]>(this.retreiveAllReviewsByBookIdUrl + bookId);
+    }
+
+    getReviewsByUserId() {
+        return this.http.get<Review[]>(this.retreiveAllReviewsByUserIdUrl);
+    }
+
+    getReviewById(reviewId: number) {
+        return this.http.get<Review>(this.apiReviewUrl + "/" + reviewId);
     }
 
     getAverageRating(bookId: string) {
@@ -51,11 +62,8 @@ export class ReviewService {
         this.reviewID = id;
     }
 
-    // getUserName(userId: number) {
-    //     return this.http.get<name>(this.apiHostUrl + '/user/get-user/' + userId);
-    // }
-    // getBookTitle(bookId: string) {
-    //     return this.http.get<name>(this.apiHostUrl + '/books/' + bookId);
-    // }
+    get userId():number {
+        return Number(this.USER_ID);
+    }
 
 }

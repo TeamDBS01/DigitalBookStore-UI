@@ -1,69 +1,145 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { User } from '../model/User';
 import { Role } from '../model/role';
 import { Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
 
-    apiUrl = environment.apiHostUrl;
+    apiUrl = environment.apiHostUrl;  
+    loginEndpoint = "/user/auth/login";
+    registerEndpoint = "/user/auth/register";
+    getcreditsEndpoint="/user/user/get-user-credits/{userid}"
+    addcreditsEndpoint = "/user/add-credits/{userid}/{amount}";
 
-    constructor(private http: HttpClient, private router: Router) {}
-    
-    authenticateURL: string = this.apiUrl + "/api/auth/";
-    login = "login";
-    register = "register";
+    getcreitdsurl:string=this.apiUrl+this.getcreditsEndpoint;
+    addcreitdsurl:string=this.apiUrl+this.addcreditsEndpoint;
+    authenticateURL: string = this.apiUrl + this.loginEndpoint;
+    registerURL: string = this.apiUrl + this.registerEndpoint;
     user!: User;
     authenticated: boolean = false;
     users!: User[];
-    userFound: User = new User();;
+    loggedInUser: User | null = null;
 
-    authenticate(username: string, password: string) {
 
-        this.user = new User();
-        this.user.name = username;
-        this.user.password = password;
+    private userDetailsUrl = `${this.apiUrl}/user`;  
+ 
+    private changePasswordUrl = `${this.apiUrl}/user/change-password`;
+    private closeAccountUrl = `${this.apiUrl}/user/close-account`;
+    private userReviewsUrl = `${this.apiUrl}/user/reviews`;
 
-        // this.getUser(this.user).subscribe((data: any) => {
-            // this.userFound.name = data.userName;
-            // this.userFound.password = data.password;
-            // this.userFound.role = data.role;
-            this.userFound.name = 'admin';
-            this.userFound.password = '1234';
-            this.userFound.role = Role.ADMIN;
-            if (this.user.name === this.userFound.name && this.user.password == this.userFound.password) {
-                this.authenticated = true;
-                sessionStorage.setItem('name', this.userFound.name);
-                sessionStorage.setItem('role', this.userFound.role.toString());
-            }
-        // });
-        //console.log("Authenticated:"+this.authenticated);
-        return this.authenticated;
+    constructor(private http: HttpClient, private router: Router) {}
+
+    authenticate(email: string, password: string): Observable<User> {
+        const credentials = { email: email, password: password };
+        let statusCode: number | null = null;  
+        return this.http.post<User>(this.authenticateURL, credentials).pipe(
+            tap(
+                (response: User) => {
+                    if (response && response.token && response.role && response.userId) {
+                        this.authenticated = true;
+                        this.loggedInUser = response;
+                        sessionStorage.setItem('email', response.email);
+                        sessionStorage.setItem('token', response.token);
+                        sessionStorage.setItem('role', response.role);
+                        sessionStorage.setItem('userId', response.userId.toString());
+                        sessionStorage.setItem('name', response.name || '');
+                    } else {
+                        this.authenticated = false;
+                        this.loggedInUser = null;
+                        sessionStorage.clear();
+                    }
+                },
+            ),
+            catchError((error) => {
+                this.authenticated = false;
+                this.loggedInUser = null;
+                sessionStorage.clear();
+                statusCode = error.status;  
+
+                console.error(`Login failed with status code ${statusCode}:`, error);
+                alert(`Login failed. Error code: ${statusCode}`);
+                return throwError(() => error);
+            })
+        );
     }
 
-    getUser(User: any) {
-        return this.http.post<User>(this.authenticateURL + this.login, User);
+    registerUser(user: User): Observable<User> {
+        return this.http.post<User>(this.registerURL, user).pipe(
+            tap(response => {
+                if (response?.statusCode !== 200 && response?.statusCode !== 201) {
+                    return throwError(() => response);
+                }
+                return response;
+            }),
+            catchError(error => {
+                console.error("Registration error:", error);
+                return throwError(() => error);
+            })
+        );
     }
 
-    isUserLoggedIn() {
-        let user = sessionStorage.getItem('name')
-        let role = sessionStorage.getItem('role');
-        return !(user === null && role === null);
+    getUserDetails(userId: number): Observable<User> {
+        return this.http.get<User>(`${this.userDetailsUrl}/${userId}`);
     }
 
-    isAdmin() {
-        let role = sessionStorage.getItem('role');
-        return (role === Role.ADMIN.toString());
+    updateUser(userId: number, updatedUser: Partial<User>): Observable<any> {
+        return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser);
+    }
+
+    changePassword(userId: number, passwords: any): Observable<any> {
+        return this.http.post<any>(`${this.changePasswordUrl}/${userId}`, passwords);
+    }
+
+    getUserCredit(userId: number): Observable<{ userId: number; credits: number }> {
+        return this.http.get<{ userId: number; credits: number }>(`${this.apiUrl}/user/get-user-credits/${userId}`);  
+    }
+
+    addCredits(userId: number, amount: number): Observable<{ userId: number; credits: number; statusCode: number; message: string }> {
+        return this.http.put<{ userId: number; credits: number; statusCode: number; message: string }>(`${this.apiUrl}/user/add-credits/${userId}/${amount}`, {});  
+    }
+
+    getUserReviews(userId: number): Observable<any[]> {
+        return this.http.get<any[]>(`${this.userReviewsUrl}/${userId}`);
+    }
+
+    closeAccount(userId: number): Observable<any> {
+        return this.http.delete<any>(`${this.closeAccountUrl}/${userId}`);
+    }
+
+    isUserLoggedIn(): boolean {
+        return !!sessionStorage.getItem('token');
+    }
+
+    getLoggedInUserRole(): string | null {
+        return sessionStorage.getItem('role');
+    }
+
+    isAdmin(): boolean {
+        const role = this.getLoggedInUserRole();
+        return role === Role.ADMIN;
+    }
+
+    isCustomer(): boolean {
+        const role = this.getLoggedInUserRole();
+        return role === Role.CUSTOMER;
     }
 
     logOut() {
         this.authenticated = false;
-        sessionStorage.removeItem('name')
-        sessionStorage.removeItem('role')
+        this.loggedInUser = null;
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('role');
+        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('name');
         sessionStorage.clear();
         localStorage.clear();
         this.router.navigate(['login']);

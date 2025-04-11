@@ -5,4 +5,9 @@ export class Book{
     price!:number;
     categoryID!:number;
     coverImage!:string;
+    coverImageBytes!:Uint8Array
+    base64img!:string
+    authorName!:string;
+    categoryName!:string;
+    description!:string;
 }

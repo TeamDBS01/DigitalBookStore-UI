@@ -1,0 +1,244 @@
+<div class="user-profile-container">
+    <aside class="sidebar" [class.expanded]="isSidebarExpanded">
+        <div class="menu-toggle" (click)="toggleSidebar()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav>
+            <a href="javascript:void(0)" (click)="setActiveTab('details')" [class.active]="activeTab === 'details'">
+                <i class="fa-solid fa-user"></i>
+                <span *ngIf="isSidebarExpanded">Profile</span>
+            </a>
+            <a href="javascript:void(0)" (click)="setActiveTab('wallet')" [class.active]="activeTab === 'wallet'">
+                <i class="fa-solid fa-wallet"></i>
+                <span *ngIf="isSidebarExpanded">Wallet</span>
+            </a>
+            <a href="javascript:void(0)" (click)="setActiveTab('orders-reviews')" [class.active]="activeTab === 'orders-reviews'">
+                <i class="fa-solid fa-list-alt"></i>
+                <span *ngIf="isSidebarExpanded">My Orders & Reviews</span>
+            </a>
+            <a href="javascript:void(0)" (click)="setActiveTab('support')" [class.active]="activeTab === 'support'">
+                <i class="fa-solid fa-question-circle"></i>
+                <span *ngIf="isSidebarExpanded">Support & Help</span>
+            </a>
+            <a href="javascript:void(0)" (click)="setActiveTab('close-account')" [class.active]="activeTab === 'close-account'">
+                <i class="fa-solid fa-trash-alt"></i>
+                <span *ngIf="isSidebarExpanded">Delete Account</span>
+            </a>
+        </nav>
+    </aside>
+    <main class="content">
+        <header>
+            <!-- <h2>User Profile</h2> -->
+        </header>
+
+        <div *ngIf="activeTab === 'details'">
+            <h3>Personal Details</h3>
+            <div *ngIf="!isEditingDetails; else editDetailsSection">
+                <p><strong>Name:</strong> {{ profileForm.value.name }}</p>
+                <button (click)="isEditingDetails = true">Edit Details</button>
+            </div>
+            <ng-template #editDetailsSection>
+                <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" formControlName="name">
+                        <div *ngIf="profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)" class="error-message">
+                            Name is required.
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" [disabled]="profileForm.invalid">Update Details</button>
+                        <button type="button" (click)="isEditingDetails = false">Cancel</button>
+                    </div>
+                    <div *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</div>
+                    <div *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</div>
+                </form>
+
+                <h3>Change Password</h3>
+                <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password:</label>
+                        <input type="password" id="currentPassword" formControlName="currentPassword" required>
+                        <div *ngIf="passwordForm.controls['currentPassword'].invalid && (passwordForm.controls['currentPassword'].dirty || passwordForm.controls['currentPassword'].touched)" class="error-message">
+                            Current password is required.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password:</label>
+                        <input type="password" id="newPassword" formControlName="newPassword" required minlength="6">
+                        <div *ngIf="passwordForm.controls['newPassword'].invalid && (passwordForm.controls['newPassword'].dirty || passwordForm.controls['newPassword'].touched)" class="error-message">
+                            <div *ngIf="passwordForm.controls['newPassword'].errors?.['required']">New password is required.</div>
+                            <div *ngIf="passwordForm.controls['newPassword'].errors?.['minlength']">New password must be at least 6 characters.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password:</label>
+                        <input type="password" id="confirmPassword" formControlName="confirmPassword" required>
+                        <div *ngIf="passwordForm.controls['confirmPassword'].invalid && (passwordForm.controls['confirmPassword'].dirty || passwordForm.controls['confirmPassword'].touched)" class="error-message">
+                            Confirm password is required.
+                        </div>
+                        <div *ngIf="passwordForm.errors?.['mismatch']" class="error-message">Passwords do not match.</div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" [disabled]="passwordForm.invalid || passwordForm.errors?.['mismatch']">Change Password</button>
+                    </div>
+                    <div *ngIf="passwordSuccessMessage" class="success-message">{{ passwordSuccessMessage }}</div>
+                    <div *ngIf="passwordErrorMessage" class="error-message">{{ passwordErrorMessage }}</div>
+                </form>
+            </ng-template>
+        </div>
+
+        <!-- <div *ngIf="activeTab === 'wallet'">
+            <h3>Wallet</h3>
+            <p>Current Balance:
+                <span *ngIf="!showBalance">
+                    <i class="fa-solid fa-eye" (click)="showBalance = true" style="cursor: pointer;"></i>
+                    <span style="visibility: hidden;">{{ walletBalance | currency:'INR' }}</span>
+                </span>
+                <span *ngIf="showBalance">{{ walletBalance | currency:'INR' }}</span>
+                
+            </p>
+
+            <h4>Top up Wallet</h4>
+            <button (click)="showSimulatePaymentPopup = true">Add Funds</button>
+
+            <div *ngIf="showSimulatePaymentPopup" class="modal">
+                <div class="modal-content">
+                    <span class="close-button" (click)="closeSimulatePaymentPopup()">&times;</span>
+                    <h4>Simulate Payment</h4>
+                    <form [formGroup]="simulatePaymentForm" (ngSubmit)="simulateAddFunds()">
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method:</label>
+                            <select id="paymentMethod" formControlName="paymentMethod">
+                                <option value="upi">UPI</option>
+                                <option value="creditcard">Credit Card</option>
+                            </select>
+                        </div>
+                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === 'upi'">
+                            <label for="upiId">UPI ID:</label>
+                            <input type="text" id="upiId" formControlName="upiId">
+                        </div>
+                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === 'creditcard'">
+                            <label for="cardNumber">Card Number:</label>
+                            <input type="text" id="cardNumber" formControlName="cardNumber">
+                            <label for="expiry">Expiry (MM/YY):</label>
+                            <input type="text" id="expiry" formControlName="expiry">
+                            <label for="cvv">CVV:</label>
+                            <input type="text" id="cvv" formControlName="cvv">
+                        </div>
+                        <div class="form-group">
+                            <label for="simulateAmount">Amount to Add (INR):</label>
+                            <input type="number" id="simulateAmount" formControlName="simulateAmount" min="1" required>
+                            <div *ngIf="simulatePaymentForm.controls['simulateAmount'].invalid && (simulatePaymentForm.controls['simulateAmount'].dirty || simulatePaymentForm.controls['simulateAmount'].touched)" class="error-message">
+                                Amount must be at least 1.
+                            </div>
+                        </div>
+                        <button type="submit" [disabled]="simulatePaymentForm.invalid">Simulate Payment</button>
+                        <div *ngIf="simulatePaymentError" class="success-popup">
+                            <i class="fa-solid fa-check-circle"></i> Payment Successful!
+                        </div>
+                        <div *ngIf="simulatePaymentSuccess" class="error-message">{{ simulatePaymentErrorMessage }}</div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div> -->
+
+        <div *ngIf="activeTab === 'wallet'">
+            <h3>Wallet</h3>
+            <p>Current Balance:
+                <span *ngIf="!showBalance">
+                    <i class="fa-solid fa-eye" (click)="showBalance = true" style="cursor: pointer;"></i>
+                    <span style="visibility: hidden;">{{ walletBalance | currency:'INR' }}</span>
+                </span>
+                <span *ngIf="showBalance">{{ walletBalance | currency:'INR' }}</span>
+            </p>
+
+            <h4>Top up Wallet</h4>
+            <div class="add-funds-section">
+                <div class="form-group">
+                    <label for="topUpAmount">Amount to Add (INR):</label>
+                    <input type="number" id="topUpAmount" [(ngModel)]="topUpAmount" min="1" required>
+                </div>
+                <div class="suggested-amounts">
+                    <button type="button" (click)="setTopUpAmount(1000)">₹ 1000</button>
+                    <button type="button" (click)="setTopUpAmount(2000)">₹ 2000</button>
+                    <button type="button" (click)="setTopUpAmount(5000)">₹ 5000</button>
+                    </div>
+                <button [disabled]="!topUpAmount || topUpAmount < 1" (click)="showSimulatePaymentPopup = true; populateSimulateAmount()">Add Funds</button>
+            </div>
+
+            <div *ngIf="showSimulatePaymentPopup" class="modal">
+                <div class="modal-content">
+                    <span class="close-button" (click)="closeSimulatePaymentPopup()">&times;</span>
+                    <h4>Simulate Payment</h4>
+                    <form [formGroup]="simulatePaymentForm" (ngSubmit)="simulateAddFunds()">
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method:</label>
+                            <select id="paymentMethod" formControlName="paymentMethod">
+                                <option value="upi">UPI</option>
+                                <option value="creditcard">Credit Card</option>
+                            </select>
+                        </div>
+                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === 'upi'">
+                            <label for="upiId">UPI ID:</label>
+                            <input type="text" id="upiId" formControlName="upiId" required>
+                            <div *ngIf="simulatePaymentForm.controls['upiId'].invalid && (simulatePaymentForm.controls['upiId'].dirty || simulatePaymentForm.controls['upiId'].touched)" class="error-message">
+                                Please enter your UPI ID.
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === 'creditcard'">
+                            <label for="cardNumber">Card Number:</label>
+                            <input type="text" id="cardNumber" formControlName="cardNumber" [maxLength]="16" required>
+                            <div *ngIf="simulatePaymentForm.controls['cardNumber'].invalid && (simulatePaymentForm.controls['cardNumber'].dirty || simulatePaymentForm.controls['cardNumber'].touched)" class="error-message">
+                                Please enter a valid 16-digit card number.
+                            </div>
+                            <label for="expiry">Expiry (MM/YY):</label>
+                            <input type="text" id="expiry" formControlName="expiry" placeholder="MM/YY" required>
+                            <div *ngIf="simulatePaymentForm.controls['expiry'].invalid && (simulatePaymentForm.controls['expiry'].dirty || simulatePaymentForm.controls['expiry'].touched)" class="error-message">
+                                Please enter expiry in MM/YY format.
+                            </div>
+                            <label for="cvv">CVV:</label>
+                            <input type="text" id="cvv" formControlName="cvv" [maxLength]="4" required>
+                            <div *ngIf="simulatePaymentForm.controls['cvv'].invalid && (simulatePaymentForm.controls['cvv'].dirty || simulatePaymentForm.controls['cvv'].touched)" class="error-message">
+                                Please enter a valid CVV.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="simulateAmount">Amount to Add (INR):</label>
+                            <input type="number" id="simulateAmount" formControlName="simulateAmount" [value]="topUpAmount" readonly>
+                        </div>
+                        <button type="submit" [disabled]="simulatePaymentForm.invalid">Simulate Payment</button>
+                        <div *ngIf="simulatePaymentError" class="success-popup">
+                            <i class="fa-solid fa-check-circle"></i> Payment Successful!
+                        </div>
+                        <div *ngIf="simulatePaymentSuccess" class="error-message">{{ simulatePaymentErrorMessage }}</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="activeTab === 'orders-reviews'">
+            <h3>My Orders & Reviews</h3>
+            <div *ngIf="userReviews.length === 0">No orders or reviews yet.</div>
+            <div *ngFor="let review of userReviews" class="review-item">
+                <p>Book: {{ review.bookTitle }}</p>
+                <p>Rating: {{ review.rating }}/5</p>
+                <p>Comment: {{ review.comment }}</p>
+            </div>
+            </div>
+
+        <div *ngIf="activeTab === 'support'">
+            <h3>Support & Help</h3>
+            <p>Contact our support team via email at <a href="mailto:support@dbsbooks.com">support@dbsbooks.com</a> or call us at +91 XXXXXXXXXX.</p>
+            <p><a routerLink="/faq">Frequently Asked Questions</a></p>
+        </div>
+
+        <div *ngIf="activeTab === 'close-account'">
+            <h3>Close Account</h3>
+            <p>Warning: Closing your account is permanent and all your data will be lost.</p>
+            <button class="warning-button" (click)="confirmCloseAccount()">Close My Account</button>
+            <div *ngIf="closeAccountMessage" class="error-message">{{ closeAccountMessage }}</div>
+        </div>
+    </main>
+</div>
