@@ -18,7 +18,7 @@ export class AddUpdateReviewComponent {
     rating: number = 0;
     comment: string = '';
     userId = sessionStorage.getItem('userId');
-    bookId!: string;
+    @Input() bookId!: string;
     errorMessage!: string;
     successMessage!: string;
 
@@ -103,8 +103,8 @@ export class AddUpdateReviewComponent {
     }
     
     returnHome() {
-        alert('Error in URL');
-        this.router.navigate(['']);
+        // alert('Error in URL');
+        // this.router.navigate(['']);
     }
     
     onSubmit(formData: any) {

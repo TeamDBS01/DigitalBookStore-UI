@@ -19,9 +19,9 @@ export class ReviewsByBookIdComponent {
         this.reviewService.getReviewsByBookId(this.bookId).subscribe({
             next: data => {this.reviews = data},
             error: error => {
-                // if (!(error.error === `No Reviews with Book ID: ${this.bookId} Found!`)) {
+                if (!(error.error.text === `No Reviews with Book ID: ${this.bookId} Found!`)) {
                     console.error(error);
-                // }
+                }
             }
         })
     }
