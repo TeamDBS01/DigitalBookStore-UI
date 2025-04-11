@@ -46,7 +46,7 @@ import { CategorybookslistComponent } from 'src/user-customer/book/categorybooks
 
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 
-@NgModule({
+@NgModule({ 
     declarations: [
         AppComponent,
         ViewAllReviewsComponent,
@@ -78,7 +78,7 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
         UpdateTrackingComponent,
         PlaceOrderComponent,
         SignupComponent,
-    UserProfileComponent,
+         UserProfileComponent,
         ReviewsByBookIdComponent,
         CategorybookslistComponent,
         CategorybooksComponent,
