@@ -31,7 +31,7 @@ export class ReviewService {
     }
 
     updateReview(review: Review) {
-        return this.http.post<Review>(this.updateReviewUrl, review);
+        return this.http.put<Review>(this.updateReviewUrl, review);
     }
 
     getReviewsByBookId(bookId: string) {

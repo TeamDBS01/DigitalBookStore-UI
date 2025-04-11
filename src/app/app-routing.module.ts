@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
+import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
 import { AdminReturnProcessComponent } from 'src/user-customer/order/order-management/components/admin-return-process/admin-return-process.component';
 import { CartComponent } from 'src/user-customer/order/order-management/components/cart/cart.component';
@@ -11,7 +12,7 @@ import { OrderListComponent } from 'src/user-customer/order/order-management/com
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
-import { AddReviewComponent } from 'src/user-customer/review/add-review/add-review.component';
+import { AddUpdateReviewComponent } from 'src/user-customer/review/add-update-review/add-update-review.component';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { ViewAllReviewsComponent } from 'src/user-customer/review/view-all-reviews/view-all-reviews.component';
 import { AuthAdminGuard } from 'src/user-customer/user/guard/auth-admin.guard';
@@ -23,11 +24,12 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard] },
-    { path: 'review/addReview', component: AddReviewComponent, canActivate: [AuthCustomerGuard], },
-    { path: 'review/updateReview', component: AddReviewComponent, canActivate: [AuthCustomerGuard], },
+    { path: 'review/addReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
+    { path: 'review/updateReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
     { path: 'review/all', component: ViewAllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
+    { path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
     { path: 'search', component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/cart', component: CartComponent, canActivate: [AuthCustomerGuard], },

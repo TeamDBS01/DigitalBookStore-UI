@@ -26,7 +26,7 @@ import { UpdateTrackingComponent } from 'src/user-customer/order/order-managemen
 import { OrderManagementComponent } from 'src/user-customer/order/order-management/order-management.component';
 import { BookInfoService } from 'src/user-customer/order/order-management/services/book-info.service';
 import { OrderService } from 'src/user-customer/order/order-management/services/order.service';
-import { AddReviewComponent } from 'src/user-customer/review/add-review/add-review.component';
+import { AddUpdateReviewComponent } from 'src/user-customer/review/add-update-review/add-update-review.component';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { AverageRatingComponent } from 'src/user-customer/review/average-rating/average-rating.component';
 import { ReviewComponent } from 'src/user-customer/review/review/review.component';
@@ -54,7 +54,7 @@ import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-bo
         BookHeroComponent,
         BookCarouselComponent,
         HomeComponent,
-        AddReviewComponent,
+        AddUpdateReviewComponent,
         ViewbookidComponent,
         AddbookComponent,
         UpdatebookComponent,
