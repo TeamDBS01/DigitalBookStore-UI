@@ -23,6 +23,7 @@ import { AuthAdminGuard } from 'src/user-customer/user/guard/auth-admin.guard';
 import { AuthCustomerGuard } from 'src/user-customer/user/guard/auth-cust.guard ';
 import { LoginComponent } from 'src/user-customer/user/login/login.component';
 import { SignupComponent } from 'src/user-customer/user/signup/signup.component';
+import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },

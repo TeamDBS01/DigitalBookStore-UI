@@ -45,6 +45,7 @@ import { CategorybooksComponent } from 'src/user-customer/book/category-books/ca
 import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
 import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
 
+import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 
 @NgModule({
     declarations: [
@@ -78,6 +79,7 @@ import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-us
         UpdateTrackingComponent,
         PlaceOrderComponent,
         SignupComponent,
+    UserProfileComponent,
         ReviewsByBookIdComponent,
         CategorybookslistComponent,
         CategorybooksComponent,
