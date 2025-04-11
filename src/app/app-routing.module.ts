@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
+import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
+import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
