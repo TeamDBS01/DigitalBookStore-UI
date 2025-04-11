@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-update-quantity',
   templateUrl: './update-quantity.component.html',
-  styleUrls: ['./update-quantity.component.sass']
+  styleUrls: ['./update-quantity.component.sass'],
+  standalone: false
 })
 export class UpdateQuantityComponent {
   

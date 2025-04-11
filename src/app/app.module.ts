@@ -54,6 +54,7 @@ import { LeftSidebarComponent } from 'src/user-admin/Home/left-sidebar/left-side
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { MainComponent } from 'src/user-admin/Home/main/main.component';
 import { CommonModule } from '@angular/common';
+import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-review/view-edit-review.component';
 
 @NgModule({
 	declarations: [
@@ -97,7 +98,8 @@ import { CommonModule } from '@angular/common';
 		ViewByBookIDComponent,
 		UpdateQuantityComponent,
 		LeftSidebarComponent,
-		MainComponent
+		MainComponent,
+        ViewEditReviewComponent
 	],
 	imports: [
 		BrowserModule,

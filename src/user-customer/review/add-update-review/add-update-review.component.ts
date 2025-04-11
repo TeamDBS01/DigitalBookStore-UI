@@ -14,7 +14,7 @@ import { UserService } from 'src/user-customer/user/service/user.service';
 export class AddUpdateReviewComponent {
 
     formData: any;
-    review!: Review;
+    @Input() review: Review = new Review();
     rating: number = 0;
     comment: string = '';
     userId = sessionStorage.getItem('userId');
@@ -24,6 +24,7 @@ export class AddUpdateReviewComponent {
 
     stars = [1, 2, 3, 4, 5];
     update!: boolean;
+    @Output() editing = new EventEmitter<boolean>();
 
     constructor(private reviewService: ReviewService, private loginService: UserService, private route: ActivatedRoute, private router: Router) { }
 
@@ -34,33 +35,33 @@ export class AddUpdateReviewComponent {
                 this.handleRatingClick(target, event);
             }
         });
-        this.route.queryParams.subscribe(params => (params['reviewId']) ? this.reviewService.getReviewById(params['reviewId']).subscribe({
-            next: data => {
-                if (data.userId !== Number(this.userId) && !this.loginService.isAdmin()) {
-                    this.returnHome();
-                }
-                if (params['added']) {
-                    this.successMessage = "Review added successfully";
-                }
-                this.review = data;
+        // this.route.queryParams.subscribe(params => (params['reviewId']) ? this.reviewService.getReviewById(params['reviewId']).subscribe({
+        //     next: data => {
+        //         if (data.userId !== Number(this.userId) && !this.loginService.isAdmin()) {
+        //             this.returnHome();
+        //         }
+        //         if (params['added']) {
+        //             this.successMessage = "Review added successfully";
+        //         }
+        //         this.review = data;
                 this.rating = this.review.rating;
                 this.comment = this.review.comment;
-                this.starsColor(this.review.rating);
-                this.formData.patchValue({ comment: this.comment });
+                this.starsColor(this.rating);
+                // this.formData.patchValue({ comment: this.comment });
                 this.update = true;
-            },
-            error: error => {
-                if (error.error === `Review with ID: ${params['reviewId']} Not Found`)
-                    alert('Review Not Found');
-                console.error(error);
-                this.router.navigate(['']);
-            }
-        }) : this.update = false);
+            // },
+    //         error: error => {
+    //             if (error.error === `Review with ID: ${params['reviewId']} Not Found`)
+    //                 alert('Review Not Found');
+    //             console.error(error);
+    //             this.router.navigate(['']);
+    //         }
+    //     }) : this.update = false);
 
-        this.route.queryParams.subscribe(params => {
-            if (params['bookId']) this.bookId = params['bookId'];
-            else if (!params['reviewId']) this.returnHome();
-        });
+    //     this.route.queryParams.subscribe(params => {
+    //         if (params['bookId']) this.bookId = params['bookId'];
+    //         else if (!params['reviewId']) this.returnHome();
+    //     });
         this.formData = new FormGroup({
             comment: new FormControl(this.comment, Validators.compose([
                 Validators.required,
@@ -69,6 +70,11 @@ export class AddUpdateReviewComponent {
                 Validators.pattern('^\\D.*')
             ])),
         });
+    }
+    ngOnChange() {
+        this.rating = this.review.rating;
+        this.comment = this.review.comment;
+        this.starsColor(this.review.rating);
     }
 
     handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }
@@ -89,7 +95,7 @@ export class AddUpdateReviewComponent {
     starsColor(rating: number) {
         document.querySelectorAll('.rating-star').forEach(star => {
             const starValue = parseFloat(star.getAttribute("data-value") || "0");
-            if (starValue <= Math.floor(this.rating)) {
+            if (starValue <= Math.floor(rating)) {
                 star.classList.add('fa-solid', 'fa-star');
                 star.classList.remove('fa-star-half-stroke', 'fa-regular');
             } else if (starValue === Math.ceil(this.rating) && this.rating % 1 !== 0) {
@@ -102,10 +108,10 @@ export class AddUpdateReviewComponent {
         });
     }
     
-    returnHome() {
+    // returnHome() {
         // alert('Error in URL');
         // this.router.navigate(['']);
-    }
+    // }
     
     onSubmit(formData: any) {
         if (this.rating == 0) {
@@ -133,6 +139,7 @@ export class AddUpdateReviewComponent {
         this.reviewService.updateReview(this.review).subscribe({
             next: data => {
                 this.successMessage = "Review updated successfully";
+                this.editing.emit(false);
             },
             error: error => {
                 console.error(error)

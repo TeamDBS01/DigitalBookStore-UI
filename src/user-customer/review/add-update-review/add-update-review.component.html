@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <form [formGroup]="formData" #addForm='ngForm' (ngSubmit)="onSubmit(addForm.value)" class="p-4 border rounded">
-        <h4>Give your Rating: </h4>
+        <h5>Give your Rating: </h5>
         <div class="fa-2x star-rating mb-3" style="cursor: pointer;" id="rating">
             <i style="color:orange" class="fa-regular fa-star rating-star" *ngFor="let star of stars" [attr.data-value]="star"></i>
         </div>

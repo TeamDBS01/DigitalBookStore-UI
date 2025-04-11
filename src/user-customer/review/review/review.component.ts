@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
@@ -13,11 +13,15 @@ export class ReviewComponent {
     @Input() review!: Review;
     @Input() canModify = false;
     @Input() userView = false;
+    @Output() editing = new EventEmitter<boolean>();
 
     constructor(private router: Router, private reviewService: ReviewService) {}
 
     editReview() {
-        this.router.navigate(['review/updateReview'], { queryParams: { 'reviewId': this.review.reviewId } });
+        console.log("emit - true");
+        
+        this.editing.emit(true);
+        // this.router.navigate(['review/updateReview'], { queryParams: { 'reviewId': this.review.reviewId } });
     }
     deleteReview() {
         if (!confirm('Are you sure you want to delete this review?')) {
