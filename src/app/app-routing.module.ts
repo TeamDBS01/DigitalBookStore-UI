@@ -17,6 +17,7 @@ import { PlaceOrderComponent } from 'src/user-customer/order/order-management/co
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
 import { AddUpdateReviewComponent } from 'src/user-customer/review/add-update-review/add-update-review.component';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
+import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
 import { ViewAllReviewsComponent } from 'src/user-customer/review/view-all-reviews/view-all-reviews.component';
 import { AuthAdminGuard } from 'src/user-customer/user/guard/auth-admin.guard';
 import { AuthCustomerGuard } from 'src/user-customer/user/guard/auth-cust.guard ';
@@ -31,6 +32,7 @@ const routes: Routes = [
     {path:'profile',component:UserProfileComponent},
     { path: 'review/addReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
     { path: 'review/updateReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
+    { path: 'review/user', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
     { path: 'review/all', component: ViewAllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },

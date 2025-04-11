@@ -12,6 +12,7 @@ import { ReviewService } from '../service/review.service';
 export class ReviewComponent {
     @Input() review!: Review;
     @Input() canModify = false;
+    @Input() userView = false;
 
     constructor(private router: Router, private reviewService: ReviewService) {}
 
