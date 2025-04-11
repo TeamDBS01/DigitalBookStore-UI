@@ -13,5 +13,6 @@ export interface Order {
   paymentStatus: PaymentStatus;
   trackingDetails?: TrackingDetails;
   returnDetails?: ReturnDetails;
+  estimatedDeliveryDate?:Date;
   books?: CartItem[]; // Frontend-only, might be populated from getBooksByOrderId
 }

@@ -9,6 +9,7 @@ import { AdminReturnProcessComponent } from 'src/user-customer/order/order-manag
 import { CartComponent } from 'src/user-customer/order/order-management/components/cart/cart.component';
 import { OrderDetailsComponent } from 'src/user-customer/order/order-management/components/order-details/order-details.component';
 import { OrderListComponent } from 'src/user-customer/order/order-management/components/order-list/order-list.component';
+import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
@@ -24,19 +25,21 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard ]},
-  { path: 'review/addReview', component: AddReviewComponent, canActivate: [AuthAdminGuard], },
-  { path: 'review/all', component: ViewAllReviewsComponent, canActivate: [AuthAdminGuard], },
-  { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+  { path: 'review/addReview', component: AddReviewComponent, canActivate: [AuthCustomerGuard], },
+  { path: 'review/all', component: ViewAllReviewsComponent, canActivate: [AuthCustomerGuard], },
+  { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthCustomerGuard], },
   { path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
-  { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthAdminGuard], },
+  { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
   { path: 'search', component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
   { path: 'order/cart', component: CartComponent, canActivate: [AuthCustomerGuard], },
   { path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthCustomerGuard], },
   { path: 'order/list', component: OrderListComponent, canActivate: [AuthCustomerGuard], },
-  { path: 'order/details/:id', component: OrderDetailsComponent, canActivate: [AuthAdminGuard], },
+  { path: 'order/details/:id', component: OrderDetailsComponent, canActivate: [AuthCustomerGuard], },
   { path: 'order/admin/return/:id', component: AdminReturnProcessComponent, canActivate: [AuthAdminGuard], },
-  { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
+  { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthCustomerGuard], },
   { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
+  { path: 'order/details/:id', component: OrderDetailsComponent,canActivate:[AuthCustomerGuard],},
+  { path: 'order/track/:id', component: OrderTrackingComponent,canActivate:[AuthCustomerGuard], },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
