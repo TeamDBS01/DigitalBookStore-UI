@@ -5,6 +5,6 @@
     <div class="w-75">
         <i routerLink="/review/addReview" [queryParams]="{'bookId': bookId}" class="fa-solid fa-plus fa-3x" style="cursor: pointer;"> | Add Review</i>
         <app-review *ngFor="let review of reviews" [review]="review" class="mb-3" [canModify]="reviewService.userId === review.userId || loginService.isAdmin()"/>
-        <h4 *ngIf="reviews === undefined"><br>No Reviews Found!</h4>
+        <h4 *ngIf="reviews == undefined || reviews === null"><br>No Reviews Found!</h4>
     </div>
 </div>
