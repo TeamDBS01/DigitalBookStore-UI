@@ -16,6 +16,7 @@ export class ReviewService {
     private reviewID!:number;
     private retreiveAllReviewsUrl = this.apiReviewUrl + '/all';
     private retreiveAllReviewsByBookIdUrl = this.apiReviewUrl + '/book/';
+    private updateReviewUrl = this.apiReviewUrl + '/update/' + this.USER_ID;
     private addReviewUrl = this.apiReviewUrl + '/add';
     private deleteReviewUrl = this.apiReviewUrl + '/delete/' + this.USER_ID + '/';
     private averageRatingUrl = this.apiReviewUrl + '/book/average/';
@@ -29,8 +30,16 @@ export class ReviewService {
         return this.http.post<Review>(this.addReviewUrl, review);
     }
 
+    updateReview(review: Review) {
+        return this.http.post<Review>(this.updateReviewUrl, review);
+    }
+
     getReviewsByBookId(bookId: string) {
         return this.http.get<Review[]>(this.retreiveAllReviewsByBookIdUrl + bookId);
+    }
+
+    getReviewById(reviewId: number) {
+        return this.http.get<Review>(this.apiReviewUrl + "/" + reviewId);
     }
 
     getAverageRating(bookId: string) {
@@ -46,6 +55,10 @@ export class ReviewService {
     }
     setReviewId(id:number) {
         this.reviewID = id;
+    }
+
+    get userId():number {
+        return Number(this.USER_ID);
     }
 
 }

@@ -16,10 +16,8 @@ export class AverageRatingComponent {
 
     ngOnInit() {
         this.reviewService.getAverageRating(this.bookId).subscribe({
-            next: data => {
-                console.log('Average Rating:', data); // Log the average rating
-                this.averageRating = data;
-            }, error: error => console.log(error)
+            next: data => this.averageRating = data,
+             error: error => console.log(error)
         });
     }
 }

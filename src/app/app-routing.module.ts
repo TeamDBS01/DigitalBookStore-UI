@@ -7,7 +7,6 @@ import { CategorybooksComponent } from 'src/user-customer/book/category-books/ca
 import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
-import { AddToCartComponent } from 'src/user-customer/order/order-management/components/add-to-cart/add-to-cart.component';
 import { AdminReturnProcessComponent } from 'src/user-customer/order/order-management/components/admin-return-process/admin-return-process.component';
 import { CartComponent } from 'src/user-customer/order/order-management/components/cart/cart.component';
 import { OrderDetailsComponent } from 'src/user-customer/order/order-management/components/order-details/order-details.component';
