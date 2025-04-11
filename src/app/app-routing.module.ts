@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
+import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
+import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
 import { AddToCartComponent } from 'src/user-customer/order/order-management/components/add-to-cart/add-to-cart.component';
@@ -61,6 +64,8 @@ const routes: Routes = [
   { path: 'order/admin/return/:id', component: AdminReturnProcessComponent, canActivate: [AuthAdminGuard], },
   { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
   { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
+  { path:'category-books', component:CategorybooksComponent, canActivate:[AuthCustomerGuard],},
+  { path:'category-books-list',component:CategorybookslistComponent, canActivate:[AuthCustomerGuard],},
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 

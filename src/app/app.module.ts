@@ -25,7 +25,6 @@ import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/add
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { FilterComponent } from 'src/user-customer/book/filter/filter.component';
-import { SearchbarComponent } from 'src/user-customer/book/search-bar/searchbar/searchbar.component';
 import { OrderService } from 'src/user-customer/order/order-management/services/order.service';
 import { BookInfoService } from 'src/user-customer/order/order-management/services/book-info.service';
 import { OrderManagementComponent } from 'src/user-customer/order/order-management/order-management.component';
@@ -39,9 +38,10 @@ import { PlaceOrderComponent } from 'src/user-customer/order/order-management/co
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
 import { SignupComponent } from 'src/user-customer/user/signup/signup.component';
- 
-
 import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-book-id/reviews-by-book-id.component';
+import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
+import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
+
 
 @NgModule({
   declarations: [
@@ -62,7 +62,6 @@ import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-bo
     LoginComponent,
     SearchtitleComponent,
     FilterComponent,
-    SearchbarComponent,
     ViewbookidComponent,
     BookdetailsComponent,
     OrderManagementComponent,
@@ -76,12 +75,9 @@ import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-bo
     UpdateTrackingComponent,
     PlaceOrderComponent,
     SignupComponent,
-    
-    
-  
-    
     ReviewsByBookIdComponent,
-    
+    CategorybooksComponent,
+    CategorybookslistComponent
   ],
   imports: [
     BrowserModule,
