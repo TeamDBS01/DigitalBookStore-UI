@@ -1,0 +1,58 @@
+// Styles for the container to center the component
+.container
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 30vh
+  text-align: center
+
+// Styles for the quantity update section
+div.quantity-update
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 1rem 0
+
+  input
+    padding: 0.5rem
+    border: 1px solid #ccc
+    border-radius: 4px
+    width: 200px
+    margin-right: 0.5rem
+
+  button.add
+    padding: 0.5rem 1rem
+    border: none
+    background-color: #28a745 // Muted green
+    color: white
+    cursor: pointer
+    border-radius: 4px
+    margin-right: 0.5rem
+    &:hover
+      background-color: #218838 // Darker muted green
+
+  button.remove
+    padding: 0.5rem 1rem
+    border: none
+    background-color: #dc3545 // Muted red
+    color: white
+    cursor: pointer
+    border-radius: 4px
+    &:hover
+      background-color: #c82333 // Darker muted red
+
+// Styles for the response and error messages
+div[ngClass="responseMessage"]
+  text-align: center
+  margin-top: 1rem
+
+  p
+    margin: 0.5rem 0
+
+div[ngClass="errorMessage"]
+  text-align: center
+  margin-top: 1rem
+
+  p
+    margin: 0.5rem 0
+    color: red

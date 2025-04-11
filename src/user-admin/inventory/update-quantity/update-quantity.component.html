@@ -1,0 +1,19 @@
+<div class="container">
+<div class="quantity-update">
+    <input type="number" [(ngModel)]="updateQuantity" placeholder="Enter quantity to update" />
+    <button class="add" (click)="addQuantity()">Add Quantity</button>
+    <button class="remove" (click)="removeQuantity()">Remove Quantity</button>
+</div>
+</div>
+
+<div *ngIf="responseMessage" ngClass="responseMessage">
+    <p>{{ responseMessage }}</p>
+</div>
+    
+<div *ngIf="errorMessage" ngClass="errorMessage">
+    <p>{{ errorMessage }}</p>
+</div>
+
+    
+
+  
