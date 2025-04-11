@@ -15,7 +15,8 @@ interface Review {
 @Component({
     selector: 'app-user-profile',
     templateUrl: './user-profile.component.html',
-    styleUrls: ['./user-profile.component.sass']
+    styleUrls: ['./user-profile.component.sass'],
+    standalone: false
 })
 export class UserProfileComponent implements OnInit {
     activeTab: 'details' | 'wallet' | 'orders-reviews' | 'support' | 'close-account' = 'details';

@@ -85,6 +85,7 @@ import { OrderTrackingComponent } from 'src/user-customer/order/order-management
         CategorybookslistComponent,
         CategorybooksComponent,
         ReviewsByUserIdComponent,
+        OrderTrackingComponent
     ],
     imports: [
         BrowserModule,
