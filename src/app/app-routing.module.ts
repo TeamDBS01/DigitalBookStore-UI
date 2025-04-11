@@ -46,6 +46,7 @@ const routes: Routes = [
     { path: 'order/admin/return/:id', component: AdminReturnProcessComponent, canActivate: [AuthAdminGuard], },
     { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
     { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
+    { path: 'order/track/:id', component: OrderTrackingComponent,canActivate:[AuthCustomerGuard], },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
