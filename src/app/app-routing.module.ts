@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard ]},
+   
   {
     path: 'review/addReview',
     component: AddReviewComponent,

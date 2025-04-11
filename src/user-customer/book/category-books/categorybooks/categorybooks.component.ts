@@ -8,22 +8,28 @@ import { BookService } from 'src/user-customer/book/service/book.service';
   styleUrls: ['./categorybooks.component.sass']
 })
 export class CategorybooksComponent {
-  
-    categories: { name: string }[] = [];
-  
-    constructor(private bookService: BookService, private router: Router) {}
-  
-    ngOnInit(): void {
-      this.bookService.getAllCategories().subscribe((data: { name: string }[]) => {
-        this.categories = data;
-        console.log("categories:"+this.categories);
-      });
-    }
-  
-   
-navigateToCategory(category: { name: string }) {
-  this.router.navigate(['/category-books-list'], { queryParams: { category: category} });
-}
+ 
+  categories: { category: string; imageUrl?: string }[] = [];
 
-  
+  constructor(
+    private bookService: BookService, 
+    private router: Router      
+  ) {}
+
+  ngOnInit(): void {
+    this.bookService.getAllCategories().subscribe(async (categoryNames: string[]) => {
+      this.categories = await Promise.all(categoryNames.map(async categoryName => {
+        const firstBook = await this.bookService.getFirstBookInCategory(categoryName).toPromise();
+        return {
+          category: categoryName, // Directly use the categoryName string
+          imageUrl: firstBook?.coverImage ? 'data:image/jpeg;base64,' + firstBook.base64img : undefined
+        };
+      }));
+      console.log("Processed Categories:", this.categories);
+    });
+  }
+
+  navigateToCategory(category: { category: string }) {
+    this.router.navigate(['/category-books-list'], { queryParams: { category: category.category } });
+  }
 }

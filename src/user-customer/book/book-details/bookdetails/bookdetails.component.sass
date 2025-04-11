@@ -1,48 +1,78 @@
-.book-container
-  background-color: #f8f9fa
-  border: 1px solid #dee2e6
-  border-radius: 0.25rem
-  padding: 1.5rem
-  margin-bottom: 1.5rem
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)
+.iframe-popup-container
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, 0.5) // Semi-transparent background
   display: flex
+  justify-content: center
+  align-items: center
+  z-index: 1000 // Ensure it's on top of other content
+  visibility: hidden // Initially hidden
+  opacity: 0
+  transition: visibility 0s, opacity 0.3s ease-in-out
 
-  .book-image
-    flex: 0 0 30%
-    max-width: 30%
-    margin-right: 1.5rem
+  &.show
+    visibility: visible
+    opacity: 1
 
-    img
-      max-width: 100%
-      height: auto
-      border-radius: 0.25rem
+  .iframe-popup-content
+    background-color: white
+    border-radius: 8px
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2)
+    position: relative
+    width: 80% // Adjust as needed
+    height: 80% // Adjust as needed
+    overflow: auto // In case the iframe content is larger
 
-  .book-details
-    flex: 1 1 70%
-    max-width: 70%
+    iframe
+      display: block
+      width: 100%
+      height: 100%
 
-    h2
-      font-size: 1.75rem
-      margin-bottom: 1rem
-      color: #343a40
+    .close-button
+      position: absolute
+      top: 10px
+      right: 10px
+      font-size: 1.5rem
+      font-weight: bold
+      color: #f5f5f5 // Lighter color for the cross
+      background: transparent
+      border: none
+      cursor: pointer
+      padding: 5px
+      z-index: 1001
+      border-radius: 50%
+      transition: color 0.3s ease, background-color 0.3s ease
 
-    p
-      font-size: 1rem
-      color: #6c757d
-      margin-bottom: 0.5rem
+      &:hover
+      color: #e0e0e0 // Even lighter color on hover
+      background-color: rgba(255, 255, 255, 0.1)
 
-    .review-stars
-      margin-bottom: 1rem
+      &:active
+      color: #cccccc // Slightly darker on active
+      background-color: rgba(255, 255, 255, 0.2)
+     
 
-    .description
-      margin-bottom: 1.5rem
+.readbtn 
+  background-color: rgba(47, 85, 173, 0.833)
+  color: white
+  border: none
+  padding: 11px 20px
+  font-size: 16px
+  font-weight: bold
+  border-radius: 5px
+  cursor: pointer
+  transition: background-color 0.3s ease, transform 0.2s ease
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+  position: relative
+  left: 20px
+  top: 3px
 
-  .reviews
-    margin-top: 1.5rem
+  &:hover
+    background-color: rgba(37, 70, 140, 0.9)
 
-    .review-item
-      background-color: #ffffff
-      border: 1px solid #dee2e6
-      border-radius: 0.25rem
-      padding: 1rem
-      margin-bottom: 1rem
+  &:active
+    background-color: rgba(37, 70, 140, 1)
+    transform: translateY(0)
