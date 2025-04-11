@@ -19,11 +19,14 @@ import { AuthAdminGuard } from 'src/user-customer/user/guard/auth-admin.guard';
 import { AuthCustomerGuard } from 'src/user-customer/user/guard/auth-cust.guard ';
 import { LoginComponent } from 'src/user-customer/user/login/login.component';
 import { SignupComponent } from 'src/user-customer/user/signup/signup.component';
+import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 
 const routes: Routes = [
+  
+  { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard ]},
+  {path:"profile",component:UserProfileComponent},
   {
     path: 'review/addReview',
     component: AddReviewComponent,

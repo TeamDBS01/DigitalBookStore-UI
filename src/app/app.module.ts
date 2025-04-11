@@ -42,6 +42,7 @@ import { SignupComponent } from 'src/user-customer/user/signup/signup.component'
  
 
 import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-book-id/reviews-by-book-id.component';
+import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-bo
     UpdateTrackingComponent,
     PlaceOrderComponent,
     SignupComponent,
+    UserProfileComponent,
     
     
   
