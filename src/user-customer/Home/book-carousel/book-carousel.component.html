@@ -2,8 +2,12 @@
     <div class="box">
         <div class="search-field">
           <div class="search-section">
-            <input type="text" [(ngModel)]="searchQuery" placeholder="Search book...">
-            <button routerLink="/search" [queryParams]="{'searchQuery':searchQuery}">Search</button>
+            
+<form (ngSubmit)="searchButton.click()">
+ <input type="text" #searchInput [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search book..." />
+<button #searchButton routerLink="/search" [queryParams]="{'searchQuery': searchInput.value}">Search</button>
+   </form>
+  
           </div>
         </div>
       </div>

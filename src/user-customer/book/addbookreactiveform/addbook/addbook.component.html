@@ -1,95 +1,83 @@
-<div>
-    <form [formGroup]="formData" #registerForm="ngForm" (ngSubmit)="onSubmit()">
-    <table>
-    <tr>
-        <td><label for="bookID">Book Id:</label></td>
-        <td><input type="text" name="bookID" formControlName="bookID" required></td>
-        <span *ngIf="formData.controls.bookID.invalid && formData.controls.bookID.touched" 
-        style="color:red">
-            Book Id is invalid!!!
-        </span>
-          <span *ngIf="formData.controls.bookID.errors?.['required'] && formData.controls.bookID.touched" 
-          style="color:red">
-            Book Id cannot be blank
-        </span>
-    </tr>
-    
-    <tr>
-        <td><label for="title">Title:</label></td>
-        <td><input type="text" name="title" formControlName="title" required></td>
-           <span *ngIf="formData.controls.title.invalid && formData.controls.title.touched" 
-           style="color:red">
-            Title is invalid!!!
-        </span>
-          <span *ngIf="formData.controls.title.errors?.['required'] && formData.controls.title.touched" 
-          style="color:red">
-            Title cannot be blank
-        </span>
-    
-    </tr>
-    
-    <tr>
-        <td><label for="price">Price:</label></td>
-        <td><input type="text" name="price" formControlName="price" required></td>
-           <span *ngIf="formData.controls.price.invalid && formData.controls.price.touched" 
-           style="color:red">
-            Price is invalid!!!
-        </span>
-          <span *ngIf="formData.controls.price.errors?.['required'] && formData.controls.price.touched"
-           style="color:red">
-            Price cannot be blank
-        </span>
-    
-    </tr>
-    <tr>
-        <td><label for="authorID">AuthorID</label></td>
-        <td><input type="text" name="authorID" formControlName="authorID"></td>
-           <span *ngIf="formData.controls.authorID.invalid && formData.controls.authorID.touched" 
-           style="color:red">
-            author ID is invalid!!!
-        </span>
-          <span *ngIf="formData.controls.authorID.errors?.['required'] && 
-          formData.controls.authorID.touched" style="color:red">
-            author ID cannot be blank
-        </span>
-    
-    </tr>
-    <tr>
-        <td><label for="categoryID">CategoryID</label></td>
-        <td><input type="text" name="categoryID" formControlName="categoryID"></td>
-           <span *ngIf="formData.controls.categoryID.invalid && formData.controls.categoryID.touched" 
-           style="color:red">
-            Category ID is invalid!!!
-        </span>
-          <span *ngIf="formData.controls.categoryID.errors?.['required'] && 
-          formData.controls.categoryID.touched" style="color:red">
-            Category ID cannot be blank
-        </span>
-    </tr>
-    <tr>
-        <td><label for="base64img">Cover Image</label></td>
-        <td><input type="file" name="base64img" formControlName="base64img" (change)="onFileChange($event)"></td>
-        <span *ngIf="formData.controls.base64img.invalid && formData.controls.base64img.touched"
-          style="color:red">
-          Cover Image is invalid!!!
-        </span>
-        <span *ngIf="formData.controls.base64img.errors?.['required'] &&
-          formData.controls.base64img.touched" style="color:red">
-          Cover Image cannot be blank
-        </span>
-      </tr>
-    <tr>
-        <td><input type="Submit" value="Register" [disabled]="registerForm.invalid"></td>
-        <td><input type="Reset" value="Cancel"></td>
+<div class="container">
+  <form [formGroup]="formData" #registerForm="ngForm" (ngSubmit)="onSubmit()">
+    <table class="table table-bordered">
+          <h1>Register Book</h1>
+      <tbody>
+        <tr>
+          <td><label for="bookID" class="form-label">Book Id:</label></td>
+          <td>
+            <input type="text" name="bookID" formControlName="bookID" required class="form-control">
+            <div *ngIf="formData.controls.bookID.invalid && formData.controls.bookID.touched" class="text-danger">
+              <span *ngIf="formData.controls.bookID.errors?.['required']">Book Id cannot be blank</span>
+              <span *ngIf="formData.controls.bookID.errors?.['minlength']">Book Id is invalid!!!</span>
+            </div>
+          </td>
         </tr>
-    </table>
-    <p>Book Id:{{bookID.value}}</p>
-    <p>Title:{{title.value}}</p>
-    <p>Price:{{price.value}}</p>
-    <p>AuthorID:{{authorID.value}}</p>
-    <p>CategoryID:{{categoryID.value}}</p>
-    <p>Cover Image:{{base64img.value}}</p>
-    </form>
-    
-    </div>
 
+        <tr>
+          <td><label for="title" class="form-label">Title:</label></td>
+          <td>
+            <input type="text" name="title" formControlName="title" required class="form-control">
+            <div *ngIf="formData.controls.title.invalid && formData.controls.title.touched" class="text-danger">
+              <span *ngIf="formData.controls.title.errors?.['required']">Title cannot be blank</span>
+              <span *ngIf="formData.controls.title.errors?.['pattern']">Title is invalid!!!</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="price" class="form-label">Price:</label></td>
+          <td>
+            <input type="text" name="price" formControlName="price" required class="form-control">
+            <div *ngIf="formData.controls.price.invalid && formData.controls.price.touched" class="text-danger">
+              <span *ngIf="formData.controls.price.errors?.['required']">Price cannot be blank</span>
+              <span *ngIf="formData.controls.price.errors?.['minlength']">Price is invalid!!!</span>
+              </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="authorName" class="form-label">Author Name</label></td>
+          <td>
+            <input type="text" name="authorName" formControlName="authorName" class="form-control">
+            <div *ngIf="formData.controls.authorName.invalid && formData.controls.authorName.touched" class="text-danger">
+              <span *ngIf="formData.controls.authorName.errors?.['required']">Author Name cannot be blank</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="categoryName" class="form-label">Category Name</label></td>
+          <td>
+            <input type="text" name="categoryName" formControlName="categoryName" class="form-control">
+            <div *ngIf="formData.controls.categoryName.invalid && formData.controls.categoryName.touched" class="text-danger">
+              <span *ngIf="formData.controls.categoryName.errors?.['required']">Category Name cannot be blank</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="description" class="form-label">Description</label></td>
+          <td>
+            <textarea name="description" formControlName="description" class="form-control"></textarea>
+            <div *ngIf="formData.controls.description.invalid && formData.controls.description.touched" class="text-danger">
+              <span *ngIf="formData.controls.description.errors?.['required']">Description cannot be blank</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="base64img" class="form-label">Cover Image</label></td>
+          <td>
+            <input type="file" name="base64img" formControlName="base64img" (change)="onFileChange($event)" class="form-control">
+            <div *ngIf="formData.controls.base64img.invalid && formData.controls.base64img.touched" class="text-danger">
+              <span *ngIf="formData.controls.base64img.errors?.['required']">Cover Image cannot be blank</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center">
+            <button type="Submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+            <button type="Reset" class="btn btn-secondary ms-2">Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </form>
+</div>
