@@ -43,6 +43,7 @@ import { AppComponent } from './app.component';
 import { ReviewsByBookIdComponent } from 'src/user-customer/review/reviews-by-book-id/reviews-by-book-id.component';
 import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
 import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
+import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { CategorybookslistComponent } from 'src/user-customer/book/categorybooks
         ReviewsByBookIdComponent,
         CategorybookslistComponent,
         CategorybooksComponent,
+        ReviewsByUserIdComponent,
     ],
     imports: [
         BrowserModule,
