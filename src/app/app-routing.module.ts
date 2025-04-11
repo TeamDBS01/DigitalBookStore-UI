@@ -30,6 +30,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard] },
+    {path:'profile',component:UserProfileComponent},
     { path: 'review/addReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
     { path: 'review/updateReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
     { path: 'review/user', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },

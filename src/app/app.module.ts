@@ -48,7 +48,7 @@ import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-us
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
 
-@NgModule({
+@NgModule({ 
     declarations: [
         AppComponent,
         ViewAllReviewsComponent,
@@ -80,7 +80,7 @@ import { OrderTrackingComponent } from 'src/user-customer/order/order-management
         UpdateTrackingComponent,
         PlaceOrderComponent,
         SignupComponent,
-    UserProfileComponent,
+         UserProfileComponent,
         ReviewsByBookIdComponent,
         CategorybookslistComponent,
         CategorybooksComponent,
