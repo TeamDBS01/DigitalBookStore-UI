@@ -16,12 +16,12 @@ const routes: Routes = [
     {path: 'getInventory',component:DisplayInventoryComponent},
     {path: 'getInventoryByBookID', component: ViewByBookIDComponent},
     {path: 'updateQuantity', component: UpdateQuantityComponent}
-    // {path: 'login', component: LoginComponent},
-    // {path: 'home', component: HomeComponent, canActivate:[AuthAdminGuard]},
-    // {path: 'review/addReview', component: AddReviewComponent, canActivate:[AuthAdminGuard]},
-    // {path: 'review/all', component: ViewAllReviewsComponent, canActivate:[AuthAdminGuard]},
-    // {path: 'review/allReviews', component: AllReviewsComponent, canActivate:[AuthAdminGuard]},
-    // {path: '**', redirectTo:'home', pathMatch:'full'}
+    {path: 'login', component: LoginComponent},
+    {path: 'home', component: HomeComponent, canActivate:[AuthAdminGuard]},
+    {path: 'review/addReview', component: AddReviewComponent, canActivate:[AuthAdminGuard]},
+    {path: 'review/all', component: ViewAllReviewsComponent, canActivate:[AuthAdminGuard]},
+    {path: 'review/allReviews', component: AllReviewsComponent, canActivate:[AuthAdminGuard]},
+    {path: '**', redirectTo:'home', pathMatch:'full'}
 ];
 
 @NgModule({
