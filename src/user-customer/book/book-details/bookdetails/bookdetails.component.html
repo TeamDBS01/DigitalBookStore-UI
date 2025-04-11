@@ -1,10 +1,19 @@
-<div *ngIf="book" class="p-4">
-    <h2>{{ book.title }}</h2>
-    <img [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''" alt="{{ book.title }}" />
-    <p>Author: {{ book.authorName }}</p>
-    <p>Category: {{ book.categoryName }}</p>
-    <app-average-rating [bookId]="book.bookID" />
-    <app-add-to-cart [bookId]="book.bookID" />
-    <app-reviews-by-book-id [bookId]="book.bookID" />
-    <!-- <p>Description: {{ book.description }}</p> -->
+<div *ngIf="book" class="book-container">
+  <div class="book-image">
+    <img [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''" alt="{{ book.title }}" class="img-fluid" />
   </div>
+  <div class="book-details">
+    <h2>{{ book.title }}</h2>
+    <p>Author: {{ book.authorName }}</p>
+    <div class="review-stars">
+      <app-average-rating [bookId]="book.bookID"></app-average-rating>
+    </div>
+    <div class="description">
+      <p>{{ book.description }}</p>
+    </div>
+    <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>
+    <div class="reviews">
+      <app-reviews-by-book-id [bookId]="book.bookID"></app-reviews-by-book-id>
+    </div>
+  </div>
+</div>

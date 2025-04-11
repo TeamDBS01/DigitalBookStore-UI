@@ -1,3 +1,5 @@
+<div class="background-container">
+    <div class="hcont">
 <div class="container">
     <form #signupForm="ngForm" (ngSubmit)="signup()">
         <h2>Sign Up</h2>
@@ -59,3 +61,26 @@
         <p>Already have an account? <a routerLink="/login">Login</a></p>
     </form>
 </div>
+</div>
+</div>
+<style>
+    .hcont{
+        position: absolute;
+        right:50px;
+        width: 500px;
+        height:300px;
+        top:65px;
+    }
+    .background-container {
+        background-image: url('assets/loginB.jpg');
+        background-size: cover;
+        background-position: center;
+        height:90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+   
+</style>

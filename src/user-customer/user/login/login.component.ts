@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 
@@ -8,34 +8,57 @@ import { UserService } from '../service/user.service';
     styleUrls: ['./login.component.sass'],
     standalone: false
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-    email = '';  
+    email = '';
     password = '';
     invalidLogin = false;
+    showWelcomePopup = false;
+    loggedInUserName = '';
+    invalidLoginMessage = '';  
 
     constructor(private router: Router, private loginService: UserService) { }
 
     ngOnInit() {
         if (sessionStorage.getItem('token')) {
-            this.router.navigate(['']);
+            this.router.navigate(['/home']);
         }
     }
 
     checkLogin() {
+        if (!this.email || !this.password) {
+            this.invalidLogin = true;
+            this.invalidLoginMessage = 'Email and password cannot be empty.';
+            return;
+        }
+
         this.loginService.authenticate(this.email, this.password).subscribe(
             (response) => {
                 this.invalidLogin = false;
-                this.router.navigate(['home']); 
-                 
+                this.invalidLoginMessage = '';  
+                this.loggedInUserName = response.name || response.email;
+                // this.showWelcomePopup = true;
+                // setTimeout(() => {
+                //     this.showWelcomePopup = false;
+                    this.router.navigate(['/home']);
+                // }, 2000);
             },
             (error) => {
                 this.invalidLogin = true;
                 console.error("Login error:", error);
-                
+                if (error && error.error && error.error.message) {
+                    this.invalidLoginMessage = error.error.message;  
+                } else {
+                    this.invalidLoginMessage = 'Invalid email or password. Please try again.';  
+                }
             }
         );
         this.email = '';
         this.password = '';
     }
+
+    // closeWelcomePopup() {
+    //     this.showWelcomePopup = false;
+    //     this.router.navigate(['/home']);
+    // }
 }
