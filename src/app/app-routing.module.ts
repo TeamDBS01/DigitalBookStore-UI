@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MainComponent } from 'src/user-admin/Home/main/main.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard] },
+    { path:'adminHome',component:MainComponent,canActivate:[AuthAdminGuard]},
 	{ path: 'profile', component: UserProfileComponent },
 	{ path: 'review/addReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
 	{ path: 'review/updateReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },

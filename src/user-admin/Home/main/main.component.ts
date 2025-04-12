@@ -19,5 +19,6 @@ export class MainComponent {
     }
     // console.log(isLeftSidebarCollapsed);
     return this.screenWidth > 768 ? 'body-trimmed' : 'body-md-screen';
+    
   }
 }
