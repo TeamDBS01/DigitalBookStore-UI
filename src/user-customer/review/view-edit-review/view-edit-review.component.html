@@ -1,2 +1,4 @@
-<app-review *ngIf="!editing" [review]="review" [canModify]="canModify" (editing)="receiveEditStatus($event)" />
-<app-add-update-review *ngIf="editing" [review]="review" [bookId]="bookId" (editing)="receiveEditStatus($event)"/>
+<app-add-update-review *ngIf="editing || review === undefined" [review]="review" [bookId]="bookId"
+    (editing)="receiveEditStatus($event)" />
+<app-review [userView]="userView" *ngIf="!editing && review" [review]="review" [canModify]="canModify"
+    (editing)="receiveEditStatus($event)" />

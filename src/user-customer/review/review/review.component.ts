@@ -4,10 +4,10 @@ import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
 
 @Component({
-  selector: 'app-review',
-  templateUrl: './review.component.html',
-  styleUrls: ['./review.component.sass'],
-  standalone: false
+    selector: 'app-review',
+    templateUrl: './review.component.html',
+    styleUrls: ['./review.component.sass'],
+    standalone: false
 })
 export class ReviewComponent {
     @Input() review!: Review;
@@ -15,11 +15,10 @@ export class ReviewComponent {
     @Input() userView = false;
     @Output() editing = new EventEmitter<boolean>();
 
-    constructor(private router: Router, private reviewService: ReviewService) {}
+    constructor(private router: Router, private reviewService: ReviewService) { }
 
     editReview() {
-        console.log("emit - true");
-        
+        // console.log("emit - true");
         this.editing.emit(true);
         // this.router.navigate(['review/updateReview'], { queryParams: { 'reviewId': this.review.reviewId } });
     }

@@ -4,22 +4,24 @@ import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
 
 @Component({
-  selector: 'app-reviews-by-user-id',
-  templateUrl: './reviews-by-user-id.component.html',
-  styleUrls: ['./reviews-by-user-id.component.sass'],
-  standalone: false
+    selector: 'app-reviews-by-user-id',
+    templateUrl: './reviews-by-user-id.component.html',
+    styleUrls: ['./reviews-by-user-id.component.sass'],
+    standalone: false
 })
 export class ReviewsByUserIdComponent {
 
-    constructor(public reviewService: ReviewService, public loginService: UserService) {}
-    
+    constructor(public reviewService: ReviewService, public loginService: UserService) { }
+
     reviews!: Review[];
     ngOnInit() {
         this.reviewService.getReviewsByUserId().subscribe({
-            next: data => {this.reviews = data},
+            next: data => { this.reviews = data },
             error: error => {
                 if (!(error.error.text === `No Reviews with User ID: ${this.reviewService.userId} Found!`)) {
                     console.error(error);
+                } else {
+                    this.reviews = [];
                 }
             }
         })
