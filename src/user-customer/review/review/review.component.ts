@@ -10,7 +10,7 @@ import { ReviewService } from '../service/review.service';
     standalone: false
 })
 export class ReviewComponent {
-    @Input() message!: string;
+    // @Input() message!: string;
     @Input() review!: Review;
     @Input() canModify = false;
     @Input() userView = false;

@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/user-customer/user/service/user.service';
 import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
 
@@ -31,17 +29,11 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
 
     @ViewChildren('str') stars!: QueryList<ElementRef>;
 
-    constructor(private reviewService: ReviewService, private loginService: UserService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private reviewService: ReviewService) { }
 
     ngAfterViewInit(): void { this.starsColor(); }
 
     ngOnInit() {
-        document.addEventListener('click', (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
-            if (target.classList.contains('rating-star')) {
-                this.handleRatingClick(target, event);
-            }
-        });
         if (this.review !== undefined) {
             this.userId = this.review.userId;
             this.rating = this.review.rating;
@@ -50,10 +42,10 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
         }
         this.formData = new FormGroup({
             comment: new FormControl(this.comment, Validators.compose([
-                Validators.required,
-                Validators.minLength(3),
-                Validators.maxLength(2000),
-                Validators.pattern('^\\D.*')
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(2000),
+            Validators.pattern('^[^\\d\\s].*')
             ])),
         });
     }
@@ -71,21 +63,18 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
 
     handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }
 
-    handleRatingClick(starElement: HTMLElement, event: MouseEvent): void {
-        const rect = starElement.getBoundingClientRect();
+    handleRatingClick(event: MouseEvent, starValue: number): void {
+        const rect = (event.target as HTMLElement).getBoundingClientRect();
         const clickX = event.clientX - rect.left;
         const starWidth = rect.width;
 
-        let ratingValue = parseFloat(starElement.getAttribute("data-value") || "0");
-
-        if (clickX < starWidth / 2) { ratingValue -= 0.5; }
-        this.rating = ratingValue;
+        if (clickX < starWidth / 2) { starValue -= 0.5; }
+        this.rating = starValue;
 
         this.starsColor();
     }
 
     starsColor() {
-        if (this.stars == undefined) return;
         this.stars.forEach(starElement => {
             const star = starElement.nativeElement;
             const starValue = parseFloat(star.getAttribute("data-value") || "0");
@@ -119,7 +108,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
             this.reviewService.addReview(this.review).subscribe({
                 next: data => {
                     this.successMessage = "Review added successfully";
-                    this.message.emit(this.successMessage);               
+                    this.message.emit(this.successMessage);
                     this.reviewEmitter.emit(data);
                     this.editing.emit(false);
                 },

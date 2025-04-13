@@ -14,8 +14,8 @@
         </div>
         <app-stars [rating]="(review !== undefined)? review.rating : 0" />
         <p class="card-text">{{(review !== undefined)? review.comment : ''}}</p>
-        <div *ngIf="message" class="alert alert-success mt-4">
+        <!-- <div *ngIf="message" class="alert alert-success mt-4">
             {{ message }}
-        </div>
+        </div> -->
     </div>
 </div>
