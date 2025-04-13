@@ -30,7 +30,6 @@ export class ReviewsByBookIdComponent {
                         return false;
                     }
                 });
-                console.log(data, this.reviews, this.userReview);
             },
             error: error => {
                 if (!(error.error.text === `No Reviews with Book ID: ${this.bookId} Found!`)) {

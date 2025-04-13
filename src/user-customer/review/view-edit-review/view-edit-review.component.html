@@ -1,4 +1,6 @@
-<app-add-update-review *ngIf="editing || review === undefined" [review]="review" [bookId]="bookId"
-    (editing)="receiveEditStatus($event)" />
-<app-review [userView]="userView" *ngIf="!editing && review" [review]="review" [canModify]="canModify"
-    (editing)="receiveEditStatus($event)" />
+<app-add-update-review [userView]="userView" *ngIf="editing else reviews" [review]="review"
+    [bookId]="bookId" (editing)="receiveEditStatus($event)" (message)="receiveMessage($event)" (reviewEmitter)="receiveReview($event)" />
+<ng-template #reviews>
+    <app-review [userView]="userView" [review]="review" [canModify]="canModify" (editing)="receiveEditStatus($event)"
+        [message]="message" />
+</ng-template>

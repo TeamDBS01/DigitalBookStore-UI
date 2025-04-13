@@ -19,20 +19,21 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
     comment: string = '';
     userId = Number(sessionStorage.getItem('userId'));
     @Input() bookId!: string;
+    @Input() userView = false;
     errorMessage!: string;
     successMessage!: string;
 
     starNum = [1, 2, 3, 4, 5];
     update: boolean = false;
     @Output() editing = new EventEmitter<boolean>();
+    @Output() message = new EventEmitter<string>();
+    @Output() reviewEmitter = new EventEmitter<Review>();
 
     @ViewChildren('str') stars!: QueryList<ElementRef>;
 
     constructor(private reviewService: ReviewService, private loginService: UserService, private route: ActivatedRoute, private router: Router) { }
 
-    ngAfterViewInit(): void {
-        this.starsColor();
-    }
+    ngAfterViewInit(): void { this.starsColor(); }
 
     ngOnInit() {
         document.addEventListener('click', (event: MouseEvent) => {
@@ -57,11 +58,16 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
         });
     }
 
-    // ngOnChanges(changes: SimpleChanges) {
-    //     if (this.review === undefined) return;
-    //     this.rating = this.review.rating;
-    //     this.comment = this.review.comment;
-    // }
+    cancel() {
+        if (confirm("Are you sure you want to Cancel?")) {
+            this.rating = 0;
+            // this.starsColor();
+            this.formData.reset();
+            // this.errorMessage = '';
+            window.location.reload();
+            // this.editing.emit(false);
+        }
+    }
 
     handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }
 
@@ -113,17 +119,20 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
             this.reviewService.addReview(this.review).subscribe({
                 next: data => {
                     this.successMessage = "Review added successfully";
+                    this.message.emit(this.successMessage);               
+                    this.reviewEmitter.emit(data);
                     this.editing.emit(false);
                 },
                 error: error => {
                     console.error(error)
-                    this.errorMessage = "Error adding review";
+                    this.errorMessage = "Error updating review";
                 }
             })
         } else {
             this.reviewService.updateReview(this.review).subscribe({
                 next: () => {
                     this.successMessage = "Review updated successfully";
+                    this.message.emit(this.successMessage);
                     this.editing.emit(false);
                 },
                 error: error => {

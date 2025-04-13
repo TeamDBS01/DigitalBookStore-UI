@@ -3,7 +3,9 @@
         <div style="display: flex; justify-content: space-between;">
             <div>
                 <h6 class="card-title" *ngIf="userView; else bookView">{{review.bookTitle}}</h6>
-                <ng-template #bookView>{{(review !== undefined)? review.userName : ''}}</ng-template>
+                <ng-template #bookView>
+                    <h6>{{(review !== undefined)? review.userName : ''}}</h6>
+                </ng-template>
             </div>
             <div *ngIf="canModify" style="cursor: pointer; margin-left: 10px; display: flex;">
                 <h6 class="me-3" (click)='editReview()'><i class="fa-solid fa-pen-to-square"></i></h6>
@@ -12,5 +14,8 @@
         </div>
         <app-stars [rating]="(review !== undefined)? review.rating : 0" />
         <p class="card-text">{{(review !== undefined)? review.comment : ''}}</p>
+        <div *ngIf="message" class="alert alert-success mt-4">
+            {{ message }}
+        </div>
     </div>
 </div>

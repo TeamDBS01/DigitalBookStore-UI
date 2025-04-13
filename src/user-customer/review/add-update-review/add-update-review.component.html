@@ -1,10 +1,9 @@
 <div class="container mt-4">
     <form [formGroup]="formData" #addForm='ngForm' (ngSubmit)="onSubmit(addForm.value)" class="p-4 border rounded">
-        <h5>Give your Rating: </h5>
+        <h5>Give your Rating <span *ngIf="userView">for {{review.bookTitle}}</span>:</h5>
         <div class="fa-2x star-rating mb-3" style="cursor: pointer;" id="rating">
             <i #str style="color:orange" class="fa-regular fa-star rating-star" *ngFor="let star of starNum"
                 [attr.data-value]="star"></i>
-            <!-- <app-stars [rating]="rating" /> -->
         </div>
         <p *ngIf="rating != 0">Your Rating: {{ rating }} / 5</p>
 
@@ -32,7 +31,8 @@
         </div>
         <button *ngIf="!update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Add Review</button>
         <button *ngIf="update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Update Review</button>
-        <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+        <button (click)="cancel()" class="btn btn-warning ms-2">Cancel</button>
+        <div *ngIf="!successMessage && errorMessage" class="alert alert-danger mt-4">
             {{ errorMessage }}
         </div>
         <div *ngIf="successMessage" class="alert alert-success mt-4">

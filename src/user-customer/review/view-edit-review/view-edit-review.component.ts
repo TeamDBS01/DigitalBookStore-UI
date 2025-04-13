@@ -13,7 +13,11 @@ export class ViewEditReviewComponent {
     @Input() review!: Review;
     @Input() canModify = false;
     @Input() userView = false;
-    editing = false;
+    message!: string;
+    @Input() editing = false;
+
+    receiveReview($event: Review) { this.review = $event }
 
     receiveEditStatus($event: boolean) { this.editing = $event }
+    receiveMessage($event: string) { this.message = $event }
 }
