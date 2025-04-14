@@ -1,0 +1,99 @@
+$primary-cool-medium: #b0bec5
+$text-cool-primary: #37474f
+$border-cool: #cfd8dc
+$accent-cool: #546e7a
+$primary-cool-light: #eceff1
+$navbar-background: #343a40 
+$navbar-text-color: #f8f9fa 
+
+.navbar
+  background: #6c757d
+  color: $navbar-text-color
+  padding: 1rem 2rem
+  display: flex
+  justify-content: space-between
+  align-items: center
+  border-bottom: 1px solid darken($navbar-background, 10%)
+
+  .navbar-brand
+    font-size: 1.75rem 
+    font-weight: bold
+    text-decoration: none 
+
+    .brand-link
+      margin-left: 3.7rem
+      font-size: 24px
+      font-weight: 700
+      color: #f8f9fa 
+      text-decoration: none 
+      margin-top:-0.2rem
+
+  .navbar-links
+    list-style: none
+    margin: 0
+    padding: 0
+    display: flex
+    gap: 1.75rem 
+    li
+      a
+        text-decoration: none 
+        color: inherit
+        transition: color 0.2s ease-in-out
+
+        &:hover
+          color: $accent-cool
+
+  .navbar-profile
+    position: relative
+
+    .profile-trigger
+      display: flex
+      align-items: center
+      cursor: pointer
+      gap: 0.75rem 
+
+      .profile-icon
+        font-size: 1.75rem 
+      .profile-name
+        font-weight: 500
+
+      i
+        font-size: 1.1rem 
+
+    .dropdown-menu
+      position: absolute
+      top: calc(100% + 0.5rem)
+      right: 0
+      background-color: white
+      border: 1px solid $border-cool
+      border-radius: 0.2rem
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) 
+      width: 180px 
+      padding: 0.75rem 0
+      z-index: 10
+      text-align: left 
+
+      a.dropdown-item
+        display: flex
+        align-items: center
+        gap: 1rem 
+        padding: 0.8rem 1.2rem
+        text-decoration: none 
+        color: $text-cool-primary
+        transition: background-color 0.2s ease-in-out
+
+        &:hover
+          background-color: $primary-cool-light
+
+        i
+          font-size: 1.1rem
+
+      .dropdown-divider
+        border-top: 1px solid $border-cool
+        margin: 0.5rem 0
+
+      a.logout
+        color: #dc3545 
+
+        &:hover
+          background-color: #f8d7da

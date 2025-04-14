@@ -10,8 +10,6 @@ export class MainComponent {
   @Input() screenWidth!: number;
   sizeClass() {
 
-  // } 
-  // = computed(() => {
     const isLeftSidebarCollapsed = this.isLeftSidebarCollapsed;
     if (isLeftSidebarCollapsed) {
       return "";

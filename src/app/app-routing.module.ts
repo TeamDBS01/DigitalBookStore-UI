@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
+import { MainComponent } from 'src/user-admin/Home/main/main.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
@@ -31,31 +33,32 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 
 const routes: Routes = [
 
-	{ path: 'getInventory', component: DisplayInventoryComponent , canActivate: [AuthAdminGuard]},
-	{ path: 'getInventoryByBookID', component: ViewByBookIDComponent, canActivate: [AuthAdminGuard] },
-	{ path: 'updateQuantity', component: UpdateQuantityComponent, canActivate: [AuthAdminGuard] },
+	{ path: 'getInventory', component: DisplayInventoryComponent },
+	{ path: 'getInventoryByBookID', component: ViewByBookIDComponent},
+	{ path: 'updateQuantity', component: UpdateQuantityComponent},
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
-	{ path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard] },
+	{ path: 'home', component: HomeComponent},
 	{ path: 'profile', component: UserProfileComponent },
-	{ path: 'review/addReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'review/updateReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'review/user', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'review/all', component: ViewAllReviewsComponent, canActivate: [AuthAdminGuard], },
-	{ path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
-	{ path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
-	{ path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
-	{ path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'search', component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'order/cart', component: CartComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'order/list', component: OrderListComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'order/details/:id', component: OrderDetailsComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'order/admin/return/:id', component: AdminReturnProcessComponent, canActivate: [AuthAdminGuard], },
-	{ path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
-	{ path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
-	{ path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
+	{ path: 'review/addReview', component: AddUpdateReviewComponent},
+	{ path: 'review/updateReview', component: AddUpdateReviewComponent},
+	{ path: 'review/user', component: ReviewsByUserIdComponent},
+	{ path: 'review/all', component: ViewAllReviewsComponent},
+	{ path: 'review/allReviews', component: AllReviewsComponent},
+	{ path: 'bookid', component: ViewbookidComponent},
+	{ path: 'updateBook', component: UpdatebookComponent},
+	{ path: 'book-details/:id', component: BookdetailsComponent},
+	{ path: 'search', component: SearchtitleComponent},
+	{ path: 'order/cart', component: CartComponent},
+	{ path: 'order/place', component: PlaceOrderComponent},
+	{ path: 'order/list', component: OrderListComponent},
+	{ path: 'order/details/:id', component: OrderDetailsComponent},
+	{ path: 'order/admin/return/:id', component: AdminReturnProcessComponent},
+	{ path: 'order/admin/tracking/:id', component: UpdateTrackingComponent},
+	{ path: 'order/payment/:id', component: PaymentComponent},
+	{ path: 'order/track/:id', component: OrderTrackingComponent},
 	{ path: '**', redirectTo: 'home', pathMatch: 'full' },
+    {path:'adminhome',component:AdminHomeComponent}
 ];
 
 @NgModule({

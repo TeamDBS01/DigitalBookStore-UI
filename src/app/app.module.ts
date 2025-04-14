@@ -54,6 +54,9 @@ import { LeftSidebarComponent } from 'src/user-admin/Home/left-sidebar/left-side
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { MainComponent } from 'src/user-admin/Home/main/main.component';
 import { CommonModule } from '@angular/common';
+import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
+import { DeleteBookInventoryComponent } from 'src/user-admin/inventory/delete-book-inventory/delete-book-inventory.component';
+import { NavbarAdminComponent } from 'src/user-admin/Home/navbar-admin/navbar-admin.component';
 
 @NgModule({
 	declarations: [
@@ -97,7 +100,10 @@ import { CommonModule } from '@angular/common';
 		ViewByBookIDComponent,
 		UpdateQuantityComponent,
 		LeftSidebarComponent,
-		MainComponent
+		MainComponent,
+        AdminHomeComponent,
+        DeleteBookInventoryComponent,
+        NavbarAdminComponent
 	],
 	imports: [
 		BrowserModule,

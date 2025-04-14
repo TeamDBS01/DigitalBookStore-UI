@@ -1,3 +1,3 @@
 export const environment = {
-    apiHostUrl: "http://localhost:8082/dbs"
+    apiHostUrl: "http://localhost:8088/dbs"
 };
