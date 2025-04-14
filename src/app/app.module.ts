@@ -99,7 +99,8 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
         UpdateQuantityComponent,
         LeftSidebarComponent,
         MainComponent,
-        ViewEditReviewComponent
+        ViewEditReviewComponent,
+        
     ],
     imports: [
         BrowserModule,

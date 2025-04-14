@@ -48,7 +48,7 @@ export class ReviewService {
     }
 
     getAverageRating(bookId: string) {
-        return this.http.get<number>(this.averageRatingUrl + bookId);
+        return this.http.get<Array<number>>(this.averageRatingUrl + bookId);
     }
 
     deleteReview(reviewId: number) {

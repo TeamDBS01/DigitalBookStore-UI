@@ -1,5 +1,6 @@
 <div class="d-flex flex-row m-3">
     <div class="w-100">
-        <app-review *ngFor="let review of reviews" [review]="review" class="mb-3" />
+        <h3>All Reviews</h3>
+        <app-review *ngFor="let review of reviews" [userView]="true" [canModify]="true" [review]="review" class="mb-3" />
     </div>
 </div>

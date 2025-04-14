@@ -18,6 +18,7 @@ import { OrderTrackingComponent } from 'src/user-customer/order/order-management
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
+import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
 import { AuthAdminGuard } from 'src/user-customer/user/guard/auth-admin.guard';
 import { AuthCustomerGuard } from 'src/user-customer/user/guard/auth-cust.guard ';
@@ -32,14 +33,11 @@ const routes: Routes = [
     { path: 'updateQuantity', component: UpdateQuantityComponent, canActivate: [AuthAdminGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard] },
+    { path: 'home', component: HomeComponent },
     { path:'adminHome',component:MainComponent,canActivate:[AuthAdminGuard]},
     { path: 'profile', component: UserProfileComponent },
-    // { path: 'review/addReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
-    // { path: 'review/updateReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
     { path: 'reviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    // { path: 'review/all', component: ViewAllReviewsComponent, canActivate: [AuthAdminGuard], },
-    // { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
