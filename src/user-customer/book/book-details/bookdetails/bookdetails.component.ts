@@ -8,7 +8,8 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-bookdetails',
   templateUrl: './bookdetails.component.html',
-  styleUrls: ['./bookdetails.component.sass']
+  styleUrls: ['./bookdetails.component.sass'],
+  standalone: false
 })
 export class BookdetailsComponent implements OnInit {
   book: Book | undefined;

@@ -4,8 +4,11 @@
     </div> -->
     <div class="w-75">
         <!-- <i routerLink="/review/addReview" [queryParams]="{'bookId': bookId}" class="fa-solid fa-plus fa-3x" style="cursor: pointer;"> | Add Review</i> -->
-        <app-add-update-review [bookId]="bookId" />
-        <app-review *ngFor="let review of reviews" [review]="review" class="mb-3" [canModify]="reviewService.userId === review.userId || loginService.isAdmin()"/>
-        <h4 *ngIf="reviews == undefined || reviews === null"><br>No Reviews Found!</h4>
+        <!-- <app-add-update-review [review]="userReview" [bookId]="bookId" /> -->
+        <app-view-edit-review [editing]="!userReview" [bookId]="bookId" [review]="userReview" [canModify]="true" class="mb-3" />
+        <app-view-edit-review *ngFor="let review of reviews" [bookId]="bookId" [review]="review"
+            [canModify]="reviewService.userId === review.userId || loginService.isAdmin()" class="mb-3" />
+        <h4 *ngIf="reviews === undefined"><br>Loading Reviews...</h4>
+        <h4 *ngIf="userReview === undefined && reviews !== undefined && reviews.length == 0"><br>No Reviews Found!</h4>
     </div>
 </div>

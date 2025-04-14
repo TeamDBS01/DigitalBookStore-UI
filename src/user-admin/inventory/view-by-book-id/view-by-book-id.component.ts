@@ -5,7 +5,8 @@ import { InventoryService } from '../service/inventory.service';
 @Component({
   selector: 'app-view-by-book-id',
   templateUrl: './view-by-book-id.component.html',
-  styleUrls: ['./view-by-book-id.component.sass']
+  styleUrls: ['./view-by-book-id.component.sass'],
+  standalone: false
 })
 export class ViewByBookIDComponent {
   book_Id: string = '';

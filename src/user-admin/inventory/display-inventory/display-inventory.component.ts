@@ -6,7 +6,8 @@ import { InventoryService } from '../service/inventory.service';
 @Component({
   selector: 'app-display-inventory',
   templateUrl: './display-inventory.component.html',
-  styleUrls: ['./display-inventory.component.sass']
+  styleUrls: ['./display-inventory.component.sass'],
+  standalone: false
 })
 export class DisplayInventoryComponent implements OnInit {
   allInventories: Inventory[]=[];
