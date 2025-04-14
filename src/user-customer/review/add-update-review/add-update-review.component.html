@@ -1,36 +1,48 @@
 <div class="container mt-4">
     <form [formGroup]="formData" #addForm='ngForm' (ngSubmit)="onSubmit(addForm.value)" class="p-4 border rounded">
-        <h5>Give your Rating: </h5>
-        <div class="fa-2x star-rating mb-3" style="cursor: pointer;" id="rating">
-            <i style="color:orange" class="fa-regular fa-star rating-star" *ngFor="let star of stars" [attr.data-value]="star"></i>
+        <h5>Give your Rating <span *ngIf="userView">for {{review.bookTitle}}</span>:</h5>
+        <div class="fa-2x mb-3" style="cursor: pointer;" id="rating">
+            <i #str style="color:orange" [attr.data-value]="i + 1" *ngFor="let star of starNum; index as i"
+                (click)="handleRatingClick($event, i + 1)"></i>
+            <!-- class="fa-regular fa-star"  -->
+            <!-- [ngClass]="{
+                'fa-solid fa-star' : rating >= i + 1,
+                'fa-regular fa-star-half-stroke' : rating < i + 1  && rating > i,
+                'fa-regular fa-star' : true
+            }" -->
         </div>
-        <p *ngIf="rating != 0">Your Rating: {{ rating }}</p>
-          
+        <p *ngIf="rating != 0">Your Rating: {{ rating }} / 5</p>
+
         <div class="mb-3">
             <label for="comment" class="form-label">Comment</label>
-            <textarea id="comment" formControlName="comment" class="form-control" rows="3" required (keydown)="handleEnter($event)"
-                placeholder="Enter comment"></textarea>
-            <div *ngIf="formData.controls.comment.errors?.['required'] && formData.controls.comment.touched" class="text-danger">
+            <textarea id="comment" formControlName="comment" class="form-control" rows="3" required
+                (keydown)="handleEnter($event)" placeholder="Enter comment"></textarea>
+            <div *ngIf="formData.controls.comment.errors?.['required'] && formData.controls.comment.touched"
+                class="text-danger">
                 Comment is required!
             </div>
-            <div *ngIf="formData.controls.comment.errors?.['minlength'] && formData.controls.comment.touched" class="text-danger">
+            <div *ngIf="formData.controls.comment.errors?.['minlength'] && formData.controls.comment.touched"
+                class="text-danger">
                 Comment must be more than 3 characters!
             </div>
-            <div *ngIf="formData.controls.comment.errors?.['maxlength'] && formData.controls.comment.touched" class="text-danger">
+            <div *ngIf="formData.controls.comment.errors?.['maxlength'] && formData.controls.comment.touched"
+                class="text-danger">
                 Comment must be less than 2000 characters!
             </div>
-            <div *ngIf="formData.controls.comment.errors?.['pattern'] && formData.controls.comment.touched" class="text-danger">
-                Comment should not start with a digit!
+            <div *ngIf="formData.controls.comment.errors?.['pattern'] && formData.controls.comment.touched"
+                class="text-danger">
+                Comment should not start with a digit or space!
             </div>
             <!-- <div>{{formData.controls.comment.errors | json}} Invalid: {{formData.controls.comment.invalid | json}}</div> -->
         </div>
         <button *ngIf="!update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Add Review</button>
         <button *ngIf="update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Update Review</button>
-        <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+        <button (click)="cancel()" class="btn btn-warning ms-2">Cancel</button>
+        <div *ngIf="!successMessage && errorMessage" class="alert alert-danger mt-4">
             {{ errorMessage }}
         </div>
-        <div *ngIf="successMessage" class="alert alert-success mt-4">
+        <!-- <div *ngIf="successMessage" class="alert alert-success mt-4">
             {{ successMessage }}
-        </div>
+        </div> -->
     </form>
 </div>

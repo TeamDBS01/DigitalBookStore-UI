@@ -1,9 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
-import { UserService } from 'src/user-customer/user/service/user.service';
 
 @Component({
     selector: 'app-add-update-review',
@@ -11,91 +9,76 @@ import { UserService } from 'src/user-customer/user/service/user.service';
     styleUrls: ['./add-update-review.component.sass'],
     standalone: false
 })
-export class AddUpdateReviewComponent {
+export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
 
     formData: any;
     @Input() review: Review = new Review();
     rating: number = 0;
     comment: string = '';
-    userId = sessionStorage.getItem('userId');
+    userId = Number(sessionStorage.getItem('userId'));
     @Input() bookId!: string;
+    @Input() userView = false;
     errorMessage!: string;
     successMessage!: string;
 
-    stars = [1, 2, 3, 4, 5];
-    update!: boolean;
+    starNum = [1, 2, 3, 4, 5];
+    update: boolean = false;
     @Output() editing = new EventEmitter<boolean>();
+    @Output() message = new EventEmitter<string>();
+    @Output() reviewEmitter = new EventEmitter<Review>();
 
-    constructor(private reviewService: ReviewService, private loginService: UserService, private route: ActivatedRoute, private router: Router) { }
+    @ViewChildren('str') stars!: QueryList<ElementRef>;
+
+    constructor(private reviewService: ReviewService) { }
+
+    ngAfterViewInit(): void { this.starsColor(); }
 
     ngOnInit() {
-        document.addEventListener('click', (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
-            if (target.classList.contains('rating-star')) {
-                this.handleRatingClick(target, event);
-            }
-        });
-        // this.route.queryParams.subscribe(params => (params['reviewId']) ? this.reviewService.getReviewById(params['reviewId']).subscribe({
-        //     next: data => {
-        //         if (data.userId !== Number(this.userId) && !this.loginService.isAdmin()) {
-        //             this.returnHome();
-        //         }
-        //         if (params['added']) {
-        //             this.successMessage = "Review added successfully";
-        //         }
-        //         this.review = data;
-                this.rating = this.review.rating;
-                this.comment = this.review.comment;
-                this.starsColor(this.rating);
-                // this.formData.patchValue({ comment: this.comment });
-                this.update = true;
-            // },
-    //         error: error => {
-    //             if (error.error === `Review with ID: ${params['reviewId']} Not Found`)
-    //                 alert('Review Not Found');
-    //             console.error(error);
-    //             this.router.navigate(['']);
-    //         }
-    //     }) : this.update = false);
-
-    //     this.route.queryParams.subscribe(params => {
-    //         if (params['bookId']) this.bookId = params['bookId'];
-    //         else if (!params['reviewId']) this.returnHome();
-    //     });
+        if (this.review !== undefined) {
+            this.userId = this.review.userId;
+            this.rating = this.review.rating;
+            this.comment = this.review.comment;
+            this.update = true;
+        }
         this.formData = new FormGroup({
             comment: new FormControl(this.comment, Validators.compose([
-                Validators.required,
-                Validators.minLength(3),
-                Validators.maxLength(2000),
-                Validators.pattern('^\\D.*')
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(2000),
+            Validators.pattern('^[^\\d\\s].*')
             ])),
         });
     }
-    ngOnChange() {
-        this.rating = this.review.rating;
-        this.comment = this.review.comment;
-        this.starsColor(this.review.rating);
+
+    cancel() {
+        if (confirm("Are you sure you want to Cancel?")) {
+            this.rating = 0;
+            // this.starsColor();
+            this.formData.reset();
+            // this.errorMessage = '';
+            window.location.reload();
+            // this.editing.emit(false);
+        }
     }
 
     handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }
 
-    handleRatingClick(starElement: HTMLElement, event: MouseEvent): void {
-        const rect = starElement.getBoundingClientRect();
+    handleRatingClick(event: MouseEvent, starValue: number): void {
+        const rect = (event.target as HTMLElement).getBoundingClientRect();
         const clickX = event.clientX - rect.left;
         const starWidth = rect.width;
 
-        let ratingValue = parseFloat(starElement.getAttribute("data-value") || "0");
+        if (clickX < starWidth / 2) { starValue -= 0.5; }
+        this.rating = starValue;
 
-        if (clickX < starWidth / 2) { ratingValue -= 0.5; }
-        this.rating = ratingValue;
-
-        this.starsColor(this.rating);
+        this.starsColor();
     }
 
-    starsColor(rating: number) {
-        document.querySelectorAll('.rating-star').forEach(star => {
+    starsColor() {
+        this.stars.forEach(starElement => {
+            const star = starElement.nativeElement;
             const starValue = parseFloat(star.getAttribute("data-value") || "0");
-            if (starValue <= Math.floor(rating)) {
+            if (starValue <= Math.floor(this.rating)) {
                 star.classList.add('fa-solid', 'fa-star');
                 star.classList.remove('fa-star-half-stroke', 'fa-regular');
             } else if (starValue === Math.ceil(this.rating) && this.rating % 1 !== 0) {
@@ -107,12 +90,7 @@ export class AddUpdateReviewComponent {
             }
         });
     }
-    
-    // returnHome() {
-        // alert('Error in URL');
-        // this.router.navigate(['']);
-    // }
-    
+
     onSubmit(formData: any) {
         if (this.rating == 0) {
             this.errorMessage = "Rating is Required!";
@@ -125,27 +103,32 @@ export class AddUpdateReviewComponent {
         this.review.comment = formData.comment;
         this.review.bookId = this.bookId || this.review.bookId;
         this.review.userId = Number(this.userId);
+
         if (!this.update) {
             this.reviewService.addReview(this.review).subscribe({
                 next: data => {
-                    this.router.navigate(['review/updateReview'], { queryParams: { 'reviewId': data.reviewId, 'added': true }});
-            },
-            error: error => {
-                console.error(error)
-                this.errorMessage = "Error adding review";
-            }
-        })
-    } else {
-        this.reviewService.updateReview(this.review).subscribe({
-            next: data => {
-                this.successMessage = "Review updated successfully";
-                this.editing.emit(false);
-            },
-            error: error => {
-                console.error(error)
-                this.errorMessage = "Error adding review";
-            }
-        })
-    }
+                    this.successMessage = "Review added successfully";
+                    this.message.emit(this.successMessage);
+                    this.reviewEmitter.emit(data);
+                    this.editing.emit(false);
+                },
+                error: error => {
+                    console.error(error)
+                    this.errorMessage = "Error updating review";
+                }
+            })
+        } else {
+            this.reviewService.updateReview(this.review).subscribe({
+                next: () => {
+                    this.successMessage = "Review updated successfully";
+                    this.message.emit(this.successMessage);
+                    this.editing.emit(false);
+                },
+                error: error => {
+                    console.error(error)
+                    this.errorMessage = "Error adding review";
+                }
+            })
+        }
     }
 }
