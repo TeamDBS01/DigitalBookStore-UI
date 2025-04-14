@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from 'src/user-admin/Home/main/main.component';
+import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
@@ -18,6 +18,7 @@ import { OrderTrackingComponent } from 'src/user-customer/order/order-management
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
+import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
 import { AuthAdminGuard } from 'src/user-customer/user/guard/auth-admin.guard';
 import { AuthCustomerGuard } from 'src/user-customer/user/guard/auth-cust.guard ';
@@ -27,19 +28,16 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 
 const routes: Routes = [
 
-    { path: 'getInventory', component: DisplayInventoryComponent, canActivate: [AuthAdminGuard] },
-    { path: 'getInventoryByBookID', component: ViewByBookIDComponent, canActivate: [AuthAdminGuard] },
-    { path: 'updateQuantity', component: UpdateQuantityComponent, canActivate: [AuthAdminGuard] },
+    { path: 'adminHome/getInventory', component: DisplayInventoryComponent },
+    { path: 'getInventoryByBookID', component: ViewByBookIDComponent},
+    { path: 'updateQuantity', component: UpdateQuantityComponent},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'home', component: HomeComponent, canActivate: [AuthCustomerGuard] },
-    { path:'adminHome',component:MainComponent,canActivate:[AuthAdminGuard]},
+    { path: 'home', component: HomeComponent},
+    { path:'adminHome',component:AdminHomeComponent,canActivate:[AuthAdminGuard]},
     { path: 'profile', component: UserProfileComponent },
-    // { path: 'review/addReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
-    // { path: 'review/updateReview', component: AddUpdateReviewComponent, canActivate: [AuthCustomerGuard], },
     { path: 'reviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    // { path: 'review/all', component: ViewAllReviewsComponent, canActivate: [AuthAdminGuard], },
-    // { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
@@ -53,6 +51,7 @@ const routes: Routes = [
     { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
+    {path:'adminhome',component:AdminHomeComponent}
 ];
 
 @NgModule({

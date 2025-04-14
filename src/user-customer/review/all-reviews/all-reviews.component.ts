@@ -14,7 +14,6 @@ export class AllReviewsComponent {
 
     reviews: Review[] = [];
     
-    // stars = [1,2,3,4,5];
     ngOnInit() {
         this.reviewService.getAllReviews().subscribe({
             next: (data) => {

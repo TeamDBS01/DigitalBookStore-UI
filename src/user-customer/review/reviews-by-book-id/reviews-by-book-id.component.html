@@ -1,11 +1,7 @@
 <div class="d-flex flex-row m-3">
-    <!-- <div class="w-25 fa-2x">
-        <app-average-rating [bookId]='bookId' class="mb-3" />
-    </div> -->
     <div class="w-75">
-        <!-- <i routerLink="/review/addReview" [queryParams]="{'bookId': bookId}" class="fa-solid fa-plus fa-3x" style="cursor: pointer;"> | Add Review</i> -->
-        <!-- <app-add-update-review [review]="userReview" [bookId]="bookId" /> -->
-        <app-view-edit-review [editing]="!userReview" [bookId]="bookId" [review]="userReview" [canModify]="true" class="mb-3" />
+        <app-view-edit-review [editing]="!userReview" [bookId]="bookId" [review]="userReview" [canModify]="true" class="mb-3" 
+        (reviewEmitter)="receiveReview($event)" />
         <app-view-edit-review *ngFor="let review of reviews" [bookId]="bookId" [review]="review"
             [canModify]="reviewService.userId === review.userId || loginService.isAdmin()" class="mb-3" />
         <h4 *ngIf="reviews === undefined"><br>Loading Reviews...</h4>

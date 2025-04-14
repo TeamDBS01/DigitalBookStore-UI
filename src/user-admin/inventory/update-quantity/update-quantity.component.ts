@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { InventoryService } from '../service/inventory.service';
 import { Inventory } from '../model/Inventory';
 import { ActivatedRoute } from '@angular/router';
@@ -9,56 +9,69 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./update-quantity.component.sass'],
   standalone: false
 })
-export class UpdateQuantityComponent {
+export class UpdateQuantityComponent implements OnInit {
+    @Input() inventory: Inventory | null = null;
+    @Output() closeModalEvent = new EventEmitter<void>();
+    @Output() inventoryChangedEvent = new EventEmitter<void>(); // Emit when inventory changes
   
-
-  book_Id: string = '';
-  inventory: Inventory | null = null;
-  errorMessage: string = '';
-  updateQuantity: number = 0;
-  responseMessage: string='';
+    updateQuantity: number = 0;
+    responseMessage: string = '';
+    errorMessage: string = '';
   
-
-  constructor(private inventoryService: InventoryService, private route:ActivatedRoute) {}
-
-  ngOnInit() {
-    this.route.queryParams.subscribe(params=> this.book_Id=params["bookID"]);
-  }
-
-  addQuantity(): void {
-    if(this.updateQuantity>0) {
-      this.inventoryService.updateAddInventory(this.book_Id, this.updateQuantity).subscribe({
-        next: (response) => {
-          this.responseMessage=response;
-          this.errorMessage='';
-          console.log('Quantity added successfuly');
-        }, error: (error: any)=> {
-          this.errorMessage='Error updating quantity';
-          console.error('Error updating quantity: ', error);
-          this.responseMessage='';
-        }
-      });
-    } else {
-      this.errorMessage='Quantity must be greator than 0';
+    constructor(private inventoryService: InventoryService) { }
+  
+    ngOnInit(): void {
+      if (this.inventory) {
+        this.updateQuantity = 0; // Initialize
+        this.responseMessage = '';
+        this.errorMessage = '';
+      }
     }
-  }
-  removeQuantity(): void {
-    if(this.updateQuantity>0) {
-      this.inventoryService.updateRemoveInventory(this.book_Id, this.updateQuantity).subscribe({
-        next: (response) => {
-          this.responseMessage=response;
-          this.errorMessage='';
-          console.log('Quantity removed successfully');
-        }, 
-        error:(error:any)=> {
-          this.errorMessage='Error updating quantity';
-          console.error('Error updating quantity:', error);
-          this.responseMessage='';
-        }
-      });
-    } else {
-      this.errorMessage='Quantity must be greator than 0';
-      this.responseMessage = '';
+  
+    closeModal(): void {
+      this.closeModalEvent.emit();
     }
-  }
+  
+    addQuantity(): void {
+      if (this.inventory && this.updateQuantity > 0) {
+        this.inventoryService.updateAddInventory(this.inventory.book_Id, this.updateQuantity).subscribe({
+          next: (response) => {
+            this.responseMessage = response;
+            this.errorMessage = '';
+            this.inventoryChangedEvent.emit();
+            setTimeout(() => this.closeModal(), 1000);
+          },
+          error: (error: any) => {
+            this.errorMessage = 'Error adding quantity';
+            this.responseMessage = '';
+            console.error('Error adding quantity:', error);
+          }
+        });
+      } else if (this.updateQuantity <= 0) {
+        this.errorMessage = 'Quantity must be greater than 0';
+        this.responseMessage = '';
+      }
+    }
+  
+    removeQuantity(): void {
+      if (this.inventory && this.updateQuantity > 0) {
+        this.inventoryService.updateRemoveInventory(this.inventory.book_Id, this.updateQuantity).subscribe({
+          next: (response) => {
+            this.responseMessage = response;
+            this.errorMessage = '';
+            this.inventoryChangedEvent.emit();
+            setTimeout(() => this.closeModal(), 1000);
+          },
+          error: (error: any) => {
+            this.errorMessage = 'Error removing quantity';
+            this.responseMessage = '';
+            console.error('Error removing quantity:', error);
+          }
+        });
+      } else if (this.updateQuantity <= 0) {
+        this.errorMessage = 'Quantity must be greater than 0';
+        this.responseMessage = '';
+      }
+    }
+  
 }

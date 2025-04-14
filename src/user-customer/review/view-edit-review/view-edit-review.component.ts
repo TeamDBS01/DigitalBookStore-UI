@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Review } from '../model/Review';
 
 @Component({
@@ -16,8 +16,14 @@ export class ViewEditReviewComponent {
     message!: string;
     @Input() editing = false;
 
-    receiveReview($event: Review) { this.review = $event }
+    @Output() reviewEmitter = new EventEmitter<Review>();
 
-    receiveEditStatus($event: boolean) { this.editing = $event }
+    receiveReview($event: Review) { this.review = $event }
+    receiveEditStatus($event: boolean) {
+        this.editing = $event;
+        if (this.editing == false) {
+            this.reviewEmitter.emit(this.review);
+        }
+    }
     receiveMessage($event: string) { this.message = $event }
 }
