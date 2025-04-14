@@ -1,5 +1,7 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthInterceptor } from './auth.interceptor';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -47,11 +49,15 @@ import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-us
 
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
 import { LeftSidebarComponent } from 'src/user-admin/Home/left-sidebar/left-sidebar.component';
 import { MainComponent } from 'src/user-admin/Home/main/main.component';
+import { NavbarAdminComponent } from 'src/user-admin/Home/navbar-admin/navbar-admin.component';
+import { DeleteBookInventoryComponent } from 'src/user-admin/inventory/delete-book-inventory/delete-book-inventory.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
+import { FooterComponent } from 'src/user-customer/Home/footer/footer.component';
 import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
 import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-review/view-edit-review.component';
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
@@ -100,7 +106,10 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
         LeftSidebarComponent,
         MainComponent,
         ViewEditReviewComponent,
-        
+		FooterComponent,
+        AdminHomeComponent,
+        DeleteBookInventoryComponent,
+        NavbarAdminComponent
     ],
     imports: [
         BrowserModule,
@@ -110,11 +119,11 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
         HttpClientModule,
         RouterModule,
         RouterOutlet,
-        CommonModule
+        CommonModule 
 
-    ],
-    providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService],
-    bootstrap: [AppComponent]
+	],
+	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService, {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
 

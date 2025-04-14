@@ -31,31 +31,57 @@
         <header>
             <!-- <h2>User Profile</h2> -->
         </header>
-
-        <div *ngIf="activeTab === 'details'">
-            <h3>Personal Details</h3>
+        <div class="pdetails" *ngIf="activeTab === 'details' && userDetails">
+            <!-- <h3 class="pd">Personal Details</h3> -->
             <div *ngIf="!isEditingDetails; else editDetailsSection">
-                <p><strong>Name:</strong> {{ profileForm.value.name }}</p>
-                <button (click)="isEditingDetails = true">Edit Details</button>
+              <div *ngIf="userDetails.profileImage">
+                <img [src]="userDetails.profileImage" alt="Profile Picture" style="max-width: 100px; max-height: 100px;">
+              </div>
+              <div *ngIf="!userDetails.profileImage">
+                <p>No profile picture available.</p>
+              </div>
+              <p><strong>Full Name:</strong> {{ userDetails?.name }}</p>
+              <p><strong>Phone Number:</strong> {{ userDetails?.phoneNumber }}</p>
+              <button (click)="isEditingDetails = true">Edit Details</button>
             </div>
             <ng-template #editDetailsSection>
-                <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" formControlName="name">
-                        <div *ngIf="profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)" class="error-message">
-                            Name is required.
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" [disabled]="profileForm.invalid">Update Details</button>
-                        <button type="button" (click)="isEditingDetails = false">Cancel</button>
-                    </div>
-                    <div *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</div>
-                    <div *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</div>
-                </form>
-
-                <h3>Change Password</h3>
+              <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+                <div class="form-group">
+                  <label for="name">Full Name:</label>
+                  <input type="text" id="name" formControlName="name">
+                  <div *ngIf="profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)" class="error-message">
+                    Name is required.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="phoneNumber">Phone Number:</label>
+                  <input type="text" id="phoneNumber" formControlName="phoneNumber">
+                  <div *ngIf="profileForm.controls['phoneNumber'].invalid && (profileForm.controls['phoneNumber'].dirty || profileForm.controls['phoneNumber'].touched)" class="error-message">
+                    <div *ngIf="profileForm.controls['phoneNumber'].errors?.['required']">Phone number is required.</div>
+                    <div *ngIf="profileForm.controls['phoneNumber'].errors?.['pattern']">Invalid phone number format.</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="profileImage">Profile Image:</label>
+                  <input type="file" id="profileImage" (change)="handleFileInput($event)" accept="image/*">
+                  <div *ngIf="profileImagePreview">
+                    <img [src]="profileImagePreview" alt="Profile Image Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+                  </div>
+                  <div *ngIf="userDetails?.profileImage && !profileImagePreview">
+                    <p>Current Image:</p>
+                    <img [src]="userDetails?.profileImage" alt="Current Profile Picture" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" [disabled]="profileForm.invalid">Update Details</button>
+                  <button type="button" (click)="isEditingDetails = false">Cancel</button>
+                </div>
+                <div *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</div>
+                <div *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</div>
+              </form>
+          
+              <h3>Change Password</h3>
+             
                 <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
                     <div class="form-group">
                         <label for="currentPassword">Current Password:</label>
@@ -88,62 +114,7 @@
                 </form>
             </ng-template>
         </div>
-
-        <!-- <div *ngIf="activeTab === 'wallet'">
-            <h3>Wallet</h3>
-            <p>Current Balance:
-                <span *ngIf="!showBalance">
-                    <i class="fa-solid fa-eye" (click)="showBalance = true" style="cursor: pointer;"></i>
-                    <span style="visibility: hidden;">{{ walletBalance | currency:'INR' }}</span>
-                </span>
-                <span *ngIf="showBalance">{{ walletBalance | currency:'INR' }}</span>
-                
-            </p>
-
-            <h4>Top up Wallet</h4>
-            <button (click)="showSimulatePaymentPopup = true">Add Funds</button>
-
-            <div *ngIf="showSimulatePaymentPopup" class="modal">
-                <div class="modal-content">
-                    <span class="close-button" (click)="closeSimulatePaymentPopup()">&times;</span>
-                    <h4>Simulate Payment</h4>
-                    <form [formGroup]="simulatePaymentForm" (ngSubmit)="simulateAddFunds()">
-                        <div class="form-group">
-                            <label for="paymentMethod">Payment Method:</label>
-                            <select id="paymentMethod" formControlName="paymentMethod">
-                                <option value="upi">UPI</option>
-                                <option value="creditcard">Credit Card</option>
-                            </select>
-                        </div>
-                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === 'upi'">
-                            <label for="upiId">UPI ID:</label>
-                            <input type="text" id="upiId" formControlName="upiId">
-                        </div>
-                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === 'creditcard'">
-                            <label for="cardNumber">Card Number:</label>
-                            <input type="text" id="cardNumber" formControlName="cardNumber">
-                            <label for="expiry">Expiry (MM/YY):</label>
-                            <input type="text" id="expiry" formControlName="expiry">
-                            <label for="cvv">CVV:</label>
-                            <input type="text" id="cvv" formControlName="cvv">
-                        </div>
-                        <div class="form-group">
-                            <label for="simulateAmount">Amount to Add (INR):</label>
-                            <input type="number" id="simulateAmount" formControlName="simulateAmount" min="1" required>
-                            <div *ngIf="simulatePaymentForm.controls['simulateAmount'].invalid && (simulatePaymentForm.controls['simulateAmount'].dirty || simulatePaymentForm.controls['simulateAmount'].touched)" class="error-message">
-                                Amount must be at least 1.
-                            </div>
-                        </div>
-                        <button type="submit" [disabled]="simulatePaymentForm.invalid">Simulate Payment</button>
-                        <div *ngIf="simulatePaymentError" class="success-popup">
-                            <i class="fa-solid fa-check-circle"></i> Payment Successful!
-                        </div>
-                        <div *ngIf="simulatePaymentSuccess" class="error-message">{{ simulatePaymentErrorMessage }}</div>
-                    </form>
-                    
-                </div>
-            </div>
-        </div> -->
+ 
 
         <div *ngIf="activeTab === 'wallet'">
             <h3>Wallet</h3>
@@ -178,7 +149,7 @@
                             <label for="paymentMethod">Payment Method:</label>
                             <select id="paymentMethod" formControlName="paymentMethod">
                                 <option value="upi">UPI</option>
-                                <option value="creditcard">Credit Card</option>
+                                <!-- <option value="creditcard">Credit Card</option> -->
                             </select>
                         </div>
                         <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === 'upi'">
@@ -222,11 +193,12 @@
         <div *ngIf="activeTab === 'orders-reviews'">
             <h3>My Orders & Reviews</h3>
             <div *ngIf="userReviews.length === 0">No orders or reviews yet.</div>
-            <div *ngFor="let review of userReviews" class="review-item">
+            <app-reviews-by-user-id />
+            <!-- <div *ngFor="let review of userReviews" class="review-item">
                 <p>Book: {{ review.bookTitle }}</p>
                 <p>Rating: {{ review.rating }}/5</p>
                 <p>Comment: {{ review.comment }}</p>
-            </div>
+            </div> -->
             </div>
 
         <div *ngIf="activeTab === 'support'">
@@ -243,3 +215,24 @@
         </div>
     </main>
 </div>
+
+<style>
+.pdetails {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* position: relative;
+    left:10px;
+    top:60px;
+    width:650px; */
+}
+
+ 
+
+ 
+</style>

@@ -10,11 +10,19 @@ import { InventoryService } from '../service/inventory.service';
   standalone: false
 })
 export class DisplayInventoryComponent implements OnInit {
+  allInventories: Inventory[]=[];
+  filteredInventories: Inventory[]=[];
+  searchBookId: string='';
   inventories: Inventory[] = [];
   totalItems: number = 0;
   pageSize: number = 10;
   currentPage: number = 0;
-  totalPages: number = -1;
+  totalPages: number = 0;
+
+  isUpdateModalVisible: boolean = false; 
+  selectedInventory: Inventory | null = null; 
+  isDeleteModalVisible: boolean = false; 
+  bookIdToDelete: string = ''; 
 
   constructor(private inventoryService: InventoryService) {}
 
@@ -30,12 +38,27 @@ export class DisplayInventoryComponent implements OnInit {
 
   loadInventory(page: number, size: number) {
     this.inventoryService.getInventory(page, size).subscribe(data => {
-      console.log(data);
       this.inventories = data;
       this.totalItems = data.length;
       // this.totalPages = Math.ceil(this.totalItems / this.pageSize);
       
     });
+  }
+
+  filterInventories(): void {
+    if (!this.searchBookId) {
+      this.filteredInventories = [...this.allInventories]; // Show all if search is empty
+    } else {
+      this.filteredInventories = this.allInventories.filter(inventory =>
+        inventory.book_Id.toLowerCase().includes(this.searchBookId.toLowerCase())
+      );
+    }
+    this.currentPage = 0; // Reset page on filter
+    this.updatePagination();
+  }
+
+  updatePagination(): void {
+    this.totalPages = Math.ceil(this.filteredInventories.length / this.pageSize);
   }
   
   onPageChange(page: number) {
@@ -48,5 +71,34 @@ export class DisplayInventoryComponent implements OnInit {
         this.loadInventory(page, this.pageSize);
         this.currentPage = page;
     }
+  }
+  openUpdateModal(inventory: Inventory): void {
+    this.selectedInventory = inventory;
+    this.isUpdateModalVisible = true;
+  }
+
+  closeUpdateModal(): void {
+    this.isUpdateModalVisible = false;
+    this.selectedInventory = null;
+  }
+
+  handleInventoryChanged(): void {
+    this.loadInventory(this.currentPage, this.pageSize);
+  }
+
+  openDeleteModal(bookID: string): void {
+    this.bookIdToDelete = bookID;
+    this.isDeleteModalVisible = true;
+  }
+
+  closeDeleteModal(): void {
+    this.isDeleteModalVisible = false;
+    this.bookIdToDelete = '';
+  }
+
+  handleItemDeleted(deletedBookID: string): void {
+    console.log(`Book with ID ${deletedBookID} deleted successfully.`);
+    this.loadInventory(this.currentPage, this.pageSize);
+    this.closeDeleteModal();
   }
 }

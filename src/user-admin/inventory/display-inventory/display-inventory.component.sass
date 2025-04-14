@@ -1,57 +1,141 @@
+// Muted Cool Gray & Blue Color Palette for Admin UI (with Improved Header & Pagination)
+$primary-cool-light: #eceff1 // Very Light Gray-Blue
+$primary-cool-medium: #b0bec5 // Medium Gray-Blue
+$primary-cool-dark: #78909c // Dark Gray-Blue
+$secondary-cool-light: #f0f4c3 // Light Yellow-Green (Subtle Accent)
+$border-cool: #cfd8dc // Light Gray-Blue Border
+$text-cool-primary: #37474f // Dark Blue-Gray Text
+$text-cool-secondary: #546e7a // Medium Blue-Gray Text
+$hover-cool: #e0e0e0 // Light Gray Hover
+$accent-cool: #546e7a // Medium Blue-Gray Accent
+$column-divider-cool: #e0e0e0 // Light Gray Column Divider
 
-.d-flex
+.search-container
   display: flex
+  gap: 10px
+  margin-bottom: 20px
 
-.flex-column
-  flex-direction: column
+  input[type="text"]
+    padding: 10px
+    border: 1px solid #ccc
+    border-radius: 5px
+    flex-grow: 1
 
-.min-vh-100
-  min-height: 100vh
 
-.text-center
-  text-align: center
-
-.p-3
-  padding: 1rem
-
-.mt-auto
-  margin-top: auto
-
+// Cohesive Muted Cool Admin Table Styling with Improved Header
 table
-  width: 80% // Adjust width as needed
-  margin: 1rem auto // Center the table horizontally
+  width: 100%
+  margin: 2rem 0
   border-collapse: collapse
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05)
+  border-radius: 0.5rem
+  overflow: hidden
+  background-color: white
+  border: 1px solid $border-cool
 
-thead
-  background-color: #f2f2f2
+  thead
+    background-color: $primary-cool-medium
+    color: white
+    // Removed box-shadow from thead
 
-th, td
-  padding: 0.75rem
-  text-align: left
-  border: 1px solid #ddd
+    th
+      padding: 1.1rem 1.25rem // Slightly adjusted padding
+      text-align: left
+      font-weight: 600 // More visible header text
+      letter-spacing: 0.03em
+      &:first-child
+        border-top-left-radius: 0.5rem
+      &:last-child
+        border-top-right-radius: 0.5rem
 
-th
-  background-color: #f4f4f4
+  tbody
+    tr
+      transition: background-color 0.2s ease-in-out
+      &:nth-child(even)
+        background-color: $primary-cool-light
+      &:hover
+        background-color: $hover-cool
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02)
 
-tbody tr:nth-child(even)
-  background-color: #f9f9f9
+    td
+      padding: 0.8rem 1.25rem
+      color: $text-cool-primary
+      border-bottom: 1px solid $border-cool
+      border-right: 1px solid $column-divider-cool
 
+      &:first-child
+        border-left: none
+
+    tr:last-child td
+      border-bottom: none
+      &:first-child
+        border-bottom-left-radius: 0.5rem
+      &:last-child
+        border-bottom-right-radius: 0.5rem
+        border-right: none
+
+// Improved Modern Pagination Styling
 .pagination
   display: flex
   justify-content: center
   align-items: center
-  margin: 1rem 0
+  margin: 2rem 0
 
-button
-  padding: 0.5rem 1rem
-  margin: 0 0.5rem
-  border: none
-  background-color: #007bff
-  color: white
-  cursor: pointer
-  &:disabled
-    background-color: #cccccc
-    cursor: not-allowed
+  button
+    padding: 0.8rem 1.4rem // Slightly larger padding
+    margin: 0 0.5rem
+    border: none
+    background-color: $primary-cool-light
+    color: $text-cool-primary
+    cursor: pointer
+    border-radius: 0.3rem
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) // Subtle button shadow
+    font-weight: 500 // Slightly bolder text
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out
 
-span
-  margin: 0 1rem
+    &:hover
+      background-color: $primary-cool-medium
+      color: white
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15)
+
+    &:active
+      box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1)
+      transform: translateY(1px)
+
+    &:disabled
+      color: $text-cool-secondary
+      background-color: $border-cool
+      box-shadow: none
+      cursor: not-allowed
+
+  span
+    margin: 0 1rem
+    color: $text-cool-secondary
+    font-weight: 500 // Slightly bolder span text
+
+// Optional: Styling for Action Buttons within Table Cells (No Changes)
+td .action-button
+  display: inline-block
+  padding: 0.5rem 0.8rem
+  margin-right: 0.4rem
+  border: 1px solid $border-cool
+  background-color: white
+  color: $accent-cool
+  border-radius: 0.2rem
+  text-decoration: none
+  font-size: 0.85rem
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03)
+
+  i.fas, i.far, i.fab
+    font-size:0.9rem
+
+  &:hover
+    background-color: $accent-cool
+    color: white
+    border-color: $accent-cool
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05)
+
+  &:active
+    box-shadow: 0 0px 1px rgba(0, 0, 0, 0.05)
+    transform: translateY(0.5px)

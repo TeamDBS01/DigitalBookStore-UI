@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
 import { MainComponent } from 'src/user-admin/Home/main/main.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
@@ -28,13 +29,13 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 
 const routes: Routes = [
 
-    { path: 'getInventory', component: DisplayInventoryComponent, canActivate: [AuthAdminGuard] },
-    { path: 'getInventoryByBookID', component: ViewByBookIDComponent, canActivate: [AuthAdminGuard] },
-    { path: 'updateQuantity', component: UpdateQuantityComponent, canActivate: [AuthAdminGuard] },
+    { path: 'adminHome/getInventory', component: DisplayInventoryComponent },
+    { path: 'getInventoryByBookID', component: ViewByBookIDComponent},
+    { path: 'updateQuantity', component: UpdateQuantityComponent},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'home', component: HomeComponent },
-    { path:'adminHome',component:MainComponent,canActivate:[AuthAdminGuard]},
+    { path: 'home', component: HomeComponent},
+    { path:'adminHome',component:AdminHomeComponent,canActivate:[AuthAdminGuard]},
     { path: 'profile', component: UserProfileComponent },
     { path: 'reviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
     { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
@@ -51,6 +52,7 @@ const routes: Routes = [
     { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
+    {path:'adminhome',component:AdminHomeComponent}
 ];
 
 @NgModule({

@@ -42,5 +42,10 @@ public updateRemoveInventory(book_Id: string, quantity: number): Observable<stri
   const removeQuantityURL = `${this.apiUrl}/inventory/update/remove?bookID=${book_Id}&quantity=${quantity}`;
   return this.http.put(removeQuantityURL, {}, {responseType: 'text'});
 }
+
+public deleteBookFromInventory(book_Id: string) {
+    const deleteBookURL= `${this.apiUrl}/inventory/${book_Id}`;
+    return this.http.delete(deleteBookURL, { responseType: 'text' });
+}
   
 }
