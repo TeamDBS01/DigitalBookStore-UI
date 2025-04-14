@@ -116,7 +116,7 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
         CommonModule 
 
 	],
-	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
+	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
