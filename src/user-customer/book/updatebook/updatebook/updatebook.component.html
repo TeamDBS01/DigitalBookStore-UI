@@ -6,30 +6,30 @@
       </div>
       <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
-        <input type="text" class="form-control" id="title" [(ngModel)]="book.title" name="title">
+        <input type="text" class="form-control" id="title" [(ngModel)]="book.title" name="title" readonly>
       </div>
       <div class="mb-3">
         <label for="price" class="form-label">Price:</label>
         <input type="text" class="form-control" id="price" required [(ngModel)]="book.price" name="price">
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="authorID" class="form-label">Author ID:</label>
         <input type="text" class="form-control" id="authorID" [(ngModel)]="book.authorID" name="authorID">
       </div>
       <div class="mb-3">
         <label for="categoryID" class="form-label">Category ID:</label>
         <input type="text" class="form-control" id="categoryID" [(ngModel)]="book.categoryID" name="categoryID">
-      </div>
+      </div> -->
       <div class="mb-3">
         <label for="description" class="form-label">Description:</label>
         <textarea class="form-control" id="description" [(ngModel)]="book.description" name="description"></textarea>
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="base64img" class="form-label">Cover Image:</label>
         <img *ngIf="book.coverImage" [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover" style="max-width: 100px; max-height: 100px;" class="mb-2">
         <input type="file" class="form-control" id="base64img" [(ngModel)]="book.base64img" name="base64img" (change)="onFileChange($event)">
-      </div>
-  
+      </div> -->
+      
       <button type="submit" class="btn btn-primary">Update</button>
     </form>
   </div>
