@@ -18,7 +18,7 @@
                 <a routerLink="/order/list"> My Orders </a>
         </nav>
         <div class="user-actions">
-            <button class="signinbtn" *ngIf="!isLoggedIn()" routerLink="login">Sign In</button>
+            <button class="signinbtn" *ngIf="!isLoggedIn()" routerLink="/login">Sign In</button>
 
             <div *ngIf="isLoggedIn()" class="profile-dropdown">
               <!-- <button (click)="toggleProfileMenu()">profile</button> -->

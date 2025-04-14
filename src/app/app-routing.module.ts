@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
 import { MainComponent } from 'src/user-admin/Home/main/main.component';
-import { MainComponent } from 'src/user-admin/Home/main/main.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
@@ -29,13 +28,13 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 
 const routes: Routes = [
 
-    { path: 'getInventory', component: DisplayInventoryComponent },
+    { path: 'adminHome/getInventory', component: DisplayInventoryComponent },
     { path: 'getInventoryByBookID', component: ViewByBookIDComponent},
     { path: 'updateQuantity', component: UpdateQuantityComponent},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'home', component: HomeComponent},
-    { path:'adminHome',component:MainComponent,canActivate:[AuthAdminGuard]},
+    { path:'adminHome',component:AdminHomeComponent,canActivate:[AuthAdminGuard]},
     { path: 'profile', component: UserProfileComponent },
     // { path: 'review/addReview', component: AddUpdateReviewComponent},
     // { path: 'review/updateReview', component: AddUpdateReviewComponent},

@@ -106,7 +106,7 @@ import { NavbarAdminComponent } from 'src/user-admin/Home/navbar-admin/navbar-ad
         LeftSidebarComponent,
         MainComponent,
         ViewEditReviewComponent,
-		FooterComponent,,
+		FooterComponent,
         AdminHomeComponent,
         DeleteBookInventoryComponent,
         NavbarAdminComponent
@@ -122,7 +122,7 @@ import { NavbarAdminComponent } from 'src/user-admin/Home/navbar-admin/navbar-ad
         CommonModule 
 
 	],
-	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
+	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService, {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
