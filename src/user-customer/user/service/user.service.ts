@@ -1,4 +1,42 @@
 
+// import { HttpClient } from '@angular/common/http';
+// import { Injectable } from '@angular/core';
+// import { environment } from 'src/environments/environment.development';
+// import { User } from '../model/User';
+// import { Role } from '../model/role';
+// import { Router } from '@angular/router';
+// import { Observable, throwError } from 'rxjs';
+// import { tap, catchError } from 'rxjs/operators';
+
+// @Injectable({
+//     providedIn: 'root'
+// })
+// export class UserService {
+
+//     apiUrl = environment.apiHostUrl;  
+//     loginEndpoint = "/user/auth/login";
+//     registerEndpoint = "/user/auth/register";
+//     getcreditsEndpoint="/user/user/get-user-credits/{userid}"
+//     addcreditsEndpoint = "/user/add-credits/{userid}/{amount}";
+
+//     getcreitdsurl:string=this.apiUrl+this.getcreditsEndpoint;
+//     addcreitdsurl:string=this.apiUrl+this.addcreditsEndpoint;
+//     authenticateURL: string = this.apiUrl + this.loginEndpoint;
+//     registerURL: string = this.apiUrl + this.registerEndpoint;
+//     user!: User;
+//     authenticated: boolean = false;
+//     users!: User[];
+//     loggedInUser: User | null = null;
+
+
+//     private userDetailsUrl = `${this.apiUrl}/user`;  
+ 
+//     private changePasswordUrl = `${this.apiUrl}/user/change-password`;
+//     private closeAccountUrl = `${this.apiUrl}/user/close-account`;
+//     private userReviewsUrl = `${this.apiUrl}/user/reviews`;
+
+//     constructor(private http: HttpClient, private router: Router) {}
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
@@ -8,34 +46,44 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
+interface UserDetailsResponse {
+  id: number;
+  userId: number;
+  name: string;
+  phoneNumber: string;
+  profileImage: string;
+  statusCode: number;
+  message: string;
+  error?: string;
+}
+
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class UserService {
 
-    apiUrl = environment.apiHostUrl;  
-    loginEndpoint = "/user/auth/login";
-    registerEndpoint = "/user/auth/register";
-    getcreditsEndpoint="/user/user/get-user-credits/{userid}"
-    addcreditsEndpoint = "/user/add-credits/{userid}/{amount}";
+  apiUrl = environment.apiHostUrl;
+  loginEndpoint = "/user/auth/login";
+  registerEndpoint = "/user/auth/register";
+  getcreditsEndpoint="/user/get-user-credits/{userid}";
+  addcreditsEndpoint = "/user/add-credits/{userid}/{amount}";
 
-    getcreitdsurl:string=this.apiUrl+this.getcreditsEndpoint;
-    addcreitdsurl:string=this.apiUrl+this.addcreditsEndpoint;
-    authenticateURL: string = this.apiUrl + this.loginEndpoint;
-    registerURL: string = this.apiUrl + this.registerEndpoint;
-    user!: User;
-    authenticated: boolean = false;
-    users!: User[];
-    loggedInUser: User | null = null;
+  getcreitdsurl:string=this.apiUrl+this.getcreditsEndpoint;
+  addcreitdsurl:string=this.apiUrl+this.addcreditsEndpoint;
+  authenticateURL: string = this.apiUrl + this.loginEndpoint;
+  registerURL: string = this.apiUrl + this.registerEndpoint;
+  user!: User;
+  authenticated: boolean = false;
+  users!: User[];
+  loggedInUser: User | null = null;
 
+  private userDetailsUrl = `${this.apiUrl}/user`;
 
-    private userDetailsUrl = `${this.apiUrl}/user`;  
- 
-    private changePasswordUrl = `${this.apiUrl}/user/change-password`;
-    private closeAccountUrl = `${this.apiUrl}/user/close-account`;
-    private userReviewsUrl = `${this.apiUrl}/user/reviews`;
+  private changePasswordUrl = `${this.apiUrl}/user/change-password`;
+  private closeAccountUrl = `${this.apiUrl}/user/close-account`;
+  private userReviewsUrl = `${this.apiUrl}/user/reviews`;
 
-    constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
     authenticate(email: string, password: string): Observable<User> {
         const credentials = { email: email, password: password };
@@ -51,6 +99,7 @@ export class UserService {
                         sessionStorage.setItem('role', response.role);
                         sessionStorage.setItem('userId', response.userId.toString());
                         sessionStorage.setItem('name', response.name || '');
+                        // const decode = jwt_decode<TokenPayload>(token);
                     } else {
                         this.authenticated = false;
                         this.loggedInUser = null;
@@ -86,17 +135,31 @@ export class UserService {
         );
     }
 
-    getUserDetails(userId: number): Observable<User> {
-        return this.http.get<User>(`${this.userDetailsUrl}/${userId}`);
-    }
+    // getUserDetails(userId: number): Observable<User> {
+    //     return this.http.get<User>(`${this.userDetailsUrl}/${userId}`);
+    // }
 
-    updateUser(userId: number, updatedUser: Partial<User>): Observable<any> {
-        return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser);
-    }
+    // updateUser(userId: number, updatedUser: Partial<User>): Observable<any> {
+    //     return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser);
+    // }
+    getUserDetails(userId: number): Observable<UserDetailsResponse> { // Expect UserDetailsResponse
+        return this.http.get<UserDetailsResponse>(`${this.userDetailsUrl}/${userId}/details`);
+      }
+    
+      updateUser(userId: number, updatedUser: Partial<User>): Observable<any> {
+        return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser); // Keep this for basic user info
+      }
+    
+      // New method to update user details with profile image
+      updateUserDetails(userId: number, formData: FormData): Observable<UserDetailsResponse> {
+        return this.http.put<UserDetailsResponse>(`${this.userDetailsUrl}/${userId}/details`, formData);
+      }
+    
 
     changePassword(userId: number, passwords: any): Observable<any> {
         return this.http.post<any>(`${this.changePasswordUrl}/${userId}`, passwords);
     }
+    
 
     getUserCredit(userId: number): Observable<{ userId: number; credits: number }> {
         return this.http.get<{ userId: number; credits: number }>(`${this.apiUrl}/user/get-user-credits/${userId}`);  

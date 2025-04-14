@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -55,6 +57,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { MainComponent } from 'src/user-admin/Home/main/main.component';
 import { CommonModule } from '@angular/common';
 import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-review/view-edit-review.component';
+import { FooterComponent } from 'src/user-customer/Home/footer/footer.component';
 
 @NgModule({
 	declarations: [
@@ -99,7 +102,8 @@ import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-revi
 		UpdateQuantityComponent,
 		LeftSidebarComponent,
 		MainComponent,
-        ViewEditReviewComponent
+        ViewEditReviewComponent,
+		FooterComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -109,10 +113,10 @@ import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-revi
 		HttpClientModule,
 		RouterModule,
 		RouterOutlet,
-		CommonModule
+		CommonModule 
 
 	],
-	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService],
+	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
