@@ -36,8 +36,8 @@ export class BookService {
     return this.http.put<string>(this.updateBookURL + '/update' + '/' + Book.bookID, Book);
   }
 
-  public deleteBook(Book: any) {
-    return this.http.delete<string>(this.deleteBookURL + "/delete" + '/' + Book.bookID);
+  public deleteBook() {
+    return this.http.delete<string>(this.deleteBookURL + "/delete" + '/' + this.bookID);
   }
 
   public getBookById(bookID: string): Observable<Book> {

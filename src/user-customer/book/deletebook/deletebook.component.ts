@@ -17,8 +17,14 @@ export class DeletebookComponent {
     this.book.bookID=bookService.getBookId();
   }
 
+  display = 'block'
+  none() {
+    this.display = 'none'
+
+  }
+
   delete(){
-    this.bookService.deleteBook(this.book)
+    this.bookService.deleteBook()
     .subscribe(data => this.result=data, error => console.log(error));
     this.book=new Book();
   }

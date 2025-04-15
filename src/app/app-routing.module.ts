@@ -6,6 +6,7 @@ import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inve
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
+import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/addbook/addbook.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
     { path: 'dashboard', redirectTo: 'home' },
     { path: 'books', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
+    { path: 'addBooks', component: AddbookComponent, canActivate: [AuthAdminGuard], },
     { path: 'reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'getInventory', component: DisplayInventoryComponent, canActivate: [AuthAdminGuard], },
     { path: 'orders', component: AllorderstatusComponent, canActivate: [AuthAdminGuard], },
