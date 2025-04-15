@@ -37,7 +37,7 @@ const routes: Routes = [
     { path:'adminHome',component:AdminHomeComponent,canActivate:[AuthAdminGuard]},
     { path: 'profile', component: UserProfileComponent },
     { path: 'reviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    { path: 'review/allReviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'adminHome/reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
