@@ -117,7 +117,7 @@ import { PaymentComponent } from 'src/user-customer/order/order-management/compo
         AddUpdateReviewComponent,
         ReviewsByBookIdComponent,
         ReviewsByUserIdComponent,
-        ViewEditReviewComponent,,
+        ViewEditReviewComponent,
     ],
     imports: [
   
@@ -135,5 +135,3 @@ import { PaymentComponent } from 'src/user-customer/order/order-management/compo
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
