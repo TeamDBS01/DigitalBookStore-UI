@@ -18,12 +18,19 @@
           <img [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''" class="card-img-top custom-img"
             alt="{{ book.title }}" />
         </a>
-        <div class="card-body">
+        <!-- <div class="card-body">
           <h5 class="card-title">
             <a [routerLink]="['/book-details', book.bookID]">{{ book.title }}</a>
           </h5>
           <p class="card-text">Author: {{ book.authorName }}</p>
           <p class="card-text">Category: {{ book.categoryName }}</p>
+          <p class="card-text">Price: {{book.price}}</p>
+        </div> -->
+        <div class="card-body">
+          <h5 class="card-title">{{ book.title }}</h5>
+          <p class="card-text"><span>Author:</span> <span>{{ book.authorName }}</span></p>
+          <p class="card-text"><span>Category:</span> <span>{{ book.categoryName }}</span></p>
+          <p class="card-text"><span>Price:</span> <span class="price">{{ book.price }}</span></p>
         </div>
       </div>
     </div>

@@ -7,6 +7,8 @@ import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantit
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
+import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
+import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
@@ -44,6 +46,8 @@ const routes: Routes = [
     { path: 'orders', component: AllorderstatusComponent, canActivate: [AuthAdminGuard], },
     { path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
+    { path:'category-books', component:CategorybooksComponent, canActivate: [AuthCustomerGuard],},
+    { path: 'category-books-list', component:CategorybookslistComponent},
     { path: 'search', component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/cart', component: CartComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthCustomerGuard], },
@@ -59,7 +63,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {anchorScrolling: "enabled"})],
     exports: [RouterModule],
 })
 export class AppRoutingModule { }

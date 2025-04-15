@@ -16,4 +16,12 @@ export class BookCarouselComponent {
 
   constructor(private bookService: BookService, private router: Router) {}
 
+  ngOnInit() {
+    // console.log(this.books);
+    
+    this.bookService.getAllBooks().subscribe({
+      next:data =>
+        this.books = data
+    })
+  }
 }
