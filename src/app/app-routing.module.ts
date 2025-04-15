@@ -41,7 +41,7 @@ const routes: Routes = [
     { path: 'profile', component: UserProfileComponent },
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
     // { path: 'dashboard', redirectTo: 'getInventory' },
-    { path: 'dashboard', component:AdminDashboardComponent },
+    { path: 'dashboard', component:AdminDashboardComponent, canActivate:[AuthAdminGuard],},
     { path: 'books', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'getInventory', component: DisplayInventoryComponent, canActivate: [AuthAdminGuard], },

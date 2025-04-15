@@ -35,10 +35,10 @@ export class LoginComponent implements OnInit {
                 this.invalidLoginMessage = '';
                 this.loggedInUserName = response.name || response.email;
                 this.showWelcomePopup = true;
-                this.router.navigate(['/home']);
+                // this.router.navigate(['/home']);
                 // setTimeout(() => {
                 //     this.showWelcomePopup = false;
-                    // this.navigateToBasedOnRole(response.role);  
+                    this.navigateToBasedOnRole(response.role);  
                 // }, 2000);
             },
             (error) => {
@@ -59,5 +59,16 @@ export class LoginComponent implements OnInit {
         const role = sessionStorage.getItem('role');
         this.showWelcomePopup = false;
         this.router.navigate(['/home']);
+    }
+
+    navigateToBasedOnRole(role: string | null) {
+        if (role === 'CUSTOMER') {
+            this.router.navigate(['/home']);
+        } else if (role === 'ADMIN') {
+            this.router.navigate(['/dashboard']);
+        } else {
+            console.warn('Unknown role:', role);
+            this.router.navigate(['/']);
+        }
     }
 }
