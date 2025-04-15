@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../model/Book';
 import { BookService } from '../../service/book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-updatebook',
@@ -13,7 +14,7 @@ export class UpdatebookComponent implements OnInit {
   submitted = false;
   result!: string;
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private router: Router) { }
 
   ngOnInit(): void {
     this.book.bookID = this.bookService.getBookId();
@@ -40,13 +41,14 @@ export class UpdatebookComponent implements OnInit {
       .subscribe(data => {
         this.result = data;
         this.submitted = true; // Show the result message
+        this.router.navigate(['/books'])
       }, error => {
         console.log(error);
         this.result = 'Error updating book.'; // Display an error message
         this.submitted = true;
       });
   }
-
+  message!:string;
   onSubmit() {
     this.update();
   }
