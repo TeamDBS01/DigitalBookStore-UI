@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
+import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
@@ -28,16 +29,17 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 
 const routes: Routes = [
 
-    { path: 'adminHome/getInventory', component: DisplayInventoryComponent },
+    // { path: 'adminHome/getInventory', component: DisplayInventoryComponent },
     { path: 'getInventoryByBookID', component: ViewByBookIDComponent},
     { path: 'updateQuantity', component: UpdateQuantityComponent},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
+    // { path: 'home', component:DisplayInventoryComponent, canActivate: [AuthAdminGuard]},
     { path: 'home', component: HomeComponent},
-    { path:'adminHome',component:AdminHomeComponent,canActivate:[AuthAdminGuard]},
     { path: 'profile', component: UserProfileComponent },
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    { path: 'dashboard', redirectTo: 'home' },
+    // { path: 'dashboard', redirectTo: 'getInventory' },
+    { path: 'dashboard', component:AdminDashboardComponent },
     { path: 'books', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'getInventory', component: DisplayInventoryComponent, canActivate: [AuthAdminGuard], },

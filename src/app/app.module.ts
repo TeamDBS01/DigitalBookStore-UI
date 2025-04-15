@@ -65,6 +65,7 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
 import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 import { DeletebookComponent } from 'src/user-customer/book/deletebook/deletebook.component';
+import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
     declarations: [
@@ -118,6 +119,7 @@ import { DeletebookComponent } from 'src/user-customer/book/deletebook/deleteboo
         ReviewsByBookIdComponent,
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
+        AdminDashboardComponent
     ],
     imports: [
     BrowserModule,

@@ -325,42 +325,86 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+    // changePassword() {
+    //     if (this.passwordForm.valid) {
+    //         this.userService.changePassword(this.userId!, this.passwordForm.value).pipe(
+    //             catchError(error => {
+    //                 console.error('Error changing password:', error);
+    //                 this.passwordErrorMessage = error?.message || 'Failed to change password.';
+    //                 return of(null);
+    //             })
+    //         ).subscribe(response => {
+    //             if (response?.statusCode === 200) {
+    //                 this.passwordSuccessMessage = response.message || 'Password changed successfully!';
+    //                 this.passwordForm.reset();
+    //             } else {
+    //                 this.passwordErrorMessage = response?.message || 'Failed to change password.';
+    //             }
+    //         });
+    //     }
+    // }
+
+    // passwordMatchValidator(formGroup: FormGroup) {
+    //     const newPasswordControl = formGroup.controls['newPassword'];
+    //     const confirmPasswordControl = formGroup.controls['confirmPassword'];
+
+    //     if (!newPasswordControl || !confirmPasswordControl) {
+    //         return null;
+    //     }
+
+    //     if (confirmPasswordControl.value === '') {
+    //         return null;
+    //     }
+
+    //     if (newPasswordControl.value !== confirmPasswordControl.value) {
+    //         return { mismatch: true };
+    //     }
+
+    //     return null;
+    // }
     changePassword() {
-        if (this.passwordForm.valid) {
-            this.userService.changePassword(this.userId!, this.passwordForm.value).pipe(
-                catchError(error => {
-                    console.error('Error changing password:', error);
-                    this.passwordErrorMessage = error?.message || 'Failed to change password.';
-                    return of(null);
-                })
-            ).subscribe(response => {
-                if (response?.statusCode === 200) {
-                    this.passwordSuccessMessage = response.message || 'Password changed successfully!';
-                    this.passwordForm.reset();
-                } else {
-                    this.passwordErrorMessage = response?.message || 'Failed to change password.';
-                }
-            });
-        }
+      if (this.passwordForm.valid && this.userId !== null) {
+        const passwords = {
+          oldPassword: this.passwordForm.value.currentPassword,
+          newPassword: this.passwordForm.value.newPassword
+        };
+  
+        this.userService.changePassword(this.userId, passwords).pipe(
+          catchError(error => {
+            console.error('Error changing password:', error);
+            this.passwordErrorMessage = error?.error?.message || 'Failed to change password.'; // Access error message from the error object
+            return of(null);
+          })
+        ).subscribe(response => {
+          if (response?.statusCode === 200) {
+            this.passwordSuccessMessage = response.message || 'Password changed successfully!';
+            this.passwordForm.reset();
+          } else {
+            this.passwordErrorMessage = response?.message || 'Failed to change password.';
+          }
+        });
+      } else {
+        // Form is invalid or userId is missing, error messages should already be displayed
+      }
     }
-
+  
     passwordMatchValidator(formGroup: FormGroup) {
-        const newPasswordControl = formGroup.controls['newPassword'];
-        const confirmPasswordControl = formGroup.controls['confirmPassword'];
-
-        if (!newPasswordControl || !confirmPasswordControl) {
-            return null;
-        }
-
-        if (confirmPasswordControl.value === '') {
-            return null;
-        }
-
-        if (newPasswordControl.value !== confirmPasswordControl.value) {
-            return { mismatch: true };
-        }
-
+      const newPasswordControl = formGroup.controls['newPassword'];
+      const confirmPasswordControl = formGroup.controls['confirmPassword'];
+  
+      if (!newPasswordControl || !confirmPasswordControl) {
         return null;
+      }
+  
+      if (confirmPasswordControl.value === '') {
+        return null;
+      }
+  
+      if (newPasswordControl.value !== confirmPasswordControl.value) {
+        return { mismatch: true };
+      }
+  
+      return null;
     }
 
     loadWalletBalance() {
