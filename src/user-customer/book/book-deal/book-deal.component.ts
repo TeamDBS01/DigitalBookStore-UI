@@ -10,7 +10,7 @@ import { Book } from '../model/Book';
 export class BookDealComponent implements OnInit{
 
     @Input() book!: Book;
-    quantity!: number;
+    quantity = 0;
     constructor(private inventoryService: InventoryService) {}
     
     ngOnInit() {

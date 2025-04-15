@@ -1,21 +1,10 @@
 <div class="d-flex flex-column min-vh-100">
-    <!-- <app-left-sidebar
-  [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
-  (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
-/> -->
-<!-- <app-maind
-  [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
-  [screenWidth]="screenWidth()"
-/> -->
-    <!-- <a routerLink="/getInventory">Inventory</a> -->
-     
     
+    <app-admin-home *ngIf="userRole === 'ADMIN'"></app-admin-home>
+    <div *ngIf="userRole !== 'ADMIN'">
+        <app-navbar></app-navbar>
+        <router-outlet></router-outlet>
+    </div>
 
-   <!-- <app-navbar *ngIf="userRole === 'CUSTOMER'"></app-navbar>
-    <app-navbar-admin *ngIf="userRole === 'ADMIN'"></app-navbar-admin> -->
-    
-    
-    <router-outlet></router-outlet>
-    
     <footer class="text-center p-3 mt-auto"> &copy; Digital Book Store Management</footer>
 </div>
