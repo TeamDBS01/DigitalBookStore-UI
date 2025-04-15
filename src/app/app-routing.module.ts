@@ -40,6 +40,8 @@ const routes: Routes = [
     { path: 'bookid', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
+    { path:'category-books', component:CategorybooksComponent, canActivate: [AuthCustomerGuard],},
+    { path: 'category-books-list', component:CategorybookslistComponent},
     { path: 'search', component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/cart', component: CartComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthCustomerGuard], },
@@ -53,7 +55,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {anchorScrolling: "enabled"})],
     exports: [RouterModule],
 })
 export class AppRoutingModule { }

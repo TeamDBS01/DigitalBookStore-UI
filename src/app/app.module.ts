@@ -20,7 +20,6 @@ import { AdminReturnProcessComponent } from 'src/user-customer/order/order-manag
 import { CartComponent } from 'src/user-customer/order/order-management/components/cart/cart.component';
 import { OrderDetailsComponent } from 'src/user-customer/order/order-management/components/order-details/order-details.component';
 import { OrderListComponent } from 'src/user-customer/order/order-management/components/order-list/order-list.component';
-import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
 import { OrderManagementComponent } from 'src/user-customer/order/order-management/order-management.component';
@@ -47,6 +46,7 @@ import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-us
 
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
+import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 
 @NgModule({ 
     declarations: [
@@ -85,9 +85,10 @@ import { OrderTrackingComponent } from 'src/user-customer/order/order-management
         CategorybookslistComponent,
         CategorybooksComponent,
         ReviewsByUserIdComponent,
-        OrderTrackingComponent
+        OrderTrackingComponent,
     ],
     imports: [
+  
         BrowserModule,
         AppRoutingModule,
         FormsModule,
