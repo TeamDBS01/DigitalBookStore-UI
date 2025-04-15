@@ -1,4 +1,4 @@
-<div class="sidenav" [ngClass]="isLeftSidebarCollapsed ? 'sidenav-collapsed': ''">
+<div class="sidenav sticky-top" [ngClass]="isLeftSidebarCollapsed ? 'sidenav-collapsed': ''">
     <div class="logo-container">
       <button class="logo" (click)="toggleCollapse()">
         <i class="fa-solid fa-bars"></i>
@@ -6,9 +6,9 @@
       
 <ng-container *ngIf="!isLeftSidebarCollapsed">
     <div class="logo-text">DBS</div>
-    <button class="btn-close" (click)="closeSidenav()">
+    <!-- <button class="btn-close" (click)="closeSidenav()">
     <i class="fa-solid close-icon"></i>
-    </button>
+    </button> -->
 </ng-container>
     </div>
     <ul class="sidenav-nav">

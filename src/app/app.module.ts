@@ -61,6 +61,8 @@ import { FooterComponent } from 'src/user-customer/Home/footer/footer.component'
 import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
 import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-review/view-edit-review.component';
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
+import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
+// import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 
 @NgModule({
     declarations: [
@@ -109,19 +111,20 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 		FooterComponent,
         AdminHomeComponent,
         DeleteBookInventoryComponent,
-        NavbarAdminComponent
+        NavbarAdminComponent,
+        AllorderstatusComponent
     ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        RouterModule,
-        RouterOutlet,
-        CommonModule 
-
-	],
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
+    RouterOutlet,
+    CommonModule,
+     
+],
 	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService, {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
 	bootstrap: [AppComponent]
 })

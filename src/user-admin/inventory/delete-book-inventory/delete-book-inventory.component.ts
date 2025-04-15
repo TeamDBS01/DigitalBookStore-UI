@@ -3,6 +3,7 @@ import { InventoryService } from '../service/inventory.service';
 
 @Component({
   selector: 'app-delete-book-inventory',
+  standalone:false,
   templateUrl: './delete-book-inventory.component.html',
   styleUrls: ['./delete-book-inventory.component.sass']
 })

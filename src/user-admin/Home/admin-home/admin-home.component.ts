@@ -2,6 +2,7 @@ import { Component, HostListener, signal } from '@angular/core';
 
 @Component({
   selector: 'app-admin-home',
+  standalone:false,
   templateUrl: './admin-home.component.html',
   styleUrls: ['./admin-home.component.sass']
 })

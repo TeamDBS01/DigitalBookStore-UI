@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
@@ -51,7 +52,8 @@ const routes: Routes = [
     { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
-    {path:'adminhome',component:AdminHomeComponent}
+    {path:'adminhome',component:AdminHomeComponent},
+    {path:'allorderstatus',component:AllorderstatusComponent}
 ];
 
 @NgModule({
