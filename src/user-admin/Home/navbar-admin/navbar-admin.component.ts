@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-admin',
+  standalone:false,
   templateUrl: './navbar-admin.component.html',
   styleUrls: ['./navbar-admin.component.sass']
 })

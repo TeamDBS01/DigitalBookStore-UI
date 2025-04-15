@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
 
@@ -14,17 +13,27 @@ export class ReviewComponent {
     @Input() review!: Review;
     @Input() canModify = false;
     @Input() userView = false;
+    @Input() adminView = false;
     @Output() editing = new EventEmitter<boolean>();
-
-    constructor(private router: Router, private reviewService: ReviewService) { }
+    reasonForDelete = '';
+    reasonValidation = false;
+    
+    display = "none";
+    openModal() { this.display = 'block'}
+    closeModal() { this.display = 'none'}
+    
+    constructor(private reviewService: ReviewService) { }
 
     editReview() {
         this.editing.emit(true);
     }
     deleteReview() {
-        if (!confirm('Are you sure you want to delete this review?')) {
+        if (this.adminView && this.reasonForDelete === '') {
+            this.reasonValidation = true;
             return;
         }
+        this.reasonValidation = false;
+        this.closeModal();
         this.reviewService.deleteReview(this.review.reviewId).subscribe({
             next: data => {
                 window.location.reload();

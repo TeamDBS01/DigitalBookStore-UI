@@ -42,23 +42,22 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
         }
         this.formData = new FormGroup({
             comment: new FormControl(this.comment, Validators.compose([
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(2000),
-            Validators.pattern('^[^\\d\\s].*')
+                Validators.required,
+                Validators.minLength(3),
+                Validators.maxLength(2000),
+                Validators.pattern('^[^\\d\\s].*')
             ])),
         });
     }
 
+    display = "none";
+    openModal() { this.display = 'block'}
+    closeModal() { this.display = 'none'}
+    
     cancel() {
-        if (confirm("Are you sure you want to Cancel?")) {
-            this.rating = 0;
-            // this.starsColor();
-            this.formData.reset();
-            // this.errorMessage = '';
-            window.location.reload();
-            // this.editing.emit(false);
-        }
+        this.rating = 0;
+        this.formData.reset();
+        window.location.reload();
     }
 
     handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }

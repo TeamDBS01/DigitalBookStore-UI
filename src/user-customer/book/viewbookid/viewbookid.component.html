@@ -16,8 +16,8 @@
                 <th>Book Id</th>
                 <th>Book title</th>
                 <th>Book price</th>
-                <th>Book authorId</th>
-                <th>Book categoryId</th>
+                <th>Author Name</th>
+                <th>Category Name</th>
                 <th>Book img</th>
             </tr>
         </thead>
@@ -26,8 +26,8 @@
                 <td>{{book.bookID}}</td>
                 <td>{{book.title}}</td>
                 <td>{{book.price}}</td>
-                <td>{{book.authorID}}</td>
-                <td>{{book.categoryID}}</td>
+                <td>{{book.authorName}}</td>
+                <td>{{book.categoryName}}</td>
                 <td> <img [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover" style="max-width: 100px; max-height: 100px;"></td>
                 <td><a routerLink="/updateBook">Update</a></td>
                 <td><a routerLink="/deleteBook">Delete</a></td>

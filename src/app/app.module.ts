@@ -1,6 +1,6 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { FilterComponent } from 'src/user-customer/book/filter/filter.component'
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { BookService } from 'src/user-customer/book/service/book.service';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
+import { BookDealComponent } from 'src/user-customer/book/book-deal/book-deal.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
 import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book-carousel.component';
 import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
@@ -49,32 +50,30 @@ import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-us
 
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
 import { LeftSidebarComponent } from 'src/user-admin/Home/left-sidebar/left-sidebar.component';
 import { MainComponent } from 'src/user-admin/Home/main/main.component';
+import { NavbarAdminComponent } from 'src/user-admin/Home/navbar-admin/navbar-admin.component';
+import { DeleteBookInventoryComponent } from 'src/user-admin/inventory/delete-book-inventory/delete-book-inventory.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
+import { FooterComponent } from 'src/user-customer/Home/footer/footer.component';
 import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
 import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-review/view-edit-review.component';
-import { FooterComponent } from 'src/user-customer/Home/footer/footer.component';
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
-import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
-import { DeleteBookInventoryComponent } from 'src/user-admin/inventory/delete-book-inventory/delete-book-inventory.component';
-import { NavbarAdminComponent } from 'src/user-admin/Home/navbar-admin/navbar-admin.component';
+import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
+import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
+// import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ViewAllReviewsComponent,
-        AllReviewsComponent,
-        ReviewComponent,
-        StarsComponent,
-        AverageRatingComponent,
         NavbarComponent,
         BookHeroComponent,
         BookCarouselComponent,
+        BookDealComponent,
         HomeComponent,
-        AddUpdateReviewComponent,
         ViewbookidComponent,
         AddbookComponent,
         UpdatebookComponent,
@@ -95,33 +94,41 @@ import { NavbarAdminComponent } from 'src/user-admin/Home/navbar-admin/navbar-ad
         PlaceOrderComponent,
         SignupComponent,
         UserProfileComponent,
-        ReviewsByBookIdComponent,
         CategorybookslistComponent,
         CategorybooksComponent,
-        ReviewsByUserIdComponent,
         OrderTrackingComponent,
         DisplayInventoryComponent,
         ViewByBookIDComponent,
         UpdateQuantityComponent,
         LeftSidebarComponent,
         MainComponent,
-        ViewEditReviewComponent,
 		FooterComponent,
         AdminHomeComponent,
         DeleteBookInventoryComponent,
-        NavbarAdminComponent
+        NavbarAdminComponent,
+        AllorderstatusComponent,
+        DealOfTheDayComponent,
+        ViewAllReviewsComponent,
+        AllReviewsComponent,
+        ReviewComponent,
+        StarsComponent,
+        AverageRatingComponent,
+        AddUpdateReviewComponent,
+        ReviewsByBookIdComponent,
+        ReviewsByUserIdComponent,
+        ViewEditReviewComponent,
     ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        RouterModule,
-        RouterOutlet,
-        CommonModule 
-
-	],
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
+    RouterOutlet,
+    CommonModule,
+     
+],
 	providers: [BookService, UserService, InventoryService, ReviewService, OrderService, BookInfoService, {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
 	bootstrap: [AppComponent]
 })

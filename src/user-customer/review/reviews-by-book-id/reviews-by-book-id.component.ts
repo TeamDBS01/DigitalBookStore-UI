@@ -18,6 +18,8 @@ export class ReviewsByBookIdComponent {
     @Input() bookId!: string;
     userId = this.reviewService.userId;
 
+    receiveReview($event: Review) { this.userReview = $event }
+
     ngOnInit() {
         this.reviewService.getReviewsByBookId(this.bookId).subscribe({
             next: data => {

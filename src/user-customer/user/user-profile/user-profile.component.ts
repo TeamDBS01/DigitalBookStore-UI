@@ -241,7 +241,7 @@ export class UserProfileComponent implements OnInit {
     this.isEditingDetails = false;
     this.showSimulatePaymentPopup = false;
     this.topUpAmount = null;
-    this.profileImagePreview = null; // Clear preview when tab changes
+    this.profileImagePreview = null;  
     this.selectedFile = null;
   }
 
@@ -283,7 +283,7 @@ export class UserProfileComponent implements OnInit {
       };
       reader.readAsDataURL(this.selectedFile);
     } else {
-      this.profileImagePreview = this.userDetails?.profileImage || null; // Keep existing if no new file
+      this.profileImagePreview = this.userDetails?.profileImage || null; 
     }
   }
 

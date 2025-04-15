@@ -4,12 +4,6 @@
         <div class="fa-2x mb-3" style="cursor: pointer;" id="rating">
             <i #str style="color:orange" [attr.data-value]="i + 1" *ngFor="let star of starNum; index as i"
                 (click)="handleRatingClick($event, i + 1)"></i>
-            <!-- class="fa-regular fa-star"  -->
-            <!-- [ngClass]="{
-                'fa-solid fa-star' : rating >= i + 1,
-                'fa-regular fa-star-half-stroke' : rating < i + 1  && rating > i,
-                'fa-regular fa-star' : true
-            }" -->
         </div>
         <p *ngIf="rating != 0">Your Rating: {{ rating }} / 5</p>
 
@@ -33,16 +27,30 @@
                 class="text-danger">
                 Comment should not start with a digit or space!
             </div>
-            <!-- <div>{{formData.controls.comment.errors | json}} Invalid: {{formData.controls.comment.invalid | json}}</div> -->
         </div>
         <button *ngIf="!update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Add Review</button>
         <button *ngIf="update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Update Review</button>
-        <button (click)="cancel()" class="btn btn-warning ms-2">Cancel</button>
+        <button type="button" (click)="openModal()" class="btn btn-warning ms-2">Cancel</button>
         <div *ngIf="!successMessage && errorMessage" class="alert alert-danger mt-4">
             {{ errorMessage }}
         </div>
-        <!-- <div *ngIf="successMessage" class="alert alert-success mt-4">
-            {{ successMessage }}
-        </div> -->
     </form>
+</div>
+
+<div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Cancel?</h1>
+                <button type="button" class="btn-close p-3" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                Do you want to discard your changes?
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="closeModal()" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" (click)="closeModal()" (click)='cancel()' class="btn btn-danger">Yes</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -4,18 +4,37 @@
             <div>
                 <h6 class="card-title" *ngIf="userView; else bookView">{{review.bookTitle}}</h6>
                 <ng-template #bookView>
-                    <h6>{{(review !== undefined)? review.userName : ''}}</h6>
+                    <h6>{{(review !== undefined)? review.userName : ''}} <div style="display: inline-block;" *ngIf="adminView"> - {{review.bookTitle}}</div> </h6>
                 </ng-template>
             </div>
             <div *ngIf="canModify" style="cursor: pointer; margin-left: 10px; display: flex;">
                 <h6 class="me-3" (click)='editReview()'><i class="fa-solid fa-pen-to-square"></i></h6>
-                <h6 class="me-3" (click)='deleteReview()'><i class="fa-solid fa-trash"></i></h6>
+                <h6 class="me-3" (click)="openModal()"><i class="fa-solid fa-trash"></i>
+                </h6>
             </div>
         </div>
         <app-stars [rating]="(review !== undefined)? review.rating : 0" />
         <p class="card-text">{{(review !== undefined)? review.comment : ''}}</p>
-        <!-- <div *ngIf="message" class="alert alert-success mt-4">
-            {{ message }}
-        </div> -->
+    </div>
+</div>
+
+<div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Delete Review?</h1>
+                <button type="button" class="btn-close p-3" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this Review?
+                <br>
+                <input *ngIf="adminView" type="text" class="form-control" placeholder="Enter your reason here." [(ngModel)]="reasonForDelete" />
+                <p *ngIf="reasonValidation" style='color: red;'>Reason is Required</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="closeModal()" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" (click)='deleteReview()' class="btn btn-danger">Yes</button>
+            </div>
+        </div>
     </div>
 </div>
