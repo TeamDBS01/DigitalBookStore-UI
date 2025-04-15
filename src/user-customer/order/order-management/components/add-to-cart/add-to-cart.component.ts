@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderService } from '../../services/order.service';
 import { CartItem } from '../../../shared/interfaces/cart-item';
 import { HttpClient } from '@angular/common/http';
+import { take } from 'rxjs/operators'; // Import take
 
 @Component({
   selector: 'app-add-to-cart',
@@ -44,20 +45,38 @@ export class AddToCartComponent implements OnInit {
     this.successMessage = '';
 
     const bookId = this.bookId;
-    const quantity = 1;
+    const quantityToAdd = 1;
 
-    this.orderService.addToCart(bookId, quantity).subscribe({
-      next: (items) => {
-        this.cartItems = items;
-        this.successMessage = `Added ${quantity} of book ID ${bookId} to cart.`;
-      },
-      error: (error) => {
-        this.errorMessage = 'Failed to add book to cart.';
-        if (error?.error?.message) {
-          this.errorMessage += ' ' + error.error.message;
-        }
-        console.error('Error adding to cart:', error);
-      },
-    });
+    const existingItem = this.cartItems.find(item => item.bookId === bookId);
+
+    if (existingItem) {
+      // Book already in cart, increase quantity
+      const newQuantity = existingItem.quantity + quantityToAdd;
+      this.orderService.updateCartItem(bookId, newQuantity).pipe(take(1)).subscribe({
+        next: (updatedItems) => {
+          this.cartItems = updatedItems;
+          this.successMessage = `Increased quantity of book ID ${bookId} to ${newQuantity}.`;
+        },
+        error: (error) => {
+          this.errorMessage = 'Failed to update cart quantity.';
+          console.error('Error updating cart:', error);
+        },
+      });
+    } else {
+      // Book not in cart, add new item
+      this.orderService.addToCart(bookId, quantityToAdd).pipe(take(1)).subscribe({
+        next: (addedItems) => {
+          this.cartItems = addedItems;
+          this.successMessage = `Added ${quantityToAdd} of book ID ${bookId} to cart.`;
+        },
+        error: (error) => {
+          this.errorMessage = 'Failed to add book to cart.';
+          if (error?.error?.message) {
+            this.errorMessage += ' ' + error.error.message;
+          }
+          console.error('Error adding to cart:', error);
+        },
+      });
+    }
   }
 }

@@ -1,19 +1,35 @@
-<div *ngIf="book" class="book-container">
-  <div class="book-image">
-    <img [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''" alt="{{ book.title }}" class="img-fluid" />
+ <app-navbar></app-navbar>
+<div *ngIf="book" class="container mt-4">
+  <div class="row">
+    <div class="col-md-4">
+      <img
+        [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''"
+        alt="{{ book.title }}"
+        class="img-fluid rounded shadow-sm"
+      />
+    </div>
+    <div class="col-md-8">
+      <h2>{{ book.title }}</h2>
+      <p class="text-muted">Author: {{ book.authorName }}</p>
+      <div class="mb-3">
+        <app-average-rating [bookId]="book.bookID"></app-average-rating>
+      </div>
+      <p class="lead">{{ book.description }}</p>
+      <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>
+      <button class="readbtn" (click)="loadSampleChapter()" *ngIf="book.bookID">
+        <i ></i> Read Sample Chapter
+      </button>
+      <div class="mt-4">
+        <app-reviews-by-book-id [bookId]="book.bookID"></app-reviews-by-book-id>
+      </div>
+    </div>
   </div>
-  <div class="book-details">
-    <h2>{{ book.title }}</h2>
-    <p>Author: {{ book.authorName }}</p>
-    <div class="review-stars">
-      <app-average-rating [bookId]="book.bookID"></app-average-rating>
-    </div>
-    <div class="description">
-      <p>{{ book.description }}</p>
-    </div>
-    <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>
-    <div class="reviews">
-      <app-reviews-by-book-id [bookId]="book.bookID"></app-reviews-by-book-id>
+
+  <div *ngIf="sampleChapterUrl" class="iframe-popup-container" id="iframePopupContainer">
+    <div class="iframe-popup-content">
+      <button class="close-button" (click)="closeSampleChapterPopup()">X</button>
+      <iframe [src]="sampleChapterUrl"        width="80%" height="80%" style="border: none; filter: invert(0%); -webkit-filter: invert(0%);">
+      </iframe>
     </div>
   </div>
 </div>

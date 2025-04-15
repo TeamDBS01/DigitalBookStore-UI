@@ -3,7 +3,8 @@ import { environment } from 'src/environments/environment';
 import { Book } from '../model/Book';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BookResponse } from '../model/BookResponse';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class BookService {
   private updateBookURL = this.apiHostUrl + '/books';
   private deleteBookURL = this.apiHostUrl + '/books';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
   public getBook(book: any) {
     this.bookID = book.bookID;
     return this.http.get<Book>(this.getBookByIdURL + '/' + book.bookID);
@@ -67,12 +68,29 @@ export class BookService {
   }
 
 
-  getAllCategories(): Observable<{ name: string }[]> {
-    return this.http.get<{ name: string }[]>(`${this.getBookByIdURL}/categories`);
+  getAllCategories(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.getBookByIdURL}/categories`);
   }
-
   getBooksByCategory(category: string): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.getBookByIdURL}/category/${category}`);
   }
 
+  getFirstBookInCategory(categoryName: string): Observable<Book | undefined> {
+    return this.http.get<Book[]>(`${this.getBookByIdURL}/category/${categoryName}`).pipe(
+      map(books => books.length > 0 ? books[0] : undefined)
+    );
+  }
+
+  loadSampleChapter(bookID: string): Observable<SafeResourceUrl | null> {
+    return this.http.get(`${this.getBookByIdURL}/${bookID}/sample`, { responseType: 'blob' }).pipe(
+      map((response: Blob) => {
+        const url = window.URL.createObjectURL(response);
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      }),
+      catchError(error => {
+        console.error('Error loading sample chapter', error);
+        return of(null); // Return null or handle the error as needed
+      })
+    );
+  }
 }

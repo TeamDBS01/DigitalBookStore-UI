@@ -1,0 +1,53 @@
+// Styles for the search input and button
+div.search-container
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 1rem 1 rem
+
+  input
+    padding: 0.5rem
+    border: 1px solid #ccc
+    border-radius: 4px
+    width: 200px
+
+  button
+    padding: 0.5rem 1rem
+    border: none
+    background-color: #6c757d // Muted color
+    color: white
+    cursor: pointer
+    border-radius: 4px
+    margin-left: 0.5rem
+    &:hover
+      background-color: #5a6268 // Darker muted color
+
+// Styles for the book details section
+h3
+  text-align: center
+  margin-top: 1rem
+
+p
+  text-align: center
+  margin: 0.5rem 0
+
+// Styles for the update button
+button[routerLink]
+  display: block
+  margin: 1rem auto
+  padding: 0.5rem 1rem
+  border: none
+  background-color: #28a745
+  color: white
+  cursor: pointer
+  border-radius: 4px
+  text-align: center
+  &:hover
+    background-color: #218838
+
+// Styles for the error message
+div[ngIf="errorMessage"]
+  text-align: center
+  color: red
+  margin-top: 1rem
+

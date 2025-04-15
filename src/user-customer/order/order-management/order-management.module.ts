@@ -12,11 +12,12 @@ import { AdminReturnProcessComponent } from './components/admin-return-process/a
 import { ReactiveFormsModule } from '@angular/forms';
 import { PaymentComponent } from './components/payment/payment.component';
 import { UpdateTrackingComponent } from './components/update-tracking/update-tracking.component';
+import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
 
 
 @NgModule({
   declarations: [
-    
+   
   ],
   imports: [
     // CommonModule,

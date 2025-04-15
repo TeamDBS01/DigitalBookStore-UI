@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="order-details-container">
   <header class="order-details-header">
     <h1 class="order-details-title">Order Details</h1>
@@ -76,15 +77,20 @@
       </div>
     </div>
 
-    <div class="order-actions">
-      <button *ngIf="order.status === 'Pending' || order.status === 'Shipped'" class="btn btn-danger" (click)="cancelOrder()">
-        <i class="bi bi-x-circle-fill me-2"></i> Cancel Order
-      </button>
-      <button *ngIf="order.status === 'Delivered' && (order.returnDetails === undefined || order.returnDetails?.returnRejectedDate)" class="btn btn-warning" (click)="requestReturn()">
-        <i class="bi bi-arrow-return-left-fill me-2"></i> Request Return
-      </button>
-      <p *ngIf="errorMessage" class="error-message"><i class="bi bi-exclamation-triangle-fill me-2"></i> {{ errorMessage }}</p>
-    </div>
+    <div class="order-details-container">
+      <div class="order-actions">
+        <button *ngIf="order.status === 'Pending' || order.status === 'Shipped'" class="btn btn-danger" (click)="cancelOrder()">
+          <i class="bi bi-x-circle-fill me-2"></i> Cancel Order
+        </button>
+        <button *ngIf="order.status === 'Delivered' && (order.returnDetails === undefined || order.returnDetails?.returnRejectedDate)" class="btn btn-warning" (click)="requestReturn()">
+          <i class="bi bi-arrow-return-left-fill me-2"></i> Request Return
+        </button>
+        <button  class="btn btn-info ms-2" [routerLink]="['/order/track', order.orderId]">
+          <i class="bi bi-truck-fill me-2"></i> View Tracking
+        </button>
+        <p *ngIf="errorMessage" class="error-message"><i class="bi bi-exclamation-triangle-fill me-2"></i> {{ errorMessage }}</p>
+      </div>
+      </div>
   </div>
   <ng-template #loading><p class="loading-message"><i class="bi bi-hourglass-split me-2"></i> Loading order details...</p></ng-template>
 </div>
