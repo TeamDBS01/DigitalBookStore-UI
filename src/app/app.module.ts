@@ -12,6 +12,7 @@ import { FilterComponent } from 'src/user-customer/book/filter/filter.component'
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { BookService } from 'src/user-customer/book/service/book.service';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
+import { BookDealComponent } from 'src/user-customer/book/book-deal/book-deal.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
 import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book-carousel.component';
 import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
@@ -61,22 +62,18 @@ import { FooterComponent } from 'src/user-customer/Home/footer/footer.component'
 import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
 import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-review/view-edit-review.component';
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
+import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
 import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 // import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ViewAllReviewsComponent,
-        AllReviewsComponent,
-        ReviewComponent,
-        StarsComponent,
-        AverageRatingComponent,
         NavbarComponent,
         BookHeroComponent,
         BookCarouselComponent,
+        BookDealComponent,
         HomeComponent,
-        AddUpdateReviewComponent,
         ViewbookidComponent,
         AddbookComponent,
         UpdatebookComponent,
@@ -97,22 +94,29 @@ import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatu
         PlaceOrderComponent,
         SignupComponent,
         UserProfileComponent,
-        ReviewsByBookIdComponent,
         CategorybookslistComponent,
         CategorybooksComponent,
-        ReviewsByUserIdComponent,
         OrderTrackingComponent,
         DisplayInventoryComponent,
         ViewByBookIDComponent,
         UpdateQuantityComponent,
         LeftSidebarComponent,
         MainComponent,
-        ViewEditReviewComponent,
 		FooterComponent,
         AdminHomeComponent,
         DeleteBookInventoryComponent,
         NavbarAdminComponent,
-        AllorderstatusComponent
+        AllorderstatusComponent,
+        DealOfTheDayComponent,
+        ViewAllReviewsComponent,
+        AllReviewsComponent,
+        ReviewComponent,
+        StarsComponent,
+        AverageRatingComponent,
+        AddUpdateReviewComponent,
+        ReviewsByBookIdComponent,
+        ReviewsByUserIdComponent,
+        ViewEditReviewComponent,
     ],
     imports: [
     BrowserModule,
