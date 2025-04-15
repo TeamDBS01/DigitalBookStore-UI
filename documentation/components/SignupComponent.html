@@ -588,7 +588,9 @@ export class SignupComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;background-container&quot;&gt;
+    &lt;div class&#x3D;&quot;hcont&quot;&gt;
+&lt;div class&#x3D;&quot;container&quot;&gt;
     &lt;form #signupForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;signup()&quot;&gt;
         &lt;h2&gt;Sign Up&lt;/h2&gt;
         
@@ -648,73 +650,116 @@ export class SignupComponent {
         &lt;!-- Login Link --&gt;
         &lt;p&gt;Already have an account? &lt;a routerLink&#x3D;&quot;/login&quot;&gt;Login&lt;/a&gt;&lt;/p&gt;
     &lt;/form&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+    .hcont{
+        position: absolute;
+        right:50px;
+        width: 500px;
+        height:300px;
+        top:65px;
+    }
+    .background-container {
+        background-image: url(&#x27;assets/loginB.jpg&#x27;);
+        background-size: cover;
+        background-position: center;
+        height:90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+   
+&lt;/style&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./signup.component.sass</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.container
+                <pre class="line-numbers"><code class="language-scss">// Container styling
+.container
     max-width: 400px
     margin: 0 auto
     padding: 20px
-    background-color: #f9f9f9
     border-radius: 8px
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
     font-family: Arial, sans-serif
 
+    // Header styling
     h2
         text-align: center
         color: #333
         margin-bottom: 20px
 
+    // Form styling
     form
-        display: flex
-        flex-direction: column
-        gap: 15px
+        background-color: #fff
+        padding: 30px
+        border-radius: 8px
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+        border: 2px solid #DCF763
+        transition: border-color 0.3s ease, box-shadow 0.3s ease
 
+        // Hover effect for form
+        &amp;:hover
+            border-color: #c4e13a
+            box-shadow: 0 0 10px rgba(220, 247, 99, 0.7)
+
+        // Input group styling
         div
             display: flex
             flex-direction: column
             gap: 5px
 
+            // Input field styling
             input
                 padding: 10px
                 border: 1px solid #ccc
                 border-radius: 4px
                 font-size: 14px
+                transition: border-color 0.3s ease, box-shadow 0.3s ease
 
+                // Focus effect for input fields
                 &amp;:focus
                     outline: none
-                    border-color: #007bff
-                    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5)
+                    border-color: #c4e13a
+                    box-shadow: 0 0 10px rgba(220, 247, 99, 0.7)
 
+        // Button styling
         button
             padding: 10px
-            background-color: #007bff
-            color: #fff
+            background-color: #f0f0f0
+            color: black
             border: none
             border-radius: 4px
             font-size: 16px
             cursor: pointer
+            width: 100%  
             transition: background-color 0.3s ease
 
+            
             &amp;:hover
-                background-color: #0056b3
+                background-color: #d6d6d6
 
+             
             &amp;:disabled
                 background-color: #ccc
                 cursor: not-allowed
 
+        // Link styling
         a
             color: #007bff
             text-decoration: none
             font-size: 14px
 
+            // Hover effect for links
             &amp;:hover
                 text-decoration: underline
 
+        // Error message styling
         .error-message
             color: red
             font-size: 12px</code></pre>
@@ -745,8 +790,8 @@ export class SignupComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container">    <form #signupForm="ngForm" (ngSubmit)="signup()">        <h2>Sign Up</h2>                <!-- Name Field -->        <div>            Name:             <input type="text" name="name" [(ngModel)]="name" required #nameField="ngModel">            <div *ngIf="nameField.invalid && nameField.touched" style="color: red;">                <div *ngIf="nameField.errors?.[\'required\']">Name is required.</div>            </div>        </div>                <!-- Email Field -->        <div>            Email:             <input type="email" name="email" [(ngModel)]="email" required email #emailField="ngModel">            <div *ngIf="emailField.invalid && emailField.touched" style="color: red;">                <div *ngIf="emailField.errors?.[\'required\']">Email is required.</div>                <div *ngIf="emailField.errors?.[\'email\']">Invalid email format.</div>            </div>        </div>                <!-- Password Field -->        <div>            Password:             <input type="password" name="password" [(ngModel)]="password" required minlength="6" #passwordField="ngModel">            <div *ngIf="passwordField.invalid && passwordField.touched" style="color: red;">                <div *ngIf="passwordField.errors?.[\'required\']">Password is required.</div>                <div *ngIf="passwordField.errors?.[\'minlength\']">Password must be at least 6 characters long.</div>            </div>        </div>                <!-- Confirm Password Field -->        <div>            Confirm Password:             <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required #confirmPasswordField="ngModel">            <div *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched" style="color: red;">                <div *ngIf="confirmPasswordField.errors?.[\'required\']">Confirm Password is required.</div>            </div>            <div *ngIf="password !== confirmPassword && confirmPasswordField.touched" style="color: red;">                Passwords do not match.            </div>        </div>                <!-- Submit Button -->        <button type="submit" [disabled]="signupForm.invalid || password !== confirmPassword">            Sign Up        </button>                <!-- Registration Error Message -->        <div *ngIf="registrationErrorMessage" style="color: red;">            {{ registrationErrorMessage }}        </div>                        <!-- Login Link -->        <p>Already have an account? <a routerLink="/login">Login</a></p>    </form></div></div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddReviewComponent', 'selector': 'app-add-review'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'}];
+        var COMPONENT_TEMPLATE = '<div><div class="background-container">    <div class="hcont"><div class="container">    <form #signupForm="ngForm" (ngSubmit)="signup()">        <h2>Sign Up</h2>                <!-- Name Field -->        <div>            Name:             <input type="text" name="name" [(ngModel)]="name" required #nameField="ngModel">            <div *ngIf="nameField.invalid && nameField.touched" style="color: red;">                <div *ngIf="nameField.errors?.[\'required\']">Name is required.</div>            </div>        </div>                <!-- Email Field -->        <div>            Email:             <input type="email" name="email" [(ngModel)]="email" required email #emailField="ngModel">            <div *ngIf="emailField.invalid && emailField.touched" style="color: red;">                <div *ngIf="emailField.errors?.[\'required\']">Email is required.</div>                <div *ngIf="emailField.errors?.[\'email\']">Invalid email format.</div>            </div>        </div>                <!-- Password Field -->        <div>            Password:             <input type="password" name="password" [(ngModel)]="password" required minlength="6" #passwordField="ngModel">            <div *ngIf="passwordField.invalid && passwordField.touched" style="color: red;">                <div *ngIf="passwordField.errors?.[\'required\']">Password is required.</div>                <div *ngIf="passwordField.errors?.[\'minlength\']">Password must be at least 6 characters long.</div>            </div>        </div>                <!-- Confirm Password Field -->        <div>            Confirm Password:             <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required #confirmPasswordField="ngModel">            <div *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched" style="color: red;">                <div *ngIf="confirmPasswordField.errors?.[\'required\']">Confirm Password is required.</div>            </div>            <div *ngIf="password !== confirmPassword && confirmPasswordField.touched" style="color: red;">                Passwords do not match.            </div>        </div>                <!-- Submit Button -->        <button type="submit" [disabled]="signupForm.invalid || password !== confirmPassword">            Sign Up        </button>                <!-- Registration Error Message -->        <div *ngIf="registrationErrorMessage" style="color: red;">            {{ registrationErrorMessage }}        </div>                        <!-- Login Link -->        <p>Already have an account? <a routerLink="/login">Login</a></p>    </form></div></div></div><style>    .hcont{        position: absolute;        right:50px;        width: 500px;        height:300px;        top:65px;    }    .background-container {        background-image: url(\'assets/loginB.jpg\');        background-size: cover;        background-position: center;        height:90vh;        display: flex;        justify-content: center;        align-items: center;            }   </style></div>'
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SignupComponent'};
 </script>

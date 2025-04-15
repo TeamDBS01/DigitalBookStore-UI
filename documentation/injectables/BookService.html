@@ -200,6 +200,12 @@
                                 <a href="#getBooksByCategory" >getBooksByCategory</a>
                             </li>
                             <li>
+                                <a href="#getFirstBookInCategory" >getFirstBookInCategory</a>
+                            </li>
+                            <li>
+                                <a href="#loadSampleChapter" >loadSampleChapter</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#registerBook" >registerBook</a>
                             </li>
@@ -231,12 +237,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: HttpClient)</code>
+<code>constructor(http: HttpClient, sanitizer: DomSanitizer)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/user-customer/book/service/book.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/user-customer/book/service/book.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -258,6 +264,18 @@
                                                   
                                                         <td>
                                                                     <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sanitizer</td>
+                                                  
+                                                        <td>
+                                                                    <code>DomSanitizer</code>
                                                         </td>
                                                   
                                                     <td>
@@ -301,8 +319,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -368,8 +386,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -435,8 +453,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -514,8 +532,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -551,8 +569,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -561,7 +579,7 @@
                 <td class="col-md-4">
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;literal type[]&gt;</code>
+                            <b>Returns : </b>    <code>Observable&lt;string[]&gt;</code>
 
                         </div>
                 </td>
@@ -590,8 +608,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="22"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:22</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="23"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -659,8 +677,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -728,8 +746,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -816,6 +834,140 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getFirstBookInCategory"></a>
+                    <span class="name">
+                        <span ><b>getFirstBookInCategory</b></span>
+                        <a href="#getFirstBookInCategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFirstBookInCategory(categoryName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>categoryName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Book.html" target="_self" >Observable&lt;Book | undefined&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadSampleChapter"></a>
+                    <span class="name">
+                        <span ><b>loadSampleChapter</b></span>
+                        <a href="#loadSampleChapter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadSampleChapter(bookID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bookID</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;SafeResourceUrl | null&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="registerBook"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
@@ -834,8 +986,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -901,8 +1053,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -968,8 +1120,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -1037,8 +1189,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/user-customer/book/service/book.service.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -1108,7 +1260,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/user-customer/book/service/book.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user-customer/book/service/book.service.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -1134,7 +1286,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user-customer/book/service/book.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user-customer/book/service/book.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -1160,7 +1312,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/user-customer/book/service/book.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/user-customer/book/service/book.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -1186,7 +1338,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user-customer/book/service/book.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/user-customer/book/service/book.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -1212,7 +1364,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/user-customer/book/service/book.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/user-customer/book/service/book.service.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -1238,7 +1390,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/user-customer/book/service/book.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/user-customer/book/service/book.service.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -1254,9 +1406,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
 import { Book } from &#x27;../model/Book&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
 import { BookResponse } from &#x27;../model/BookResponse&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
+import { catchError, map, Observable, of } from &#x27;rxjs&#x27;;
+import { DomSanitizer, SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
@@ -1271,7 +1424,7 @@ export class BookService {
   private updateBookURL &#x3D; this.apiHostUrl + &#x27;/books&#x27;;
   private deleteBookURL &#x3D; this.apiHostUrl + &#x27;/books&#x27;;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
   public getBook(book: any) {
     this.bookID &#x3D; book.bookID;
     return this.http.get&lt;Book&gt;(this.getBookByIdURL + &#x27;/&#x27; + book.bookID);
@@ -1320,14 +1473,31 @@ export class BookService {
   }
 
 
-  getAllCategories(): Observable&lt;{ name: string }[]&gt; {
-    return this.http.get&lt;{ name: string }[]&gt;(&#x60;${this.getBookByIdURL}/categories&#x60;);
+  getAllCategories(): Observable&lt;string[]&gt; {
+    return this.http.get&lt;string[]&gt;(&#x60;${this.getBookByIdURL}/categories&#x60;);
   }
-
   getBooksByCategory(category: string): Observable&lt;Book[]&gt; {
     return this.http.get&lt;Book[]&gt;(&#x60;${this.getBookByIdURL}/category/${category}&#x60;);
   }
 
+  getFirstBookInCategory(categoryName: string): Observable&lt;Book | undefined&gt; {
+    return this.http.get&lt;Book[]&gt;(&#x60;${this.getBookByIdURL}/category/${categoryName}&#x60;).pipe(
+      map(books &#x3D;&gt; books.length &gt; 0 ? books[0] : undefined)
+    );
+  }
+
+  loadSampleChapter(bookID: string): Observable&lt;SafeResourceUrl | null&gt; {
+    return this.http.get(&#x60;${this.getBookByIdURL}/${bookID}/sample&#x60;, { responseType: &#x27;blob&#x27; }).pipe(
+      map((response: Blob) &#x3D;&gt; {
+        const url &#x3D; window.URL.createObjectURL(response);
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      }),
+      catchError(error &#x3D;&gt; {
+        console.error(&#x27;Error loading sample chapter&#x27;, error);
+        return of(null); // Return null or handle the error as needed
+      })
+    );
+  }
 }
 </code></pre>
     </div>

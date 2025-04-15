@@ -1,38 +1,75 @@
-<div>
-    <form (ngSubmit)="onSubmit()">
-        <div>
-            <label for="bookID">Book ID:</label>
-            <input type="text" id="bookID" required [(ngModel)]="book.bookID" name="bookID">
-        </div>
-        <button type="submit">Search</button>
-    </form>
+<div class="search-container">
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <input placeholder="Enter BookID" type="text" id="bookID" required [(ngModel)]="book.bookID" name="bookID">
+    </div>
+    <div>
+      <button type="submit">Search</button>
+    </div>
+  </form>
 </div>
-<!--{{noRecordFound}}-->
+
+<div class="display-el">
+  <table>
+    <thead>
+      <tr>
+        <th>Book Id</th>
+        <th>Book title</th>
+        <th>Book price</th>
+        <th>Author Name</th>
+        <th>Category Name</th>
+        <th>Book img</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{book.bookID}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.price}}</td>
+        <td>{{book.authorName}}</td>
+        <td>{{book.categoryName}}</td>
+        <td> <img [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover"
+              style="max-width: 100px; max-height: 100px;"></td>
+        <td class="actions-cell">
+          <button class="action-button update-button" [routerLink]="['/updateBook', book.bookID]" title="Update">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="action-button delete-button" [routerLink]="['/deleteBook', book.bookID]" title="Delete">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <div [hidden]="!submitted && !noRecordFound">
-<div>
+  <div>
     <table>
-        <thead>
-            <tr>
-                <th>Book Id</th>
-                <th>Book title</th>
-                <th>Book price</th>
-                <th>Book authorId</th>
-                <th>Book categoryId</th>
-                <th>Book img</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{book.bookID}}</td>
-                <td>{{book.title}}</td>
-                <td>{{book.price}}</td>
-                <td>{{book.authorID}}</td>
-                <td>{{book.categoryID}}</td>
-                <td> <img [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover" style="max-width: 100px; max-height: 100px;"></td>
-                <td><a routerLink="/updateBook">Update</a></td>
-                <td><a routerLink="/deleteBook">Delete</a></td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>Book Id</th>
+          <th>Book title</th>
+          <th>Book price</th>
+          <th>Author Name</th>
+          <th>Category Name</th>
+          <th>Book img</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{book.bookID}}</td>
+          <td>{{book.title}}</td>
+          <td>{{book.price}}</td>
+          <td>{{book.authorName}}</td>
+          <td>{{book.categoryName}}</td>
+          <td> <img [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover"
+                style="max-width: 100px; max-height: 100px;"></td>
+          <td><a routerLink="/updateBook">Update</a></td>
+          <td><a routerLink="/deleteBook">Delete</a></td>
+        </tr>
+      </tbody>
     </table>
-</div>
+  </div>
 </div>

@@ -13,15 +13,17 @@ export class AllReviewsComponent {
     constructor(private reviewService: ReviewService) {}
 
     reviews: Review[] = [];
-    
-    // stars = [1,2,3,4,5];
+    message = 'Loading...';
+
     ngOnInit() {
         this.reviewService.getAllReviews().subscribe({
             next: (data) => {
                 this.reviews = data;
+                this.message = ''
             },
             error: (error) => {
                 console.error('Error fetching reviews:-', error);
+                this.message = 'No reviews found!'
             }
         });
     }

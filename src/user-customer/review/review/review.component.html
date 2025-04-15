@@ -2,15 +2,38 @@
     <div class="card-body">
         <div style="display: flex; justify-content: space-between;">
             <div>
-                <h6 class="card-title" *ngIf="!userView">{{review.userName}}</h6>
-                <h6 class="card-title" *ngIf="userView">{{review.bookTitle}}</h6>
+                <h6 class="card-title" *ngIf="userView; else bookView">{{review.bookTitle}}</h6>
+                <ng-template #bookView>
+                    <h6>{{(review !== undefined)? review.userName : ''}} <div style="display: inline-block;" *ngIf="adminView"> - {{review.bookTitle}}</div> </h6>
+                </ng-template>
             </div>
             <div *ngIf="canModify" style="cursor: pointer; margin-left: 10px; display: flex;">
                 <h6 class="me-3" (click)='editReview()'><i class="fa-solid fa-pen-to-square"></i></h6>
-                <h6 class="me-3" (click)='deleteReview()'><i class="fa-solid fa-trash"></i></h6>
+                <h6 class="me-3" (click)="openModal()"><i class="fa-solid fa-trash"></i>
+                </h6>
             </div>
         </div>
-        <app-stars [rating]="review.rating" />
-        <p class="card-text">{{review.comment}}</p>
+        <app-stars [rating]="(review !== undefined)? review.rating : 0" />
+        <p class="card-text">{{(review !== undefined)? review.comment : ''}}</p>
+    </div>
+</div>
+
+<div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Delete Review?</h1>
+                <button type="button" class="btn-close p-3" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this Review?
+                <input *ngIf="adminView" type="text" class="form-control mt-2" placeholder="Enter your reason here." [(ngModel)]="reasonForDelete" />
+                <p *ngIf="reasonValidation && reasonForDelete.length == 0" style='color: red;'>Reason is Required</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="closeModal()" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" (click)='deleteReview()' class="btn btn-danger">Yes</button>
+            </div>
+        </div>
     </div>
 </div>

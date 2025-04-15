@@ -15,13 +15,14 @@ export class LoginComponent implements OnInit {
     invalidLogin = false;
     showWelcomePopup = false;
     loggedInUserName = '';
-    invalidLoginMessage = '';  
+    invalidLoginMessage = '';
 
     constructor(private router: Router, private loginService: UserService) { }
 
     ngOnInit() {
         if (sessionStorage.getItem('token')) {
-            this.router.navigate(['/home']);
+            const role = sessionStorage.getItem('role');
+            this.navigateToBasedOnRole(role);
         }
     }
 
@@ -35,21 +36,21 @@ export class LoginComponent implements OnInit {
         this.loginService.authenticate(this.email, this.password).subscribe(
             (response) => {
                 this.invalidLogin = false;
-                this.invalidLoginMessage = '';  
+                this.invalidLoginMessage = '';
                 this.loggedInUserName = response.name || response.email;
-                // this.showWelcomePopup = true;
+                this.showWelcomePopup = true;
                 // setTimeout(() => {
                 //     this.showWelcomePopup = false;
-                    this.router.navigate(['/home']);
+                    this.navigateToBasedOnRole(response.role);  
                 // }, 2000);
             },
             (error) => {
                 this.invalidLogin = true;
                 console.error("Login error:", error);
                 if (error && error.error && error.error.message) {
-                    this.invalidLoginMessage = error.error.message;  
+                    this.invalidLoginMessage = error.error.message;
                 } else {
-                    this.invalidLoginMessage = 'Invalid email or password. Please try again.';  
+                    this.invalidLoginMessage = 'Invalid email or password. Please try again.';
                 }
             }
         );
@@ -57,8 +58,20 @@ export class LoginComponent implements OnInit {
         this.password = '';
     }
 
-    // closeWelcomePopup() {
-    //     this.showWelcomePopup = false;
-    //     this.router.navigate(['/home']);
-    // }
+    closeWelcomePopup() {
+        const role = sessionStorage.getItem('role');
+        this.showWelcomePopup = false;
+        this.navigateToBasedOnRole(role);
+    }
+
+    navigateToBasedOnRole(role: string | null) {
+        if (role === 'CUSTOMER') {
+            this.router.navigate(['/home']);
+        } else if (role === 'ADMIN') {
+            this.router.navigate(['/adminHome']);
+        } else {
+            console.warn('Unknown role:', role);
+            this.router.navigate(['/']);
+        }
+    }
 }
