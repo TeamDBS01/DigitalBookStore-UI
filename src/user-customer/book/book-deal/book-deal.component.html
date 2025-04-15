@@ -7,7 +7,7 @@
         <p>by {{book.authorName}}</p>
         <h5>{{book.title}}</h5>
         <h5>{{book.price | currency: 'INR'}}</h5>
-        <h6 ngIf="quantity > 0" style="color: red;">Only {{quantity}} left!</h6>
-        <h6 ngIf="quantity == 0" style="color: red;">SOLD OUT!</h6>
+        <h6 *ngIf="quantity > 0" style="color: red;">Only {{quantity}} left!</h6>
+        <h6 *ngIf="quantity == 0" style="color: red;">SOLD OUT!</h6>
     </div>
 </div>

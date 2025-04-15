@@ -20,10 +20,6 @@ export class LoginComponent implements OnInit {
     constructor(private router: Router, private loginService: UserService) { }
 
     ngOnInit() {
-        if (sessionStorage.getItem('token')) {
-            const role = sessionStorage.getItem('role');
-            this.navigateToBasedOnRole(role);
-        }
     }
 
     checkLogin() {
@@ -39,6 +35,7 @@ export class LoginComponent implements OnInit {
                 this.invalidLoginMessage = '';
                 this.loggedInUserName = response.name || response.email;
                 this.showWelcomePopup = true;
+                // this.router.navigate(['/home']);
                 // setTimeout(() => {
                 //     this.showWelcomePopup = false;
                     this.navigateToBasedOnRole(response.role);  
@@ -61,14 +58,14 @@ export class LoginComponent implements OnInit {
     closeWelcomePopup() {
         const role = sessionStorage.getItem('role');
         this.showWelcomePopup = false;
-        this.navigateToBasedOnRole(role);
+        this.router.navigate(['/home']);
     }
 
     navigateToBasedOnRole(role: string | null) {
         if (role === 'CUSTOMER') {
             this.router.navigate(['/home']);
         } else if (role === 'ADMIN') {
-            this.router.navigate(['/adminHome']);
+            this.router.navigate(['/dashboard']);
         } else {
             console.warn('Unknown role:', role);
             this.router.navigate(['/']);

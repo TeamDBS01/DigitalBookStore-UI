@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
+import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/addbook/addbook.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
+import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
+import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
@@ -29,16 +32,17 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 
 const routes: Routes = [
 
-    { path: 'adminHome/getInventory', component: DisplayInventoryComponent },
+    // { path: 'adminHome/getInventory', component: DisplayInventoryComponent },
     { path: 'getInventoryByBookID', component: ViewByBookIDComponent},
     { path: 'updateQuantity', component: UpdateQuantityComponent},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
+    // { path: 'home', component:DisplayInventoryComponent, canActivate: [AuthAdminGuard]},
     { path: 'home', component: HomeComponent},
-    { path:'adminHome',component:AdminHomeComponent,canActivate:[AuthAdminGuard]},
     { path: 'profile', component: UserProfileComponent },
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    { path: 'dashboard', redirectTo: 'home' },
+    // { path: 'dashboard', redirectTo: 'getInventory' },
+    { path: 'dashboard', component:AdminDashboardComponent, canActivate:[AuthAdminGuard],},
     { path: 'books', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'addBooks', component: AddbookComponent, canActivate: [AuthAdminGuard], },
     { path: 'reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
@@ -46,6 +50,8 @@ const routes: Routes = [
     { path: 'orders', component: AllorderstatusComponent, canActivate: [AuthAdminGuard], },
     { path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
+    { path:'category-books', component:CategorybooksComponent, canActivate: [AuthCustomerGuard],},
+    { path: 'category-books-list', component:CategorybookslistComponent},
     { path: 'search', component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/cart', component: CartComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthCustomerGuard], },
@@ -61,7 +67,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {anchorScrolling: "enabled"})],
     exports: [RouterModule],
 })
 export class AppRoutingModule { }

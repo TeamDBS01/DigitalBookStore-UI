@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, signal } from '@angular/core';
+import { AfterViewChecked, Component, HostListener, OnInit, signal } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -11,17 +11,16 @@ import { Component, HostListener, OnInit, signal } from '@angular/core';
 
 // }
 
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewChecked {
+    
+    ngAfterViewChecked(): void {
+        const role = sessionStorage.getItem('role'); 
+        this.userRole = role ? role : '';
+    }
     title = 'DigitalBookStore-UI';
 
 
     userRole: string = '';
-
-    ngOnInit() {
-        const role = sessionStorage.getItem('role'); 
-        this.userRole = role ? role : '';
-    }
-
 
 }
 

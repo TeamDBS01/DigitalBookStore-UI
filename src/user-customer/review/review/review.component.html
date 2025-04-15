@@ -4,11 +4,11 @@
             <div>
                 <h6 class="card-title" *ngIf="userView; else bookView">{{review.bookTitle}}</h6>
                 <ng-template #bookView>
-                    <h6>{{(review !== undefined)? review.userName : ''}} <div style="display: inline-block;" *ngIf="adminView"> - {{review.bookTitle}}</div> </h6>
+                    <h6>{{review.userName}} <div style="display: inline-block;" *ngIf="adminView"> - {{review.bookTitle}}</div> </h6>
                 </ng-template>
             </div>
             <div *ngIf="canModify" style="cursor: pointer; margin-left: 10px; display: flex;">
-                <h6 class="me-3" (click)='editReview()'><i class="fa-solid fa-pen-to-square"></i></h6>
+                <h6 *ngIf="!adminView" class="me-3" (click)='editReview()'><i class="fa-solid fa-pen-to-square"></i></h6>
                 <h6 class="me-3" (click)="openModal()"><i class="fa-solid fa-trash"></i>
                 </h6>
             </div>
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)'}">
+<div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)', 'position': 'absolute'}"> 
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -31,7 +31,7 @@
                 <p *ngIf="reasonValidation && reasonForDelete.length == 0" style='color: red;'>Reason is Required</p>
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="closeModal()" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" (click)="closeModal()" class="btn btn-secondary">No</button>
                 <button type="button" (click)='deleteReview()' class="btn btn-danger">Yes</button>
             </div>
         </div>

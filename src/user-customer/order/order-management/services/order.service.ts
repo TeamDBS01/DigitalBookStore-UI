@@ -38,7 +38,7 @@ export class OrderService {
   }
 
   placeOrder(shippingDetails: any): Observable<Order> {
-    return this.http.post<Order>(`${this.baseUrl}/${this.userId}`, {});
+    return this.http.post<Order>(`${this.baseUrl}/${this.userId}`, {shippingDetails});
   }
 
 

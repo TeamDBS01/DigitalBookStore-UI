@@ -79,7 +79,8 @@ export class UserService {
 
   private userDetailsUrl = `${this.apiUrl}/user`;
 
-  private changePasswordUrl = `${this.apiUrl}/user/change-password`;
+//   private changePasswordUrl = `${this.apiUrl}/user/change-password`;
+  private changePasswordUrl = `${this.apiUrl}/users`; // Correct base path
   private closeAccountUrl = `${this.apiUrl}/user/close-account`;
   private userReviewsUrl = `${this.apiUrl}/user/reviews`;
 
@@ -135,13 +136,7 @@ export class UserService {
         );
     }
 
-    // getUserDetails(userId: number): Observable<User> {
-    //     return this.http.get<User>(`${this.userDetailsUrl}/${userId}`);
-    // }
-
-    // updateUser(userId: number, updatedUser: Partial<User>): Observable<any> {
-    //     return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser);
-    // }
+ 
     getUserDetails(userId: number): Observable<UserDetailsResponse> { // Expect UserDetailsResponse
         return this.http.get<UserDetailsResponse>(`${this.userDetailsUrl}/${userId}/details`);
       }
@@ -157,7 +152,7 @@ export class UserService {
     
 
     changePassword(userId: number, passwords: any): Observable<any> {
-        return this.http.post<any>(`${this.changePasswordUrl}/${userId}`, passwords);
+        return this.http.put<any>(`${this.changePasswordUrl}/${userId}`, passwords);
     }
     
 

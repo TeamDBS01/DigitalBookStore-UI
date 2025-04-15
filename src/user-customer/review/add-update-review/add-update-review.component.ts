@@ -51,13 +51,10 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
     }
 
     display = "none";
-    openModal() { this.display = 'block'}
-    closeModal() { this.display = 'none'}
-    
-    cancel() {
-        this.rating = 0;
-        this.formData.reset();
-        window.location.reload();
+    openModal() { this.display = 'block' }
+    closeModal() { 
+        this.display = 'none'
+        this.editing.emit(false);
     }
 
     handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }
