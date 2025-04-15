@@ -64,7 +64,7 @@ import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-revi
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
 import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
-// import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
+import { DeletebookComponent } from 'src/user-customer/book/deletebook/deletebook.component';
 
 @NgModule({
     declarations: [
@@ -108,6 +108,7 @@ import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatu
         NavbarAdminComponent,
         AllorderstatusComponent,
         DealOfTheDayComponent,
+        DeletebookComponent,
         ViewAllReviewsComponent,
         AllReviewsComponent,
         ReviewComponent,
