@@ -16,7 +16,7 @@ export class LeftSidebarComponent {
   items =[
     {
       routeLink: 'dashboard',
-      icon: 'fa-solid fa-house',
+      icon: 'fa-solid fa-house', 
       label: 'Dashboard'
     },
     {

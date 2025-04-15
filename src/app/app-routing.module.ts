@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
-import { MainComponent } from 'src/user-admin/Home/main/main.component';
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
-
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';

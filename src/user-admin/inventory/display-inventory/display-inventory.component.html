@@ -1,13 +1,9 @@
 <!-- display-inventory.component.html -->
-
-<div class="search-container">
-    <input
-      type="text"
-      [(ngModel)]="searchBookId"
-      (input)="filterInventories()"
-      placeholder="Filter by Book ID"
-    />
-  </div>
+<h2>Inventory Management</h2>
+<app-view-by-book-id
+  [searchBookId]="searchBookId"
+  (searchTextChanged)="filterInventories($event)"
+></app-view-by-book-id>
 <table>
     <thead>
       <tr>

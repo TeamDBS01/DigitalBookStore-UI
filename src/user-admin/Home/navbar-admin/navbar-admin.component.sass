@@ -1,99 +1,98 @@
-$primary-cool-medium: #b0bec5
-$text-cool-primary: #37474f
-$border-cool: #cfd8dc
-$accent-cool: #546e7a
-$primary-cool-light: #eceff1
-$navbar-background: #343a40 
-$navbar-text-color: #f8f9fa 
+$navbar-height: 4.5rem // Set navbar height to 7rem
+$brand-color: #ffffff // Example brand color (blue)
+$profile-name-color: #333 // Dark gray for profile name
+$icon-color: #555 // Medium gray for icons
+$dropdown-bg: #fff // White background for dropdown
+$dropdown-item-hover-bg: #f8f9fa // Light gray on dropdown item hover
+$dropdown-divider-color: #ddd // Light gray for divider
+$logout-color: #dc3545 // Red for logout text
 
 .navbar
-  background: #6c757d
-  color: $navbar-text-color
-  padding: 1rem 2rem
   display: flex
   justify-content: space-between
   align-items: center
-  border-bottom: 1px solid darken($navbar-background, 10%)
+  height: $navbar-height
+  padding: 0 1.5rem
+  background-color: #6c757d 
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: 100
 
   .navbar-brand
-    font-size: 1.75rem 
-    font-weight: bold
-    text-decoration: none 
-
     .brand-link
-      margin-left: 3.7rem
-      font-size: 24px
-      font-weight: 700
-      color: #f8f9fa 
-      text-decoration: none 
-      margin-top:-0.2rem
-
-  .navbar-links
-    list-style: none
-    margin: 0
-    padding: 0
-    display: flex
-    gap: 1.75rem 
-    li
-      a
-        text-decoration: none 
-        color: inherit
-        transition: color 0.2s ease-in-out
-
-        &:hover
-          color: $accent-cool
+      font-size: 1.5rem
+      color: $brand-color
+      text-decoration: none
+      font-weight: bold
+      margin-left: 4rem
 
   .navbar-profile
     position: relative
+    display: flex
+    align-items: center
 
     .profile-trigger
       display: flex
       align-items: center
       cursor: pointer
-      gap: 0.75rem 
 
       .profile-icon
-        font-size: 1.75rem 
-      .profile-name
-        font-weight: 500
+        margin-right: 0.5rem
+        i
+          font-size: 1.8rem
+          color: #f8f9fa
 
-      i
-        font-size: 1.1rem 
+      .profile-name
+        font-size: 1rem
+        color: #f8f9fa
+        margin-right: 0.3rem
+
+      i.fa-caret-down
+        font-size: 0.8rem
+        color: #f8f9fa
 
     .dropdown-menu
       position: absolute
-      top: calc(100% + 0.5rem)
+      top: 4rem // Position below the navbar
       right: 0
-      background-color: white
-      border: 1px solid $border-cool
-      border-radius: 0.2rem
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) 
-      width: 180px 
-      padding: 0.75rem 0
-      z-index: 10
-      text-align: left 
+      background-color: $dropdown-bg
+      border: 1px solid #ccc
+      border-radius: 0.25rem
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1)
+      z-index: 1000
+      min-width: 120px // Adjust as needed
+      display: flex
+      flex-direction: column
+      overflow: hidden // Prevent border radius issues with absolute positioning
+
+      &.open // You might add an 'open' class in your JS instead of *ngIf
+        display: flex
 
       a.dropdown-item
         display: flex
         align-items: center
-        gap: 1rem 
-        padding: 0.8rem 1.2rem
-        text-decoration: none 
-        color: $text-cool-primary
-        transition: background-color 0.2s ease-in-out
-
-        &:hover
-          background-color: $primary-cool-light
+        padding: 0.75rem 1rem
+        text-decoration: none
+        color: $profile-name-color
+        font-size: 1rem
+        transition: background-color 0.15s ease-in-out
 
         i
-          font-size: 1.1rem
-
-      .dropdown-divider
-        border-top: 1px solid $border-cool
-        margin: 0.5rem 0
-
-      a.logout
-        color: #dc3545 
+          margin-right: 0.5rem
+          font-size: 1rem
+          color: $icon-color
 
         &:hover
-          background-color: #f8d7da
+          background-color: $dropdown-item-hover-bg
+
+        &.logout
+          color: $logout-color
+          font-weight: bold
+
+      .dropdown-divider
+        height: 0
+        margin: 0.5rem 0
+        overflow: hidden
+        border-top: 1px solid $dropdown-divider-color
