@@ -72,12 +72,10 @@ export class AddbookComponent implements OnInit {
         this.formData.patchValue({
           base64img: e.target.result
         });
-        this.imageSrc = e.target.result; // Update image source for display
+        // this.imageSrc = e.target.result; // Update image source for display
       };
       reader.readAsDataURL(file);
-    } else {
-      this.imageSrc = '../../../../assets/img-upload3.png'; // Reset to default image if no file
-    }
+    } 
   }
 
   save() {
