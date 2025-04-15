@@ -120,7 +120,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/category-books/categorybooks/categorybooks.component.ts</code>
+    <code>src/user-customer/book/category-books/categorybooks/categorybooks.component.ts</code>
 </p>
 
 
@@ -230,7 +230,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/category-books/categorybooks/categorybooks.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/user-customer/book/category-books/categorybooks/categorybooks.component.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -309,8 +309,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/category-books/categorybooks/categorybooks.component.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/user-customer/book/category-books/categorybooks/categorybooks.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -376,8 +376,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/category-books/categorybooks/categorybooks.component.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/user-customer/book/category-books/categorybooks/categorybooks.component.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -423,7 +423,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/category-books/categorybooks/categorybooks.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/user-customer/book/category-books/categorybooks/categorybooks.component.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -441,40 +441,50 @@ import { Router } from &#x27;@angular/router&#x27;;
 import { BookService } from &#x27;src/user-customer/book/service/book.service&#x27;;
 
 @Component({
-  selector: &#x27;app-categorybooks&#x27;,
-  templateUrl: &#x27;./categorybooks.component.html&#x27;,
-  styleUrls: [&#x27;./categorybooks.component.sass&#x27;]
+    selector: &#x27;app-categorybooks&#x27;,
+    templateUrl: &#x27;./categorybooks.component.html&#x27;,
+    styleUrls: [&#x27;./categorybooks.component.sass&#x27;],
+    standalone: false
 })
 export class CategorybooksComponent {
-  
-    categories: { name: string }[] &#x3D; [];
-  
-    constructor(private bookService: BookService, private router: Router) {}
-  
-    ngOnInit(): void {
-      this.bookService.getAllCategories().subscribe((data: { name: string }[]) &#x3D;&gt; {
-        this.categories &#x3D; data;
-        console.log(&quot;categories:&quot;+this.categories);
-      });
-    }
-  
-   
-navigateToCategory(category: { name: string }) {
-  this.router.navigate([&#x27;/category-books-list&#x27;], { queryParams: { category: category} });
-}
+ 
+  categories: { category: string; imageUrl?: string }[] &#x3D; [];
 
-  
+  constructor(
+    private bookService: BookService, 
+    private router: Router      
+  ) {}
+
+  ngOnInit(): void {
+    this.bookService.getAllCategories().subscribe(async (categoryNames: string[]) &#x3D;&gt; {
+      this.categories &#x3D; await Promise.all(categoryNames.map(async categoryName &#x3D;&gt; {
+        const firstBook &#x3D; await this.bookService.getFirstBookInCategory(categoryName).toPromise();
+        return {
+          category: categoryName, // Directly use the categoryName string
+          imageUrl: firstBook?.coverImage ? &#x27;data:image/jpeg;base64,&#x27; + firstBook.base64img : undefined
+        };
+      }));
+      console.log(&quot;Processed Categories:&quot;, this.categories);
+    });
+  }
+
+  navigateToCategory(category: { category: string }) {
+    this.router.navigate([&#x27;/category-books-list&#x27;], { queryParams: { category: category.category } });
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;category-container&quot;&gt;
-    &lt;div *ngFor&#x3D;&quot;let category of categories&quot; class&#x3D;&quot;category-circle&quot; (click)&#x3D;&quot;navigateToCategory(category)&quot;&gt;
-      &lt;p&gt;{{ category }}&lt;/p&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;test&quot; class&#x3D;&quot;category-container&quot;&gt;
+  &lt;div *ngFor&#x3D;&quot;let categoryItem of categories&quot; class&#x3D;&quot;category-item&quot; (click)&#x3D;&quot;navigateToCategory(categoryItem)&quot;&gt;
+    &lt;div class&#x3D;&quot;category-circle&quot;&gt;
+      &lt;img *ngIf&#x3D;&quot;categoryItem.imageUrl&quot; [src]&#x3D;&quot;categoryItem.imageUrl&quot; alt&#x3D;&quot;{{ categoryItem.category }}&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;!categoryItem.imageUrl&quot; class&#x3D;&quot;placeholder&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
+    &lt;p class&#x3D;&quot;category-name&quot;&gt;{{ categoryItem.category }}&lt;/p&gt;
   &lt;/div&gt;
-  </code></pre>
+&lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="styleData">
@@ -488,6 +498,11 @@ navigateToCategory(category: { name: string }) {
   gap: 20px
   padding: 20px
 
+.category-item
+  display: flex
+  flex-direction: column
+  align-items: center
+
 .category-circle
   display: flex
   justify-content: center
@@ -499,10 +514,27 @@ navigateToCategory(category: { name: string }) {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
   cursor: pointer
   transition: transform 0.3s
+  overflow: hidden
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+  .placeholder
+    width: 60%
+    height: 60%
+    background-color: #eee
+    border-radius: 50%
 
 .category-circle:hover
   transform: scale(1.1)
-</code></pre>
+
+.category-name
+  margin-top: 10px
+  text-align: center
+  font-size: 0.9rem
+  color: #333</code></pre>
     </div>
 
     <div class="tab-pane fade " id="tree">
@@ -530,8 +562,8 @@ navigateToCategory(category: { name: string }) {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="category-container">    <div *ngFor="let category of categories" class="category-circle" (click)="navigateToCategory(category)">      <p>{{ category }}</p>    </div>  </div>  </div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddReviewComponent', 'selector': 'app-add-review'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'}];
+        var COMPONENT_TEMPLATE = '<div><div id="test" class="category-container">  <div *ngFor="let categoryItem of categories" class="category-item" (click)="navigateToCategory(categoryItem)">    <div class="category-circle">      <img *ngIf="categoryItem.imageUrl" [src]="categoryItem.imageUrl" alt="{{ categoryItem.category }}">      <div *ngIf="!categoryItem.imageUrl" class="placeholder"></div>    </div>    <p class="category-name">{{ categoryItem.category }}</p>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CategorybooksComponent'};
 </script>

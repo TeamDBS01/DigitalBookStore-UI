@@ -135,6 +135,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#apiUrl" >apiUrl</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#baseUrl" >baseUrl</a>
                             </li>
@@ -176,7 +179,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/user-customer/order/order-management/services/book-info.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user-customer/order/order-management/services/book-info.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -239,8 +242,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/user-customer/order/order-management/services/book-info.service.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/user-customer/order/order-management/services/book-info.service.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -296,6 +299,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="apiUrl"></a>
+                    <span class="name">
+                        <span ><b>apiUrl</b></span>
+                        <a href="#apiUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment.apiHostUrl</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user-customer/order/order-management/services/book-info.service.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="baseUrl"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -306,18 +334,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;http://localhost:8082/dbs/order/&#x27;</code>
+                        <i>Default value : </i><code>this.apiUrl + &#x27;/order/&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/user-customer/order/order-management/services/book-info.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user-customer/order/order-management/services/book-info.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -334,14 +356,17 @@
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import { Book } from &#x27;../../shared/interfaces/book&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
 
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class BookInfoService {
-  private baseUrl &#x3D; &#x27;http://localhost:8082/dbs/order/&#x27;; 
+  // private baseUrl &#x3D; &#x27;http://localhost:8082/dbs/order/&#x27;; 
 
+  apiUrl &#x3D; environment.apiHostUrl;
+  private baseUrl &#x3D; this.apiUrl + &#x27;/order/&#x27;; 
   constructor(private http: HttpClient) { }
 
   getBookTitle(bookId: string): Observable&lt;Book&gt; {

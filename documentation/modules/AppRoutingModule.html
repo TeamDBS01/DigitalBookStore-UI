@@ -131,6 +131,11 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
+import { AllorderstatusComponent } from &#x27;src/user-admin/AdminOrder/allorderstatus/allorderstatus.component&#x27;;
+import { AdminHomeComponent } from &#x27;src/user-admin/Home/admin-home/admin-home.component&#x27;;
+import { DisplayInventoryComponent } from &#x27;src/user-admin/inventory/display-inventory/display-inventory.component&#x27;;
+import { UpdateQuantityComponent } from &#x27;src/user-admin/inventory/update-quantity/update-quantity.component&#x27;;
+import { ViewByBookIDComponent } from &#x27;src/user-admin/inventory/view-by-book-id/view-by-book-id.component&#x27;;
 import { HomeComponent } from &#x27;src/user-customer/Home/home/home.component&#x27;;
 import { BookdetailsComponent } from &#x27;src/user-customer/book/book-details/bookdetails/bookdetails.component&#x27;;
 import { SearchtitleComponent } from &#x27;src/user-customer/book/searchtitle/searchtitle.component&#x27;;
@@ -140,26 +145,34 @@ import { AdminReturnProcessComponent } from &#x27;src/user-customer/order/order-
 import { CartComponent } from &#x27;src/user-customer/order/order-management/components/cart/cart.component&#x27;;
 import { OrderDetailsComponent } from &#x27;src/user-customer/order/order-management/components/order-details/order-details.component&#x27;;
 import { OrderListComponent } from &#x27;src/user-customer/order/order-management/components/order-list/order-list.component&#x27;;
+import { OrderTrackingComponent } from &#x27;src/user-customer/order/order-management/components/order-tracking/order-tracking.component&#x27;;
 import { PaymentComponent } from &#x27;src/user-customer/order/order-management/components/payment/payment.component&#x27;;
 import { PlaceOrderComponent } from &#x27;src/user-customer/order/order-management/components/place-order/place-order.component&#x27;;
 import { UpdateTrackingComponent } from &#x27;src/user-customer/order/order-management/components/update-tracking/update-tracking.component&#x27;;
-import { AddReviewComponent } from &#x27;src/user-customer/review/add-review/add-review.component&#x27;;
 import { AllReviewsComponent } from &#x27;src/user-customer/review/all-reviews/all-reviews.component&#x27;;
-import { ViewAllReviewsComponent } from &#x27;src/user-customer/review/view-all-reviews/view-all-reviews.component&#x27;;
+import { ReviewsByUserIdComponent } from &#x27;src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component&#x27;;
 import { AuthAdminGuard } from &#x27;src/user-customer/user/guard/auth-admin.guard&#x27;;
 import { AuthCustomerGuard } from &#x27;src/user-customer/user/guard/auth-cust.guard &#x27;;
 import { LoginComponent } from &#x27;src/user-customer/user/login/login.component&#x27;;
 import { SignupComponent } from &#x27;src/user-customer/user/signup/signup.component&#x27;;
+import { UserProfileComponent } from &#x27;src/user-customer/user/user-profile/user-profile.component&#x27;;
 
 const routes: Routes &#x3D; [
+
+    { path: &#x27;adminHome/getInventory&#x27;, component: DisplayInventoryComponent },
+    { path: &#x27;getInventoryByBookID&#x27;, component: ViewByBookIDComponent},
+    { path: &#x27;updateQuantity&#x27;, component: UpdateQuantityComponent},
     { path: &#x27;login&#x27;, component: LoginComponent },
     { path: &#x27;signup&#x27;, component: SignupComponent },
-    { path: &#x27;home&#x27;, component: HomeComponent, canActivate: [AuthCustomerGuard] },
-    { path: &#x27;review/addReview&#x27;, component: AddReviewComponent, canActivate: [AuthCustomerGuard], },
-    { path: &#x27;review/updateReview&#x27;, component: AddReviewComponent, canActivate: [AuthCustomerGuard], },
-    { path: &#x27;review/all&#x27;, component: ViewAllReviewsComponent, canActivate: [AuthAdminGuard], },
-    { path: &#x27;review/allReviews&#x27;, component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
-    { path: &#x27;bookid&#x27;, component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
+    { path: &#x27;home&#x27;, component: HomeComponent},
+    { path:&#x27;adminHome&#x27;,component:AdminHomeComponent,canActivate:[AuthAdminGuard]},
+    { path: &#x27;profile&#x27;, component: UserProfileComponent },
+    { path: &#x27;reviews&#x27;, component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
+    { path: &#x27;dashboard&#x27;, redirectTo: &#x27;home&#x27; },
+    { path: &#x27;books&#x27;, component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
+    { path: &#x27;allReviews&#x27;, component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: &#x27;getInventory&#x27;, component: DisplayInventoryComponent, canActivate: [AuthAdminGuard], },
+    { path: &#x27;orders&#x27;, component: AllorderstatusComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;updateBook&#x27;, component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;book-details/:id&#x27;, component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
     { path: &#x27;search&#x27;, component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
@@ -170,15 +183,17 @@ const routes: Routes &#x3D; [
     { path: &#x27;order/admin/return/:id&#x27;, component: AdminReturnProcessComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;order/admin/tracking/:id&#x27;, component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;order/payment/:id&#x27;, component: PaymentComponent, canActivate: [AuthCustomerGuard], },
+    { path: &#x27;order/track/:id&#x27;, component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
     { path: &#x27;**&#x27;, redirectTo: &#x27;home&#x27;, pathMatch: &#x27;full&#x27; },
+    {path:&#x27;adminhome&#x27;,component:AdminHomeComponent},
+    {path:&#x27;allorderstatus&#x27;,component:AllorderstatusComponent}
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
 })
-export class AppRoutingModule { }
-</code></pre>
+export class AppRoutingModule { }</code></pre>
     </div>
 </div>
 
