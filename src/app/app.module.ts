@@ -23,7 +23,6 @@ import { AdminReturnProcessComponent } from 'src/user-customer/order/order-manag
 import { CartComponent } from 'src/user-customer/order/order-management/components/cart/cart.component';
 import { OrderDetailsComponent } from 'src/user-customer/order/order-management/components/order-details/order-details.component';
 import { OrderListComponent } from 'src/user-customer/order/order-management/components/order-list/order-list.component';
-import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
 import { OrderManagementComponent } from 'src/user-customer/order/order-management/order-management.component';
@@ -65,6 +64,7 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
 import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
 import { DeletebookComponent } from 'src/user-customer/book/deletebook/deletebook.component';
+import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
@@ -122,6 +122,7 @@ import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-da
         AdminDashboardComponent
     ],
     imports: [
+  
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -136,5 +137,3 @@ import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-da
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-

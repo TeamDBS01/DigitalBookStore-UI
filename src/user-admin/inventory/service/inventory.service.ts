@@ -44,7 +44,7 @@ public updateRemoveInventory(book_Id: string, quantity: number): Observable<stri
 }
 
 public deleteBookFromInventory(book_Id: string) {
-    const deleteBookURL= `${this.apiUrl}/inventory/${book_Id}`;
+    const deleteBookURL= `${this.apiUrl}/books/delete/${book_Id}`;
     return this.http.delete(deleteBookURL, { responseType: 'text' });
 }
   
