@@ -9,7 +9,8 @@
     </div>
     <div class="col-md-8">
       <h2>{{ book.title }}</h2>
-      <p class="text-muted">Author: {{ book.authorName }}</p>
+      <p class="text-muted">Author: {{ book.authorName }} </p>
+      <p> Price: {{book.price}}</p>
       <div class="mb-3">
         <app-average-rating [bookId]="book.bookID"></app-average-rating>
       </div>
@@ -27,8 +28,18 @@
   <div *ngIf="sampleChapterUrl" class="iframe-popup-container" id="iframePopupContainer">
     <div class="iframe-popup-content">
       <button class="close-button" (click)="closeSampleChapterPopup()">X</button>
-      <iframe [src]="sampleChapterUrl"        width="80%" height="80%" style="border: none; filter: invert(0%); -webkit-filter: invert(0%);">
-      </iframe>
+      <iframe
+      [src]="sampleChapterUrl"
+      width="80%"
+      height="80%"
+      style="border: none; filter: invert(0%); -webkit-filter: invert(0%);"
+      type="application/pdf" 
+       id="pdf_content"
+
+    >
+    </iframe>
+
+
     </div>
   </div>
 </div>

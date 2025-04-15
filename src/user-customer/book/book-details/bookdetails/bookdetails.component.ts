@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Book } from '../../model/Book';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../../service/book.service';
@@ -31,13 +31,25 @@ export class BookdetailsComponent implements OnInit {
     }
   }
 
+  // loadSampleChapter(): void {
+  //   if (this.book && this.book.bookID) {
+  //     this.bookService.loadSampleChapter(this.book.bookID).subscribe(url => {
+  //       this.sampleChapterUrl = url;
+  //       console.log("Url:"+url);
+  //       this.openSampleChapterPopup(); 
+  //     });
+  //   }
+
+    
   loadSampleChapter(): void {
     if (this.book && this.book.bookID) {
       this.bookService.loadSampleChapter(this.book.bookID).subscribe(url => {
         this.sampleChapterUrl = url;
+        console.log("Url:"+url);
         this.openSampleChapterPopup(); 
       });
     }
+
   }
 
   openSampleChapterPopup() {
@@ -57,4 +69,12 @@ export class BookdetailsComponent implements OnInit {
       popupContainer.classList.remove('show');
     }
   }
+
+  @HostListener('contextmenu', ['$event'])
+  onRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  disableContextMenu(event: MouseEvent) {   
+      event.preventDefault();   }
 }

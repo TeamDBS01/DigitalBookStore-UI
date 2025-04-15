@@ -56,7 +56,7 @@ export class BookService {
     const url = title.trim() ? `${this.getBookByIdURL}/title/${title.trim()}` : this.getBookByIdURL;
     return this.http.get<Book>(url);
   }
-  
+
   searchBooksByTitle(title: string): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.getBookByIdURL}/search/${title.trim()}`);
   }
