@@ -66,6 +66,8 @@ import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatu
 import { DeletebookComponent } from 'src/user-customer/book/deletebook/deletebook.component';
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
+import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
@@ -119,7 +121,9 @@ import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-da
         ReviewsByBookIdComponent,
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
-        AdminDashboardComponent
+        AdminDashboardComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent
     ],
     imports: [
   
