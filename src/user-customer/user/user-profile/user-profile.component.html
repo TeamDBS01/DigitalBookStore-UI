@@ -39,8 +39,8 @@
               <div *ngIf="!userDetails.profileImage">
                 <p>No profile picture available.</p>
               </div>
-              <p><strong>Full Name:</strong> {{ userDetails?.name }}</p>
-              <p><strong>Phone Number:</strong> {{ userDetails?.phoneNumber }}</p>
+              <p><strong>Full Name:</strong> {{ userDetails.name }}</p>
+              <p><strong>Phone Number:</strong> {{ userDetails.phoneNumber }}</p>
               <button (click)="isEditingDetails = true">Edit Details</button>
             </div>
             <ng-template #editDetailsSection>
@@ -66,9 +66,9 @@
                   <div *ngIf="profileImagePreview">
                     <img [src]="profileImagePreview" alt="Profile Image Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
                   </div>
-                  <div *ngIf="userDetails?.profileImage && !profileImagePreview">
+                  <div *ngIf="userDetails.profileImage && !profileImagePreview">
                     <p>Current Image:</p>
-                    <img [src]="userDetails?.profileImage" alt="Current Profile Picture" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+                    <img [src]="userDetails.profileImage" alt="Current Profile Picture" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
                   </div>
                 </div>
                 <div class="form-actions">
