@@ -33,27 +33,24 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 
 const routes: Routes = [
 
-    // { path: 'adminHome/getInventory', component: DisplayInventoryComponent },
-    { path: 'getInventoryByBookID', component: ViewByBookIDComponent},
-    { path: 'updateQuantity', component: UpdateQuantityComponent},
+    { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    // { path: 'home', component:DisplayInventoryComponent, canActivate: [AuthAdminGuard]},
-    { path: 'home', component: HomeComponent},
+    { path: 'dashboard', component: AdminDashboardComponent, canActivate: [AuthAdminGuard], },
+    { path: 'getInventoryByBookID', component: ViewByBookIDComponent },
+    { path: 'updateQuantity', component: UpdateQuantityComponent },
     { path: 'profile', component: UserProfileComponent },
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    // { path: 'dashboard', redirectTo: 'getInventory' },
-    {path:'editors-pick', component:EditorspickComponent},
-    { path: 'dashboard', component:AdminDashboardComponent, canActivate:[AuthAdminGuard],},
+    { path: 'reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'editors-pick', component: EditorspickComponent },
     { path: 'books', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'addBooks', component: AddbookComponent, canActivate: [AuthAdminGuard], },
-    { path: 'reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
     { path: 'getInventory', component: DisplayInventoryComponent, canActivate: [AuthAdminGuard], },
     { path: 'orders', component: AllorderstatusComponent, canActivate: [AuthAdminGuard], },
     { path: 'updateBook', component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: 'book-details/:id', component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
-    { path:'category-books', component:CategorybooksComponent, canActivate: [AuthCustomerGuard],},
-    { path: 'category-books-list', component:CategorybookslistComponent},
+    { path: 'category-books', component: CategorybooksComponent, canActivate: [AuthCustomerGuard], },
+    { path: 'category-books-list', component: CategorybookslistComponent },
     { path: 'search', component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/cart', component: CartComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/place', component: PlaceOrderComponent, canActivate: [AuthCustomerGuard], },
@@ -64,12 +61,12 @@ const routes: Routes = [
     { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
-    {path:'adminhome',component:AdminHomeComponent},
-    {path:'allorderstatus',component:AllorderstatusComponent}
+    { path: 'adminhome', component: AdminHomeComponent },
+    { path: 'allorderstatus', component: AllorderstatusComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {anchorScrolling: "enabled"})],
+    imports: [RouterModule.forRoot(routes, { anchorScrolling: "enabled" })],
     exports: [RouterModule],
 })
 export class AppRoutingModule { }
