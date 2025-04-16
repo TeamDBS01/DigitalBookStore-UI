@@ -112,6 +112,7 @@ import { RecentOrdersComponent } from 'src/user-admin/recent-orders/recent-order
         AllorderstatusComponent,
         DealOfTheDayComponent,
         DeletebookComponent,
+        AdminDashboardComponent,
         ViewAllReviewsComponent,
         AllReviewsComponent,
         ReviewComponent,
@@ -123,7 +124,7 @@ import { RecentOrdersComponent } from 'src/user-admin/recent-orders/recent-order
         ViewEditReviewComponent,
         AdminDashboardComponent,
         DashboardInventoryComponent,
-        RecentOrdersComponent
+        RecentOrdersComponent,
     ],
     imports: [
   

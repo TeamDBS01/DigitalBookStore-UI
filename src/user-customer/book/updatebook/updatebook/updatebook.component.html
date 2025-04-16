@@ -25,7 +25,7 @@
         <div class="mb-3">
           <label for="base64img" class="form-label">Cover Image:</label><br>
           <img *ngIf="book.coverImage" [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover" class="mb-2">
-          <!-- <input type="file" class="form-control" id="base64img" [(ngModel)]="book.base64img" name="base64img" (change)="onFileChange($event)"> -->
+          <input type="file" class="form-control" id="base64img" [(ngModel)]="book.base64img" name="base64img" (change)="onFileChange($event)">
         </div>
         
       </div>

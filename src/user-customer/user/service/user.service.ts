@@ -37,7 +37,7 @@
 
 //     constructor(private http: HttpClient, private router: Router) {}
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { User } from '../model/User';
@@ -80,7 +80,7 @@ export class UserService {
   private userDetailsUrl = `${this.apiUrl}/user`;
 
 //   private changePasswordUrl = `${this.apiUrl}/user/change-password`;
-  private changePasswordUrl = `${this.apiUrl}/users`; // Correct base path
+  private changePasswordUrl = `${this.apiUrl}/user`; 
   private closeAccountUrl = `${this.apiUrl}/user/close-account`;
   private userReviewsUrl = `${this.apiUrl}/user/reviews`;
 
@@ -151,9 +151,16 @@ export class UserService {
       }
     
 
+    //   changePassword(userId: number, passwords: any): Observable<any> {
+    //     return this.http.put<any>(`${this.apiUrl}/user/${userId}/change-password`, passwords);
+    //   }
     changePassword(userId: number, passwords: any): Observable<any> {
-        return this.http.put<any>(`${this.changePasswordUrl}/${userId}`, passwords);
-    }
+        let params = new HttpParams()
+          .set('oldPassword', passwords.oldPassword)
+          .set('newPassword', passwords.newPassword);
+    
+        return this.http.put<any>(`${this.apiUrl}/user/${userId}/change-password`, {}, { params });
+      }
     
 
     getUserCredit(userId: number): Observable<{ userId: number; credits: number }> {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Book } from '../model/Book';
 import { BookService } from '../service/book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-viewbookid',
@@ -15,7 +16,7 @@ export class ViewbookidComponent {
   books: Book[] = [];
   
 
-  constructor(private bookService:BookService){}
+  constructor(private bookService:BookService, private router: Router){}
 
   ngOnInit(): void {
     this.loadAllBooks(); // Call this method when the component initializes
@@ -32,6 +33,11 @@ export class ViewbookidComponent {
       }
     );
   }
+  display='none'
+  delete(bookID: string) {
+    this.bookService.bookID = bookID;
+    this.display='block'
+  }
 
   search(){
     this.bookService.getBook(this.book)
@@ -44,6 +50,11 @@ export class ViewbookidComponent {
     }
   }
 
+  update(bookID: string) {
+    this.bookService.bookID = bookID;
+    this.router.navigate(["/updateBook"]);
+  }
+  
   onSubmit(){
     this.search();
     this.submitted=true;
