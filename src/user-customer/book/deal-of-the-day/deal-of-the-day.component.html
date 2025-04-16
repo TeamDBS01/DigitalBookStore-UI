@@ -1,13 +1,15 @@
 <div style="background-color: bisque;" class="p-5">
     <div>
-       <div class="inline-text"> <h3>Deals Of The Day <div class="text-end">Gone in: <strong style="color: orangered">{{timeRemaining | date : 'HH:mm:ss'}}</strong></div></h3></div>
-        <div class="text-end">
-
-            <button (click)="prev()">prev</button>
-            <button (click)="next()">next</button>
+        <div class="d-flex justify-content-between align-items-center">
+            <h3>Deals Of The Day</h3>
+            <h4>Gone in: <strong style="color: orangered">{{timeRemaining | date : 'HH:mm:ss'}}</strong></h4>
         </div>
     </div>
     <div class="row">
         <app-book-deal style="width: 30%" *ngFor="let book of books" [book]="book" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-secondary me-3" (click)="prev()">prev</button>
+        <button class="btn btn-secondary" (click)="next()">next</button>
     </div>
 </div>

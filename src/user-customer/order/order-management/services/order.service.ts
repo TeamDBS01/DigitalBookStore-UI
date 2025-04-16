@@ -14,7 +14,7 @@ export class OrderService {
 
   apiUrl = environment.apiHostUrl;
   private baseUrl = this.apiUrl + '/order'; 
-  private userId = sessionStorage.getItem('userId');
+  private userId = Number(sessionStorage.getItem('userId'));
   private cartItemsCount = new BehaviorSubject<number>(0);
   cartItemsCount$ = this.cartItemsCount.asObservable();
 
