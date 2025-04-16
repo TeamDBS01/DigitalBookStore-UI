@@ -1,4 +1,4 @@
-<div style="background-color: bisque; padding: 2% 5% 4% 5%;">
+<div style="background-color: bisque; padding: 2% 5% 4% 5%;" id="dealOfTheDay">
     <div>
         <div class="d-flex justify-content-between align-items-center">
             <h3>Deals Of The Day <strong style="color: orangered">{{timeRemaining | date : 'HH:mm:ss'}}</strong>
@@ -13,6 +13,6 @@
     </div>
     <div class="row justify-content-around">
         <h4 *ngIf="allBooks === undefined" class="text-center"><br>Loading Your Personalized Deals!<br><br></h4>
-        <app-book-deal style="width: 30%" *ngFor="let book of books" [book]="book" />
+        <app-book-deal style="width: 40%" *ngFor="let book of books" [book]="book"/>
     </div>
 </div>
