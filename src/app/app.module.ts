@@ -66,6 +66,8 @@ import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatu
 import { DeletebookComponent } from 'src/user-customer/book/deletebook/deletebook.component';
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
+import { DashboardInventoryComponent } from 'src/user-admin/dashboard-inventory/dashboard-inventory.component';
+import { RecentOrdersComponent } from 'src/user-admin/recent-orders/recent-orders.component';
 
 @NgModule({
     declarations: [
@@ -119,7 +121,9 @@ import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-da
         ReviewsByBookIdComponent,
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
-        AdminDashboardComponent
+        AdminDashboardComponent,
+        DashboardInventoryComponent,
+        RecentOrdersComponent
     ],
     imports: [
   
