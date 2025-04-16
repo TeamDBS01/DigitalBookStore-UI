@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../../model/Book';
 import { BookService } from '../../service/book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addbook',
@@ -15,8 +16,9 @@ export class AddbookComponent implements OnInit {
   submitted=false;
   book: Book = new Book();
   imageSrc: string = '../../../../assets/img-upload3.png';
+  message!: string;
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private router: Router) { }
 
   ngOnInit(): void {
     this.formData = new FormGroup(
@@ -88,19 +90,21 @@ export class AddbookComponent implements OnInit {
     this.book.description = this.formData.get('description')?.value;
 
     this.bookService.registerBook(this.book)
-      .subscribe(data => {
-        console.log(data);
-        this.result = data;
-        this.message = "Book added!"
-        this.formData.reset(); // Optionally reset the form after successful save
-        this.imageSrc = '../../../../assets/img-upload3.png'; // Reset displayed image after save
-        this.book = new Book(); // Reset the book object for the next entry
-      }, error => {
-        console.log(error)
-        this.message = error.error.text
-      });
+    .subscribe(data => {
+      console.log(data);
+      this.result = data;
+      this.message = "Book added successfully!"; // Set success message
+      this.formData.reset(); // Optionally reset the form after successful save
+      this.imageSrc = '../../../../assets/img-upload3.png'; // Reset displayed image after save
+      this.book = new Book(); // Reset the book object for the next entry
+      setTimeout(() => {
+        this.router.navigate(['/books']);
+      }, 1500);
+    }, error => {
+      console.log(error);
+      this.message = error.error.text; // Set error message
+    });
   }
-  message! : string;
 
   onSubmit() {
     // The save() method now handles transferring form data to the book object

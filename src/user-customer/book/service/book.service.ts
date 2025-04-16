@@ -39,7 +39,7 @@ export class BookService {
   }
 
   public updateBook(Book: any) {
-    return this.http.put<string>(this.updateBookURL + '/update' + '/' + Book.bookID, Book);
+    return this.http.put<string>(this.updateBookURL + '/update' + '/' + Book.bookID, Book, {responseType: 'text' as 'json'});
   }
 
   public deleteBook() {

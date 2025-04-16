@@ -14,7 +14,11 @@
   </div>
   </div>
   <div class="display-el" [hidden]="submitted">
-  <table>
+    <!-- <h4 *ngIf="books.length == 0">{{loading}}</h4> -->
+    <div class="spinner-grow text-primary" role="status" *ngIf="books.length == 0" style="margin: 100px;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  <table *ngIf="books.length > 0">
     <thead>
       <tr>
         <th>Book Id</th>
@@ -36,21 +40,14 @@
         <td> <img [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover"
               style="max-width: 100px; max-height: 100px;"></td>
         <td>
-          <button (click)="update(book.bookID)">Update</button>
-          <button (click)="delete(book.bookID)">Delete</button>
+          <button class="action-btn" (click)="update(book.bookID)"><i class="fas fa-edit"></i></button>
+          <button class="action-btn" (click)="delete(book.bookID)"><i class="fas fa-trash-alt"></i></button>
       </td>
-        <!-- <td class="actions-cell">
-          <button class="action-button update-button" [routerLink]="['/updateBook', book.bookID]" title="Update">
-            <i class="fas fa-edit"></i>
-          </button>
-          <button class="action-button delete-button" [routerLink]="['/deleteBook', book.bookID]" title="Delete">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </td> -->
       </tr>
     </tbody>
   </table>
 </div>
+
 <app-deletebook [ngStyle]="{'display':display}"></app-deletebook>
 <div [hidden]="!submitted && !noRecordFound">
   <div>
@@ -73,11 +70,26 @@
           <td>{{book.authorName}}</td>
           <td>{{book.categoryName}}</td>
           <td> <img [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover"
-                style="max-width: 100px; max-height: 100px;"></td>
-          <td><a routerLink="/updateBook">Update</a></td>
-          <td><a routerLink="/deleteBook">Delete</a></td>
+            style="max-width: 100px; max-height: 100px;">
+          </td>
+          <td>
+            <button class="action-btn" (click)="update(book.bookID)"><i class="fas fa-edit"></i></button>
+            <button class="action-btn" (click)="delete(book.bookID)"><i class="fas fa-trash-alt"></i></button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<!-- <div class="pagination">
+  <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 0"><i class="fa-solid fa-arrow-left"></i></button>
+  <span>Page {{currentPage + 1}} of {{totalPages}}</span>
+  <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage >= totalPages -1"><i class="fa-solid fa-arrow-right"></i></button>
+</div> -->
+
+<!-- <div class="pagination">
+  <button [disabled]="currentPage === 0" (click)="onPageChange(currentPage - 1)">Previous</button>
+  <span>{{ currentPage + 1 }} / {{ totalPages }}</span>
+  <button [disabled]="currentPage === totalPages - 1" (click)="onPageChange(currentPage + 1)">Next</button>
+</div> -->
