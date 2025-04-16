@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Book } from '../../model/Book';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../../service/book.service';
-import { SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -19,6 +19,7 @@ export class BookdetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -41,15 +42,29 @@ export class BookdetailsComponent implements OnInit {
   //   }
 
     
+  // loadSampleChapter(): void {
+  //   if (this.book && this.book.bookID) {
+  //     this.bookService.loadSampleChapter(this.book.bookID).subscribe(url => {
+  //       this.sampleChapterUrl = url;
+  //       console.log("Url:"+url);
+  //       this.openSampleChapterPopup(); 
+  //     });
+  //   }
+
+  // }
+
   loadSampleChapter(): void {
-    if (this.book && this.book.bookID) {
-      this.bookService.loadSampleChapter(this.book.bookID).subscribe(url => {
-        this.sampleChapterUrl = url;
-        console.log("Url:"+url);
-        this.openSampleChapterPopup(); 
+    if (this.book?.bookID) {
+      this.bookService.getPdf().subscribe((pdfData: Blob) => {
+        console.log("pdfData:", pdfData);
+        const blob = new Blob([pdfData], { type: 'application/pdf' });
+        this.sampleChapterUrl = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob) + "#toolbar=0");
+        const iframePopupContainer = document.getElementById('iframePopupContainer');
+        if (iframePopupContainer) {
+          iframePopupContainer.classList.add('show'); // Assuming you have CSS to show the popup
+        }
       });
     }
-
   }
 
   openSampleChapterPopup() {
@@ -70,11 +85,11 @@ export class BookdetailsComponent implements OnInit {
     }
   }
 
-  @HostListener('contextmenu', ['$event'])
-  onRightClick(event: MouseEvent) {
-    event.preventDefault();
-  }
+  // @HostListener('contextmenu', ['$event'])
+  // onRightClick(event: MouseEvent) {
+  //   event.preventDefault();
+  // }
 
-  disableContextMenu(event: MouseEvent) {   
-      event.preventDefault();   }
+  // disableContextMenu(event: MouseEvent) {   
+  //     event.preventDefault();   }
 }
