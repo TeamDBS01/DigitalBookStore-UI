@@ -8,8 +8,8 @@ import { BookService } from '../service/book.service';
     styleUrls: ['./deal-of-the-day.component.sass'],
     standalone: false
 })
-export class DealOfTheDayComponent implements OnInit{
-    
+export class DealOfTheDayComponent implements OnInit {
+
     constructor(private bookService: BookService) { }
 
     timeRemaining!: Date;

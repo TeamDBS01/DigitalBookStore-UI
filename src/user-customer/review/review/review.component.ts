@@ -9,7 +9,6 @@ import { ReviewService } from '../service/review.service';
     standalone: false
 })
 export class ReviewComponent {
-    // @Input() message!: string;
     @Input() review!: Review;
     @Input() canModify = false;
     @Input() userView = false;
@@ -35,7 +34,7 @@ export class ReviewComponent {
         this.reasonValidation = false;
         this.closeModal();
         this.reviewService.deleteReview(this.review.reviewId).subscribe({
-            next: data => {
+            next: () => {
                 window.location.reload();
             },
             error: err => console.error(err),

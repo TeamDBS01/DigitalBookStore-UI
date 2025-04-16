@@ -1,13 +1,16 @@
-<div class="container rounded row p-3 m-2" style="background-color:grey; height: 50vh; justify-content: center; align-items: center;">
+<div class="container row mt-2"
+    style="background-color: white; height: 50vh; justify-content: center; align-items: center; border-radius: 3%;">
     <div class="col">
-        <img style="height: auto; width: 100%"
-            [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''" alt="{{ book.title }}" />
+        <img style="height: auto; width: 100%" [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''"
+            alt="{{ book.title }}" />
     </div>
     <div class="col w-75">
-        <p>by {{book.authorName}}</p>
+        <p>By {{book.authorName}}</p>
         <h5>{{book.title}}</h5>
-        <h5>{{price | currency: 'INR'}} <span class="text-decoration-line-through" style="color: whitesmoke" >{{book.price | currency: "INR"}}</span></h5>
+        <h5>{{price | currency: 'INR'}} <span class="text-decoration-line-through" style="color: gray">{{book.price |
+                currency: "INR"}}</span></h5>
         <h6 *ngIf="quantity > 0" style="color: red;">Only {{quantity}} left!</h6>
         <h6 *ngIf="quantity == 0" style="color: red;">SOLD OUT!</h6>
+        <app-add-to-cart></app-add-to-cart>
     </div>
 </div>
