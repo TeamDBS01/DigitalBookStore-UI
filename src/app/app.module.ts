@@ -68,6 +68,7 @@ import { PaymentComponent } from 'src/user-customer/order/order-management/compo
 import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
 import { DashboardInventoryComponent } from 'src/user-admin/dashboard-inventory/dashboard-inventory.component';
 import { RecentOrdersComponent } from 'src/user-admin/recent-orders/recent-orders.component';
+import { EditorspickComponent } from 'src/user-customer/book/editors-pick/editorspick/editorspick.component';
 
 @NgModule({
     declarations: [
@@ -125,6 +126,7 @@ import { RecentOrdersComponent } from 'src/user-admin/recent-orders/recent-order
         AdminDashboardComponent,
         DashboardInventoryComponent,
         RecentOrdersComponent,
+        EditorspickComponent
     ],
     imports: [
   
