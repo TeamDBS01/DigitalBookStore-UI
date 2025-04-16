@@ -24,7 +24,6 @@ export class DeleteBookInventoryComponent {
             console.log('Success Message:', this.successMessage);
             this.errorMessage = '';
             this.inventoryChangedEvent.emit();
-            this.cdr.detectChanges();
             setTimeout(() => this.close(), 1000); 
           },
           error: (error: any) => {

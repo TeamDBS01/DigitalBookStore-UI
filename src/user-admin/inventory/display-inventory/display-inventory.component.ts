@@ -19,6 +19,7 @@ export class DisplayInventoryComponent implements OnInit, OnDestroy {
   pageSize: number = 10;
   currentPage: number = 0;
   totalPages: number = 0;
+  isLoading: boolean = true;
 
   isUpdateModalVisible: boolean = false;
   selectedInventory: Inventory | null = null;
@@ -54,6 +55,7 @@ export class DisplayInventoryComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.allInventories = data;
         this.filterInventories(''); // Initial filter with empty string to show all
+        this.isLoading = false;
         console.log('All Inventories Loaded:', this.allInventories.length);
       });
   }
@@ -64,6 +66,7 @@ export class DisplayInventoryComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.inventories = data;
         this.cdr.detectChanges();
+        this.isLoading = false;
         console.log(`Loaded Page ${page + 1} with ${data.length} items:`, this.inventories);
       });
   }

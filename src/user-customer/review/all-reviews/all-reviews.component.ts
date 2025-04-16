@@ -19,6 +19,8 @@ export class AllReviewsComponent {
         this.reviewService.getAllReviews().subscribe({
             next: (data) => {
                 this.reviews = data;
+                console.log(data);
+                
                 this.message = ''
             },
             error: (error) => {

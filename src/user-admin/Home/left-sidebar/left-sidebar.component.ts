@@ -25,6 +25,16 @@ export class LeftSidebarComponent {
       label: 'Books'
     },
     {
+        routeLink: 'customers',
+        icon: 'fa-solid fa-user',
+        label:'Customers'
+    },
+    {
+        routeLink: 'orders',
+        icon: 'fa-solid fa-list',
+        label: 'Orders'
+      },
+    {
       routeLink: 'getInventory',
       icon: 'fa-solid fa-warehouse',
       label: 'Inventory'
@@ -33,11 +43,6 @@ export class LeftSidebarComponent {
       routeLink: 'reviews',
       icon: 'fa-solid fa-star',
       label: 'Reviews'
-    },
-    {
-      routeLink: 'orders',
-      icon: 'fa-solid fa-list',
-      label: 'Orders'
     }
   ];
 

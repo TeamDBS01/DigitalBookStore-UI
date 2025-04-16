@@ -5,10 +5,11 @@ import { BookService } from '../service/book.service';
 @Component({
     selector: 'app-deal-of-the-day',
     templateUrl: './deal-of-the-day.component.html',
-    styleUrls: ['./deal-of-the-day.component.sass']
+    styleUrls: ['./deal-of-the-day.component.sass'],
+    standalone: false
 })
-export class DealOfTheDayComponent implements OnInit{
-    
+export class DealOfTheDayComponent implements OnInit {
+
     constructor(private bookService: BookService) { }
 
     timeRemaining!: Date;
@@ -29,17 +30,17 @@ export class DealOfTheDayComponent implements OnInit{
     }
     page = 0;
     next() {
-        if (this.page + 3 > this.allBooks.length) {
+        if (this.page + 2 > this.allBooks.length) {
             this.page = 0;
         }
-        this.books = this.allBooks.slice(this.page, this.page + 3);
-        this.page += 3;
+        this.books = this.allBooks.slice(this.page, this.page + 2);
+        this.page += 2;
     }
     prev() {
-        if (this.page - 3 < 0) {
-            this.page = this.allBooks.length - 4;
+        if (this.page - 2 < 0) {
+            this.page = this.allBooks.length - 3;
         }
-        this.books = this.allBooks.slice(this.page - 3, this.page);
-        this.page -= 3
+        this.books = this.allBooks.slice(this.page - 2, this.page);
+        this.page -= 2
     }
 }

@@ -1,11 +1,15 @@
-$navbar-height: 4.5rem // Set navbar height to 7rem
-$brand-color: #ffffff // Example brand color (blue)
-$profile-name-color: #333 // Dark gray for profile name
+$navbar-height: 5rem // Set navbar height to 7rem
+$brand-color: #37474F // Dark gray/blue for brand
+$profile-name-color: #37474F // Dark gray/blue for profile name
 $icon-color: #555 // Medium gray for icons
-$dropdown-bg: #fff // White background for dropdown
-$dropdown-item-hover-bg: #f8f9fa // Light gray on dropdown item hover
+$dropdown-bg: #F8F8F8 // Light background for dropdown (sidebar light equivalent)
+$dropdown-item-hover-bg: #E0E0E0 // Lighter background on dropdown item hover (sidebar lighter equivalent)
 $dropdown-divider-color: #ddd // Light gray for divider
 $logout-color: #dc3545 // Red for logout text
+
+$sidebar-bg: #E0E0E0 /* Light grey for sidebar */
+$sidebar-text-color: #37474F /* Dark grey/blue for text */
+$sidebar-accent-color: #CCCCCC /* Slightly darker light grey for accent */
 
 .navbar
   display: flex
@@ -13,7 +17,7 @@ $logout-color: #dc3545 // Red for logout text
   align-items: center
   height: $navbar-height
   padding: 0 1.5rem
-  background-color: #6c757d 
+  background-color: darken(#e0e0e0, 5%)
   position: fixed
   top: 0
   left: 0
@@ -42,16 +46,16 @@ $logout-color: #dc3545 // Red for logout text
         margin-right: 0.5rem
         i
           font-size: 1.8rem
-          color: #f8f9fa
+          color: $brand-color
 
       .profile-name
         font-size: 1rem
-        color: #f8f9fa
+        color: $brand-color
         margin-right: 0.3rem
 
       i.fa-caret-down
         font-size: 0.8rem
-        color: #f8f9fa
+        color: $brand-color
 
     .dropdown-menu
       position: absolute
@@ -75,14 +79,14 @@ $logout-color: #dc3545 // Red for logout text
         align-items: center
         padding: 0.75rem 1rem
         text-decoration: none
-        color: $profile-name-color
+        color: $profile-name-color // Dark text for dropdown items
         font-size: 1rem
         transition: background-color 0.15s ease-in-out
 
         i
           margin-right: 0.5rem
           font-size: 1rem
-          color: $icon-color
+          color: $profile-name-color
 
         &:hover
           background-color: $dropdown-item-hover-bg

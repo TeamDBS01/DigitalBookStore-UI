@@ -52,8 +52,10 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
 
     display = "none";
     openModal() { this.display = 'block' }
-    closeModal() { 
-        this.display = 'none'
+    closeModal() { this.display = 'none' }
+
+    discardChanges() {
+        this.closeModal();
         this.editing.emit(false);
     }
 
