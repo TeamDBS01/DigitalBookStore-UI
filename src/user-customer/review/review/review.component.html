@@ -13,12 +13,12 @@
                 </h6>
             </div>
         </div>
-        <app-stars [rating]="(review !== undefined)? review.rating : 0" />
-        <p class="card-text">{{(review !== undefined)? review.comment : ''}}</p>
+        <app-stars [rating]="review.rating" />
+        <p class="card-text">{{review.comment}}</p>
     </div>
 </div>
 
-<div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)', 'position': 'absolute'}"> 
+<div class="modal mt-5" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)'}"> 
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

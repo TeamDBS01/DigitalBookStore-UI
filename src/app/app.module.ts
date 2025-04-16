@@ -110,6 +110,7 @@ import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-da
         AllorderstatusComponent,
         DealOfTheDayComponent,
         DeletebookComponent,
+        AdminDashboardComponent,
         ViewAllReviewsComponent,
         AllReviewsComponent,
         ReviewComponent,
@@ -119,7 +120,6 @@ import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-da
         ReviewsByBookIdComponent,
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
-        AdminDashboardComponent
     ],
     imports: [
   
