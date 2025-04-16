@@ -11,6 +11,6 @@
                 currency: "INR"}}</span></h5>
         <h6 *ngIf="quantity > 0" style="color: red;">Only {{quantity}} left!</h6>
         <h6 *ngIf="quantity == 0" style="color: red;">SOLD OUT!</h6>
-        <app-add-to-cart></app-add-to-cart>
+        <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>
     </div>
 </div>
