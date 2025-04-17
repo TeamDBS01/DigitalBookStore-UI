@@ -23,16 +23,19 @@
 
 <div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)', 'padding-top' : '60px'}">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" [ngClass]="{'ms-5' : adminView}">
             <div class="modal-header">
                 <h1 class="modal-title fs-5">Delete Review?</h1>
                 <button type="button" class="btn-close p-3" (click)="closeModal()"></button>
             </div>
             <div class="modal-body">
                 Are you sure you want to delete this Review?
-                <input *ngIf="adminView" type="text" class="form-control mt-2" placeholder="Enter your reason here."
-                    [(ngModel)]="reasonForDelete" />
-                <p *ngIf="reasonValidation && reasonForDelete.length == 0" style='color: red;'>Reason is Required</p>
+                <br>
+                <br>
+                <select *ngIf="adminView" [(ngModel)]="reasonForDelete" class="form-control">
+                    <option *ngFor="let reason of reasonsForDelete" [value]="reason" >{{reason}}</option>
+                </select>
+                <p *ngIf="reasonValidation && reasonForDelete === reasonsForDelete[0]" style='color: red;'>Reason is Required</p>
             </div>
             <div class="modal-footer">
                 <button type="button" (click)="closeModal()" class="btn btn-secondary">No</button>

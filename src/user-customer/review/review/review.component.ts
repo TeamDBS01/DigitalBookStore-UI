@@ -14,30 +14,37 @@ export class ReviewComponent {
     @Input() userView = false;
     @Input() adminView = false;
     @Output() editing = new EventEmitter<boolean>();
-    reasonForDelete = '';
+    reasonsForDelete = ["Choose a Reason", "Invalid", "Irrelevant", "Spam", "Bad Language"];
+    reasonForDelete = this.reasonsForDelete[0];
     reasonValidation = false;
-    
+
     display = "none";
-    openModal() { this.display = 'block'}
-    closeModal() { this.display = 'none'}
-    
+    openModal() { this.display = 'block' }
+    closeModal() { this.display = 'none' }
+
     constructor(private reviewService: ReviewService) { }
 
     editReview() {
         this.editing.emit(true);
     }
     deleteReview() {
-        if (this.adminView && this.reasonForDelete === '') {
+        if (this.adminView && this.reasonForDelete === this.reasonsForDelete[0]) {
             this.reasonValidation = true;
-            return;
+        } else {
+            this.reasonValidation = false;
+            this.closeModal();
+            if (this.adminView) {
+                this.review.reason = this.reasonForDelete;
+                this.reviewService.addReviewDelete(this.review).subscribe({
+                    next: () => window.location.reload(),
+                    error: err => console.error(err),
+                })
+            } else {
+                this.reviewService.deleteReview(this.review.reviewId).subscribe({
+                    next: () => window.location.reload(),
+                    error: err => console.error(err),
+                })
+            }
         }
-        this.reasonValidation = false;
-        this.closeModal();
-        this.reviewService.deleteReview(this.review.reviewId).subscribe({
-            next: () => {
-                window.location.reload();
-            },
-            error: err => console.error(err),
-        })
     }
 }
