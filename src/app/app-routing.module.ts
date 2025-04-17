@@ -25,9 +25,11 @@ import { PlaceOrderComponent } from 'src/user-customer/order/order-management/co
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
+import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
 import { AuthAdminGuard } from 'src/user-customer/user/guard/auth-admin.guard';
 import { AuthCustomerGuard } from 'src/user-customer/user/guard/auth-cust.guard ';
 import { LoginComponent } from 'src/user-customer/user/login/login.component';
+import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/reset-password.component';
 import { SignupComponent } from 'src/user-customer/user/signup/signup.component';
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 
@@ -60,9 +62,11 @@ const routes: Routes = [
     { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
     { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
-    { path: '**', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'adminhome', component: AdminHomeComponent },
-    { path: 'allorderstatus', component: AllorderstatusComponent }
+    // { path: '**', redirectTo: 'home', pathMatch: 'full' },
+    // {path:'adminhome',component:AdminHomeComponent},
+    // {path:'allorderstatus',component:AllorderstatusComponent},
+    { path: 'forgotpassword', component:ForgotPasswordComponent},
+{ path: 'reset-password', component:ResetPasswordComponent },
 ];
 
 @NgModule({

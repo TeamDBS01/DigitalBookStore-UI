@@ -68,6 +68,8 @@ import { OrderTrackingComponent } from 'src/user-customer/order/order-management
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-review/view-edit-review.component';
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
+import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
@@ -125,6 +127,9 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
         ReviewsByBookIdComponent,
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
+        AdminDashboardComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent
     ],
     imports: [
   
