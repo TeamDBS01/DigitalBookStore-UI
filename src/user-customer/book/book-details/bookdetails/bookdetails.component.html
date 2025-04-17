@@ -15,10 +15,13 @@
         <app-average-rating [bookId]="book.bookID"></app-average-rating>
       </div>
       <p class="lead">{{ book.description }}</p>
-      <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>
+      <div>
       <button class="readbtn" (click)="loadSampleChapter()" *ngIf="book.bookID">
         <i ></i> Read Sample Chapter
       </button>
+    </div>
+      <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>
+      
       <div class="mt-4">
         <app-reviews-by-book-id [bookId]="book.bookID"></app-reviews-by-book-id>
       </div>

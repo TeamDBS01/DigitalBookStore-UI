@@ -11,6 +11,7 @@ import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/add
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
 import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
 import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
+import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
 import { EditorspickComponent } from 'src/user-customer/book/editors-pick/editorspick/editorspick.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
     { path: 'profile', component: UserProfileComponent },
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
     // { path: 'dashboard', redirectTo: 'getInventory' },
+    {path:'dealOfTheDay', component:DealOfTheDayComponent},
     {path:'editors-pick', component:EditorspickComponent},
     { path: 'dashboard', component:AdminDashboardComponent, canActivate:[AuthAdminGuard],},
     { path: 'books', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
