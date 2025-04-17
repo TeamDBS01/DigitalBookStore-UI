@@ -41,13 +41,18 @@ export class UpdatebookComponent implements OnInit {
       .subscribe(data => {
         this.result = data;
         this.submitted = true; // Show the result message
-        this.router.navigate(['/books'])
+        this.message = 'Book updated successfully!'; // Set the success message
+        setTimeout(() => {
+          this.router.navigate(['/books']);
+        }, 1500); // Navigate after a short delay
       }, error => {
         console.log(error);
         this.result = 'Error updating book.'; // Display an error message
         this.submitted = true;
+        this.message = 'Error updating book.'; // Set the error message
       });
   }
+
   message!:string;
   onSubmit() {
     this.update();

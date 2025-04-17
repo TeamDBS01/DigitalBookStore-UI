@@ -4,9 +4,9 @@
             <h3>Deals Of The Day <strong style="color: orangered">{{timeRemaining | date : 'HH:mm:ss'}}</strong>
             </h3>
             <div style="cursor: pointer; display: flex; flex-direction: row; margin: 2%;">
-                <div style (click)="prev()"><i class="fa-solid fa-arrow-left rounded-circle p-3 me-2"
+                <div (click)="prev()"><i class="fa-solid fa-arrow-left rounded-circle p-3 me-2"
                         style="background-color: white;"></i></div>
-                <div style (click)="next()"><i class="fa-solid fa-arrow-right rounded-circle p-3"
+                <div (click)="next()"><i class="fa-solid fa-arrow-right rounded-circle p-3"
                         style="background-color: white;"></i></div>
             </div>
         </div>
