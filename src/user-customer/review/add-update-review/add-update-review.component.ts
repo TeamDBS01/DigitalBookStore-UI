@@ -56,7 +56,9 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
 
     discardChanges() {
         this.closeModal();
-        this.editing.emit(false);
+        if (this.review !== undefined) {   
+            this.editing.emit(false);
+        }
     }
 
     handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }

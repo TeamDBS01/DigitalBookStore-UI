@@ -8,11 +8,11 @@
         <div (click)="openBook()" style="cursor: pointer">
             <p>By {{book.authorName}}</p>
             <h5>{{book.title}}</h5>
-            <h5>{{price | currency: 'INR'}} <span class="text-decoration-line-through" style="color: gray">{{book.price
+            <h5 *ngIf="quantity > 0">{{price | currency: 'INR'}} <span class="text-decoration-line-through" style="color: gray">{{book.price
                     |
                     currency: "INR"}}</span></h5>
             <h6 *ngIf="quantity > 0" style="color: red;">Only {{quantity}} left!</h6>
-            <h6 *ngIf="quantity == 0" style="color: red;">SOLD OUT!</h6>
+            <h6 *ngIf="quantity === 0" style="color: red;">SOLD OUT!</h6>
         </div>
         <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>
     </div>
