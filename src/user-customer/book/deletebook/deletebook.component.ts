@@ -20,13 +20,16 @@ export class DeletebookComponent {
   display = 'block'
   none() {
     this.display = 'none'
-
   }
 
   delete(){
+    this.none();
     this.bookService.deleteBook()
-    .subscribe(data => this.result=data, error => console.log(error));
+    .subscribe(data => {
+      this.result=data;
+    }, error => console.log(error));
     this.book=new Book();
+    window.location.reload();
   }
 
   onSubmit(){

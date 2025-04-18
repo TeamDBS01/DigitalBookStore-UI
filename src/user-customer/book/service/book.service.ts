@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Book } from '../model/Book';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BookResponse } from '../model/BookResponse';
 import { catchError, map, Observable, of } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+const headers = {
+  headers: new HttpHeaders({
+     'Accept':'blob'
+  }),
+  'responseType': 'blob' as 'json'
+ }
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +39,7 @@ export class BookService {
   }
 
   public updateBook(Book: any) {
-    return this.http.put<string>(this.updateBookURL + '/update' + '/' + Book.bookID, Book);
+    return this.http.put<string>(this.updateBookURL + '/update' + '/' + Book.bookID, Book, {responseType: 'text' as 'json'});
   }
 
   public deleteBook() {
@@ -47,6 +53,18 @@ export class BookService {
   getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.getBookByIdURL}`);
   }
+
+  getAllBooksWithPagination(page: number = 0, size: number = 10): Observable<Book[]> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    return this.http.get<Book[]>(this.getBookByIdURL, { params });
+  }
+
+  getNumberOfPages(): Observable<number> {
+    return this.http.get<number>(`${this.getBookByIdURL}/pages`);
+  }
+
 
   filterBooks(query: string): Observable<Book[]> {
     const url = query.trim() ? `${this.getBookByIdURL}/filter?author=${query.trim()}` : `${this.getBookByIdURL}`;
@@ -82,16 +100,20 @@ export class BookService {
     );
   }
 
-  loadSampleChapter(bookID: string): Observable<SafeResourceUrl | null> {
-    return this.http.get(`${this.getBookByIdURL}/${bookID}/sample`, { responseType: 'blob' }).pipe(
-      map((response: Blob) => {
-        const url = window.URL.createObjectURL(response);
-        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-      }),
-      catchError(error => {
-        console.error('Error loading sample chapter', error);
-        return of(null); 
-      })
-    );
+  // loadSampleChapter(bookID: string): Observable<SafeResourceUrl | null> {
+  //   return this.http.get(`${this.getBookByIdURL}/${bookID}/sample`, { responseType: 'blob' }).pipe(
+  //     map((response: Blob) => {
+  //       const url = window.URL.createObjectURL(response);
+  //       return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error loading sample chapter', error);
+  //       return of(null); 
+  //     })
+  //   );
+  // }
+
+  public getPdf(){
+    return this.http.get<any>("http://localhost:8082/dbs/books/pdf",headers);
   }
 }

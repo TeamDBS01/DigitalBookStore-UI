@@ -7,12 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InventoryService } from 'src/user-admin/inventory/service/inventory.service';
 import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/addbook/addbook.component';
+import { BookDealComponent } from 'src/user-customer/book/book-deal/book-deal.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
 import { FilterComponent } from 'src/user-customer/book/filter/filter.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { BookService } from 'src/user-customer/book/service/book.service';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
-import { BookDealComponent } from 'src/user-customer/book/book-deal/book-deal.component';
 import { ViewbookidComponent } from 'src/user-customer/book/viewbookid/viewbookid.component';
 import { BookCarouselComponent } from 'src/user-customer/Home/book-carousel/book-carousel.component';
 import { BookHeroComponent } from 'src/user-customer/Home/book-hero/book-hero.component';
@@ -34,7 +34,6 @@ import { AverageRatingComponent } from 'src/user-customer/review/average-rating/
 import { ReviewComponent } from 'src/user-customer/review/review/review.component';
 import { ReviewService } from 'src/user-customer/review/service/review.service';
 import { StarsComponent } from 'src/user-customer/review/stars/stars.component';
-import { ViewAllReviewsComponent } from 'src/user-customer/review/view-all-reviews/view-all-reviews.component';
 import { LoginComponent } from 'src/user-customer/user/login/login.component';
 import { UserService } from 'src/user-customer/user/service/user.service';
 import { SignupComponent } from 'src/user-customer/user/signup/signup.component';
@@ -49,6 +48,9 @@ import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-us
 
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
+import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
+import { DashboardInventoryComponent } from 'src/user-admin/dashboard-inventory/dashboard-inventory.component';
 import { AdminHomeComponent } from 'src/user-admin/Home/admin-home/admin-home.component';
 import { LeftSidebarComponent } from 'src/user-admin/Home/left-sidebar/left-sidebar.component';
 import { MainComponent } from 'src/user-admin/Home/main/main.component';
@@ -57,17 +59,17 @@ import { DeleteBookInventoryComponent } from 'src/user-admin/inventory/delete-bo
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
+import { RecentOrdersComponent } from 'src/user-admin/recent-orders/recent-orders.component';
+import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
+import { DeletebookComponent } from 'src/user-customer/book/deletebook/deletebook.component';
+import { EditorspickComponent } from 'src/user-customer/book/editors-pick/editorspick/editorspick.component';
 import { FooterComponent } from 'src/user-customer/Home/footer/footer.component';
 import { OrderTrackingComponent } from 'src/user-customer/order/order-management/components/order-tracking/order-tracking.component';
+import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-review/view-edit-review.component';
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
-import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
-import { AllorderstatusComponent } from 'src/user-admin/AdminOrder/allorderstatus/allorderstatus.component';
-import { DeletebookComponent } from 'src/user-customer/book/deletebook/deletebook.component';
-import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
-import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-dashboard.component';
-import { DashboardInventoryComponent } from 'src/user-admin/dashboard-inventory/dashboard-inventory.component';
-import { RecentOrdersComponent } from 'src/user-admin/recent-orders/recent-orders.component';
+import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/reset-password.component';
 import { WelcomeAdminComponent } from 'src/user-admin/welcome-admin/welcome-admin.component';
 
 @NgModule({
@@ -114,7 +116,10 @@ import { WelcomeAdminComponent } from 'src/user-admin/welcome-admin/welcome-admi
         DealOfTheDayComponent,
         DeletebookComponent,
         AdminDashboardComponent,
-        ViewAllReviewsComponent,
+        AdminDashboardComponent,
+        DashboardInventoryComponent,
+        RecentOrdersComponent,
+        EditorspickComponent,
         AllReviewsComponent,
         ReviewComponent,
         StarsComponent,
@@ -124,9 +129,9 @@ import { WelcomeAdminComponent } from 'src/user-admin/welcome-admin/welcome-admi
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
         AdminDashboardComponent,
-        DashboardInventoryComponent,
-        RecentOrdersComponent,
-        WelcomeAdminComponent
+        ForgotPasswordComponent,
+        ResetPasswordComponent,
+        WelcomeAdminComponent,
     ],
     imports: [
   

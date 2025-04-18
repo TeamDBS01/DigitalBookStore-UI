@@ -67,11 +67,17 @@ export class UserService {
   registerEndpoint = "/user/auth/register";
   getcreditsEndpoint="/user/get-user-credits/{userid}";
   addcreditsEndpoint = "/user/add-credits/{userid}/{amount}";
+  forgotPasswordEndpoint = "/user/forgot-password";
+  resetPasswordEndpoint = "/user/reset-password";
 
   getcreitdsurl:string=this.apiUrl+this.getcreditsEndpoint;
   addcreitdsurl:string=this.apiUrl+this.addcreditsEndpoint;
   authenticateURL: string = this.apiUrl + this.loginEndpoint;
   registerURL: string = this.apiUrl + this.registerEndpoint;
+
+  forgotPasswordURL: string = this.apiUrl + this.forgotPasswordEndpoint;
+  resetPasswordURL: string = this.apiUrl + this.resetPasswordEndpoint;
+ 
   user!: User;
   authenticated: boolean = false;
   users!: User[];
@@ -177,6 +183,16 @@ export class UserService {
 
     closeAccount(userId: number): Observable<any> {
         return this.http.delete<any>(`${this.closeAccountUrl}/${userId}`);
+    }
+
+    forgotPassword(email: string): Observable<string> {
+      return this.http.post(this.forgotPasswordURL, { email }, { responseType: 'text' });  
+    }
+    
+    
+    
+    resetPassword(resetData: { token: string, newPassword: string, confirmPassword: string }): Observable<string> {
+      return this.http.post(this.resetPasswordURL, resetData, { responseType: 'text' }); // Specify responseType as 'text'
     }
 
     isUserLoggedIn(): boolean {
