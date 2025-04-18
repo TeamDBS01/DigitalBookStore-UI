@@ -28,9 +28,15 @@ export class BookDealComponent implements OnInit {
         this.router.navigate(["book-details/", this.book.bookID])
     }
     discount(price: number): number {
-        const discount = [10, 25, 50, 75];
-        const randomDiscount = discount[Math.floor(Math.random() * discount.length)];
-
-        return price * (1 - randomDiscount / 100);
-    }
+        const discounts = [5, 10, 15, 20, 25, 33, 50, 75];
+        const diff = new Date().getTime() - new Date(new Date().getFullYear(), 0, 1).getTime();
+        const oneDay = 1000 * 60 * 60 * 24;
+        const dayOfYear = Math.floor(diff / oneDay) + 1;
+      
+        const combinedValue = dayOfYear + this.book.title.length;
+        const discountIndex = combinedValue % discounts.length;
+        const selectedDiscount = discounts[discountIndex];
+      
+        return price * (1 - selectedDiscount / 100);
+      }
 }

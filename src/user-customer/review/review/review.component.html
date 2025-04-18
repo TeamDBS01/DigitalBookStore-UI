@@ -19,10 +19,15 @@
         <app-stars [rating]="review.rating" />
         <p class="card-text">{{review.comment}}</p>
     </div>
-</div>
+</div>  
 
-<div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)', 'padding-top' : '60px'}">
-    <div class="modal-dialog">
+
+<!-- <div class="modal mt-5" [ngStyle]="{'display': display, 'position': 'fixed',  'background': 'rgba(0,0,0, .75)'}">
+    <div class="modal-dialog" style="display:flex; justify-content: center; align-items: center; margin-top: 10%; width:30%">
+   </div> -->
+
+<div class="modal" [ngStyle]="{'display': display, 'background': 'rgba(0,0,0, .75)', 'position' : 'fixed'}">
+    <div class="modal-dialog" style="display:flex; justify-content: center; align-items: center; margin-top: 10%; width:50%">
         <div class="modal-content" [ngClass]="{'ms-5' : adminView}">
             <div class="modal-header">
                 <h1 class="modal-title fs-5">Delete Review?</h1>
