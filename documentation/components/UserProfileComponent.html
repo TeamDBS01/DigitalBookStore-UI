@@ -432,8 +432,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="328"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:328</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="365"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:365</a></div>
                         </td>
                     </tr>
 
@@ -469,8 +469,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="427"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:427</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="471"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:471</a></div>
                         </td>
                     </tr>
 
@@ -506,8 +506,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="444"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:444</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="488"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:488</a></div>
                         </td>
                     </tr>
 
@@ -647,8 +647,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="437"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:437</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="481"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:481</a></div>
                         </td>
                     </tr>
 
@@ -684,8 +684,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="366"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:366</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="410"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:410</a></div>
                         </td>
                     </tr>
 
@@ -758,8 +758,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="347"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:347</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="391"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:391</a></div>
                         </td>
                     </tr>
 
@@ -825,8 +825,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="383"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:383</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="427"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:427</a></div>
                         </td>
                     </tr>
 
@@ -929,8 +929,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="379"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:379</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="423"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:423</a></div>
                         </td>
                     </tr>
 
@@ -996,8 +996,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="393"
-                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:393</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="437"
+                                    class="link-to-prism">src/user-customer/user/user-profile/user-profile.component.ts:437</a></div>
                         </td>
                     </tr>
 
@@ -1990,42 +1990,86 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+    // changePassword() {
+    //     if (this.passwordForm.valid) {
+    //         this.userService.changePassword(this.userId!, this.passwordForm.value).pipe(
+    //             catchError(error &#x3D;&gt; {
+    //                 console.error(&#x27;Error changing password:&#x27;, error);
+    //                 this.passwordErrorMessage &#x3D; error?.message || &#x27;Failed to change password.&#x27;;
+    //                 return of(null);
+    //             })
+    //         ).subscribe(response &#x3D;&gt; {
+    //             if (response?.statusCode &#x3D;&#x3D;&#x3D; 200) {
+    //                 this.passwordSuccessMessage &#x3D; response.message || &#x27;Password changed successfully!&#x27;;
+    //                 this.passwordForm.reset();
+    //             } else {
+    //                 this.passwordErrorMessage &#x3D; response?.message || &#x27;Failed to change password.&#x27;;
+    //             }
+    //         });
+    //     }
+    // }
+
+    // passwordMatchValidator(formGroup: FormGroup) {
+    //     const newPasswordControl &#x3D; formGroup.controls[&#x27;newPassword&#x27;];
+    //     const confirmPasswordControl &#x3D; formGroup.controls[&#x27;confirmPassword&#x27;];
+
+    //     if (!newPasswordControl || !confirmPasswordControl) {
+    //         return null;
+    //     }
+
+    //     if (confirmPasswordControl.value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+    //         return null;
+    //     }
+
+    //     if (newPasswordControl.value !&#x3D;&#x3D; confirmPasswordControl.value) {
+    //         return { mismatch: true };
+    //     }
+
+    //     return null;
+    // }
     changePassword() {
-        if (this.passwordForm.valid) {
-            this.userService.changePassword(this.userId!, this.passwordForm.value).pipe(
-                catchError(error &#x3D;&gt; {
-                    console.error(&#x27;Error changing password:&#x27;, error);
-                    this.passwordErrorMessage &#x3D; error?.message || &#x27;Failed to change password.&#x27;;
-                    return of(null);
-                })
-            ).subscribe(response &#x3D;&gt; {
-                if (response?.statusCode &#x3D;&#x3D;&#x3D; 200) {
-                    this.passwordSuccessMessage &#x3D; response.message || &#x27;Password changed successfully!&#x27;;
-                    this.passwordForm.reset();
-                } else {
-                    this.passwordErrorMessage &#x3D; response?.message || &#x27;Failed to change password.&#x27;;
-                }
-            });
-        }
+      if (this.passwordForm.valid &amp;&amp; this.userId !&#x3D;&#x3D; null) {
+        const passwords &#x3D; {
+          oldPassword: this.passwordForm.value.currentPassword,
+          newPassword: this.passwordForm.value.newPassword
+        };
+  
+        this.userService.changePassword(this.userId, passwords).pipe(
+          catchError(error &#x3D;&gt; {
+            console.error(&#x27;Error changing password:&#x27;, error);
+            this.passwordErrorMessage &#x3D; error?.error?.message || &#x27;Failed to change password.&#x27;; // Access error message from the error object
+            return of(null);
+          })
+        ).subscribe(response &#x3D;&gt; {
+          if (response?.statusCode &#x3D;&#x3D;&#x3D; 200) {
+            this.passwordSuccessMessage &#x3D; response.message || &#x27;Password changed successfully!&#x27;;
+            this.passwordForm.reset();
+          } else {
+            this.passwordErrorMessage &#x3D; response?.message || &#x27;Failed to change password.&#x27;;
+          }
+        });
+      } else {
+        // Form is invalid or userId is missing, error messages should already be displayed
+      }
     }
-
+  
     passwordMatchValidator(formGroup: FormGroup) {
-        const newPasswordControl &#x3D; formGroup.controls[&#x27;newPassword&#x27;];
-        const confirmPasswordControl &#x3D; formGroup.controls[&#x27;confirmPassword&#x27;];
-
-        if (!newPasswordControl || !confirmPasswordControl) {
-            return null;
-        }
-
-        if (confirmPasswordControl.value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
-            return null;
-        }
-
-        if (newPasswordControl.value !&#x3D;&#x3D; confirmPasswordControl.value) {
-            return { mismatch: true };
-        }
-
+      const newPasswordControl &#x3D; formGroup.controls[&#x27;newPassword&#x27;];
+      const confirmPasswordControl &#x3D; formGroup.controls[&#x27;confirmPassword&#x27;];
+  
+      if (!newPasswordControl || !confirmPasswordControl) {
         return null;
+      }
+  
+      if (confirmPasswordControl.value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+        return null;
+      }
+  
+      if (newPasswordControl.value !&#x3D;&#x3D; confirmPasswordControl.value) {
+        return { mismatch: true };
+      }
+  
+      return null;
     }
 
     loadWalletBalance() {
@@ -2169,8 +2213,8 @@ export class UserProfileComponent implements OnInit {
               &lt;div *ngIf&#x3D;&quot;!userDetails.profileImage&quot;&gt;
                 &lt;p&gt;No profile picture available.&lt;/p&gt;
               &lt;/div&gt;
-              &lt;p&gt;&lt;strong&gt;Full Name:&lt;/strong&gt; {{ userDetails?.name }}&lt;/p&gt;
-              &lt;p&gt;&lt;strong&gt;Phone Number:&lt;/strong&gt; {{ userDetails?.phoneNumber }}&lt;/p&gt;
+              &lt;p&gt;&lt;strong&gt;Full Name:&lt;/strong&gt; {{ userDetails.name }}&lt;/p&gt;
+              &lt;p&gt;&lt;strong&gt;Phone Number:&lt;/strong&gt; {{ userDetails.phoneNumber }}&lt;/p&gt;
               &lt;button (click)&#x3D;&quot;isEditingDetails &#x3D; true&quot;&gt;Edit Details&lt;/button&gt;
             &lt;/div&gt;
             &lt;ng-template #editDetailsSection&gt;
@@ -2196,9 +2240,9 @@ export class UserProfileComponent implements OnInit {
                   &lt;div *ngIf&#x3D;&quot;profileImagePreview&quot;&gt;
                     &lt;img [src]&#x3D;&quot;profileImagePreview&quot; alt&#x3D;&quot;Profile Image Preview&quot; style&#x3D;&quot;max-width: 100px; max-height: 100px; margin-top: 10px;&quot;&gt;
                   &lt;/div&gt;
-                  &lt;div *ngIf&#x3D;&quot;userDetails?.profileImage &amp;&amp; !profileImagePreview&quot;&gt;
+                  &lt;div *ngIf&#x3D;&quot;userDetails.profileImage &amp;&amp; !profileImagePreview&quot;&gt;
                     &lt;p&gt;Current Image:&lt;/p&gt;
-                    &lt;img [src]&#x3D;&quot;userDetails?.profileImage&quot; alt&#x3D;&quot;Current Profile Picture&quot; style&#x3D;&quot;max-width: 100px; max-height: 100px; margin-top: 10px;&quot;&gt;
+                    &lt;img [src]&#x3D;&quot;userDetails.profileImage&quot; alt&#x3D;&quot;Current Profile Picture&quot; style&#x3D;&quot;max-width: 100px; max-height: 100px; margin-top: 10px;&quot;&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class&#x3D;&quot;form-actions&quot;&gt;
@@ -2833,8 +2877,8 @@ $transition-easing: ease-in-out
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="user-profile-container">    <aside class="sidebar" [class.expanded]="isSidebarExpanded">        <div class="menu-toggle" (click)="toggleSidebar()">            <i class="fa-solid fa-bars"></i>        </div>        <nav>            <a href="javascript:void(0)" (click)="setActiveTab(\'details\')" [class.active]="activeTab === \'details\'">                <i class="fa-solid fa-user"></i>                <span *ngIf="isSidebarExpanded">Profile</span>            </a>            <a href="javascript:void(0)" (click)="setActiveTab(\'wallet\')" [class.active]="activeTab === \'wallet\'">                <i class="fa-solid fa-wallet"></i>                <span *ngIf="isSidebarExpanded">Wallet</span>            </a>            <a href="javascript:void(0)" (click)="setActiveTab(\'orders-reviews\')" [class.active]="activeTab === \'orders-reviews\'">                <i class="fa-solid fa-list-alt"></i>                <span *ngIf="isSidebarExpanded">My Orders & Reviews</span>            </a>            <a href="javascript:void(0)" (click)="setActiveTab(\'support\')" [class.active]="activeTab === \'support\'">                <i class="fa-solid fa-question-circle"></i>                <span *ngIf="isSidebarExpanded">Support & Help</span>            </a>            <a href="javascript:void(0)" (click)="setActiveTab(\'close-account\')" [class.active]="activeTab === \'close-account\'">                <i class="fa-solid fa-trash-alt"></i>                <span *ngIf="isSidebarExpanded">Delete Account</span>            </a>        </nav>    </aside>    <main class="content">        <header>            <!-- <h2>User Profile</h2> -->        </header>        <div class="pdetails" *ngIf="activeTab === \'details\' && userDetails">            <!-- <h3 class="pd">Personal Details</h3> -->            <div *ngIf="!isEditingDetails; else editDetailsSection">              <div *ngIf="userDetails.profileImage">                <img [src]="userDetails.profileImage" alt="Profile Picture" style="max-width: 100px; max-height: 100px;">              </div>              <div *ngIf="!userDetails.profileImage">                <p>No profile picture available.</p>              </div>              <p><strong>Full Name:</strong> {{ userDetails?.name }}</p>              <p><strong>Phone Number:</strong> {{ userDetails?.phoneNumber }}</p>              <button (click)="isEditingDetails = true">Edit Details</button>            </div>            <ng-template #editDetailsSection>              <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">                <div class="form-group">                  <label for="name">Full Name:</label>                  <input type="text" id="name" formControlName="name">                  <div *ngIf="profileForm.controls[\'name\'].invalid && (profileForm.controls[\'name\'].dirty || profileForm.controls[\'name\'].touched)" class="error-message">                    Name is required.                  </div>                </div>                <div class="form-group">                  <label for="phoneNumber">Phone Number:</label>                  <input type="text" id="phoneNumber" formControlName="phoneNumber">                  <div *ngIf="profileForm.controls[\'phoneNumber\'].invalid && (profileForm.controls[\'phoneNumber\'].dirty || profileForm.controls[\'phoneNumber\'].touched)" class="error-message">                    <div *ngIf="profileForm.controls[\'phoneNumber\'].errors?.[\'required\']">Phone number is required.</div>                    <div *ngIf="profileForm.controls[\'phoneNumber\'].errors?.[\'pattern\']">Invalid phone number format.</div>                  </div>                </div>                <div class="form-group">                  <label for="profileImage">Profile Image:</label>                  <input type="file" id="profileImage" (change)="handleFileInput($event)" accept="image/*">                  <div *ngIf="profileImagePreview">                    <img [src]="profileImagePreview" alt="Profile Image Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px;">                  </div>                  <div *ngIf="userDetails?.profileImage && !profileImagePreview">                    <p>Current Image:</p>                    <img [src]="userDetails?.profileImage" alt="Current Profile Picture" style="max-width: 100px; max-height: 100px; margin-top: 10px;">                  </div>                </div>                <div class="form-actions">                  <button type="submit" [disabled]="profileForm.invalid">Update Details</button>                  <button type="button" (click)="isEditingDetails = false">Cancel</button>                </div>                <div *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</div>                <div *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</div>              </form>                        <h3>Change Password</h3>                             <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">                    <div class="form-group">                        <label for="currentPassword">Current Password:</label>                        <input type="password" id="currentPassword" formControlName="currentPassword" required>                        <div *ngIf="passwordForm.controls[\'currentPassword\'].invalid && (passwordForm.controls[\'currentPassword\'].dirty || passwordForm.controls[\'currentPassword\'].touched)" class="error-message">                            Current password is required.                        </div>                    </div>                    <div class="form-group">                        <label for="newPassword">New Password:</label>                        <input type="password" id="newPassword" formControlName="newPassword" required minlength="6">                        <div *ngIf="passwordForm.controls[\'newPassword\'].invalid && (passwordForm.controls[\'newPassword\'].dirty || passwordForm.controls[\'newPassword\'].touched)" class="error-message">                            <div *ngIf="passwordForm.controls[\'newPassword\'].errors?.[\'required\']">New password is required.</div>                            <div *ngIf="passwordForm.controls[\'newPassword\'].errors?.[\'minlength\']">New password must be at least 6 characters.</div>                        </div>                    </div>                    <div class="form-group">                        <label for="confirmPassword">Confirm New Password:</label>                        <input type="password" id="confirmPassword" formControlName="confirmPassword" required>                        <div *ngIf="passwordForm.controls[\'confirmPassword\'].invalid && (passwordForm.controls[\'confirmPassword\'].dirty || passwordForm.controls[\'confirmPassword\'].touched)" class="error-message">                            Confirm password is required.                        </div>                        <div *ngIf="passwordForm.errors?.[\'mismatch\']" class="error-message">Passwords do not match.</div>                    </div>                    <div class="form-actions">                        <button type="submit" [disabled]="passwordForm.invalid || passwordForm.errors?.[\'mismatch\']">Change Password</button>                    </div>                    <div *ngIf="passwordSuccessMessage" class="success-message">{{ passwordSuccessMessage }}</div>                    <div *ngIf="passwordErrorMessage" class="error-message">{{ passwordErrorMessage }}</div>                </form>            </ng-template>        </div>         <div *ngIf="activeTab === \'wallet\'">            <h3>Wallet</h3>            <p>Current Balance:                <span *ngIf="!showBalance">                    <i class="fa-solid fa-eye" (click)="showBalance = true" style="cursor: pointer;"></i>                    <span style="visibility: hidden;">{{ walletBalance | currency:\'INR\' }}</span>                </span>                <span *ngIf="showBalance">{{ walletBalance | currency:\'INR\' }}</span>            </p>            <h4>Top up Wallet</h4>            <div class="add-funds-section">                <div class="form-group">                    <label for="topUpAmount">Amount to Add (INR):</label>                    <input type="number" id="topUpAmount" [(ngModel)]="topUpAmount" min="1" required>                </div>                <div class="suggested-amounts">                    <button type="button" (click)="setTopUpAmount(1000)">₹ 1000</button>                    <button type="button" (click)="setTopUpAmount(2000)">₹ 2000</button>                    <button type="button" (click)="setTopUpAmount(5000)">₹ 5000</button>                    </div>                <button [disabled]="!topUpAmount || topUpAmount < 1" (click)="showSimulatePaymentPopup = true; populateSimulateAmount()">Add Funds</button>            </div>            <div *ngIf="showSimulatePaymentPopup" class="modal">                <div class="modal-content">                    <span class="close-button" (click)="closeSimulatePaymentPopup()">&times;</span>                    <h4>Simulate Payment</h4>                    <form [formGroup]="simulatePaymentForm" (ngSubmit)="simulateAddFunds()">                        <div class="form-group">                            <label for="paymentMethod">Payment Method:</label>                            <select id="paymentMethod" formControlName="paymentMethod">                                <option value="upi">UPI</option>                                <!-- <option value="creditcard">Credit Card</option> -->                            </select>                        </div>                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === \'upi\'">                            <label for="upiId">UPI ID:</label>                            <input type="text" id="upiId" formControlName="upiId" required>                            <div *ngIf="simulatePaymentForm.controls[\'upiId\'].invalid && (simulatePaymentForm.controls[\'upiId\'].dirty || simulatePaymentForm.controls[\'upiId\'].touched)" class="error-message">                                Please enter your UPI ID.                            </div>                        </div>                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === \'creditcard\'">                            <label for="cardNumber">Card Number:</label>                            <input type="text" id="cardNumber" formControlName="cardNumber" [maxLength]="16" required>                            <div *ngIf="simulatePaymentForm.controls[\'cardNumber\'].invalid && (simulatePaymentForm.controls[\'cardNumber\'].dirty || simulatePaymentForm.controls[\'cardNumber\'].touched)" class="error-message">                                Please enter a valid 16-digit card number.                            </div>                            <label for="expiry">Expiry (MM/YY):</label>                            <input type="text" id="expiry" formControlName="expiry" placeholder="MM/YY" required>                            <div *ngIf="simulatePaymentForm.controls[\'expiry\'].invalid && (simulatePaymentForm.controls[\'expiry\'].dirty || simulatePaymentForm.controls[\'expiry\'].touched)" class="error-message">                                Please enter expiry in MM/YY format.                            </div>                            <label for="cvv">CVV:</label>                            <input type="text" id="cvv" formControlName="cvv" [maxLength]="4" required>                            <div *ngIf="simulatePaymentForm.controls[\'cvv\'].invalid && (simulatePaymentForm.controls[\'cvv\'].dirty || simulatePaymentForm.controls[\'cvv\'].touched)" class="error-message">                                Please enter a valid CVV.                            </div>                        </div>                        <div class="form-group">                            <label for="simulateAmount">Amount to Add (INR):</label>                            <input type="number" id="simulateAmount" formControlName="simulateAmount" [value]="topUpAmount" readonly>                        </div>                        <button type="submit" [disabled]="simulatePaymentForm.invalid">Simulate Payment</button>                        <div *ngIf="simulatePaymentError" class="success-popup">                            <i class="fa-solid fa-check-circle"></i> Payment Successful!                        </div>                        <div *ngIf="simulatePaymentSuccess" class="error-message">{{ simulatePaymentErrorMessage }}</div>                    </form>                </div>            </div>        </div>        <div *ngIf="activeTab === \'orders-reviews\'">            <h3>My Orders & Reviews</h3>            <div *ngIf="userReviews.length === 0">No orders or reviews yet.</div>            <app-reviews-by-user-id />            <!-- <div *ngFor="let review of userReviews" class="review-item">                <p>Book: {{ review.bookTitle }}</p>                <p>Rating: {{ review.rating }}/5</p>                <p>Comment: {{ review.comment }}</p>            </div> -->            </div>        <div *ngIf="activeTab === \'support\'">            <h3>Support & Help</h3>            <p>Contact our support team via email at <a href="mailto:support@dbsbooks.com">support@dbsbooks.com</a> or call us at +91 XXXXXXXXXX.</p>            <p><a routerLink="/faq">Frequently Asked Questions</a></p>        </div>        <div *ngIf="activeTab === \'close-account\'">            <h3>Close Account</h3>            <p>Warning: Closing your account is permanent and all your data will be lost.</p>            <button class="warning-button" (click)="confirmCloseAccount()">Close My Account</button>            <div *ngIf="closeAccountMessage" class="error-message">{{ closeAccountMessage }}</div>        </div>    </main></div><style>.pdetails {    display: flex;    align-items: center;    padding: 20px;    background-color: #f9f9f9;    border: 1px solid #ddd;    border-radius: 8px;    margin-top: 20px;    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    /* position: relative;    left:10px;    top:60px;    width:650px; */}  </style></div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
+        var COMPONENT_TEMPLATE = '<div><div class="user-profile-container">    <aside class="sidebar" [class.expanded]="isSidebarExpanded">        <div class="menu-toggle" (click)="toggleSidebar()">            <i class="fa-solid fa-bars"></i>        </div>        <nav>            <a href="javascript:void(0)" (click)="setActiveTab(\'details\')" [class.active]="activeTab === \'details\'">                <i class="fa-solid fa-user"></i>                <span *ngIf="isSidebarExpanded">Profile</span>            </a>            <a href="javascript:void(0)" (click)="setActiveTab(\'wallet\')" [class.active]="activeTab === \'wallet\'">                <i class="fa-solid fa-wallet"></i>                <span *ngIf="isSidebarExpanded">Wallet</span>            </a>            <a href="javascript:void(0)" (click)="setActiveTab(\'orders-reviews\')" [class.active]="activeTab === \'orders-reviews\'">                <i class="fa-solid fa-list-alt"></i>                <span *ngIf="isSidebarExpanded">My Orders & Reviews</span>            </a>            <a href="javascript:void(0)" (click)="setActiveTab(\'support\')" [class.active]="activeTab === \'support\'">                <i class="fa-solid fa-question-circle"></i>                <span *ngIf="isSidebarExpanded">Support & Help</span>            </a>            <a href="javascript:void(0)" (click)="setActiveTab(\'close-account\')" [class.active]="activeTab === \'close-account\'">                <i class="fa-solid fa-trash-alt"></i>                <span *ngIf="isSidebarExpanded">Delete Account</span>            </a>        </nav>    </aside>    <main class="content">        <header>            <!-- <h2>User Profile</h2> -->        </header>        <div class="pdetails" *ngIf="activeTab === \'details\' && userDetails">            <!-- <h3 class="pd">Personal Details</h3> -->            <div *ngIf="!isEditingDetails; else editDetailsSection">              <div *ngIf="userDetails.profileImage">                <img [src]="userDetails.profileImage" alt="Profile Picture" style="max-width: 100px; max-height: 100px;">              </div>              <div *ngIf="!userDetails.profileImage">                <p>No profile picture available.</p>              </div>              <p><strong>Full Name:</strong> {{ userDetails.name }}</p>              <p><strong>Phone Number:</strong> {{ userDetails.phoneNumber }}</p>              <button (click)="isEditingDetails = true">Edit Details</button>            </div>            <ng-template #editDetailsSection>              <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">                <div class="form-group">                  <label for="name">Full Name:</label>                  <input type="text" id="name" formControlName="name">                  <div *ngIf="profileForm.controls[\'name\'].invalid && (profileForm.controls[\'name\'].dirty || profileForm.controls[\'name\'].touched)" class="error-message">                    Name is required.                  </div>                </div>                <div class="form-group">                  <label for="phoneNumber">Phone Number:</label>                  <input type="text" id="phoneNumber" formControlName="phoneNumber">                  <div *ngIf="profileForm.controls[\'phoneNumber\'].invalid && (profileForm.controls[\'phoneNumber\'].dirty || profileForm.controls[\'phoneNumber\'].touched)" class="error-message">                    <div *ngIf="profileForm.controls[\'phoneNumber\'].errors?.[\'required\']">Phone number is required.</div>                    <div *ngIf="profileForm.controls[\'phoneNumber\'].errors?.[\'pattern\']">Invalid phone number format.</div>                  </div>                </div>                <div class="form-group">                  <label for="profileImage">Profile Image:</label>                  <input type="file" id="profileImage" (change)="handleFileInput($event)" accept="image/*">                  <div *ngIf="profileImagePreview">                    <img [src]="profileImagePreview" alt="Profile Image Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px;">                  </div>                  <div *ngIf="userDetails.profileImage && !profileImagePreview">                    <p>Current Image:</p>                    <img [src]="userDetails.profileImage" alt="Current Profile Picture" style="max-width: 100px; max-height: 100px; margin-top: 10px;">                  </div>                </div>                <div class="form-actions">                  <button type="submit" [disabled]="profileForm.invalid">Update Details</button>                  <button type="button" (click)="isEditingDetails = false">Cancel</button>                </div>                <div *ngIf="updateSuccessMessage" class="success-message">{{ updateSuccessMessage }}</div>                <div *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</div>              </form>                        <h3>Change Password</h3>                             <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">                    <div class="form-group">                        <label for="currentPassword">Current Password:</label>                        <input type="password" id="currentPassword" formControlName="currentPassword" required>                        <div *ngIf="passwordForm.controls[\'currentPassword\'].invalid && (passwordForm.controls[\'currentPassword\'].dirty || passwordForm.controls[\'currentPassword\'].touched)" class="error-message">                            Current password is required.                        </div>                    </div>                    <div class="form-group">                        <label for="newPassword">New Password:</label>                        <input type="password" id="newPassword" formControlName="newPassword" required minlength="6">                        <div *ngIf="passwordForm.controls[\'newPassword\'].invalid && (passwordForm.controls[\'newPassword\'].dirty || passwordForm.controls[\'newPassword\'].touched)" class="error-message">                            <div *ngIf="passwordForm.controls[\'newPassword\'].errors?.[\'required\']">New password is required.</div>                            <div *ngIf="passwordForm.controls[\'newPassword\'].errors?.[\'minlength\']">New password must be at least 6 characters.</div>                        </div>                    </div>                    <div class="form-group">                        <label for="confirmPassword">Confirm New Password:</label>                        <input type="password" id="confirmPassword" formControlName="confirmPassword" required>                        <div *ngIf="passwordForm.controls[\'confirmPassword\'].invalid && (passwordForm.controls[\'confirmPassword\'].dirty || passwordForm.controls[\'confirmPassword\'].touched)" class="error-message">                            Confirm password is required.                        </div>                        <div *ngIf="passwordForm.errors?.[\'mismatch\']" class="error-message">Passwords do not match.</div>                    </div>                    <div class="form-actions">                        <button type="submit" [disabled]="passwordForm.invalid || passwordForm.errors?.[\'mismatch\']">Change Password</button>                    </div>                    <div *ngIf="passwordSuccessMessage" class="success-message">{{ passwordSuccessMessage }}</div>                    <div *ngIf="passwordErrorMessage" class="error-message">{{ passwordErrorMessage }}</div>                </form>            </ng-template>        </div>         <div *ngIf="activeTab === \'wallet\'">            <h3>Wallet</h3>            <p>Current Balance:                <span *ngIf="!showBalance">                    <i class="fa-solid fa-eye" (click)="showBalance = true" style="cursor: pointer;"></i>                    <span style="visibility: hidden;">{{ walletBalance | currency:\'INR\' }}</span>                </span>                <span *ngIf="showBalance">{{ walletBalance | currency:\'INR\' }}</span>            </p>            <h4>Top up Wallet</h4>            <div class="add-funds-section">                <div class="form-group">                    <label for="topUpAmount">Amount to Add (INR):</label>                    <input type="number" id="topUpAmount" [(ngModel)]="topUpAmount" min="1" required>                </div>                <div class="suggested-amounts">                    <button type="button" (click)="setTopUpAmount(1000)">₹ 1000</button>                    <button type="button" (click)="setTopUpAmount(2000)">₹ 2000</button>                    <button type="button" (click)="setTopUpAmount(5000)">₹ 5000</button>                    </div>                <button [disabled]="!topUpAmount || topUpAmount < 1" (click)="showSimulatePaymentPopup = true; populateSimulateAmount()">Add Funds</button>            </div>            <div *ngIf="showSimulatePaymentPopup" class="modal">                <div class="modal-content">                    <span class="close-button" (click)="closeSimulatePaymentPopup()">&times;</span>                    <h4>Simulate Payment</h4>                    <form [formGroup]="simulatePaymentForm" (ngSubmit)="simulateAddFunds()">                        <div class="form-group">                            <label for="paymentMethod">Payment Method:</label>                            <select id="paymentMethod" formControlName="paymentMethod">                                <option value="upi">UPI</option>                                <!-- <option value="creditcard">Credit Card</option> -->                            </select>                        </div>                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === \'upi\'">                            <label for="upiId">UPI ID:</label>                            <input type="text" id="upiId" formControlName="upiId" required>                            <div *ngIf="simulatePaymentForm.controls[\'upiId\'].invalid && (simulatePaymentForm.controls[\'upiId\'].dirty || simulatePaymentForm.controls[\'upiId\'].touched)" class="error-message">                                Please enter your UPI ID.                            </div>                        </div>                        <div class="form-group" *ngIf="simulatePaymentForm.value.paymentMethod === \'creditcard\'">                            <label for="cardNumber">Card Number:</label>                            <input type="text" id="cardNumber" formControlName="cardNumber" [maxLength]="16" required>                            <div *ngIf="simulatePaymentForm.controls[\'cardNumber\'].invalid && (simulatePaymentForm.controls[\'cardNumber\'].dirty || simulatePaymentForm.controls[\'cardNumber\'].touched)" class="error-message">                                Please enter a valid 16-digit card number.                            </div>                            <label for="expiry">Expiry (MM/YY):</label>                            <input type="text" id="expiry" formControlName="expiry" placeholder="MM/YY" required>                            <div *ngIf="simulatePaymentForm.controls[\'expiry\'].invalid && (simulatePaymentForm.controls[\'expiry\'].dirty || simulatePaymentForm.controls[\'expiry\'].touched)" class="error-message">                                Please enter expiry in MM/YY format.                            </div>                            <label for="cvv">CVV:</label>                            <input type="text" id="cvv" formControlName="cvv" [maxLength]="4" required>                            <div *ngIf="simulatePaymentForm.controls[\'cvv\'].invalid && (simulatePaymentForm.controls[\'cvv\'].dirty || simulatePaymentForm.controls[\'cvv\'].touched)" class="error-message">                                Please enter a valid CVV.                            </div>                        </div>                        <div class="form-group">                            <label for="simulateAmount">Amount to Add (INR):</label>                            <input type="number" id="simulateAmount" formControlName="simulateAmount" [value]="topUpAmount" readonly>                        </div>                        <button type="submit" [disabled]="simulatePaymentForm.invalid">Simulate Payment</button>                        <div *ngIf="simulatePaymentError" class="success-popup">                            <i class="fa-solid fa-check-circle"></i> Payment Successful!                        </div>                        <div *ngIf="simulatePaymentSuccess" class="error-message">{{ simulatePaymentErrorMessage }}</div>                    </form>                </div>            </div>        </div>        <div *ngIf="activeTab === \'orders-reviews\'">            <h3>My Orders & Reviews</h3>            <div *ngIf="userReviews.length === 0">No orders or reviews yet.</div>            <app-reviews-by-user-id />            <!-- <div *ngFor="let review of userReviews" class="review-item">                <p>Book: {{ review.bookTitle }}</p>                <p>Rating: {{ review.rating }}/5</p>                <p>Comment: {{ review.comment }}</p>            </div> -->            </div>        <div *ngIf="activeTab === \'support\'">            <h3>Support & Help</h3>            <p>Contact our support team via email at <a href="mailto:support@dbsbooks.com">support@dbsbooks.com</a> or call us at +91 XXXXXXXXXX.</p>            <p><a routerLink="/faq">Frequently Asked Questions</a></p>        </div>        <div *ngIf="activeTab === \'close-account\'">            <h3>Close Account</h3>            <p>Warning: Closing your account is permanent and all your data will be lost.</p>            <button class="warning-button" (click)="confirmCloseAccount()">Close My Account</button>            <div *ngIf="closeAccountMessage" class="error-message">{{ closeAccountMessage }}</div>        </div>    </main></div><style>.pdetails {    display: flex;    align-items: center;    padding: 20px;    background-color: #f9f9f9;    border: 1px solid #ddd;    border-radius: 8px;    margin-top: 20px;    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    /* position: relative;    left:10px;    top:60px;    width:650px; */}  </style></div>'
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminDashboardComponent', 'selector': 'app-admin-dashboard'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DashboardInventoryComponent', 'selector': 'app-dashboard-inventory'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'EditorspickComponent', 'selector': 'app-editorspick'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'RecentOrdersComponent', 'selector': 'app-recent-orders'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'},{'name': 'WelcomeAdminComponent', 'selector': 'app-welcome-admin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserProfileComponent'};
 </script>
