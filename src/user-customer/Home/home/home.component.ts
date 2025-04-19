@@ -20,9 +20,7 @@ export class HomeComponent {
   loadCarouselBooks(): void {
     this.bookService.getAllBooks().subscribe(
       (data: Book[]) => {
-        // Take the first 5 or however many you want for the carousel
         this.books = data.slice(0, 5);
-        console.log('Carousel Books:', this.books);
       },
       (error:any) => {
         console.error('Error loading all books:', error);

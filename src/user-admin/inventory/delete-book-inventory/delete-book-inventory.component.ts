@@ -21,7 +21,7 @@ export class DeleteBookInventoryComponent {
         this.inventoryService.deleteBookFromInventory(this.bookIdToDelete).subscribe({
           next: (response: any) => {
             this.successMessage = response;
-            console.log('Success Message:', this.successMessage);
+            // console.log('Success Message:', this.successMessage);
             this.errorMessage = '';
             this.inventoryChangedEvent.emit();
             setTimeout(() => this.close(), 1000); 

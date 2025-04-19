@@ -15,7 +15,7 @@ export class NavbarAdminComponent {
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
-    console.log('Dropdown Open:', this.isDropdownOpen);
+    // console.log('Dropdown Open:', this.isDropdownOpen);
   }
 
   logout() {

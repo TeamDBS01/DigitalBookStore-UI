@@ -26,7 +26,6 @@ export class CategorybooksComponent {
           imageUrl: firstBook?.coverImage ? 'data:image/jpeg;base64,' + firstBook.base64img : undefined
         };
       }));
-      console.log("Processed Categories:", this.categories);
     });
   }
 

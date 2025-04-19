@@ -24,7 +24,7 @@ export class BookdetailsComponent implements OnInit {
 
   ngOnInit() {
     const bookId = this.route.snapshot.paramMap.get('id');
-    console.log('Book ID:', bookId);
+    // console.log('Book ID:', bookId);
     if (bookId) {
       this.bookService.getBookById(bookId).subscribe((data: Book) => {
         this.book = data;
@@ -56,7 +56,7 @@ export class BookdetailsComponent implements OnInit {
   loadSampleChapter(): void {
     if (this.book?.bookID) {
       this.bookService.getPdf().subscribe((pdfData: Blob) => {
-        console.log("pdfData:", pdfData);
+        // console.log("pdfData:", pdfData);
         const blob = new Blob([pdfData], { type: 'application/pdf' });
         this.sampleChapterUrl = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob) + "#toolbar=0");
         const iframePopupContainer = document.getElementById('iframePopupContainer');
@@ -76,10 +76,10 @@ export class BookdetailsComponent implements OnInit {
   }
 
   closeSampleChapterPopup() {
-    console.log('closeSampleChapterPopup() is being called!');
+    // console.log('closeSampleChapterPopup() is being called!');
     this.isPopupVisible = false;
     const popupContainer = document.getElementById('iframePopupContainer');
-    console.log('popupContainer element:', popupContainer);
+    // console.log('popupContainer element:', popupContainer);
     if (popupContainer) {
       popupContainer.classList.remove('show');
     }
