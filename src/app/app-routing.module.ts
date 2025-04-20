@@ -62,11 +62,9 @@ const routes: Routes = [
     { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
     { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
-    // { path: '**', redirectTo: 'home', pathMatch: 'full' },
-    // {path:'adminhome',component:AdminHomeComponent},
-    // {path:'allorderstatus',component:AllorderstatusComponent},
     { path: 'forgotpassword', component:ForgotPasswordComponent},
-{ path: 'reset-password', component:ResetPasswordComponent },
+    { path: 'reset-password', component:ResetPasswordComponent },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

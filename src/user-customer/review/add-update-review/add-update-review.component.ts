@@ -56,12 +56,19 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
 
     discardChanges() {
         this.closeModal();
-        if (this.review !== undefined) {   
+        if (this.review !== undefined) {
             this.editing.emit(false);
         }
     }
 
-    handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }
+    handleEnter(event: KeyboardEvent): void {
+        if (event.key === 'Enter') {
+            if (!this.formData.invalid) {
+                this.onSubmit(this.formData.value);
+            }
+            event.preventDefault();
+        }
+    }
 
     handleRatingClick(event: MouseEvent, starValue: number): void {
         const rect = (event.target as HTMLElement).getBoundingClientRect();

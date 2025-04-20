@@ -1,5 +1,5 @@
 <div class="container mt-4">
-    <form [formGroup]="formData" #addForm='ngForm' (ngSubmit)="onSubmit(addForm.value)" class="p-4 border rounded">
+    <form [formGroup]="formData" #addForm='ngForm' (ngSubmit)="onSubmit(addForm)" class="p-4 border rounded">
         <h5>Give your Rating <span *ngIf="userView">for {{review.bookTitle}}</span>:</h5>
         <div class="fa-2x mb-3" style="cursor: pointer;" id="rating">
             <i #str style="color:orange" [attr.data-value]="i + 1" *ngFor="let star of starNum; index as i"
