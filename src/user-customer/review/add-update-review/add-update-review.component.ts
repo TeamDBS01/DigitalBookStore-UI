@@ -107,7 +107,9 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
             this.review = new Review();
         }
         this.review.rating = this.rating;
-        this.review.comment = formData.comment;
+        if (formData.comment !== undefined) {
+            this.review.comment = formData.comment;
+        }
         this.review.bookId = this.bookId || this.review.bookId;
         this.review.userId = Number(this.userId);
 
