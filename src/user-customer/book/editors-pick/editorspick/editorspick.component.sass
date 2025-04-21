@@ -1,9 +1,11 @@
 $text-color: #000
 $light-gray: #f5f5f5
 $border-radius: 8px
-$transition-duration: 0.3s
-$standard-image-width: 150px // Define your desired standard width
-$standard-image-height: 200px // Define your desired standard height
+$transition-duration: 0.5s
+$standard-image-width: 150px
+$standard-image-height: 200px
+$hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+$cursor-pointer: pointer
 
 .editors-pick-section
   padding: 2rem
@@ -31,15 +33,6 @@ $standard-image-height: 200px // Define your desired standard height
     gap: 2rem
     justify-content: center
 
-  .book-item-link
-    text-decoration: none
-    color: inherit
-    display: block
-    transition: opacity $transition-duration ease-in-out
-
-    &:hover
-      opacity: 0.8
-
   .book-card
     background-color: transparent
     border: none
@@ -49,6 +42,14 @@ $standard-image-height: 200px // Define your desired standard height
     width: calc(20% - 2rem)
     min-width: 150px
     text-align: center
+    transition: box-shadow $transition-duration ease-in-out
+    cursor: $cursor-pointer
+
+    &:hover
+      box-shadow: $hover-shadow
+      transform: scale(1.05)
+
+      background-color: #D8D8D8
 
     .cover-image
       padding: 0
@@ -57,14 +58,19 @@ $standard-image-height: 200px // Define your desired standard height
       align-items: center
       width: $standard-image-width
       height: $standard-image-height
-      margin: 0 auto 0.5rem // Center the image horizontally
-      overflow: hidden // Clip any image overflow to maintain size
+      margin: 0 auto 0.5rem
+      overflow: hidden
 
       img
-        max-width: 100%
-        max-height: 100%
-        object-fit: fill // Or 'cover' depending on desired effect
+        max-width: 80%
+        max-height: 80%
+        object-fit: contain
         border-radius: $border-radius
+        transition: transform $transition-duration ease-in-out
+
+      /*&:hover img
+        transform: scale(1.05)*/
+        
 
     .book-info
       padding: 0
@@ -87,20 +93,28 @@ $standard-image-height: 200px // Define your desired standard height
       .view-details-button
         display: none
 
-// Responsive adjustments for smaller screens
+// Responsive adjustments
+@media (max-width: 1200px)
+  .book-card
+    width: calc(25% - 2rem)
+
+@media (max-width: 992px)
+  .book-card
+    width: calc(33.33% - 1.5rem)
+
 @media (max-width: 768px)
   .editors-pick-grid
     justify-content: space-around
 
   .book-card
-    width: calc(33.33% - 1rem)
+    width: calc(50% - 1rem)
 
 @media (max-width: 576px)
   .editors-pick-grid
     justify-content: center
 
   .book-card
-    width: calc(50% - 1rem)
+    width: calc(100% - 1rem)
 
 @media (max-width: 400px)
   .book-card

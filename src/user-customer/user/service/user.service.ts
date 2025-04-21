@@ -37,7 +37,7 @@
 
 //     constructor(private http: HttpClient, private router: Router) {}
 
-import { HttpClient,HttpParams } from '@angular/common/http';
+import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { User } from '../model/User';
@@ -127,19 +127,31 @@ export class UserService {
         );
     }
 
+    // registerUser(user: User): Observable<User> {
+    //     return this.http.post<User>(this.registerURL, user).pipe(
+    //         tap(response => {
+    //             if (response?.statusCode !== 200 && response?.statusCode !== 201) {
+    //                 return throwError(() => response);
+    //             }
+    //             return response;
+    //         }),
+    //         catchError(error => {
+    //             console.error("Registration error:", error);
+    //             return throwError(() => error);
+    //         })
+    //     );
+    // }
     registerUser(user: User): Observable<User> {
-        return this.http.post<User>(this.registerURL, user).pipe(
-            tap(response => {
-                if (response?.statusCode !== 200 && response?.statusCode !== 201) {
-                    return throwError(() => response);
-                }
-                return response;
-            }),
-            catchError(error => {
-                console.error("Registration error:", error);
-                return throwError(() => error);
-            })
-        );
+      return this.http.post<User>(this.registerURL, user).pipe(
+        tap(response => {
+          
+          return response;
+        }),
+        catchError(error => {
+          console.error("Registration error:", error);
+          return throwError(() => error);
+        })
+      );
     }
 
  
@@ -166,6 +178,22 @@ export class UserService {
           .set('newPassword', passwords.newPassword);
     
         return this.http.put<any>(`${this.apiUrl}/user/${userId}/change-password`, {}, { params });
+      }
+
+
+      getAllUsersAdmin(): Observable<User[]> {  
+        const headers = new HttpHeaders({
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`  
+        });
+        return this.http.get<User[]>(`${this.apiUrl}/user/admin/get-all-users`, { headers });
+      }
+      
+      deleteUserAdmin(userId: number): Observable<any> {  
+        const headers = new HttpHeaders({
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`  
+        });
+         
+        return this.http.delete<any>(`${this.apiUrl}/user/admin/deleteUser/${userId}`, { headers });
       }
     
 

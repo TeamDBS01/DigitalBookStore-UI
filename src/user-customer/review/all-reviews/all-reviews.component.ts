@@ -12,7 +12,7 @@ export class AllReviewsComponent {
 
     constructor(private reviewService: ReviewService) {}
 
-    reviews: Review[] = [];
+    reviews!: Review[];
     message = 'Loading...';
 
     ngOnInit() {
@@ -22,6 +22,7 @@ export class AllReviewsComponent {
                 this.message = ''
             },
             error: (error) => {
+                console.log(error);
                 this.message = 'No reviews found!'
             }
         });

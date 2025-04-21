@@ -18,6 +18,7 @@ export class ReviewsByUserIdComponent {
         this.reviewService.getReviewsByUserId().subscribe({
             next: data => { this.reviews = data },
             error: error => {
+                console.log(error);
                 this.reviews = [];
             }
         })
