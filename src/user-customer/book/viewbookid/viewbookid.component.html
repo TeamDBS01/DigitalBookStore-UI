@@ -1,11 +1,11 @@
 <div class="top-el">
   <div class="search-container">
-    <form (ngSubmit)="onSubmit()">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
       <div>
         <input placeholder="Enter BookID" type="text" id="bookID" required [(ngModel)]="book.bookID" name="bookID">
       </div>
       <div>
-        <button type="submit">Search</button>
+        <button type="submit" [disabled]="registerForm.invalid">Search</button>
       </div>
     </form>
   </div>
@@ -13,9 +13,9 @@
     <button type="button" class="btn btn-success" routerLink="/addBooks"><i class="fas fa-plus"></i> Add Book</button>
   </div>
   </div>
+
   <div class="display-el" [hidden]="submitted">
-    <!-- <h4 *ngIf="books.length == 0">{{loading}}</h4> -->
-    <div class="spinner-grow text-primary" role="status" *ngIf="books.length == 0" style="margin: 100px;">
+    <div class="spinner-grow text-primary" role="status" *ngIf="books.length == 0" style="margin-top: 50px;">
       <span class="visually-hidden">Loading...</span>
     </div>
   <table *ngIf="books.length > 0">
@@ -49,7 +49,12 @@
 </div>
 
 <app-deletebook [ngStyle]="{'display':display}"></app-deletebook>
-<div [hidden]="!submitted && !noRecordFound">
+
+<div *ngIf="noRecordFound" class="alert alert-danger" role="alert" style="margin-top: 50px;">
+  No book found with the provided ID. Please try again.
+</div>
+
+<div [hidden]="!submitted || noRecordFound">
   <div>
     <table>
       <thead>
@@ -60,6 +65,7 @@
           <th>Author Name</th>
           <th>Category Name</th>
           <th>Book img</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
