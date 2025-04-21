@@ -20,6 +20,7 @@ export class DeletebookComponent {
   display = 'block'
   none() {
     this.display = 'none'
+    window.location.reload();
   }
 
   delete(){
