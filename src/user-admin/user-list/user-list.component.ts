@@ -90,7 +90,8 @@ import { User } from '../../user-customer/user/model/User';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.sass']
+  styleUrls: ['./user-list.component.sass'],
+  standalone: false
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
