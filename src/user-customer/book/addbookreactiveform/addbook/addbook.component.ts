@@ -67,46 +67,46 @@ export class AddbookComponent implements OnInit {
   }
 
 
-  // onFileChange(event: any) {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = (e: any) => {
-  //       this.formData.patchValue({
-  //         base64img: e.target.result
-  //       });
-  //       this.imageSrc = e.target.result;
-  //       // this.imageSrc = e.target.result; // Update image source for display
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } 
-  // }
-
   onFileChange(event: any) {
-        console.log('onFileChange called');
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (e: any) => {
-            console.log('File loaded');
-            console.log('Base64 data:', e.target.result);
-            this.formData.patchValue({
-              base64img: e.target.result
-            });
-            this.imageSrc = e.target.result;
-            this.cdr.detectChanges();
-            console.log('imageSrc updated:', this.imageSrc);
-            // this.imageUploadedSuccessfully = true;
-          };
-          reader.onerror = (error) => {
-            console.error('Error reading file:', error);
-          };
-          reader.readAsDataURL(file);
-        } else {
-          this.imageSrc = '../../../../assets/img-upload3.png';
-          // this.imageUploadedSuccessfully = false;
-        }
-      }
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.formData.patchValue({
+          base64img: e.target.result
+        });
+        this.imageSrc = e.target.result;
+        // this.imageSrc = e.target.result; // Update image source for display
+      };
+      reader.readAsDataURL(file);
+    } 
+  }
+
+  // onFileChange(event: any) {
+  //       console.log('onFileChange called');
+  //       const file = event.target.files[0];
+  //       if (file) {
+  //         const reader = new FileReader();
+  //         reader.onload = (e: any) => {
+  //           console.log('File loaded');
+  //           console.log('Base64 data:', e.target.result);
+  //           this.formData.patchValue({
+  //             base64img: e.target.result
+  //           });
+  //           this.imageSrc = e.target.result;
+  //           this.cdr.detectChanges();
+  //           console.log('imageSrc updated:', this.imageSrc);
+  //           // this.imageUploadedSuccessfully = true;
+  //         };
+  //         reader.onerror = (error) => {
+  //           console.error('Error reading file:', error);
+  //         };
+  //         reader.readAsDataURL(file);
+  //       } else {
+  //         this.imageSrc = '../../../../assets/img-upload3.png';
+  //         // this.imageUploadedSuccessfully = false;
+  //       }
+  //     }
 
   save() {
     this.book.bookID = this.formData.get('bookID')?.value;

@@ -98,10 +98,8 @@ export class SearchtitleComponent  {
       next: (data: Book[]) => {
         this.books = data;
         this.isLoading = false;
-        this.currentPage = 0; // Reset to first page on filter
-        // You might need to reload total pages based on the filtered results if your backend supports it
-        // For now, assuming total pages remain the same or a full reload is needed.
-        // console.log('Filtered Books:', this.books);
+        this.currentPage = 0;
+        console.log('Filtered Books:', this.books);
       },
       error: (error) => {
         this.errorMessage = 'Failed to filter books.';
