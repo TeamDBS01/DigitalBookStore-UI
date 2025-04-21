@@ -104,7 +104,8 @@ import { UserService } from '../service/user.service';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.sass']
+  styleUrls: ['./reset-password.component.sass'],
+  standalone: false
 })
 export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;

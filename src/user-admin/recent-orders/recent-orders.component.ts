@@ -6,7 +6,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'; // Import 
 @Component({
   selector: 'app-recent-orders',
   templateUrl: './recent-orders.component.html',
-  styleUrls: ['./recent-orders.component.sass']
+  styleUrls: ['./recent-orders.component.sass'],
+  standalone: false
 })
 export class RecentOrdersComponent implements OnInit, OnDestroy {
   recentOrders: Order[] = [];

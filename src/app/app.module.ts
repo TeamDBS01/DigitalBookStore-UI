@@ -71,6 +71,7 @@ import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-p
 import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/reset-password.component';
 import { WelcomeAdminComponent } from 'src/user-admin/welcome-admin/welcome-admin.component';
+import { ReviewsDeletedComponent } from 'src/user-customer/review/reviews-deleted/reviews-deleted.component';
 
 @NgModule({
     declarations: [
@@ -120,18 +121,19 @@ import { WelcomeAdminComponent } from 'src/user-admin/welcome-admin/welcome-admi
         DashboardInventoryComponent,
         RecentOrdersComponent,
         EditorspickComponent,
+        AdminDashboardComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent,
+        WelcomeAdminComponent,
+        StarsComponent,
         AllReviewsComponent,
         ReviewComponent,
-        StarsComponent,
         AverageRatingComponent,
         AddUpdateReviewComponent,
         ReviewsByBookIdComponent,
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
-        AdminDashboardComponent,
-        ForgotPasswordComponent,
-        ResetPasswordComponent,
-        WelcomeAdminComponent,
+        ReviewsDeletedComponent,
     ],
     imports: [
   

@@ -107,9 +107,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
             this.review = new Review();
         }
         this.review.rating = this.rating;
-        if (formData.comment !== undefined) {
-            this.review.comment = formData.comment;
-        }
+        this.review.comment = formData.comment;
         this.review.bookId = this.bookId || this.review.bookId;
         this.review.userId = Number(this.userId);
 
@@ -122,8 +120,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
                     this.editing.emit(false);
                 },
                 error: error => {
-                    console.error(error)
-                    this.errorMessage = "Error updating review";
+                    this.errorMessage = "Error updating review, Please try Again!";
                 }
             })
         } else {
@@ -134,8 +131,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
                     this.editing.emit(false);
                 },
                 error: error => {
-                    console.error(error)
-                    this.errorMessage = "Error adding review";
+                    this.errorMessage = "Error adding review, Please try Again!";
                 }
             })
         }

@@ -60,7 +60,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.sass']
+  styleUrls: ['./forgot-password.component.sass'],
+  standalone: false
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
