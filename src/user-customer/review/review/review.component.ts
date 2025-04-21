@@ -56,7 +56,11 @@ export class ReviewComponent {
         this.closeRestoreModal();
         this.reviewService.deleteReviewDelete(this.review).subscribe({
             next: () => window.location.reload(),
-            error: err => this.error = "Error occurred, Please try Again!",
+            error: err => {
+                this.error = "Error occurred, Please try Again!"
+                console.log(err);
+                
+            },
         })
     }
 }

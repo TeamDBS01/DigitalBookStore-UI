@@ -72,6 +72,7 @@ import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/
 import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/reset-password.component';
 import { WelcomeAdminComponent } from 'src/user-admin/welcome-admin/welcome-admin.component';
 import { ReviewsDeletedComponent } from 'src/user-customer/review/reviews-deleted/reviews-deleted.component';
+import { AdminReviewComponent } from 'src/user-customer/review/admin-review/admin-review.component';
 
 @NgModule({
     declarations: [
@@ -134,6 +135,7 @@ import { ReviewsDeletedComponent } from 'src/user-customer/review/reviews-delete
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
         ReviewsDeletedComponent,
+        AdminReviewComponent,
     ],
     imports: [
   

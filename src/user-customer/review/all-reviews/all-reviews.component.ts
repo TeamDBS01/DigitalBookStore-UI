@@ -12,7 +12,7 @@ export class AllReviewsComponent {
 
     constructor(private reviewService: ReviewService) {}
 
-    reviews: Review[] = [];
+    reviews!: Review[];
     message = 'Loading...';
 
     ngOnInit() {

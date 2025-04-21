@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Review } from '../model/Review';
+import { ReviewService } from '../service/review.service';
 
 @Component({
   selector: 'app-reviews-deleted',
@@ -7,6 +8,15 @@ import { Review } from '../model/Review';
   styleUrls: ['./reviews-deleted.component.sass'],
   standalone: false
 })
-export class ReviewsDeletedComponent {
+export class ReviewsDeletedComponent implements OnInit {
     reviews!: Review[];
+    
+    constructor(private reviewService: ReviewService) {}
+    ngOnInit(): void {
+        this.reviewService.getAllReviewDeletes().subscribe({
+            next: data => this.reviews = data,
+            error: _ => this.reviews = []
+        })
+    }
+
 }
