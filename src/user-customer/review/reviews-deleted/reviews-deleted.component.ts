@@ -15,7 +15,10 @@ export class ReviewsDeletedComponent implements OnInit {
     ngOnInit(): void {
         this.reviewService.getAllReviewDeletes().subscribe({
             next: data => this.reviews = data,
-            error: _ => this.reviews = []
+            error: error => {
+                console.log(error);
+                this.reviews = [];
+            }
         })
     }
 

@@ -34,6 +34,7 @@ export class ReviewsByBookIdComponent {
                 });
             },
             error: error => {
+                console.log(error);
                 this.reviews = [];
             }
         })

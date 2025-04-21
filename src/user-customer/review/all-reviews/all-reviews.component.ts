@@ -22,6 +22,7 @@ export class AllReviewsComponent {
                 this.message = ''
             },
             error: (error) => {
+                console.log(error);
                 this.message = 'No reviews found!'
             }
         });

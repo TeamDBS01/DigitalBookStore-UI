@@ -19,8 +19,8 @@
       <div class="book-details" [routerLink]="['/book-details', bookModel.bookID]"  style="cursor: pointer;">
         <img class="book-cover" [src]="bookModel.coverImage ? 'data:image/jpeg;base64,' + bookModel.base64img : ''" alt="{{ bookModel.title }}">
         <div class="book-text">
-          <h1>{{ bookModel?.title }}</h1>
-          <p>By {{ bookModel?.authorName }}</p>
+          <h1>{{ bookModel.title }}</h1>
+          <p>By {{ bookModel.authorName }}</p>
           <button class="btn1">More Info</button>
           <button class="btn2">Buy Now</button>
         </div>
