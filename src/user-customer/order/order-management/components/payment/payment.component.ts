@@ -69,7 +69,7 @@ export class PaymentComponent implements OnInit {
     if (this.orderId && this.selectedPaymentMethod === 'credit') {
       this.orderService.payWithCredits(this.orderId, this.userId).subscribe({
         next: (response) => {
-          console.log('Payment with credits successful:', response);
+          // console.log('Payment with credits successful:', response);
           this.paymentSuccess = true;
           this.errorMessage = '';
           this.paymentSuccessfulCelebration = true; 
@@ -81,7 +81,7 @@ export class PaymentComponent implements OnInit {
 
           this.orderService.clearCart().subscribe({
             next: () => {
-              console.log('Cart cleared successfully');
+              // console.log('Cart cleared successfully');
             },
             error: (clearCartError) => {
               console.error('Error clearing cart:', clearCartError);
@@ -105,7 +105,7 @@ export class PaymentComponent implements OnInit {
     if (this.orderId && this.selectedPaymentMethod === 'cod') {
       this.orderService.cashOnDelivery(this.orderId, this.userId).subscribe({
         next: (response) => {
-          console.log('Cash on Delivery initiated:', response);
+          // console.log('Cash on Delivery initiated:', response);
           this.paymentSuccess = true;
           this.errorMessage = '';
           this.paymentSuccessfulCelebration = true; 
@@ -134,7 +134,7 @@ export class PaymentComponent implements OnInit {
 
       this.orderService.processPayment(this.orderId, paymentData).subscribe({
         next: (response) => {
-          console.log('Card payment successful:', response);
+          // console.log('Card payment successful:', response);
           this.paymentSuccess = true;
           this.errorMessage = '';
           this.paymentSuccessfulCelebration = true; 

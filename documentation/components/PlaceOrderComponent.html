@@ -569,7 +569,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:68</a></div>
                                 </td>
                             </tr>
 
@@ -591,7 +591,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:72</a></div>
                                 </td>
                             </tr>
 
@@ -613,7 +613,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:76</a></div>
                                 </td>
                             </tr>
 
@@ -635,7 +635,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:80</a></div>
                                 </td>
                             </tr>
 
@@ -657,7 +657,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:84</a></div>
                                 </td>
                             </tr>
 
@@ -679,7 +679,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:88</a></div>
                                 </td>
                             </tr>
 
@@ -701,7 +701,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/user-customer/order/order-management/components/place-order/place-order.component.ts:92</a></div>
                                 </td>
                             </tr>
 
@@ -755,9 +755,13 @@ export class PlaceOrderComponent implements OnInit {
       this.errorMessage &#x3D; &#x27;&#x27;;
       this.successMessage &#x3D; &#x27;&#x27;;
       const shippingDetails &#x3D; this.shippingForm.value;
+      console.log(shippingDetails);
+      
       this.orderService.placeOrder(shippingDetails).subscribe({
         next: (order) &#x3D;&gt; {
           this.order &#x3D; order;
+          console.log(order);
+          
           this.successMessage &#x3D; &#x60;Order placed successfully with ID: ${order.orderId}. Redirecting to payment...&#x60;;
           this.router.navigate([&#x27;/order/payment&#x27;, order.orderId]);
         },
@@ -1141,7 +1145,7 @@ export class PlaceOrderComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="place-order-container">  <header class="order-header">    <h1 class="order-title">Review Your Order & Shipping Details</h1>    <p class="order-subtitle">Please confirm your information before placing your order.</p>  </header>  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">    <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ errorMessage }}  </div>  <div *ngIf="successMessage" class="alert alert-success" role="alert">    <i class="bi bi-check-circle-fill me-2"></i> {{ successMessage }}  </div>  <form [formGroup]="shippingForm" (ngSubmit)="placeOrder()" class="shipping-form">    <section class="form-section">      <h3 class="section-title"><i class="bi bi-house-fill me-2"></i> Shipping Information</h3>      <div class="form-group">        <label for="shippingName"><i class="bi bi-person-fill me-1"></i> Name:</label>        <input type="text" id="shippingName" formControlName="shippingName" class="form-control">        <div *ngIf="shippingNameControl?.invalid && (shippingNameControl?.dirty || shippingNameControl?.touched)" class="error-feedback">          Name is required.        </div>      </div>      <div class="form-group">        <label for="shippingEmail"><i class="bi bi-envelope-fill me-1"></i> Email:</label>        <input type="email" id="shippingEmail" formControlName="shippingEmail" class="form-control">        <div *ngIf="shippingEmailControl?.invalid && (shippingEmailControl?.dirty || shippingEmailControl?.touched)" class="error-feedback">          <div *ngIf="shippingEmailControl?.errors?.[\'required\']">Email is required.</div>          <div *ngIf="shippingEmailControl?.errors?.[\'email\']">Invalid email format.</div>        </div>      </div>      <div class="form-group">        <label for="shippingPhone"><i class="bi bi-telephone-fill me-1"></i> Phone Number:</label>        <input type="tel" id="shippingPhone" formControlName="shippingPhone" class="form-control">        <div *ngIf="shippingPhoneControl?.invalid && (shippingPhoneControl?.dirty || shippingPhoneControl?.touched)" class="error-feedback">          <div *ngIf="shippingPhoneControl?.errors?.[\'required\']">Phone number is required.</div>          <div *ngIf="shippingPhoneControl?.errors?.[\'pattern\']">Invalid phone number format (e.g., 10 digits).</div>        </div>      </div>      <div class="form-group">        <label for="shippingAddress"><i class="bi bi-geo-alt-fill me-1"></i> Address:</label>        <input type="text" id="shippingAddress" formControlName="shippingAddress" class="form-control">        <div *ngIf="shippingAddressControl?.invalid && (shippingAddressControl?.dirty || shippingAddressControl?.touched)" class="error-feedback">          Address is required.        </div>      </div>      <div class="form-row">        <div class="form-group col-md-6">          <label for="shippingCity"><i class="bi bi-building me-1"></i> City:</label>          <input type="text" id="shippingCity" formControlName="shippingCity" class="form-control">          <div *ngIf="shippingCityControl?.invalid && (shippingCityControl?.dirty || shippingCityControl?.touched)" class="error-feedback">            City is required.          </div>        </div>        <div class="form-group col-md-4">          <label for="shippingState"><i class="bi bi-map-fill me-1"></i> State:</label>          <input type="text" id="shippingState" formControlName="shippingState" class="form-control">          <div *ngIf="shippingStateControl?.invalid && (shippingStateControl?.dirty || shippingStateControl?.touched)" class="error-feedback">            State is required.          </div>        </div>        <div class="form-group col-md-2">          <label for="shippingZipCode"><i class="bi bi-mailbox me-1"></i> Zip Code:</label>          <input type="text" id="shippingZipCode" formControlName="shippingZipCode" class="form-control">          <div *ngIf="shippingZipCodeControl?.invalid && (shippingZipCodeControl?.dirty || shippingZipCodeControl?.touched)" class="error-feedback">            Zip Code is required.          </div>        </div>      </div>    </section>    <section class="form-actions">      <button type="submit" class="btn btn-primary btn-lg" [disabled]="shippingForm.invalid">        <i class="bi bi-check-circle-fill me-2"></i> Place Order Now      </button>    </section>  </form>  <div *ngIf="order" class="order-confirmation">    <div class="confirmation-header">      <i class="bi bi-check-shield-fill"></i>      <h3>Order Confirmation</h3>    </div>    <p><span class="fw-bold">Order ID:</span> {{ order.orderId }}</p>    <p><span class="fw-bold">Order Date:</span> {{ order.orderDate | date:\'medium\' }}</p>    <p><span class="fw-bold">Total Amount:</span> {{ order.totalAmount | currency:\'INR\':\'symbol\':\'1.2-2\' }}</p>    <p><span class="fw-bold">Status:</span> <span class="badge bg-success">{{ order.status }}</span></p>    <p class="thank-you">Thank you for your order!</p>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminDashboardComponent', 'selector': 'app-admin-dashboard'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DashboardInventoryComponent', 'selector': 'app-dashboard-inventory'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'EditorspickComponent', 'selector': 'app-editorspick'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'RecentOrdersComponent', 'selector': 'app-recent-orders'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'},{'name': 'WelcomeAdminComponent', 'selector': 'app-welcome-admin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'PlaceOrderComponent'};
 </script>

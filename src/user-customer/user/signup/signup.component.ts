@@ -33,7 +33,7 @@ export class SignupComponent {
 
         this.userService.registerUser(registrationRequest as User).subscribe(
             (response: User) => {
-                console.log('Registration successful:', response);
+                // console.log('Registration successful:', response);
                 this.router.navigate(['login']);
             },
             (error) => {

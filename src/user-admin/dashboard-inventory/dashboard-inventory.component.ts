@@ -6,7 +6,8 @@ import { InventoryService } from '../inventory/service/inventory.service';
 @Component({
   selector: 'app-dashboard-inventory',
   templateUrl: './dashboard-inventory.component.html',
-  styleUrls: ['./dashboard-inventory.component.sass']
+  styleUrls: ['./dashboard-inventory.component.sass'],
+  standalone: false
 })
 export class DashboardInventoryComponent {
     lowStockBooks: Inventory[] = [];

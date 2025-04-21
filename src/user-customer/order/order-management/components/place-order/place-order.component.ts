@@ -41,12 +41,12 @@ export class PlaceOrderComponent implements OnInit {
       this.errorMessage = '';
       this.successMessage = '';
       const shippingDetails = this.shippingForm.value;
-      console.log(shippingDetails);
+      // console.log(shippingDetails);
       
       this.orderService.placeOrder(shippingDetails).subscribe({
         next: (order) => {
           this.order = order;
-          console.log(order);
+          // console.log(order);
           
           this.successMessage = `Order placed successfully with ID: ${order.orderId}. Redirecting to payment...`;
           this.router.navigate(['/order/payment', order.orderId]);

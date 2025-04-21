@@ -19,13 +19,19 @@ export class ReviewService {
     private retreiveAllReviewsByUserIdUrl = this.apiReviewUrl + '/user/' + this.USER_ID;
     private updateReviewUrl = this.apiReviewUrl + '/update/' + this.USER_ID;
     private addReviewUrl = this.apiReviewUrl + '/add';
-    private addReviewDeleteUrl = this.apiReviewUrl + '/delete';
     private deleteReviewUrl = this.apiReviewUrl + '/delete/' + this.USER_ID + '/';
+    private addReviewDeleteUrl = this.apiReviewUrl + '/review_delete';
+    private getAllReviewDeleteUrl = this.apiReviewUrl + '/review_delete';
+    private deleteReviewDeleteUrl = this.apiReviewUrl + '/review_delete/' + this.USER_ID + "/";
     private averageRatingUrl = this.apiReviewUrl + '/book/average/';
 
 
     getAllReviews() {
         return this.http.get<Review[]>(this.retreiveAllReviewsUrl);
+    }
+
+    getAllReviewDeletes() {
+        return this.http.get<Review[]>(this.getAllReviewDeleteUrl);
     }
 
     addReview(review: Review) {
@@ -34,6 +40,10 @@ export class ReviewService {
 
     addReviewDelete(review: Review) {
         return this.http.post<Review>(this.addReviewDeleteUrl, review);
+    }
+
+    deleteReviewDelete(review: Review) {
+        return this.http.delete<boolean>(this.deleteReviewDeleteUrl + review.reviewId);
     }
 
     updateReview(review: Review) {

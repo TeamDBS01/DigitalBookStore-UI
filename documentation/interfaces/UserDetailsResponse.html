@@ -474,7 +474,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient,HttpParams } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 import { environment } from &#x27;src/environments/environment.development&#x27;;
 import { User } from &#x27;../model/User&#x27;;
@@ -504,11 +504,17 @@ export class UserService {
   registerEndpoint &#x3D; &quot;/user/auth/register&quot;;
   getcreditsEndpoint&#x3D;&quot;/user/get-user-credits/{userid}&quot;;
   addcreditsEndpoint &#x3D; &quot;/user/add-credits/{userid}/{amount}&quot;;
+  forgotPasswordEndpoint &#x3D; &quot;/user/forgot-password&quot;;
+  resetPasswordEndpoint &#x3D; &quot;/user/reset-password&quot;;
 
   getcreitdsurl:string&#x3D;this.apiUrl+this.getcreditsEndpoint;
   addcreitdsurl:string&#x3D;this.apiUrl+this.addcreditsEndpoint;
   authenticateURL: string &#x3D; this.apiUrl + this.loginEndpoint;
   registerURL: string &#x3D; this.apiUrl + this.registerEndpoint;
+
+  forgotPasswordURL: string &#x3D; this.apiUrl + this.forgotPasswordEndpoint;
+  resetPasswordURL: string &#x3D; this.apiUrl + this.resetPasswordEndpoint;
+ 
   user!: User;
   authenticated: boolean &#x3D; false;
   users!: User[];
@@ -516,7 +522,8 @@ export class UserService {
 
   private userDetailsUrl &#x3D; &#x60;${this.apiUrl}/user&#x60;;
 
-  private changePasswordUrl &#x3D; &#x60;${this.apiUrl}/user/change-password&#x60;;
+//   private changePasswordUrl &#x3D; &#x60;${this.apiUrl}/user/change-password&#x60;;
+  private changePasswordUrl &#x3D; &#x60;${this.apiUrl}/user&#x60;; 
   private closeAccountUrl &#x3D; &#x60;${this.apiUrl}/user/close-account&#x60;;
   private userReviewsUrl &#x3D; &#x60;${this.apiUrl}/user/reviews&#x60;;
 
@@ -572,13 +579,7 @@ export class UserService {
         );
     }
 
-    // getUserDetails(userId: number): Observable&lt;User&gt; {
-    //     return this.http.get&lt;User&gt;(&#x60;${this.userDetailsUrl}/${userId}&#x60;);
-    // }
-
-    // updateUser(userId: number, updatedUser: Partial&lt;User&gt;): Observable&lt;any&gt; {
-    //     return this.http.put&lt;any&gt;(&#x60;${this.userDetailsUrl}/${userId}&#x60;, updatedUser);
-    // }
+ 
     getUserDetails(userId: number): Observable&lt;UserDetailsResponse&gt; { // Expect UserDetailsResponse
         return this.http.get&lt;UserDetailsResponse&gt;(&#x60;${this.userDetailsUrl}/${userId}/details&#x60;);
       }
@@ -593,9 +594,16 @@ export class UserService {
       }
     
 
+    //   changePassword(userId: number, passwords: any): Observable&lt;any&gt; {
+    //     return this.http.put&lt;any&gt;(&#x60;${this.apiUrl}/user/${userId}/change-password&#x60;, passwords);
+    //   }
     changePassword(userId: number, passwords: any): Observable&lt;any&gt; {
-        return this.http.post&lt;any&gt;(&#x60;${this.changePasswordUrl}/${userId}&#x60;, passwords);
-    }
+        let params &#x3D; new HttpParams()
+          .set(&#x27;oldPassword&#x27;, passwords.oldPassword)
+          .set(&#x27;newPassword&#x27;, passwords.newPassword);
+    
+        return this.http.put&lt;any&gt;(&#x60;${this.apiUrl}/user/${userId}/change-password&#x60;, {}, { params });
+      }
     
 
     getUserCredit(userId: number): Observable&lt;{ userId: number; credits: number }&gt; {
@@ -612,6 +620,16 @@ export class UserService {
 
     closeAccount(userId: number): Observable&lt;any&gt; {
         return this.http.delete&lt;any&gt;(&#x60;${this.closeAccountUrl}/${userId}&#x60;);
+    }
+
+    forgotPassword(email: string): Observable&lt;string&gt; {
+      return this.http.post(this.forgotPasswordURL, { email }, { responseType: &#x27;text&#x27; });  
+    }
+    
+    
+    
+    resetPassword(resetData: { token: string, newPassword: string, confirmPassword: string }): Observable&lt;string&gt; {
+      return this.http.post(this.resetPasswordURL, resetData, { responseType: &#x27;text&#x27; }); // Specify responseType as &#x27;text&#x27;
     }
 
     isUserLoggedIn(): boolean {

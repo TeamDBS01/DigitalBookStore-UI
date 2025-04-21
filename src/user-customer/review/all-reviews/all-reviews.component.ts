@@ -22,7 +22,6 @@ export class AllReviewsComponent {
                 this.message = ''
             },
             error: (error) => {
-                console.error('Error fetching reviews:-', error);
                 this.message = 'No reviews found!'
             }
         });

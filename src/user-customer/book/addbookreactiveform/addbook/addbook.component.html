@@ -38,12 +38,13 @@
       </div>
       <div class="form-r">
         <h5><label for="base64img" class="form-label">Cover Image</label></h5>
-        <img style="border: 2px dotted black; cursor: pointer;" (click)="imageUpload.click()" [src]="imageSrc" alt="Cover Image">
-        <input style="display: none;" #imageUpload type="file" accept="*image" name="base64img" formControlName="base64img" (change)="onFileChange($event)" class="form-control"><div *ngIf="formData.controls['base64img'].invalid && formData.controls['base64img'].touched" class="text-danger">
+        <!-- <img style="border: 2px dotted black; cursor: pointer;" (click)="imageUpload.click()" [src]="imageSrc" alt="Cover Image"> -->
+        <input type="file" accept="*image" name="base64img" formControlName="base64img" (change)="onFileChange($event)" class="form-control">
+        <div *ngIf="formData.controls['base64img'].invalid && formData.controls['base64img'].touched" class="text-danger">
           <span *ngIf="formData.controls['base64img'].errors?.['required']">Cover Image cannot be blank</span>
         </div>
         <h5><label for="description" class="form-label">Description</label></h5>
-        <textarea name="description" formControlName="description" class="form-control"></textarea>
+        <textarea rows=5 name="description" formControlName="description" class="form-control"></textarea>
         <div *ngIf="formData.controls['description'].invalid && formData.controls['description'].touched" class="text-danger">
           <span *ngIf="formData.controls['description'].errors?.['required']">Description cannot be blank</span>
         </div>

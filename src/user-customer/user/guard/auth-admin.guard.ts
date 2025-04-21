@@ -8,7 +8,7 @@ export class AuthAdminGuard implements CanActivate {
     constructor(private router: Router, private userService: UserService) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.userService.isUserLoggedIn() && this.userService.isAdmin()) {
-            console.log("return true:");
+            // console.log("return true:");
             return true;
         } else if (this.userService.isUserLoggedIn() && !this.userService.isAdmin()) {
             alert("Not authorized");

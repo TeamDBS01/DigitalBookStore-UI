@@ -82,7 +82,7 @@ export class SearchtitleComponent  {
       next: (data: Book[]) => {
         this.books = data;
         this.isLoading = false;
-        console.log('Books fetched (page ' + this.currentPage + '):', this.books);
+        // console.log('Books fetched (page ' + this.currentPage + '):', this.books);
       },
       error: (error) => {
         this.errorMessage = 'Failed to load books.';
