@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../../model/Book';
 import { BookService } from '../../service/book.service';
@@ -18,7 +18,7 @@ export class AddbookComponent implements OnInit {
   imageSrc: string = '../../../../assets/img-upload3.png';
   message!: string;
 
-  constructor(private bookService: BookService, private router: Router) { }
+  constructor(private bookService: BookService, private router: Router, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.formData = new FormGroup(
@@ -30,7 +30,7 @@ export class AddbookComponent implements OnInit {
         title: new FormControl("", Validators.compose(
           [
             Validators.required,
-            Validators.pattern('[a-zA-Z ]*')
+            Validators.pattern('[a-zA-Z0-9 ]*')
           ]
         )),
         price: new FormControl("", Validators.compose(
@@ -66,6 +66,7 @@ export class AddbookComponent implements OnInit {
     );
   }
 
+
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -74,11 +75,38 @@ export class AddbookComponent implements OnInit {
         this.formData.patchValue({
           base64img: e.target.result
         });
+        this.imageSrc = e.target.result;
         // this.imageSrc = e.target.result; // Update image source for display
       };
       reader.readAsDataURL(file);
     } 
   }
+
+  // onFileChange(event: any) {
+  //       console.log('onFileChange called');
+  //       const file = event.target.files[0];
+  //       if (file) {
+  //         const reader = new FileReader();
+  //         reader.onload = (e: any) => {
+  //           console.log('File loaded');
+  //           console.log('Base64 data:', e.target.result);
+  //           this.formData.patchValue({
+  //             base64img: e.target.result
+  //           });
+  //           this.imageSrc = e.target.result;
+  //           this.cdr.detectChanges();
+  //           console.log('imageSrc updated:', this.imageSrc);
+  //           // this.imageUploadedSuccessfully = true;
+  //         };
+  //         reader.onerror = (error) => {
+  //           console.error('Error reading file:', error);
+  //         };
+  //         reader.readAsDataURL(file);
+  //       } else {
+  //         this.imageSrc = '../../../../assets/img-upload3.png';
+  //         // this.imageUploadedSuccessfully = false;
+  //       }
+  //     }
 
   save() {
     this.book.bookID = this.formData.get('bookID')?.value;
@@ -91,7 +119,7 @@ export class AddbookComponent implements OnInit {
 
     this.bookService.registerBook(this.book)
     .subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.result = data;
       this.message = "Book added successfully!"; // Set success message
       this.formData.reset(); // Optionally reset the form after successful save

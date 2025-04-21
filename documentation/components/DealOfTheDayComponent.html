@@ -248,7 +248,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -315,8 +315,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -352,8 +352,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -389,8 +389,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -431,7 +431,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -457,7 +457,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -488,7 +488,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -514,7 +514,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user-customer/book/deal-of-the-day/deal-of-the-day.component.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -534,10 +534,11 @@ import { BookService } from &#x27;../service/book.service&#x27;;
 @Component({
     selector: &#x27;app-deal-of-the-day&#x27;,
     templateUrl: &#x27;./deal-of-the-day.component.html&#x27;,
-    styleUrls: [&#x27;./deal-of-the-day.component.sass&#x27;]
+    styleUrls: [&#x27;./deal-of-the-day.component.sass&#x27;],
+    standalone: false
 })
-export class DealOfTheDayComponent implements OnInit{
-    
+export class DealOfTheDayComponent implements OnInit {
+
     constructor(private bookService: BookService) { }
 
     timeRemaining!: Date;
@@ -558,35 +559,40 @@ export class DealOfTheDayComponent implements OnInit{
     }
     page &#x3D; 0;
     next() {
-        if (this.page + 3 &gt; this.allBooks.length) {
+        if (this.page + 2 &gt; this.allBooks.length) {
             this.page &#x3D; 0;
         }
-        this.books &#x3D; this.allBooks.slice(this.page, this.page + 3);
-        this.page +&#x3D; 3;
+        this.books &#x3D; this.allBooks.slice(this.page, this.page + 2);
+        this.page +&#x3D; 2;
     }
     prev() {
-        if (this.page - 3 &lt; 0) {
-            this.page &#x3D; this.allBooks.length - 4;
+        if (this.page - 2 &lt; 0) {
+            this.page &#x3D; this.allBooks.length - 3;
         }
-        this.books &#x3D; this.allBooks.slice(this.page - 3, this.page);
-        this.page -&#x3D; 3
+        this.books &#x3D; this.allBooks.slice(this.page - 2, this.page);
+        this.page -&#x3D; 2
     }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;background-color: bisque;&quot; class&#x3D;&quot;p-5&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;background-color: bisque; padding: 2% 5% 4% 5%;&quot; id&#x3D;&quot;dealOfTheDay&quot;&gt;
     &lt;div&gt;
-        &lt;h3&gt;Deals Of The Day&lt;/h3&gt; &lt;h3 class&#x3D;&quot;text-end&quot;&gt;Gone in: &lt;strong style&#x3D;&quot;color: orangered&quot;&gt;{{timeRemaining | date : &#x27;HH:mm:ss&#x27;}}&lt;/strong&gt;&lt;/h3&gt;
-        &lt;div class&#x3D;&quot;text-end&quot;&gt;
-
-            &lt;button (click)&#x3D;&quot;prev()&quot;&gt;prev&lt;/button&gt;
-            &lt;button (click)&#x3D;&quot;next()&quot;&gt;next&lt;/button&gt;
+        &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center&quot;&gt;
+            &lt;h3&gt;Deals Of The Day &lt;strong style&#x3D;&quot;color: orangered&quot;&gt;{{timeRemaining | date : &#x27;HH:mm:ss&#x27;}}&lt;/strong&gt;
+            &lt;/h3&gt;
+            &lt;div style&#x3D;&quot;cursor: pointer; display: flex; flex-direction: row; margin: 2%;&quot;&gt;
+                &lt;div (click)&#x3D;&quot;prev()&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-arrow-left rounded-circle p-3 me-2&quot;
+                        style&#x3D;&quot;background-color: white;&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+                &lt;div (click)&#x3D;&quot;next()&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-arrow-right rounded-circle p-3&quot;
+                        style&#x3D;&quot;background-color: white;&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-        &lt;app-book-deal style&#x3D;&quot;width: 30%&quot; *ngFor&#x3D;&quot;let book of books&quot; [book]&#x3D;&quot;book&quot; /&gt;
+    &lt;div class&#x3D;&quot;row justify-content-around&quot;&gt;
+        &lt;h4 *ngIf&#x3D;&quot;allBooks &#x3D;&#x3D;&#x3D; undefined&quot; class&#x3D;&quot;text-center&quot;&gt;&lt;br&gt;Loading Your Personalized Deals!&lt;br&gt;&lt;br&gt;&lt;/h4&gt;
+        &lt;app-book-deal style&#x3D;&quot;width: 40%&quot; *ngFor&#x3D;&quot;let book of books&quot; [book]&#x3D;&quot;book&quot;/&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -623,8 +629,8 @@ export class DealOfTheDayComponent implements OnInit{
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div style="background-color: bisque;" class="p-5">    <div>        <h3>Deals Of The Day</h3> <h3 class="text-end">Gone in: <strong style="color: orangered">{{timeRemaining | date : \'HH:mm:ss\'}}</strong></h3>        <div class="text-end">            <button (click)="prev()">prev</button>            <button (click)="next()">next</button>        </div>    </div>    <div class="row">        <app-book-deal style="width: 30%" *ngFor="let book of books" [book]="book" />    </div></div></div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
+        var COMPONENT_TEMPLATE = '<div><div style="background-color: bisque; padding: 2% 5% 4% 5%;" id="dealOfTheDay">    <div>        <div class="d-flex justify-content-between align-items-center">            <h3>Deals Of The Day <strong style="color: orangered">{{timeRemaining | date : \'HH:mm:ss\'}}</strong>            </h3>            <div style="cursor: pointer; display: flex; flex-direction: row; margin: 2%;">                <div (click)="prev()"><i class="fa-solid fa-arrow-left rounded-circle p-3 me-2"                        style="background-color: white;"></i></div>                <div (click)="next()"><i class="fa-solid fa-arrow-right rounded-circle p-3"                        style="background-color: white;"></i></div>            </div>        </div>    </div>    <div class="row justify-content-around">        <h4 *ngIf="allBooks === undefined" class="text-center"><br>Loading Your Personalized Deals!<br><br></h4>        <app-book-deal style="width: 40%" *ngFor="let book of books" [book]="book"/>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminDashboardComponent', 'selector': 'app-admin-dashboard'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DashboardInventoryComponent', 'selector': 'app-dashboard-inventory'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'EditorspickComponent', 'selector': 'app-editorspick'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'RecentOrdersComponent', 'selector': 'app-recent-orders'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'},{'name': 'WelcomeAdminComponent', 'selector': 'app-welcome-admin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DealOfTheDayComponent'};
 </script>

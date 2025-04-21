@@ -60,7 +60,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.sass']
+  styleUrls: ['./forgot-password.component.sass'],
+  standalone: false
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
@@ -83,7 +84,7 @@ export class ForgotPasswordComponent {
       this.loading = true;
       this.userService.forgotPassword(this.forgotPasswordForm.value.email).subscribe({
         next: (response: string) => {
-          console.log('Forgot Password Success Response:', response);
+          // console.log('Forgot Password Success Response:', response);
           this.message = response;
           this.error = '';
           this.forgotPasswordForm.reset();
@@ -95,7 +96,7 @@ export class ForgotPasswordComponent {
           this.loading = false; // Ensure loading is set to false on error
         },
         complete: () => {
-          console.log('Forgot Password Complete');
+          // console.log('Forgot Password Complete');
           this.loading = false;
         }
       });

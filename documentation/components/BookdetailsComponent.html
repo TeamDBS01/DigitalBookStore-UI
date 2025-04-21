@@ -243,7 +243,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: ActivatedRoute, bookService: <a href="../injectables/BookService.html" target="_self">BookService</a>)</code>
+<code>constructor(route: ActivatedRoute, bookService: <a href="../injectables/BookService.html" target="_self">BookService</a>, sanitizer: DomSanitizer)</code>
                     </td>
                 </tr>
                         <tr>
@@ -289,6 +289,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>sanitizer</td>
+                                                  
+                                                        <td>
+                                                                    <code>DomSanitizer</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -327,8 +339,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/user-customer/book/book-details/bookdetails/bookdetails.component.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/user-customer/book/book-details/bookdetails/bookdetails.component.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -364,8 +376,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/user-customer/book/book-details/bookdetails/bookdetails.component.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/user-customer/book/book-details/bookdetails/bookdetails.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -401,8 +413,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/user-customer/book/book-details/bookdetails/bookdetails.component.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/user-customer/book/book-details/bookdetails/bookdetails.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -438,8 +450,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/user-customer/book/book-details/bookdetails/bookdetails.component.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/user-customer/book/book-details/bookdetails/bookdetails.component.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -555,11 +567,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, HostListener, OnInit } from &#x27;@angular/core&#x27;;
 import { Book } from &#x27;../../model/Book&#x27;;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 import { BookService } from &#x27;../../service/book.service&#x27;;
-import { SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
+import { DomSanitizer, SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
 
 
 @Component({
@@ -576,6 +588,7 @@ export class BookdetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -588,11 +601,37 @@ export class BookdetailsComponent implements OnInit {
     }
   }
 
+  // loadSampleChapter(): void {
+  //   if (this.book &amp;&amp; this.book.bookID) {
+  //     this.bookService.loadSampleChapter(this.book.bookID).subscribe(url &#x3D;&gt; {
+  //       this.sampleChapterUrl &#x3D; url;
+  //       console.log(&quot;Url:&quot;+url);
+  //       this.openSampleChapterPopup(); 
+  //     });
+  //   }
+
+    
+  // loadSampleChapter(): void {
+  //   if (this.book &amp;&amp; this.book.bookID) {
+  //     this.bookService.loadSampleChapter(this.book.bookID).subscribe(url &#x3D;&gt; {
+  //       this.sampleChapterUrl &#x3D; url;
+  //       console.log(&quot;Url:&quot;+url);
+  //       this.openSampleChapterPopup(); 
+  //     });
+  //   }
+
+  // }
+
   loadSampleChapter(): void {
-    if (this.book &amp;&amp; this.book.bookID) {
-      this.bookService.loadSampleChapter(this.book.bookID).subscribe(url &#x3D;&gt; {
-        this.sampleChapterUrl &#x3D; url;
-        this.openSampleChapterPopup(); 
+    if (this.book?.bookID) {
+      this.bookService.getPdf().subscribe((pdfData: Blob) &#x3D;&gt; {
+        console.log(&quot;pdfData:&quot;, pdfData);
+        const blob &#x3D; new Blob([pdfData], { type: &#x27;application/pdf&#x27; });
+        this.sampleChapterUrl &#x3D; this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob) + &quot;#toolbar&#x3D;0&quot;);
+        const iframePopupContainer &#x3D; document.getElementById(&#x27;iframePopupContainer&#x27;);
+        if (iframePopupContainer) {
+          iframePopupContainer.classList.add(&#x27;show&#x27;); // Assuming you have CSS to show the popup
+        }
       });
     }
   }
@@ -614,6 +653,14 @@ export class BookdetailsComponent implements OnInit {
       popupContainer.classList.remove(&#x27;show&#x27;);
     }
   }
+
+  // @HostListener(&#x27;contextmenu&#x27;, [&#x27;$event&#x27;])
+  // onRightClick(event: MouseEvent) {
+  //   event.preventDefault();
+  // }
+
+  // disableContextMenu(event: MouseEvent) {   
+  //     event.preventDefault();   }
 }
 </code></pre>
     </div>
@@ -630,7 +677,8 @@ export class BookdetailsComponent implements OnInit {
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;col-md-8&quot;&gt;
       &lt;h2&gt;{{ book.title }}&lt;/h2&gt;
-      &lt;p class&#x3D;&quot;text-muted&quot;&gt;Author: {{ book.authorName }}&lt;/p&gt;
+      &lt;p class&#x3D;&quot;text-muted&quot;&gt;Author: {{ book.authorName }} &lt;/p&gt;
+      &lt;p&gt; Price: {{book.price}}&lt;/p&gt;
       &lt;div class&#x3D;&quot;mb-3&quot;&gt;
         &lt;app-average-rating [bookId]&#x3D;&quot;book.bookID&quot;&gt;&lt;/app-average-rating&gt;
       &lt;/div&gt;
@@ -648,8 +696,18 @@ export class BookdetailsComponent implements OnInit {
   &lt;div *ngIf&#x3D;&quot;sampleChapterUrl&quot; class&#x3D;&quot;iframe-popup-container&quot; id&#x3D;&quot;iframePopupContainer&quot;&gt;
     &lt;div class&#x3D;&quot;iframe-popup-content&quot;&gt;
       &lt;button class&#x3D;&quot;close-button&quot; (click)&#x3D;&quot;closeSampleChapterPopup()&quot;&gt;X&lt;/button&gt;
-      &lt;iframe [src]&#x3D;&quot;sampleChapterUrl&quot;        width&#x3D;&quot;80%&quot; height&#x3D;&quot;80%&quot; style&#x3D;&quot;border: none; filter: invert(0%); -webkit-filter: invert(0%);&quot;&gt;
-      &lt;/iframe&gt;
+      &lt;iframe
+      [src]&#x3D;&quot;sampleChapterUrl&quot;
+      width&#x3D;&quot;80%&quot;
+      height&#x3D;&quot;80%&quot;
+      style&#x3D;&quot;border: none; filter: invert(0%); -webkit-filter: invert(0%);&quot;
+      type&#x3D;&quot;application/pdf&quot; 
+       id&#x3D;&quot;pdf_content&quot;
+
+    &gt;
+    &lt;/iframe&gt;
+
+
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
@@ -765,8 +823,8 @@ export class BookdetailsComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="book" class="container mt-4">  <div class="row">    <div class="col-md-4">      <img        [src]="book.coverImage ? \'data:image/jpeg;base64,\' + book.base64img : \'\'"        alt="{{ book.title }}"        class="img-fluid rounded shadow-sm"      />    </div>    <div class="col-md-8">      <h2>{{ book.title }}</h2>      <p class="text-muted">Author: {{ book.authorName }}</p>      <div class="mb-3">        <app-average-rating [bookId]="book.bookID"></app-average-rating>      </div>      <p class="lead">{{ book.description }}</p>      <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>      <button class="readbtn" (click)="loadSampleChapter()" *ngIf="book.bookID">        <i ></i> Read Sample Chapter      </button>      <div class="mt-4">        <app-reviews-by-book-id [bookId]="book.bookID"></app-reviews-by-book-id>      </div>    </div>  </div>  <div *ngIf="sampleChapterUrl" class="iframe-popup-container" id="iframePopupContainer">    <div class="iframe-popup-content">      <button class="close-button" (click)="closeSampleChapterPopup()">X</button>      <iframe [src]="sampleChapterUrl"        width="80%" height="80%" style="border: none; filter: invert(0%); -webkit-filter: invert(0%);">      </iframe>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="book" class="container mt-4">  <div class="row">    <div class="col-md-4">      <img        [src]="book.coverImage ? \'data:image/jpeg;base64,\' + book.base64img : \'\'"        alt="{{ book.title }}"        class="img-fluid rounded shadow-sm"      />    </div>    <div class="col-md-8">      <h2>{{ book.title }}</h2>      <p class="text-muted">Author: {{ book.authorName }} </p>      <p> Price: {{book.price}}</p>      <div class="mb-3">        <app-average-rating [bookId]="book.bookID"></app-average-rating>      </div>      <p class="lead">{{ book.description }}</p>      <app-add-to-cart [bookId]="book.bookID"></app-add-to-cart>      <button class="readbtn" (click)="loadSampleChapter()" *ngIf="book.bookID">        <i ></i> Read Sample Chapter      </button>      <div class="mt-4">        <app-reviews-by-book-id [bookId]="book.bookID"></app-reviews-by-book-id>      </div>    </div>  </div>  <div *ngIf="sampleChapterUrl" class="iframe-popup-container" id="iframePopupContainer">    <div class="iframe-popup-content">      <button class="close-button" (click)="closeSampleChapterPopup()">X</button>      <iframe      [src]="sampleChapterUrl"      width="80%"      height="80%"      style="border: none; filter: invert(0%); -webkit-filter: invert(0%);"      type="application/pdf"        id="pdf_content"    >    </iframe>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminDashboardComponent', 'selector': 'app-admin-dashboard'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DashboardInventoryComponent', 'selector': 'app-dashboard-inventory'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'EditorspickComponent', 'selector': 'app-editorspick'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'RecentOrdersComponent', 'selector': 'app-recent-orders'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'},{'name': 'WelcomeAdminComponent', 'selector': 'app-welcome-admin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BookdetailsComponent'};
 </script>

@@ -13,14 +13,19 @@ export class ReviewComponent {
     @Input() canModify = false;
     @Input() userView = false;
     @Input() adminView = false;
+    @Input() restoreView = false;
+    @Input() restoreDisplay = 'none';
     @Output() editing = new EventEmitter<boolean>();
     reasonsForDelete = ["Choose a Reason", "Invalid", "Irrelevant", "Spam", "Bad Language"];
     reasonForDelete = this.reasonsForDelete[0];
     reasonValidation = false;
+    error?: string;
 
     display = "none";
     openModal() { this.display = 'block' }
     closeModal() { this.display = 'none' }
+    openRestoreModal() { this.restoreDisplay = 'block' }
+    closeRestoreModal() { this.restoreDisplay = 'none' }
 
     constructor(private reviewService: ReviewService) { }
 
@@ -37,14 +42,26 @@ export class ReviewComponent {
                 this.review.reason = this.reasonForDelete;
                 this.reviewService.addReviewDelete(this.review).subscribe({
                     next: () => window.location.reload(),
-                    error: err => console.error(err),
+                    error: err => this.error = "Error occurred, Please try Again!",
                 })
             } else {
                 this.reviewService.deleteReview(this.review.reviewId).subscribe({
                     next: () => window.location.reload(),
-                    error: err => console.error(err),
+                    error: err => this.error = "Error occurred, Please try Again!",
                 })
             }
         }
     }
+    restoreReview() {
+        this.closeRestoreModal();
+        this.reviewService.deleteReviewDelete(this.review).subscribe({
+            next: () => window.location.reload(),
+            error: err => {
+                this.error = "Error occurred, Please try Again!"
+                console.log(err);
+                
+            },
+        })
+    }
 }
+

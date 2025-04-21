@@ -196,6 +196,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -270,7 +284,49 @@
 
 
 
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
 
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">src/user-customer/Home/book-carousel/book-carousel.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -357,6 +413,14 @@ export class BookCarouselComponent {
 
   constructor(private bookService: BookService, private router: Router) {}
 
+  ngOnInit() {
+    // console.log(this.books);
+    
+    this.bookService.getAllBooks().subscribe({
+      next:data &#x3D;&gt;
+        this.books &#x3D; data
+    })
+  }
 }
 </code></pre>
     </div>
@@ -377,29 +441,13 @@ export class BookCarouselComponent {
       &lt;/div&gt;
   
 
-&lt;div class&#x3D;&quot;book-carousel&quot;&gt;
-  &lt;div class&#x3D;&quot;book-list&quot;&gt;
-      &lt;div class&#x3D;&quot;book-item&quot;&gt;
-        &lt;img src&#x3D;&quot;assets/book.png&quot; alt&#x3D;&quot;Book 1&quot;&gt;
+      &lt;div class&#x3D;&quot;book-carousel&quot;&gt;
+        &lt;div class&#x3D;&quot;book-list&quot;&gt;
+          &lt;div *ngFor&#x3D;&quot;let book of books&quot; class&#x3D;&quot;book-item&quot;&gt;
+            &lt;img [src]&#x3D;&quot;&#x27;data:image/jpeg;base64,&#x27; + book.base64img&quot; [alt]&#x3D;&quot;book.title&quot;&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class&#x3D;&quot;book-item&quot;&gt;
-        &lt;img src&#x3D;&quot;assets/book1.jpg&quot; alt&#x3D;&quot;Book 2&quot;&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;book-item&quot;&gt;
-        &lt;img src&#x3D;&quot;assets/book2.jfif&quot; alt&#x3D;&quot;Book 3&quot;&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;book-item&quot;&gt;
-        &lt;img src&#x3D;&quot;assets/book3.jfif&quot; alt&#x3D;&quot;Book 4&quot;&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;book-item&quot;&gt;
-        &lt;img src&#x3D;&quot;assets/book4.jfif&quot; alt&#x3D;&quot;Book 5&quot;&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;book-item&quot;&gt;
-        &lt;img src&#x3D;&quot;assets/book5.jfif&quot; alt&#x3D;&quot;Book 6&quot;&gt;
-      &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
 </code></pre>
     </div>
 
@@ -544,8 +592,8 @@ export class BookCarouselComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="booksearch">    <div class="box">        <div class="search-field">          <div class="search-section">            <form (ngSubmit)="searchButton.click()"> <input type="text" #searchInput [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search book..." /><button #searchButton routerLink="/search" [queryParams]="{\'searchQuery\': searchInput.value}">Search</button>   </form>            </div>        </div>      </div>  <div class="book-carousel">  <div class="book-list">      <div class="book-item">        <img src="assets/book.png" alt="Book 1">      </div>      <div class="book-item">        <img src="assets/book1.jpg" alt="Book 2">      </div>      <div class="book-item">        <img src="assets/book2.jfif" alt="Book 3">      </div>      <div class="book-item">        <img src="assets/book3.jfif" alt="Book 4">      </div>      <div class="book-item">        <img src="assets/book4.jfif" alt="Book 5">      </div>      <div class="book-item">        <img src="assets/book5.jfif" alt="Book 6">      </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
+        var COMPONENT_TEMPLATE = '<div><div class="booksearch">    <div class="box">        <div class="search-field">          <div class="search-section">            <form (ngSubmit)="searchButton.click()"> <input type="text" #searchInput [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search book..." /><button #searchButton routerLink="/search" [queryParams]="{\'searchQuery\': searchInput.value}">Search</button>   </form>            </div>        </div>      </div>        <div class="book-carousel">        <div class="book-list">          <div *ngFor="let book of books" class="book-item">            <img [src]="\'data:image/jpeg;base64,\' + book.base64img" [alt]="book.title">          </div>        </div>      </div></div>'
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminDashboardComponent', 'selector': 'app-admin-dashboard'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DashboardInventoryComponent', 'selector': 'app-dashboard-inventory'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'EditorspickComponent', 'selector': 'app-editorspick'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'RecentOrdersComponent', 'selector': 'app-recent-orders'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'},{'name': 'WelcomeAdminComponent', 'selector': 'app-welcome-admin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BookCarouselComponent'};
 </script>

@@ -336,8 +336,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/user-customer/user/login/login.component.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/user-customer/user/login/login.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -373,8 +373,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/user-customer/user/login/login.component.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/user-customer/user/login/login.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -410,8 +410,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/user-customer/user/login/login.component.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/user-customer/user/login/login.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -702,10 +702,6 @@ export class LoginComponent implements OnInit {
     constructor(private router: Router, private loginService: UserService) { }
 
     ngOnInit() {
-        if (sessionStorage.getItem(&#x27;token&#x27;)) {
-            const role &#x3D; sessionStorage.getItem(&#x27;role&#x27;);
-            this.navigateToBasedOnRole(role);
-        }
     }
 
     checkLogin() {
@@ -721,6 +717,7 @@ export class LoginComponent implements OnInit {
                 this.invalidLoginMessage &#x3D; &#x27;&#x27;;
                 this.loggedInUserName &#x3D; response.name || response.email;
                 this.showWelcomePopup &#x3D; true;
+                // this.router.navigate([&#x27;/home&#x27;]);
                 // setTimeout(() &#x3D;&gt; {
                 //     this.showWelcomePopup &#x3D; false;
                     this.navigateToBasedOnRole(response.role);  
@@ -743,14 +740,14 @@ export class LoginComponent implements OnInit {
     closeWelcomePopup() {
         const role &#x3D; sessionStorage.getItem(&#x27;role&#x27;);
         this.showWelcomePopup &#x3D; false;
-        this.navigateToBasedOnRole(role);
+        this.router.navigate([&#x27;/home&#x27;]);
     }
 
     navigateToBasedOnRole(role: string | null) {
         if (role &#x3D;&#x3D;&#x3D; &#x27;CUSTOMER&#x27;) {
             this.router.navigate([&#x27;/home&#x27;]);
         } else if (role &#x3D;&#x3D;&#x3D; &#x27;ADMIN&#x27;) {
-            this.router.navigate([&#x27;/adminHome&#x27;]);
+            this.router.navigate([&#x27;/dashboard&#x27;]);
         } else {
             console.warn(&#x27;Unknown role:&#x27;, role);
             this.router.navigate([&#x27;/&#x27;]);
@@ -779,7 +776,8 @@ export class LoginComponent implements OnInit {
             &lt;div *ngIf&#x3D;&quot;invalidLogin&quot; class&#x3D;&quot;error-message&quot;&gt;
                 {{ invalidLoginMessage }}
             &lt;/div&gt;
-            &lt;p&gt;Don&#x27;t have an account? &lt;a routerLink&#x3D;&quot;/signup&quot;&gt;Sign Up&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;Don&#x27;t have an account? &lt;a routerLink&#x3D;&quot;/signup&quot;&gt;Sign Up&lt;/a&gt;
+                &lt;br&gt;&lt;a routerLink&#x3D;&quot;/forgotpassword&quot;&gt;Forgot your password?&lt;/a&gt;&lt;/p&gt;
         &lt;/form&gt;
     &lt;/div&gt;
 &lt;/div&gt;
@@ -948,8 +946,8 @@ export class LoginComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="background-container">    <div class="hcont">    <div class="container">        <form>            <h2>Login</h2>            <div>                <label for="email">Email:</label>                <input type="text" id="email" name="username" [(ngModel)]="email">            </div>            <div>                <label for="password">Password:</label>                <input type="password" id="password" name="password" [(ngModel)]="password">            </div>            <button type="button" (click)="checkLogin()">                Login            </button>            <div *ngIf="invalidLogin" class="error-message">                {{ invalidLoginMessage }}            </div>            <p>Don\'t have an account? <a routerLink="/signup">Sign Up</a></p>        </form>    </div></div></div><style>    .hcont{        position: absolute;        right:50px;    }    .background-container {        background-image: url(\'assets/loginB.jpg\');        background-size: cover;        background-position: center;        height:90vh;        display: flex;        justify-content: center;        align-items: center;            }   </style></div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
+        var COMPONENT_TEMPLATE = '<div><div class="background-container">    <div class="hcont">    <div class="container">        <form>            <h2>Login</h2>            <div>                <label for="email">Email:</label>                <input type="text" id="email" name="username" [(ngModel)]="email">            </div>            <div>                <label for="password">Password:</label>                <input type="password" id="password" name="password" [(ngModel)]="password">            </div>            <button type="button" (click)="checkLogin()">                Login            </button>            <div *ngIf="invalidLogin" class="error-message">                {{ invalidLoginMessage }}            </div>            <p>Don\'t have an account? <a routerLink="/signup">Sign Up</a>                <br><a routerLink="/forgotpassword">Forgot your password?</a></p>        </form>    </div></div></div><style>    .hcont{        position: absolute;        right:50px;    }    .background-container {        background-image: url(\'assets/loginB.jpg\');        background-size: cover;        background-position: center;        height:90vh;        display: flex;        justify-content: center;        align-items: center;            }   </style></div>'
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminDashboardComponent', 'selector': 'app-admin-dashboard'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DashboardInventoryComponent', 'selector': 'app-dashboard-inventory'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'EditorspickComponent', 'selector': 'app-editorspick'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'RecentOrdersComponent', 'selector': 'app-recent-orders'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'},{'name': 'WelcomeAdminComponent', 'selector': 'app-welcome-admin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>

@@ -25,21 +25,17 @@
         <div class="mb-3">
           <label for="base64img" class="form-label">Cover Image:</label><br>
           <img *ngIf="book.coverImage" [src]="'data:image/jpeg;base64,' + book.coverImage" alt="Book Cover" class="mb-2">
-          <input type="file" class="form-control" id="base64img" [(ngModel)]="book.base64img" name="base64img" (change)="onFileChange($event)">
+          <!-- <input type="file" class="form-control" id="base64img" [(ngModel)]="book.base64img" name="base64img" (change)="onFileChange($event)"> -->
         </div>
         
       </div>
-      <!-- <div class="mb-3">
-        <label for="authorID" class="form-label">Author ID:</label>
-        <input type="text" class="form-control" id="authorID" [(ngModel)]="book.authorID" name="authorID">
+
       </div>
-      <div class="mb-3">
-        <label for="categoryID" class="form-label">Category ID:</label>
-        <input type="text" class="form-control" id="categoryID" [(ngModel)]="book.categoryID" name="categoryID">
-      </div> -->
+      <div class="button-ctn">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="Reset" class="btn btn-secondary ms-2" routerLink="/books">Go back</button>
       </div>
-      <button type="submit" class="btn btn-primary">Update</button>
-      <button type="Reset" class="btn btn-secondary ms-2" routerLink="/books">Go back</button>
+      
     </form>
   </div>
 

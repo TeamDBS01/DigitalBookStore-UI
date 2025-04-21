@@ -10,18 +10,18 @@
     </div>
   
     <div *ngIf="!isLoading && !errorMessage && editorsPicks.length > 0" class="editors-pick-grid">
-      <div *ngFor="let book of editorsPicks" class="book-card">
+      <div *ngFor="let book of editorsPicks" class="book-card" [routerLink]="['/book-details', book.bookID]">
         <div class="cover-image">
             <img
             [src]="book.coverImage ? 'data:image/jpeg;base64,' + book.base64img : ''"
             alt="{{ book.title }}"
+            
             class="img-fluid rounded shadow-sm"
           />
           </div>
         <div class="book-info">
           <h3>{{ book.title }}</h3>
           <p class="author">By {{ book.authorName }}</p>
-          <button class="view-details-button" [routerLink]="['/book-details', book.bookID]">View Details</button>
         </div>
       </div>
     </div>

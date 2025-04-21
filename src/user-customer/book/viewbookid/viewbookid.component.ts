@@ -16,23 +16,21 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
   noRecordFound = false;
   submitted = false;
   books: Book[] = [];
-  // totalItems: number = 0;
-  // pageSize: number = 10;
-  // currentPage: number = 0;
-  // totalPages: number = 0;
-  // searchBookId: string = '';
-  // allBooks: Book[] = [];
-  // filteredBooks: Book[] = [];
-  loading = 'Loading...'
+  pageSize: number = 3; // You can adjust the page size
+  currentPage: number = 0;
+  totalPages: number = 0;
+  loading!: string; // You have this, let's use it consistently
+  searchQuery: string = ''; // To potentially handle search pagination
+  errorMessage: string = '';
+  isLoading: boolean = false; // Reintroduce isLoading
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private bookService: BookService, private router: Router) { }
+  constructor(private bookService: BookService, private router: Router, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    // this.loadTotalPages(); // Load total number of pages from the backend
-    // this.loadBook(this.currentPage, this.pageSize); // Load the initial page of books
-    this.loadAllBooks();
+    this.loadTotalPages(); // Load total number of pages from the backend
+    this.loadBooks(this.currentPage, this.pageSize); // Load the initial page of books
   }
 
   ngOnDestroy(): void {
@@ -40,42 +38,36 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  loadAllBooks(): void {
-    this.bookService.getAllBooks().subscribe(
-    (data: Book[]) => {
-    this.books = data;
-    },
-    (error) => {
-      console.error('Error loading all books:', error);
-    }
-  );
+  loadTotalPages() {
+    this.bookService.getNumberOfPages().subscribe({
+      next: (pages: number) => {
+        this.totalPages = pages;
+      },
+      error: (error) => {
+        console.error('Error loading total pages:', error);
+        this.errorMessage = this.errorMessage || 'Failed to load total pages.';
+      },
+    });
   }
-  
-  // loadTotalPages() {
-  //   this.bookService.getPages().pipe(takeUntil(this.unsubscribe$)).subscribe({
-  //     next: (total: number) => {
-  //       this.totalItems = total;
-  //       this.totalPages = Math.ceil(this.totalItems / this.pageSize) > 0 ? Math.ceil(this.totalItems / this.pageSize) : 1;
-  //       console.log('Total Items:', this.totalItems);
-  //       console.log('Total Pages:', this.totalPages);
-  //     },
-  //     error: (error) => {
-  //       console.error('Error loading total pages:', error);
-  //     }
-  //   });
-  // }
 
-  // loadBook(page: number, size: number) {
-  //   this.bookService.getBook(page, size)
-  //     .pipe(takeUntil(this.unsubscribe$))
-  //     .subscribe(data => {
-  //       this.books = data;
-  //       this.cdr.detectChanges();
-  //       console.log(`Loaded Page ${page + 1} with ${data.length} items:`, this.books);
-  //     }, error => {
-  //       console.error('Error loading books for page:', error);
-  //     });
-  // }
+  loadBooks(page: number, size: number) {
+    this.loading = 'Loading...'; // Set loading state (you already have this)
+    this.isLoading = true; // Ensure isLoading is set at the start of loading books
+    this.bookService.getAllBooksWithPagination(page, size)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(data => {
+        this.books = data;
+        this.loading = ''; // Reset loading state
+        this.isLoading = false; // Set isLoading to false after successfully loading books
+        this.cdr.detectChanges(); // Ensure view is updated after data loads
+        console.log(`Loaded Page ${page + 1} with ${data.length} items:`, this.books);
+      }, error => {
+        console.error('Error loading books for page:', error);
+        this.loading = 'Error loading books.'; // Set error state
+        this.errorMessage = 'Failed to load books.';
+        this.isLoading = false; // Set isLoading to false on error
+      });
+  }
 
   display = 'none';
   delete(bookID: string) {
@@ -84,14 +76,25 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
   }
 
   search() {
-    this.bookService.getBook(this.book) // Assuming this method exists and returns a Book
-      .subscribe(data => {
-        this.book = data;
+    this.bookService.getBook(this.book)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (data) => {
+          this.book = data;
+          this.noRecordFound = false;
+          this.submitted = true;
+          this.books = []; // Clear paginated results
+          this.totalPages = 0; // Reset pagination
+        },
+        error: (error) => {
+          this.noRecordFound = true;
+          this.book = new Book();
+          this.submitted = true;
+          this.books = []; // Clear paginated results
+          this.totalPages = 0; // Reset pagination
+          console.error('Error searching book:', error);
+        }
       });
-
-    if (this.book.bookID) {
-      this.noRecordFound = true;
-    }
   }
 
   update(bookID: string) {
@@ -101,14 +104,21 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.search();
-    this.submitted = true;
   }
 
-  // onPageChange(page: number): void {
-  //   if (page >= 0 && page < this.totalPages) {
-  //     this.currentPage = page;
-  //     this.loadBook(this.currentPage, this.pageSize);
-  //     console.log('Page Changed To:', this.currentPage);
-  //   }
-  // }
+  goToPage(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.currentPage = page;
+      this.loadBooks(this.currentPage, this.pageSize);
+      console.log('Page Changed To:', this.currentPage);
+    }
+  }
+
+  getPageArray(): number[] {
+    const pageArray: number[] = [];
+    for (let i = 0; i < this.totalPages; i++) {
+      pageArray.push(i);
+    }
+    return pageArray;
+  }
 }

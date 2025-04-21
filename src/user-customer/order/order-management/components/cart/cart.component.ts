@@ -92,7 +92,7 @@ export class CartComponent implements OnInit {
       if (!this.bookTitles[item.bookId]) {
         this.bookInfoService.getBookTitle(item.bookId).subscribe({
           next: (book: Book) => {
-            console.log('Fetched BOok: ', book);
+            // console.log('Fetched BOok: ', book);
             this.bookTitles[item.bookId] = book.title;
           },
           error: (error) => {

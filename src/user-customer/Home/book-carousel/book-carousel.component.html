@@ -15,7 +15,7 @@
 
       <div class="book-carousel">
         <div class="book-list">
-          <div *ngFor="let book of books" class="book-item">
+          <div *ngFor="let book of books | slice:0:6" class="book-item">
             <img [src]="'data:image/jpeg;base64,' + book.base64img" [alt]="book.title">
           </div>
         </div>

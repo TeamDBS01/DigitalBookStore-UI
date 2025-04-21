@@ -18,11 +18,7 @@ export class ReviewsByUserIdComponent {
         this.reviewService.getReviewsByUserId().subscribe({
             next: data => { this.reviews = data },
             error: error => {
-                if (!(error.error.text === `No Reviews with User ID: ${this.reviewService.userId} Found!`)) {
-                    console.error(error);
-                } else {
-                    this.reviews = [];
-                }
+                this.reviews = [];
             }
         })
     }

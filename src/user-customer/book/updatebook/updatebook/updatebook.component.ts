@@ -35,10 +35,11 @@ export class UpdatebookComponent implements OnInit {
       this.book.base64img = ''; // Clear base64 if no file selected
     }
   }
-
+  
   update() {
     this.bookService.updateBook(this.book)
-      .subscribe(data => {
+    .subscribe(data => {
+        console.log("this", this.book)
         this.result = data;
         this.submitted = true; // Show the result message
         this.message = 'Book updated successfully!'; // Set the success message

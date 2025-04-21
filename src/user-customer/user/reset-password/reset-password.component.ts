@@ -104,7 +104,8 @@ import { UserService } from '../service/user.service';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.sass']
+  styleUrls: ['./reset-password.component.sass'],
+  standalone: false
 })
 export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
@@ -144,7 +145,7 @@ export class ResetPasswordComponent implements OnInit {
           confirmPassword: this.resetPasswordForm.value.confirmPassword
         }).subscribe({
           next: (response: string) => {
-            console.log('Reset Password Success Response:', response);
+            // console.log('Reset Password Success Response:', response);
             this.message = response;
             this.error = '';
             setTimeout(() => this.router.navigate(['/login']), 3000);
@@ -156,7 +157,7 @@ export class ResetPasswordComponent implements OnInit {
             this.loading = false; // Ensure loading is set to false on error
           },
           complete: () => {
-            console.log('Reset Password Complete');
+            // console.log('Reset Password Complete');
             this.loading = false;
           }
         });

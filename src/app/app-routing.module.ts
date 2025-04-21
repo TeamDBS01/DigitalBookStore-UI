@@ -12,6 +12,7 @@ import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/add
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
 import { CategorybooksComponent } from 'src/user-customer/book/category-books/categorybooks/categorybooks.component';
 import { CategorybookslistComponent } from 'src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component';
+import { DealOfTheDayComponent } from 'src/user-customer/book/deal-of-the-day/deal-of-the-day.component';
 import { EditorspickComponent } from 'src/user-customer/book/editors-pick/editorspick/editorspick.component';
 import { SearchtitleComponent } from 'src/user-customer/book/searchtitle/searchtitle.component';
 import { UpdatebookComponent } from 'src/user-customer/book/updatebook/updatebook/updatebook.component';
@@ -24,6 +25,7 @@ import { OrderTrackingComponent } from 'src/user-customer/order/order-management
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
+import { AdminReviewComponent } from 'src/user-customer/review/admin-review/admin-review.component';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
 import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
@@ -44,7 +46,7 @@ const routes: Routes = [
     { path: 'updateQuantity', component: UpdateQuantityComponent },
     { path: 'profile', component: UserProfileComponent },
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    { path: 'reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: 'reviews', component: AdminReviewComponent, canActivate: [AuthAdminGuard], },
     { path: 'editors-pick', component: EditorspickComponent },
     { path: 'books', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'addBooks', component: AddbookComponent, canActivate: [AuthAdminGuard], },
@@ -63,11 +65,9 @@ const routes: Routes = [
     { path: 'order/admin/tracking/:id', component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
     { path: 'order/payment/:id', component: PaymentComponent, canActivate: [AuthCustomerGuard], },
     { path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
-    // { path: '**', redirectTo: 'home', pathMatch: 'full' },
-    // {path:'adminhome',component:AdminHomeComponent},
-    // {path:'allorderstatus',component:AllorderstatusComponent},
     { path: 'forgotpassword', component:ForgotPasswordComponent},
-{ path: 'reset-password', component:ResetPasswordComponent },
+    { path: 'reset-password', component:ResetPasswordComponent },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' },
 {path:'allusers',component:UserListComponent,canActivate:[AuthAdminGuard]}
 ];
 

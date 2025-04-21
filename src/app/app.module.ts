@@ -70,6 +70,9 @@ import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-revi
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/reset-password.component';
+import { WelcomeAdminComponent } from 'src/user-admin/welcome-admin/welcome-admin.component';
+import { ReviewsDeletedComponent } from 'src/user-customer/review/reviews-deleted/reviews-deleted.component';
+import { AdminReviewComponent } from 'src/user-customer/review/admin-review/admin-review.component';
 import { UserListComponent } from 'src/user-admin/user-list/user-list.component';
 
 @NgModule({
@@ -118,20 +121,23 @@ import { UserListComponent } from 'src/user-admin/user-list/user-list.component'
         AdminDashboardComponent,
         AdminDashboardComponent,
         DashboardInventoryComponent,
+        UserListComponent,
         RecentOrdersComponent,
         EditorspickComponent,
+        AdminDashboardComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent,
+        WelcomeAdminComponent,
+        StarsComponent,
         AllReviewsComponent,
         ReviewComponent,
-        StarsComponent,
         AverageRatingComponent,
         AddUpdateReviewComponent,
         ReviewsByBookIdComponent,
         ReviewsByUserIdComponent,
         ViewEditReviewComponent,
-        AdminDashboardComponent,
-        ForgotPasswordComponent,
-        ResetPasswordComponent,
-        UserListComponent
+        ReviewsDeletedComponent,
+        AdminReviewComponent,
     ],
     imports: [
   

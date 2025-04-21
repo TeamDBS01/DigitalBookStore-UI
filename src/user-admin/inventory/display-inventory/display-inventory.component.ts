@@ -44,7 +44,7 @@ export class DisplayInventoryComponent implements OnInit, OnDestroy {
     this.inventoryService.getPages().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: data => {
         this.totalPages = data; // Initial total pages (might be for the entire dataset)
-        console.log('Initial Total Pages:', this.totalPages);
+        // console.log('Initial Total Pages:', this.totalPages);
       }
     });
   }
@@ -56,7 +56,7 @@ export class DisplayInventoryComponent implements OnInit, OnDestroy {
         this.allInventories = data;
         this.filterInventories(''); // Initial filter with empty string to show all
         this.isLoading = false;
-        console.log('All Inventories Loaded:', this.allInventories.length);
+        // console.log('All Inventories Loaded:', this.allInventories.length);
       });
   }
 
@@ -67,7 +67,7 @@ export class DisplayInventoryComponent implements OnInit, OnDestroy {
         this.inventories = data;
         this.cdr.detectChanges();
         this.isLoading = false;
-        console.log(`Loaded Page ${page + 1} with ${data.length} items:`, this.inventories);
+        // console.log(`Loaded Page ${page + 1} with ${data.length} items:`, this.inventories);
       });
   }
   
@@ -104,7 +104,7 @@ export class DisplayInventoryComponent implements OnInit, OnDestroy {
     if (page >= 0 && page < this.totalPages) {
       this.currentPage = page;
       this.updateDisplayedInventories();
-      console.log('Page Changed To:', this.currentPage);
+      // console.log('Page Changed To:', this.currentPage);
     }
   }
 
