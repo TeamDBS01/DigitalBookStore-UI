@@ -25,7 +25,7 @@ export class LeftSidebarComponent {
       label: 'Books'
     },
     {
-        routeLink: 'customers',
+        routeLink: 'allusers',
         icon: 'fa-solid fa-user',
         label:'Customers'
     },

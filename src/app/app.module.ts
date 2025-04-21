@@ -70,6 +70,7 @@ import { ViewEditReviewComponent } from 'src/user-customer/review/view-edit-revi
 import { UserProfileComponent } from 'src/user-customer/user/user-profile/user-profile.component';
 import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/reset-password.component';
+import { UserListComponent } from 'src/user-admin/user-list/user-list.component';
 
 @NgModule({
     declarations: [
@@ -129,7 +130,8 @@ import { ResetPasswordComponent } from 'src/user-customer/user/reset-password/re
         ViewEditReviewComponent,
         AdminDashboardComponent,
         ForgotPasswordComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        UserListComponent
     ],
     imports: [
   

@@ -6,6 +6,7 @@ import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-da
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
+import { UserListComponent } from 'src/user-admin/user-list/user-list.component';
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/addbook/addbook.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
@@ -39,7 +40,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'dashboard', component: AdminDashboardComponent, canActivate: [AuthAdminGuard], },
-    { path: 'getInventoryByBookID', component: ViewByBookIDComponent },
+    { path: 'getInventoryByBookID', component: ViewByBookIDComponent, canActivate:[AuthAdminGuard] },
     { path: 'updateQuantity', component: UpdateQuantityComponent },
     { path: 'profile', component: UserProfileComponent },
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
@@ -67,6 +68,7 @@ const routes: Routes = [
     // {path:'allorderstatus',component:AllorderstatusComponent},
     { path: 'forgotpassword', component:ForgotPasswordComponent},
 { path: 'reset-password', component:ResetPasswordComponent },
+{path:'allusers',component:UserListComponent,canActivate:[AuthAdminGuard]}
 ];
 
 @NgModule({

@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = sessionStorage.getItem('token');
  
-    // Skip auth header for login and signup endpoints
+   
     if (request.url.includes('/login') || request.url.includes('/signup')) {
       return next.handle(request);
     }
