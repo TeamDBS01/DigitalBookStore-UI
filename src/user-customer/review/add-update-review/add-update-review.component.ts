@@ -56,10 +56,19 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
 
     discardChanges() {
         this.closeModal();
-        this.editing.emit(false);
+        if (this.review !== undefined) {
+            this.editing.emit(false);
+        }
     }
 
-    handleEnter(event: KeyboardEvent): void { if (event.key === 'Enter') { this.onSubmit(this.formData.value); event.preventDefault(); } }
+    handleEnter(event: KeyboardEvent): void {
+        if (event.key === 'Enter') {
+            if (!this.formData.invalid) {
+                this.onSubmit(this.formData.value);
+            }
+            event.preventDefault();
+        }
+    }
 
     handleRatingClick(event: MouseEvent, starValue: number): void {
         const rect = (event.target as HTMLElement).getBoundingClientRect();
@@ -111,8 +120,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
                     this.editing.emit(false);
                 },
                 error: error => {
-                    console.error(error)
-                    this.errorMessage = "Error updating review";
+                    this.errorMessage = "Error updating review, Please try Again!";
                 }
             })
         } else {
@@ -123,8 +131,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
                     this.editing.emit(false);
                 },
                 error: error => {
-                    console.error(error)
-                    this.errorMessage = "Error adding review";
+                    this.errorMessage = "Error adding review, Please try Again!";
                 }
             })
         }

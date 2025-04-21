@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
         this.loadCartCountOnInit();
         this.cartSubscription = this.orderService.cartItemsCount$.subscribe(count => {
           this.cartItemCount = count;
-          console.log('Navbar Cart Count Updated:', this.cartItemCount); // Add this log
         });
     }
 
@@ -81,8 +80,7 @@ export class NavbarComponent implements OnInit {
       this.orderService.getCartItems().subscribe(
         items => {
           this.cartItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
-          this.orderService['cartItemsCount'].next(this.cartItemCount); // Directly update BehaviorSubject
-          console.log('Navbar Initial Cart Count:', this.cartItemCount); // Add this log
+          this.orderService['cartItemsCount'].next(this.cartItemCount);
         },
         error => {
           console.error('Error loading initial cart items in Navbar:', error);

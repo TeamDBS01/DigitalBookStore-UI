@@ -742,7 +742,7 @@ public updateRemoveInventory(book_Id: string, quantity: number): Observable&lt;s
 }
 
 public deleteBookFromInventory(book_Id: string) {
-    const deleteBookURL&#x3D; &#x60;${this.apiUrl}/inventory/${book_Id}&#x60;;
+    const deleteBookURL&#x3D; &#x60;${this.apiUrl}/books/delete/${book_Id}&#x60;;
     return this.http.delete(deleteBookURL, { responseType: &#x27;text&#x27; });
 }
   

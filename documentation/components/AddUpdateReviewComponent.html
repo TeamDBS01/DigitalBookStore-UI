@@ -237,10 +237,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#cancel" >cancel</a>
+                                <a href="#closeModal" >closeModal</a>
                             </li>
                             <li>
-                                <a href="#closeModal" >closeModal</a>
+                                <a href="#discardChanges" >discardChanges</a>
                             </li>
                             <li>
                                 <a href="#handleEnter" >handleEnter</a>
@@ -517,43 +517,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cancel"></a>
-                    <span class="name">
-                        <span ><b>cancel</b></span>
-                        <a href="#cancel"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>cancel()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:57</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="closeModal"></a>
                     <span class="name">
                         <span ><b>closeModal</b></span>
@@ -591,6 +554,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="discardChanges"></a>
+                    <span class="name">
+                        <span ><b>discardChanges</b></span>
+                        <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>discardChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="handleEnter"></a>
                     <span class="name">
                         <span ><b>handleEnter</b></span>
@@ -607,8 +607,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -674,8 +674,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -827,8 +827,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -931,8 +931,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/user-customer/review/add-update-review/add-update-review.component.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -1307,13 +1307,14 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
     }
 
     display &#x3D; &quot;none&quot;;
-    openModal() { this.display &#x3D; &#x27;block&#x27;}
-    closeModal() { this.display &#x3D; &#x27;none&#x27;}
-    
-    cancel() {
-        this.rating &#x3D; 0;
-        this.formData.reset();
-        window.location.reload();
+    openModal() { this.display &#x3D; &#x27;block&#x27; }
+    closeModal() { this.display &#x3D; &#x27;none&#x27; }
+
+    discardChanges() {
+        this.closeModal();
+        if (this.review !&#x3D;&#x3D; undefined) {   
+            this.editing.emit(false);
+        }
     }
 
     handleEnter(event: KeyboardEvent): void { if (event.key &#x3D;&#x3D;&#x3D; &#x27;Enter&#x27;) { this.onSubmit(this.formData.value); event.preventDefault(); } }
@@ -1442,7 +1443,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
             &lt;/div&gt;
             &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
                 &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;closeModal()&quot; class&#x3D;&quot;btn btn-secondary&quot; data-bs-dismiss&#x3D;&quot;modal&quot;&gt;No&lt;/button&gt;
-                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;closeModal()&quot; (click)&#x3D;&#x27;cancel()&#x27; class&#x3D;&quot;btn btn-danger&quot;&gt;Yes&lt;/button&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;discardChanges()&quot; class&#x3D;&quot;btn btn-danger&quot;&gt;Yes&lt;/button&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -1481,8 +1482,8 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container mt-4">    <form [formGroup]="formData" #addForm=\'ngForm\' (ngSubmit)="onSubmit(addForm.value)" class="p-4 border rounded">        <h5>Give your Rating <span *ngIf="userView">for {{review.bookTitle}}</span>:</h5>        <div class="fa-2x mb-3" style="cursor: pointer;" id="rating">            <i #str style="color:orange" [attr.data-value]="i + 1" *ngFor="let star of starNum; index as i"                (click)="handleRatingClick($event, i + 1)"></i>        </div>        <p *ngIf="rating != 0">Your Rating: {{ rating }} / 5</p>        <div class="mb-3">            <label for="comment" class="form-label">Comment</label>            <textarea id="comment" formControlName="comment" class="form-control" rows="3" required                (keydown)="handleEnter($event)" placeholder="Enter comment"></textarea>            <div *ngIf="formData.controls.comment.errors?.[\'required\'] && formData.controls.comment.touched"                class="text-danger">                Comment is required!            </div>            <div *ngIf="formData.controls.comment.errors?.[\'minlength\'] && formData.controls.comment.touched"                class="text-danger">                Comment must be more than 3 characters!            </div>            <div *ngIf="formData.controls.comment.errors?.[\'maxlength\'] && formData.controls.comment.touched"                class="text-danger">                Comment must be less than 2000 characters!            </div>            <div *ngIf="formData.controls.comment.errors?.[\'pattern\'] && formData.controls.comment.touched"                class="text-danger">                Comment should not start with a digit or space!            </div>        </div>        <button *ngIf="!update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Add Review</button>        <button *ngIf="update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Update Review</button>        <button type="button" (click)="openModal()" class="btn btn-warning ms-2">Cancel</button>        <div *ngIf="!successMessage && errorMessage" class="alert alert-danger mt-4">            {{ errorMessage }}        </div>    </form></div><div class="modal" [ngStyle]="{\'display\': display, \'background\': \'rgba(0,0,0, .75)\'}">    <div class="modal-dialog">        <div class="modal-content">            <div class="modal-header">                <h1 class="modal-title fs-5">Cancel?</h1>                <button type="button" class="btn-close p-3" (click)="closeModal()"></button>            </div>            <div class="modal-body">                Do you want to discard your changes?            </div>            <div class="modal-footer">                <button type="button" (click)="closeModal()" class="btn btn-secondary" data-bs-dismiss="modal">No</button>                <button type="button" (click)="closeModal()" (click)=\'cancel()\' class="btn btn-danger">Yes</button>            </div>        </div>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewAllReviewsComponent', 'selector': 'app-view-all-reviews'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-4">    <form [formGroup]="formData" #addForm=\'ngForm\' (ngSubmit)="onSubmit(addForm.value)" class="p-4 border rounded">        <h5>Give your Rating <span *ngIf="userView">for {{review.bookTitle}}</span>:</h5>        <div class="fa-2x mb-3" style="cursor: pointer;" id="rating">            <i #str style="color:orange" [attr.data-value]="i + 1" *ngFor="let star of starNum; index as i"                (click)="handleRatingClick($event, i + 1)"></i>        </div>        <p *ngIf="rating != 0">Your Rating: {{ rating }} / 5</p>        <div class="mb-3">            <label for="comment" class="form-label">Comment</label>            <textarea id="comment" formControlName="comment" class="form-control" rows="3" required                (keydown)="handleEnter($event)" placeholder="Enter comment"></textarea>            <div *ngIf="formData.controls.comment.errors?.[\'required\'] && formData.controls.comment.touched"                class="text-danger">                Comment is required!            </div>            <div *ngIf="formData.controls.comment.errors?.[\'minlength\'] && formData.controls.comment.touched"                class="text-danger">                Comment must be more than 3 characters!            </div>            <div *ngIf="formData.controls.comment.errors?.[\'maxlength\'] && formData.controls.comment.touched"                class="text-danger">                Comment must be less than 2000 characters!            </div>            <div *ngIf="formData.controls.comment.errors?.[\'pattern\'] && formData.controls.comment.touched"                class="text-danger">                Comment should not start with a digit or space!            </div>        </div>        <button *ngIf="!update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Add Review</button>        <button *ngIf="update" type="submit" class="btn btn-success" [disabled]="addForm.invalid">Update Review</button>        <button type="button" (click)="openModal()" class="btn btn-warning ms-2">Cancel</button>        <div *ngIf="!successMessage && errorMessage" class="alert alert-danger mt-4">            {{ errorMessage }}        </div>    </form></div><div class="modal" [ngStyle]="{\'display\': display, \'background\': \'rgba(0,0,0, .75)\'}">    <div class="modal-dialog">        <div class="modal-content">            <div class="modal-header">                <h1 class="modal-title fs-5">Cancel?</h1>                <button type="button" class="btn-close p-3" (click)="closeModal()"></button>            </div>            <div class="modal-body">                Do you want to discard your changes?            </div>            <div class="modal-footer">                <button type="button" (click)="closeModal()" class="btn btn-secondary" data-bs-dismiss="modal">No</button>                <button type="button" (click)="discardChanges()" class="btn btn-danger">Yes</button>            </div>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AddbookComponent', 'selector': 'app-addbook'},{'name': 'AddToCartComponent', 'selector': 'app-add-to-cart'},{'name': 'AddUpdateReviewComponent', 'selector': 'app-add-update-review'},{'name': 'AdminDashboardComponent', 'selector': 'app-admin-dashboard'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminReturnProcessComponent', 'selector': 'app-admin-return-process'},{'name': 'AllorderstatusComponent', 'selector': 'app-allorderstatus'},{'name': 'AllReviewsComponent', 'selector': 'app-all-reviews'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AverageRatingComponent', 'selector': 'app-average-rating'},{'name': 'BookBannersComponent', 'selector': 'app-book-banners'},{'name': 'BookCarouselComponent', 'selector': 'app-book-carousel'},{'name': 'BookDealComponent', 'selector': 'app-book-deal'},{'name': 'BookdetailsComponent', 'selector': 'app-bookdetails'},{'name': 'BookHeroComponent', 'selector': 'app-book-hero'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategorybooksComponent', 'selector': 'app-categorybooks'},{'name': 'CategorybookslistComponent', 'selector': 'app-categorybookslist'},{'name': 'DashboardInventoryComponent', 'selector': 'app-dashboard-inventory'},{'name': 'DealOfTheDayComponent', 'selector': 'app-deal-of-the-day'},{'name': 'DeletebookComponent', 'selector': 'app-deletebook'},{'name': 'DeleteBookInventoryComponent', 'selector': 'app-delete-book-inventory'},{'name': 'DisplayInventoryComponent', 'selector': 'app-display-inventory'},{'name': 'EditorspickComponent', 'selector': 'app-editorspick'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LeftSidebarComponent', 'selector': 'app-left-sidebar'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarAdminComponent', 'selector': 'app-navbar-admin'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderDetailsComponent', 'selector': 'app-order-details'},{'name': 'OrderListComponent', 'selector': 'app-order-list'},{'name': 'OrderManagementComponent', 'selector': 'app-order-management'},{'name': 'OrderTrackingComponent', 'selector': 'app-order-tracking'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'PlaceOrderComponent', 'selector': 'app-place-order'},{'name': 'RecentOrdersComponent', 'selector': 'app-recent-orders'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ReviewComponent', 'selector': 'app-review'},{'name': 'ReviewsByBookIdComponent', 'selector': 'app-reviews-by-book-id'},{'name': 'ReviewsByUserIdComponent', 'selector': 'app-reviews-by-user-id'},{'name': 'SearchtitleComponent', 'selector': 'app-searchtitle'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'StarsComponent', 'selector': 'app-stars'},{'name': 'UpdatebookComponent', 'selector': 'app-updatebook'},{'name': 'UpdateQuantityComponent', 'selector': 'app-update-quantity'},{'name': 'UpdateTrackingComponent', 'selector': 'app-update-tracking'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'ViewbookidComponent', 'selector': 'app-viewbookid'},{'name': 'ViewByBookIDComponent', 'selector': 'app-view-by-book-id'},{'name': 'ViewEditReviewComponent', 'selector': 'app-view-edit-review'},{'name': 'WelcomeAdminComponent', 'selector': 'app-welcome-admin'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AddUpdateReviewComponent'};
 </script>

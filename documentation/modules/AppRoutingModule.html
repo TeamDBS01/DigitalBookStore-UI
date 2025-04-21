@@ -133,11 +133,16 @@
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { AllorderstatusComponent } from &#x27;src/user-admin/AdminOrder/allorderstatus/allorderstatus.component&#x27;;
 import { AdminHomeComponent } from &#x27;src/user-admin/Home/admin-home/admin-home.component&#x27;;
+import { AdminDashboardComponent } from &#x27;src/user-admin/admin-dashboard/admin-dashboard.component&#x27;;
 import { DisplayInventoryComponent } from &#x27;src/user-admin/inventory/display-inventory/display-inventory.component&#x27;;
 import { UpdateQuantityComponent } from &#x27;src/user-admin/inventory/update-quantity/update-quantity.component&#x27;;
 import { ViewByBookIDComponent } from &#x27;src/user-admin/inventory/view-by-book-id/view-by-book-id.component&#x27;;
 import { HomeComponent } from &#x27;src/user-customer/Home/home/home.component&#x27;;
+import { AddbookComponent } from &#x27;src/user-customer/book/addbookreactiveform/addbook/addbook.component&#x27;;
 import { BookdetailsComponent } from &#x27;src/user-customer/book/book-details/bookdetails/bookdetails.component&#x27;;
+import { CategorybooksComponent } from &#x27;src/user-customer/book/category-books/categorybooks/categorybooks.component&#x27;;
+import { CategorybookslistComponent } from &#x27;src/user-customer/book/categorybookslist/categorybookslist/categorybookslist.component&#x27;;
+import { EditorspickComponent } from &#x27;src/user-customer/book/editors-pick/editorspick/editorspick.component&#x27;;
 import { SearchtitleComponent } from &#x27;src/user-customer/book/searchtitle/searchtitle.component&#x27;;
 import { UpdatebookComponent } from &#x27;src/user-customer/book/updatebook/updatebook/updatebook.component&#x27;;
 import { ViewbookidComponent } from &#x27;src/user-customer/book/viewbookid/viewbookid.component&#x27;;
@@ -151,30 +156,34 @@ import { PlaceOrderComponent } from &#x27;src/user-customer/order/order-manageme
 import { UpdateTrackingComponent } from &#x27;src/user-customer/order/order-management/components/update-tracking/update-tracking.component&#x27;;
 import { AllReviewsComponent } from &#x27;src/user-customer/review/all-reviews/all-reviews.component&#x27;;
 import { ReviewsByUserIdComponent } from &#x27;src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component&#x27;;
+import { ForgotPasswordComponent } from &#x27;src/user-customer/user/forgot-password/forgot-password.component&#x27;;
 import { AuthAdminGuard } from &#x27;src/user-customer/user/guard/auth-admin.guard&#x27;;
 import { AuthCustomerGuard } from &#x27;src/user-customer/user/guard/auth-cust.guard &#x27;;
 import { LoginComponent } from &#x27;src/user-customer/user/login/login.component&#x27;;
+import { ResetPasswordComponent } from &#x27;src/user-customer/user/reset-password/reset-password.component&#x27;;
 import { SignupComponent } from &#x27;src/user-customer/user/signup/signup.component&#x27;;
 import { UserProfileComponent } from &#x27;src/user-customer/user/user-profile/user-profile.component&#x27;;
 
 const routes: Routes &#x3D; [
 
-    { path: &#x27;adminHome/getInventory&#x27;, component: DisplayInventoryComponent },
-    { path: &#x27;getInventoryByBookID&#x27;, component: ViewByBookIDComponent},
-    { path: &#x27;updateQuantity&#x27;, component: UpdateQuantityComponent},
+    { path: &#x27;home&#x27;, component: HomeComponent },
     { path: &#x27;login&#x27;, component: LoginComponent },
     { path: &#x27;signup&#x27;, component: SignupComponent },
-    { path: &#x27;home&#x27;, component: HomeComponent},
-    { path:&#x27;adminHome&#x27;,component:AdminHomeComponent,canActivate:[AuthAdminGuard]},
+    { path: &#x27;dashboard&#x27;, component: AdminDashboardComponent, canActivate: [AuthAdminGuard], },
+    { path: &#x27;getInventoryByBookID&#x27;, component: ViewByBookIDComponent },
+    { path: &#x27;updateQuantity&#x27;, component: UpdateQuantityComponent },
     { path: &#x27;profile&#x27;, component: UserProfileComponent },
-    { path: &#x27;reviews&#x27;, component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    { path: &#x27;dashboard&#x27;, redirectTo: &#x27;home&#x27; },
+    { path: &#x27;yourReviews&#x27;, component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
+    { path: &#x27;reviews&#x27;, component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: &#x27;editors-pick&#x27;, component: EditorspickComponent },
     { path: &#x27;books&#x27;, component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
-    { path: &#x27;allReviews&#x27;, component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
+    { path: &#x27;addBooks&#x27;, component: AddbookComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;getInventory&#x27;, component: DisplayInventoryComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;orders&#x27;, component: AllorderstatusComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;updateBook&#x27;, component: UpdatebookComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;book-details/:id&#x27;, component: BookdetailsComponent, canActivate: [AuthCustomerGuard], },
+    { path: &#x27;category-books&#x27;, component: CategorybooksComponent, canActivate: [AuthCustomerGuard], },
+    { path: &#x27;category-books-list&#x27;, component: CategorybookslistComponent },
     { path: &#x27;search&#x27;, component: SearchtitleComponent, canActivate: [AuthCustomerGuard], },
     { path: &#x27;order/cart&#x27;, component: CartComponent, canActivate: [AuthCustomerGuard], },
     { path: &#x27;order/place&#x27;, component: PlaceOrderComponent, canActivate: [AuthCustomerGuard], },
@@ -184,13 +193,15 @@ const routes: Routes &#x3D; [
     { path: &#x27;order/admin/tracking/:id&#x27;, component: UpdateTrackingComponent, canActivate: [AuthAdminGuard], },
     { path: &#x27;order/payment/:id&#x27;, component: PaymentComponent, canActivate: [AuthCustomerGuard], },
     { path: &#x27;order/track/:id&#x27;, component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
-    { path: &#x27;**&#x27;, redirectTo: &#x27;home&#x27;, pathMatch: &#x27;full&#x27; },
-    {path:&#x27;adminhome&#x27;,component:AdminHomeComponent},
-    {path:&#x27;allorderstatus&#x27;,component:AllorderstatusComponent}
+    // { path: &#x27;**&#x27;, redirectTo: &#x27;home&#x27;, pathMatch: &#x27;full&#x27; },
+    // {path:&#x27;adminhome&#x27;,component:AdminHomeComponent},
+    // {path:&#x27;allorderstatus&#x27;,component:AllorderstatusComponent},
+    { path: &#x27;forgotpassword&#x27;, component:ForgotPasswordComponent},
+{ path: &#x27;reset-password&#x27;, component:ResetPasswordComponent },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { anchorScrolling: &quot;enabled&quot; })],
     exports: [RouterModule],
 })
 export class AppRoutingModule { }</code></pre>

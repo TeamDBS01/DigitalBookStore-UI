@@ -34,11 +34,7 @@ export class ReviewsByBookIdComponent {
                 });
             },
             error: error => {
-                if (!(error.error.text === `No Reviews with Book ID: ${this.bookId} Found!`)) {
-                    console.error(error);
-                } else {
-                    this.reviews = [];
-                }
+                this.reviews = [];
             }
         })
     }

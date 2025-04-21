@@ -119,7 +119,7 @@ export class AddbookComponent implements OnInit {
 
     this.bookService.registerBook(this.book)
     .subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.result = data;
       this.message = "Book added successfully!"; // Set success message
       this.formData.reset(); // Optionally reset the form after successful save

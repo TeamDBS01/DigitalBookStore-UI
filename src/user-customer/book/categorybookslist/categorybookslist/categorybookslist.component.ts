@@ -19,10 +19,10 @@ export class CategorybookslistComponent{
 
   ngOnInit(): void {
     this.category = this.route.snapshot.queryParamMap.get('category');
-    console.log("categoryyy:"+this.category);
+    // console.log("categoryyy:"+this.category);
     if (this.category) {
       this.bookService.getBooksByCategory(this.category).subscribe((data: Book[]) => {
-        console.log("BooksList:"+data);
+        // console.log("BooksList:"+data);
         this.books = data;
       });
     }

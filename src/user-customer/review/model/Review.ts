@@ -6,4 +6,5 @@ export class Review {
     bookId!: string;
     userName!: string;
     bookTitle!: string;
+    reason!: string
 }

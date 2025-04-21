@@ -13,31 +13,51 @@ export class ReviewComponent {
     @Input() canModify = false;
     @Input() userView = false;
     @Input() adminView = false;
+    @Input() restoreView = false;
+    @Input() restoreDisplay = 'none';
     @Output() editing = new EventEmitter<boolean>();
-    reasonForDelete = '';
+    reasonsForDelete = ["Choose a Reason", "Invalid", "Irrelevant", "Spam", "Bad Language"];
+    reasonForDelete = this.reasonsForDelete[0];
     reasonValidation = false;
-    
+    error?: string;
+
     display = "none";
-    openModal() { this.display = 'block'}
-    closeModal() { this.display = 'none'}
-    
+    openModal() { this.display = 'block' }
+    closeModal() { this.display = 'none' }
+    openRestoreModal() { this.restoreDisplay = 'block' }
+    closeRestoreModal() { this.restoreDisplay = 'none' }
+
     constructor(private reviewService: ReviewService) { }
 
     editReview() {
         this.editing.emit(true);
     }
     deleteReview() {
-        if (this.adminView && this.reasonForDelete === '') {
+        if (this.adminView && this.reasonForDelete === this.reasonsForDelete[0]) {
             this.reasonValidation = true;
-            return;
+        } else {
+            this.reasonValidation = false;
+            this.closeModal();
+            if (this.adminView) {
+                this.review.reason = this.reasonForDelete;
+                this.reviewService.addReviewDelete(this.review).subscribe({
+                    next: () => window.location.reload(),
+                    error: err => this.error = "Error occurred, Please try Again!",
+                })
+            } else {
+                this.reviewService.deleteReview(this.review.reviewId).subscribe({
+                    next: () => window.location.reload(),
+                    error: err => this.error = "Error occurred, Please try Again!",
+                })
+            }
         }
-        this.reasonValidation = false;
-        this.closeModal();
-        this.reviewService.deleteReview(this.review.reviewId).subscribe({
-            next: () => {
-                window.location.reload();
-            },
-            error: err => console.error(err),
+    }
+    restoreReview() {
+        this.closeRestoreModal();
+        this.reviewService.deleteReviewDelete(this.review).subscribe({
+            next: () => window.location.reload(),
+            error: err => this.error = "Error occurred, Please try Again!",
         })
     }
 }
+

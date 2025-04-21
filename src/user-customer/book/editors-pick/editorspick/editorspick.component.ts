@@ -5,7 +5,8 @@ import { BookService } from '../../service/book.service';
 @Component({
   selector: 'app-editorspick',
   templateUrl: './editorspick.component.html',
-  styleUrls: ['./editorspick.component.sass']
+  styleUrls: ['./editorspick.component.sass'],
+  standalone: false
 })
 export class EditorspickComponent {
   editorsPicks: Book[] = []; // Array to hold the editor's chosen books

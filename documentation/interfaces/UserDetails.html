@@ -679,42 +679,86 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+    // changePassword() {
+    //     if (this.passwordForm.valid) {
+    //         this.userService.changePassword(this.userId!, this.passwordForm.value).pipe(
+    //             catchError(error &#x3D;&gt; {
+    //                 console.error(&#x27;Error changing password:&#x27;, error);
+    //                 this.passwordErrorMessage &#x3D; error?.message || &#x27;Failed to change password.&#x27;;
+    //                 return of(null);
+    //             })
+    //         ).subscribe(response &#x3D;&gt; {
+    //             if (response?.statusCode &#x3D;&#x3D;&#x3D; 200) {
+    //                 this.passwordSuccessMessage &#x3D; response.message || &#x27;Password changed successfully!&#x27;;
+    //                 this.passwordForm.reset();
+    //             } else {
+    //                 this.passwordErrorMessage &#x3D; response?.message || &#x27;Failed to change password.&#x27;;
+    //             }
+    //         });
+    //     }
+    // }
+
+    // passwordMatchValidator(formGroup: FormGroup) {
+    //     const newPasswordControl &#x3D; formGroup.controls[&#x27;newPassword&#x27;];
+    //     const confirmPasswordControl &#x3D; formGroup.controls[&#x27;confirmPassword&#x27;];
+
+    //     if (!newPasswordControl || !confirmPasswordControl) {
+    //         return null;
+    //     }
+
+    //     if (confirmPasswordControl.value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+    //         return null;
+    //     }
+
+    //     if (newPasswordControl.value !&#x3D;&#x3D; confirmPasswordControl.value) {
+    //         return { mismatch: true };
+    //     }
+
+    //     return null;
+    // }
     changePassword() {
-        if (this.passwordForm.valid) {
-            this.userService.changePassword(this.userId!, this.passwordForm.value).pipe(
-                catchError(error &#x3D;&gt; {
-                    console.error(&#x27;Error changing password:&#x27;, error);
-                    this.passwordErrorMessage &#x3D; error?.message || &#x27;Failed to change password.&#x27;;
-                    return of(null);
-                })
-            ).subscribe(response &#x3D;&gt; {
-                if (response?.statusCode &#x3D;&#x3D;&#x3D; 200) {
-                    this.passwordSuccessMessage &#x3D; response.message || &#x27;Password changed successfully!&#x27;;
-                    this.passwordForm.reset();
-                } else {
-                    this.passwordErrorMessage &#x3D; response?.message || &#x27;Failed to change password.&#x27;;
-                }
-            });
-        }
+      if (this.passwordForm.valid &amp;&amp; this.userId !&#x3D;&#x3D; null) {
+        const passwords &#x3D; {
+          oldPassword: this.passwordForm.value.currentPassword,
+          newPassword: this.passwordForm.value.newPassword
+        };
+  
+        this.userService.changePassword(this.userId, passwords).pipe(
+          catchError(error &#x3D;&gt; {
+            console.error(&#x27;Error changing password:&#x27;, error);
+            this.passwordErrorMessage &#x3D; error?.error?.message || &#x27;Failed to change password.&#x27;; // Access error message from the error object
+            return of(null);
+          })
+        ).subscribe(response &#x3D;&gt; {
+          if (response?.statusCode &#x3D;&#x3D;&#x3D; 200) {
+            this.passwordSuccessMessage &#x3D; response.message || &#x27;Password changed successfully!&#x27;;
+            this.passwordForm.reset();
+          } else {
+            this.passwordErrorMessage &#x3D; response?.message || &#x27;Failed to change password.&#x27;;
+          }
+        });
+      } else {
+        // Form is invalid or userId is missing, error messages should already be displayed
+      }
     }
-
+  
     passwordMatchValidator(formGroup: FormGroup) {
-        const newPasswordControl &#x3D; formGroup.controls[&#x27;newPassword&#x27;];
-        const confirmPasswordControl &#x3D; formGroup.controls[&#x27;confirmPassword&#x27;];
-
-        if (!newPasswordControl || !confirmPasswordControl) {
-            return null;
-        }
-
-        if (confirmPasswordControl.value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
-            return null;
-        }
-
-        if (newPasswordControl.value !&#x3D;&#x3D; confirmPasswordControl.value) {
-            return { mismatch: true };
-        }
-
+      const newPasswordControl &#x3D; formGroup.controls[&#x27;newPassword&#x27;];
+      const confirmPasswordControl &#x3D; formGroup.controls[&#x27;confirmPassword&#x27;];
+  
+      if (!newPasswordControl || !confirmPasswordControl) {
         return null;
+      }
+  
+      if (confirmPasswordControl.value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+        return null;
+      }
+  
+      if (newPasswordControl.value !&#x3D;&#x3D; confirmPasswordControl.value) {
+        return { mismatch: true };
+      }
+  
+      return null;
     }
 
     loadWalletBalance() {
