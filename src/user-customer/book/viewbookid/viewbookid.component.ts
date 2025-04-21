@@ -3,7 +3,7 @@ import { Book } from '../model/Book';
 import { BookService } from '../service/book.service';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-viewbookid',
@@ -16,13 +16,13 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
   noRecordFound = false;
   submitted = false;
   books: Book[] = [];
-  totalItems: number = 0;
-  pageSize: number = 10; // You can adjust the page size
+  pageSize: number = 3; // You can adjust the page size
   currentPage: number = 0;
   totalPages: number = 0;
-  loading!:string;
+  loading!: string; // You have this, let's use it consistently
   searchQuery: string = ''; // To potentially handle search pagination
   errorMessage: string = '';
+  isLoading: boolean = false; // Reintroduce isLoading
 
   private unsubscribe$ = new Subject<void>();
 
@@ -39,33 +39,33 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
   }
 
   loadTotalPages() {
-    this.bookService.getNumberOfPages().pipe(takeUntil(this.unsubscribe$)).subscribe({
-      next: (total: number) => {
-        this.totalItems = total;
-        this.totalPages = Math.ceil(this.totalItems / this.pageSize) > 0 ? Math.ceil(this.totalItems / this.pageSize) : 1;
-        console.log('Total Items:', this.totalItems);
-        console.log('Total Pages:', this.totalPages);
+    this.bookService.getNumberOfPages().subscribe({
+      next: (pages: number) => {
+        this.totalPages = pages;
       },
       error: (error) => {
         console.error('Error loading total pages:', error);
         this.errorMessage = this.errorMessage || 'Failed to load total pages.';
-      }
+      },
     });
   }
 
   loadBooks(page: number, size: number) {
-    this.loading = 'Loading...'; // Set loading state
+    this.loading = 'Loading...'; // Set loading state (you already have this)
+    this.isLoading = true; // Ensure isLoading is set at the start of loading books
     this.bookService.getAllBooksWithPagination(page, size)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(data => {
         this.books = data;
         this.loading = ''; // Reset loading state
+        this.isLoading = false; // Set isLoading to false after successfully loading books
         this.cdr.detectChanges(); // Ensure view is updated after data loads
         console.log(`Loaded Page ${page + 1} with ${data.length} items:`, this.books);
       }, error => {
         console.error('Error loading books for page:', error);
         this.loading = 'Error loading books.'; // Set error state
         this.errorMessage = 'Failed to load books.';
+        this.isLoading = false; // Set isLoading to false on error
       });
   }
 
@@ -106,7 +106,7 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
     this.search();
   }
 
-  onPageChange(page: number): void {
+  goToPage(page: number): void {
     if (page >= 0 && page < this.totalPages) {
       this.currentPage = page;
       this.loadBooks(this.currentPage, this.pageSize);
@@ -114,29 +114,11 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
     }
   }
 
-  // This function is no longer directly used for initial load.
-  // It might be adapted if you implement pagination for search results.
-  loadAllBooks(): void {
-    const params = { page: this.currentPage, size: this.pageSize };
-
-    let observable: Observable<Book[]>;
-
-    if (this.searchQuery.trim() === '') {
-      observable = this.bookService.getAllBooksWithPagination(params.page, params.size);
-    } else {
-      observable = this.bookService.searchBooksByTitle(this.searchQuery); // Assuming a paginated search method exists
-      // If search is not paginated, you'd need to handle totalPages differently for search results.
+  getPageArray(): number[] {
+    const pageArray: number[] = [];
+    for (let i = 0; i < this.totalPages; i++) {
+      pageArray.push(i);
     }
-
-    observable.pipe(takeUntil(this.unsubscribe$)).subscribe({
-      next: (data: Book[]) => {
-        this.books = data;
-        console.log('Books fetched (page ' + this.currentPage + '):', this.books);
-      },
-      error: (error) => {
-        this.errorMessage = 'Failed to load books.';
-        console.error('Error fetching books:', error);
-      },
-    });
+    return pageArray;
   }
 }
