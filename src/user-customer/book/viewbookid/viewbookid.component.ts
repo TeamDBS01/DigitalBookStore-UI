@@ -16,7 +16,7 @@ export class ViewbookidComponent implements OnInit, OnDestroy {
   noRecordFound = false;
   submitted = false;
   books: Book[] = [];
-  pageSize: number = 3; // You can adjust the page size
+  pageSize: number = 6; // You can adjust the page size
   currentPage: number = 0;
   totalPages: number = 0;
   loading!: string; // You have this, let's use it consistently
