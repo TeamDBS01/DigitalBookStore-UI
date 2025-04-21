@@ -42,12 +42,18 @@ export class ReviewComponent {
                 this.review.reason = this.reasonForDelete;
                 this.reviewService.addReviewDelete(this.review).subscribe({
                     next: () => window.location.reload(),
-                    error: err => this.error = "Error occurred, Please try Again!",
+                    error: error => {
+                        this.error = "Error occurred, Please try Again!";
+                        console.log(error);
+                    }
                 })
             } else {
                 this.reviewService.deleteReview(this.review.reviewId).subscribe({
                     next: () => window.location.reload(),
-                    error: err => this.error = "Error occurred, Please try Again!",
+                    error: error => {
+                        this.error = "Error occurred, Please try Again!";
+                        console.log(error);
+                    }
                 })
             }
         }
@@ -56,7 +62,11 @@ export class ReviewComponent {
         this.closeRestoreModal();
         this.reviewService.deleteReviewDelete(this.review).subscribe({
             next: () => window.location.reload(),
-            error: err => this.error = "Error occurred, Please try Again!",
+            error: err => {
+                this.error = "Error occurred, Please try Again!"
+                console.log(err);
+                
+            },
         })
     }
 }

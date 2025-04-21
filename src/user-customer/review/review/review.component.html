@@ -25,11 +25,11 @@
 
 <div class="modal" [ngStyle]="{'display': restoreDisplay, 'background': 'rgba(0,0,0, .75)', 'position' : 'fixed'}">
     <div class="modal-dialog"
-        style="display:flex; justify-content: center; align-items: center; margin-top: 10%; width:50%">
+        style="display:flex; justify-content: center; align-items: center; margin-top: 10%; width:45%">
         <div class="modal-content" [ngClass]="{'ms-5' : adminView}">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Delete Review?</h1>
-                <button type="button" class="btn-close p-3" (click)="closeModal()"></button>
+                <h1 class="modal-title fs-5">Restore Review?</h1>
+                <button type="button" class="btn-close p-3" (click)="closeRestoreModal()"></button>
             </div>
             <div class="modal-body">
                 Are you sure you want to restore this Review?

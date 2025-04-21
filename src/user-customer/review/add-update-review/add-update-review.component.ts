@@ -120,6 +120,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
                     this.editing.emit(false);
                 },
                 error: error => {
+                    console.log(error);
                     this.errorMessage = "Error updating review, Please try Again!";
                 }
             })
@@ -131,6 +132,7 @@ export class AddUpdateReviewComponent implements OnInit, AfterViewInit {
                     this.editing.emit(false);
                 },
                 error: error => {
+                    console.log(error);
                     this.errorMessage = "Error adding review, Please try Again!";
                 }
             })

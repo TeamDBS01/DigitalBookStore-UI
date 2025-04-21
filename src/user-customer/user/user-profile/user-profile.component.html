@@ -4,23 +4,23 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <nav>
-            <a href="javascript:void(0)" (click)="setActiveTab('details')" [class.active]="activeTab === 'details'">
+            <a routerLink="/profile" [queryParams]="{'field': 'details'}" [class.active]="activeTab === 'details'">
                 <i class="fa-solid fa-user"></i>
                 <span *ngIf="isSidebarExpanded">Profile</span>
             </a>
-            <a href="javascript:void(0)" (click)="setActiveTab('wallet')" [class.active]="activeTab === 'wallet'">
+            <a routerLink="/profile" [queryParams]="{'field': 'wallet'}" [class.active]="activeTab === 'wallet'">
                 <i class="fa-solid fa-wallet"></i>
                 <span *ngIf="isSidebarExpanded">Wallet</span>
             </a>
-            <a href="javascript:void(0)" (click)="setActiveTab('orders-reviews')" [class.active]="activeTab === 'orders-reviews'">
+            <a routerLink="/profile" [queryParams]="{'field': 'orders-reviews'}" [class.active]="activeTab === 'orders-reviews'">
                 <i class="fa-solid fa-list-alt"></i>
                 <span *ngIf="isSidebarExpanded">My Orders & Reviews</span>
             </a>
-            <a href="javascript:void(0)" (click)="setActiveTab('support')" [class.active]="activeTab === 'support'">
+            <a routerLink="/profile" [queryParams]="{'field': 'support'}" [class.active]="activeTab === 'support'">
                 <i class="fa-solid fa-question-circle"></i>
                 <span *ngIf="isSidebarExpanded">Support & Help</span>
             </a>
-            <a href="javascript:void(0)" (click)="setActiveTab('close-account')" [class.active]="activeTab === 'close-account'">
+            <a routerLink="/profile" [queryParams]="{'field': 'close-account'}" [class.active]="activeTab === 'close-account'">
                 <i class="fa-solid fa-trash-alt"></i>
                 <span *ngIf="isSidebarExpanded">Delete Account</span>
             </a>
@@ -79,7 +79,7 @@
                 <div *ngIf="updateErrorMessage" class="error-message">{{ updateErrorMessage }}</div>
               </form>
           
-              <h3>Change Password</h3>
+              <!-- <h3>Change Password</h3> -->
              
                 <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
                     <div class="form-group">
@@ -193,11 +193,6 @@
             <h3>My Orders & Reviews</h3>
             <div *ngIf="userReviews.length === 0">No orders or reviews yet.</div>
             <app-reviews-by-user-id />
-            <!-- <div *ngFor="let review of userReviews" class="review-item">
-                <p>Book: {{ review.bookTitle }}</p>
-                <p>Rating: {{ review.rating }}/5</p>
-                <p>Comment: {{ review.comment }}</p>
-            </div> -->
             </div>
 
         <div *ngIf="activeTab === 'support'">

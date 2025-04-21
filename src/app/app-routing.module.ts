@@ -6,6 +6,7 @@ import { AdminDashboardComponent } from 'src/user-admin/admin-dashboard/admin-da
 import { DisplayInventoryComponent } from 'src/user-admin/inventory/display-inventory/display-inventory.component';
 import { UpdateQuantityComponent } from 'src/user-admin/inventory/update-quantity/update-quantity.component';
 import { ViewByBookIDComponent } from 'src/user-admin/inventory/view-by-book-id/view-by-book-id.component';
+import { UserListComponent } from 'src/user-admin/user-list/user-list.component';
 import { HomeComponent } from 'src/user-customer/Home/home/home.component';
 import { AddbookComponent } from 'src/user-customer/book/addbookreactiveform/addbook/addbook.component';
 import { BookdetailsComponent } from 'src/user-customer/book/book-details/bookdetails/bookdetails.component';
@@ -24,6 +25,7 @@ import { OrderTrackingComponent } from 'src/user-customer/order/order-management
 import { PaymentComponent } from 'src/user-customer/order/order-management/components/payment/payment.component';
 import { PlaceOrderComponent } from 'src/user-customer/order/order-management/components/place-order/place-order.component';
 import { UpdateTrackingComponent } from 'src/user-customer/order/order-management/components/update-tracking/update-tracking.component';
+import { AdminReviewComponent } from 'src/user-customer/review/admin-review/admin-review.component';
 import { AllReviewsComponent } from 'src/user-customer/review/all-reviews/all-reviews.component';
 import { ReviewsByUserIdComponent } from 'src/user-customer/review/reviews-by-user-id/reviews-by-user-id.component';
 import { ForgotPasswordComponent } from 'src/user-customer/user/forgot-password/forgot-password.component';
@@ -40,12 +42,11 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'dashboard', component: AdminDashboardComponent, canActivate: [AuthAdminGuard], },
-    { path: 'getInventoryByBookID', component: ViewByBookIDComponent },
+    { path: 'getInventoryByBookID', component: ViewByBookIDComponent, canActivate:[AuthAdminGuard] },
     { path: 'updateQuantity', component: UpdateQuantityComponent },
     { path: 'profile', component: UserProfileComponent },
     { path: 'yourReviews', component: ReviewsByUserIdComponent, canActivate: [AuthCustomerGuard], },
-    { path: 'reviews', component: AllReviewsComponent, canActivate: [AuthAdminGuard], },
-    {path:'dealOfTheDay', component:DealOfTheDayComponent},
+    { path: 'reviews', component: AdminReviewComponent, canActivate: [AuthAdminGuard], },
     { path: 'editors-pick', component: EditorspickComponent },
     { path: 'books', component: ViewbookidComponent, canActivate: [AuthAdminGuard], },
     { path: 'addBooks', component: AddbookComponent, canActivate: [AuthAdminGuard], },
@@ -66,7 +67,8 @@ const routes: Routes = [
     { path: 'order/track/:id', component: OrderTrackingComponent, canActivate: [AuthCustomerGuard], },
     { path: 'forgotpassword', component:ForgotPasswordComponent},
     { path: 'reset-password', component:ResetPasswordComponent },
-    { path: '**', redirectTo: 'home', pathMatch: 'full' },
+    { path:'allusers',component:UserListComponent,canActivate:[AuthAdminGuard]},
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }, 
 ];
 
 @NgModule({

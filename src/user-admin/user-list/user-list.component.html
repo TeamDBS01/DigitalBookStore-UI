@@ -1,0 +1,174 @@
+<div class="user-list-container">
+      <div class="search-bar">
+      <label for="search">Search Users:</label>
+      <input type="text" id="search" (input)="onSearchInput($event)">
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of displayedUsers">
+          <td>{{ user.userId }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td class="actions">
+            <button class="edit-button" (click)="editUser(user)">Edit</button>
+            <button class="delete-button" (click)="deleteUser(user)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="displayedUsers.length === 0 && searchTerm">
+          <td colspan="5">No users found matching your search.</td>
+        </tr>
+        <tr *ngIf="displayedUsers.length === 0 && !searchTerm && users.length > 0">
+          <td colspan="5">No users to display on this page.</td>
+        </tr>
+        <tr *ngIf="users.length === 0 && !searchTerm">
+          <td colspan="5">Loading users...</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="pagination" *ngIf="filteredUsers.length > pageSize">
+      <button [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">Previous</button>
+      <span *ngFor="let pageNumber of pageNumbers" class="page-number"
+            [class.active]="currentPage === pageNumber" (click)="goToPage(pageNumber)">
+        {{ pageNumber }}
+      </span>
+      <button [disabled]="currentPage === pageNumbers.length" (click)="goToPage(currentPage + 1)">Next</button>
+    </div>
+  </div>
+
+  <style>
+    .user-list-container {
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 20px;
+    color: #08080a; 
+  }
+
+  .search-bar {
+    margin-bottom: 20px;
+
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    input[type='text'] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 300px;
+      max-width: 100%;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    thead {
+      background-color: #f2f2f2;
+
+      th {
+        text-align: left;
+        padding: 12px;
+        font-weight: bold;
+        color: #3f51b5;
+        border-bottom: 2px solid #3f51b5;
+      }
+    }
+
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+
+        td {
+          padding: 12px;
+          border-bottom: 1px solid #ddd;
+
+          &.actions {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      padding: 8px 12px;
+      margin: 0 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    .page-number {
+      padding: 8px 12px;
+      margin: 0 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &.active {
+        background-color: #3f51b5;
+        color: white;
+        border-color: #3f51b5;
+      }
+    }
+  }
+
+  .actions {
+    button {
+      padding: 8px 12px;
+      margin-left: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &.edit-button {
+        background-color: #4caf50; 
+        color: white;
+        border: 1px solid #4caf50;
+
+        &:hover {
+          background-color: darken(#4caf50, 10%);
+        }
+      }
+
+      &.delete-button {
+        background-color: #f44336; 
+        color: white;
+        border: 1px solid #f44336;
+
+        &:hover {
+          background-color: darken(#f44336, 10%);
+        }
+      }
+    }
+  }
+}
+  </style>
