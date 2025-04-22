@@ -3,11 +3,13 @@ import { Book } from '../model/Book';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { BookService } from '../service/book.service';
 import { Observable } from 'rxjs';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-searchtitle', standalone: false,
   templateUrl: './searchtitle.component.html',
-  styleUrls: ['./searchtitle.component.sass']
+  styleUrls: ['./searchtitle.component.sass'],
+  providers: [CurrencyPipe],
 })
 export class SearchtitleComponent  {
 
@@ -38,12 +40,12 @@ export class SearchtitleComponent  {
   books: Book[] = [];
   searchQuery: string = '';
   currentPage: number = 0;
-  pageSize: number = 3; // You can adjust the page size
+  pageSize: number = 6; // You can adjust the page size
   totalPages: number = 1; // Initialize to 1
   isLoading: boolean = false;
   errorMessage: string = '';
 
-  constructor(private bookService: BookService, private route: ActivatedRoute) {}
+  constructor(private bookService: BookService, private route: ActivatedRoute, private currencyPipe: CurrencyPipe ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -99,11 +101,11 @@ export class SearchtitleComponent  {
         this.books = data;
         this.isLoading = false;
         this.currentPage = 0;
+        this.errorMessage = '';
         console.log('Filtered Books:', this.books);
       },
       error: (error) => {
         this.errorMessage = 'Failed to filter books.';
-        console.error('Error filtering books:', error);
         this.isLoading = false;
       },
     });
@@ -136,5 +138,12 @@ export class SearchtitleComponent  {
       pageArray.push(i);
     }
     return pageArray;
+  }
+
+  formatCurrency(price: number | null | undefined): string {
+    if (price !== null && price !== undefined) {
+      return this.currencyPipe.transform(price, 'INR', '₹', '1.2-2') || '';
+    }
+    return '';
   }
 }
