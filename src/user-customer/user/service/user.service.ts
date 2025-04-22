@@ -67,8 +67,8 @@ export class UserService {
   registerEndpoint = "/user/auth/register";
   getcreditsEndpoint="/user/get-user-credits/{userid}";
   addcreditsEndpoint = "/user/add-credits/{userid}/{amount}";
-  forgotPasswordEndpoint = "/user/forgot-password";
-  resetPasswordEndpoint = "/user/reset-password";
+  forgotPasswordEndpoint = "/user/auth/forgot-password";
+  resetPasswordEndpoint = "/user/auth/reset-password";
 
   getcreitdsurl:string=this.apiUrl+this.getcreditsEndpoint;
   addcreitdsurl:string=this.apiUrl+this.addcreditsEndpoint;
@@ -155,12 +155,12 @@ export class UserService {
     }
 
  
-    getUserDetails(userId: number): Observable<UserDetailsResponse> { // Expect UserDetailsResponse
+    getUserDetails(userId: number): Observable<UserDetailsResponse> { 
         return this.http.get<UserDetailsResponse>(`${this.userDetailsUrl}/${userId}/details`);
       }
     
       updateUser(userId: number, updatedUser: Partial<User>): Observable<any> {
-        return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser); // Keep this for basic user info
+        return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser); 
       }
     
       // New method to update user details with profile image
@@ -210,7 +210,11 @@ export class UserService {
     }
 
     closeAccount(userId: number): Observable<any> {
-        return this.http.delete<any>(`${this.closeAccountUrl}/${userId}`);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`  
+      });
+       
+      return this.http.delete<any>(`${this.apiUrl}/user/admin/deleteUser/${userId}`, { headers });
     }
 
     forgotPassword(email: string): Observable<string> {
@@ -220,7 +224,7 @@ export class UserService {
     
     
     resetPassword(resetData: { token: string, newPassword: string, confirmPassword: string }): Observable<string> {
-      return this.http.post(this.resetPasswordURL, resetData, { responseType: 'text' }); // Specify responseType as 'text'
+      return this.http.post(this.resetPasswordURL, resetData, { responseType: 'text' }); 
     }
 
     isUserLoggedIn(): boolean {

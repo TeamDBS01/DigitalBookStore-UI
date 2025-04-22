@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class WelcomeAdminComponent {
-    adminName: string = 'Admin'; // You can fetch this dynamically
-    adminImageUrl: string = 'assets/default-admin.png'; // Path to your default image
+    adminName: string = 'Admin';  
+    adminImageUrl: string = 'assets/admin-img.avif';  
 }
