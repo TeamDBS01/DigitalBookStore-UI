@@ -1,137 +1,4 @@
 
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
-// import { UserService } from '../service/user.service';
-// import { User } from '../model/User';
-// import { catchError, of } from 'rxjs';
-
-// interface Review {
-//     bookTitle: string;
-//     rating: number;
-//     comment: string;
-// }
-
-// @Component({
-//     selector: 'app-user-profile',
-//     templateUrl: './user-profile.component.html',
-//     styleUrls: ['./user-profile.component.sass'],
-//     standalone: false
-// })
-// export class UserProfileComponent implements OnInit {
-//     activeTab: 'details' | 'wallet' | 'orders-reviews' | 'support' | 'close-account' = 'details';
-//     userId: number | null = null;
-//     walletBalance: number = 0;
-//     userReviews: Review[] = [];
-//     isSidebarExpanded: boolean = false;
-//     isEditingDetails: boolean = false;
-//     showBalance: boolean = false;
-//     showSimulatePaymentPopup: boolean = false;
-//     simulatePaymentSuccess: boolean = false;
-//     simulatePaymentError: boolean = false;
-//     simulatePaymentErrorMessage: string = '';
-//     topUpAmount: number | null = null;
-
-//     profileForm: FormGroup;
-//     passwordForm: FormGroup;
-//     simulatePaymentForm: FormGroup;
-
-//     updateSuccessMessage: string = '';
-//     updateErrorMessage: string = '';
-//     passwordSuccessMessage: string = '';
-//     passwordErrorMessage: string = '';
-//     closeAccountMessage: string = '';
-
-//     constructor(
-//         private fb: FormBuilder,
-//         private router: Router,
-//         private userService: UserService
-//     ) {
-//         this.profileForm = this.fb.group({
-//             name: ['', Validators.required],
-//             // Add more form controls as needed
-//         });
-//         this.passwordForm = this.fb.group({
-//             currentPassword: ['', Validators.required],
-//             newPassword: ['', [Validators.required, Validators.minLength(6)]],
-//             confirmPassword: ['', Validators.required]
-//         }, { validators: this.passwordMatchValidator });
-//         this.simulatePaymentForm = this.fb.group({
-//             paymentMethod: ['upi'],
-//             upiId: ['', Validators.required], // UPI ID is now required
-//             cardNumber: ['', [Validators.minLength(16), Validators.maxLength(16)]],
-//             expiry: ['', [Validators.pattern('^(0[1-9]|1[0-2])\\/?([0-9]{2})$')]], // Basic MM/YY format
-//             cvv: ['', [Validators.minLength(3), Validators.maxLength(4)]],
-//             simulateAmount: [0, Validators.required] // Amount is now set programmatically
-//         });
-//     }
-
-//     ngOnInit(): void {
-//         this.userId = parseInt(sessionStorage.getItem('userId') || '0', 10);
-//         if (this.userId) {
-//             this.loadUserProfile();
-//             this.loadWalletBalance();
-//             this.loadUserReviews();
-//         } else {
-//             this.router.navigate(['/login']);
-//         }
-//     }
-
-//     toggleSidebar() {
-//         this.isSidebarExpanded = !this.isSidebarExpanded;
-//     }
-
-//     setActiveTab(tab: 'details' | 'wallet' | 'orders-reviews' | 'support' | 'close-account') {
-//         this.activeTab = tab;
-//         this.updateSuccessMessage = '';
-//         this.updateErrorMessage = '';
-//         this.passwordSuccessMessage = '';
-//         this.passwordErrorMessage = '';
-//         this.closeAccountMessage = '';
-//         this.simulatePaymentSuccess = false;
-//         this.simulatePaymentError = false;
-//         this.simulatePaymentErrorMessage = '';
-//         this.isEditingDetails = false;
-//         this.showSimulatePaymentPopup = false;
-//         this.topUpAmount = null;
-//     }
-
-//     loadUserProfile() {
-//         this.userService.getUserDetails(this.userId!).pipe(
-//             catchError(error => {
-//                 console.error('Error loading user details:', error);
-//                 return of(null);
-//             })
-//         ).subscribe(user => {
-//             if (user) {
-//                 this.profileForm.patchValue({
-//                     name: user.name,
-//                     // Patch other fields if added to the form
-//                 });
-//             }
-//         });
-//     }
-
-//     updateProfile() {
-//         if (this.profileForm.valid && this.userId) {
-//             this.userService.updateUser(this.userId, this.profileForm.value).pipe(
-//                 catchError(error => {
-//                     console.error('Error updating profile:', error);
-//                     this.updateErrorMessage = error?.message || 'Failed to update profile.';
-//                     return of(null);
-//                 })
-//             ).subscribe(response => {
-//                 if (response?.statusCode === 200) {
-//                     this.updateSuccessMessage = response.message || 'Profile updated successfully!';
-//                     sessionStorage.setItem('name', response.name || '');
-//                     this.isEditingDetails = false;
-//                 } else {
-//                     this.updateErrorMessage = response?.message || 'Failed to update profile.';
-//                 }
-//             });
-//         }
-//     }
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -149,7 +16,7 @@ interface UserDetails {
     userId: number;
     name: string;
     phoneNumber: string;
-    profileImage: string | null; // Base64 encoded image
+    profileImage: string | null; 
     statusCode?: number;
     message?: string;
     error?: string;
@@ -262,17 +129,17 @@ export class UserProfileComponent implements OnInit {
                 this.profileForm.patchValue({
                     name: userDetails.name,
                     phoneNumber: userDetails.phoneNumber,
-                    // profileImage: userDetails.profileImage // We don't patch the image in the form
+                    // profileImage: userDetails.profileImage 
                 });
-                // Check if userDetails.profileImage exists and is a string before proceeding
+                
                 if (userDetails.profileImage && typeof userDetails.profileImage === 'string' && !userDetails.profileImage.startsWith('data:')) {
-                    // Assuming the backend returns the image in a common format like JPEG
+                    
                     this.userDetails!.profileImage = userDetails?.profileImage ? `data:image/jpeg;base64,${userDetails.profileImage}` : null;
-                    // You might need to adjust 'image/jpeg' based on your actual backend image format
+                
                 } else if (userDetails.profileImage && typeof userDetails.profileImage !== 'string') {
                     console.warn('Profile image data is not a string:', userDetails.profileImage);
                     if (this.userDetails) {
-                        this.userDetails.profileImage = null; // Or handle it as needed
+                        this.userDetails.profileImage = null; 
                     }
                 }
             }
@@ -301,7 +168,7 @@ export class UserProfileComponent implements OnInit {
                 formData.append('profileImage', this.selectedFile, this.selectedFile.name);
             }
 
-            this.userService.updateUserDetails(this.userId, formData).pipe( // Use the new service method
+            this.userService.updateUserDetails(this.userId, formData).pipe( 
                 catchError(error => {
                     console.error('Error updating profile:', error);
                     this.updateErrorMessage = error?.message || 'Failed to update profile.';
@@ -310,18 +177,18 @@ export class UserProfileComponent implements OnInit {
             ).subscribe(response => {
                 if (response?.statusCode === 200) {
                     this.updateSuccessMessage = response.message || 'Profile updated successfully!';
-                    this.userDetails = response; // Update the displayed details
+                    this.userDetails = response; 
                     sessionStorage.setItem('name', response.name || '');
                     this.isEditingDetails = false;
                     this.selectedFile = null;
                     this.profileImagePreview = null;
-                    // After successful update, ensure the image URL is correctly formatted
+                   
                     if (this.userDetails?.profileImage && typeof this.userDetails.profileImage === 'string' && !this.userDetails.profileImage.startsWith('data:')) {
                         this.userDetails.profileImage = `data:image/jpeg;base64,${this.userDetails.profileImage}`;
-                        // Adjust 'image/jpeg' if necessary
+                         
                     } else if (this.userDetails?.profileImage && typeof this.userDetails.profileImage !== 'string') {
                         console.warn('Updated profile image data is not a string:', this.userDetails.profileImage);
-                        this.userDetails.profileImage = null; // Or handle it as needed
+                        this.userDetails.profileImage = null; 
                     }
                 } else {
                     this.updateErrorMessage = response?.message || 'Failed to update profile.';
@@ -377,7 +244,7 @@ export class UserProfileComponent implements OnInit {
             this.userService.changePassword(this.userId, passwords).pipe(
                 catchError(error => {
                     console.error('Error changing password:', error);
-                    this.passwordErrorMessage = error?.error?.message || 'Failed to change password.'; // Access error message from the error object
+                    this.passwordErrorMessage = error?.error?.message || 'Failed to change password.';  
                     return of(null);
                 })
             ).subscribe(response => {
@@ -389,7 +256,7 @@ export class UserProfileComponent implements OnInit {
                 }
             });
         } else {
-            // Form is invalid or userId is missing, error messages should already be displayed
+            
         }
     }
 
