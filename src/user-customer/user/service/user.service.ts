@@ -1,42 +1,3 @@
-
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { environment } from 'src/environments/environment.development';
-// import { User } from '../model/User';
-// import { Role } from '../model/role';
-// import { Router } from '@angular/router';
-// import { Observable, throwError } from 'rxjs';
-// import { tap, catchError } from 'rxjs/operators';
-
-// @Injectable({
-//     providedIn: 'root'
-// })
-// export class UserService {
-
-//     apiUrl = environment.apiHostUrl;  
-//     loginEndpoint = "/user/auth/login";
-//     registerEndpoint = "/user/auth/register";
-//     getcreditsEndpoint="/user/user/get-user-credits/{userid}"
-//     addcreditsEndpoint = "/user/add-credits/{userid}/{amount}";
-
-//     getcreitdsurl:string=this.apiUrl+this.getcreditsEndpoint;
-//     addcreitdsurl:string=this.apiUrl+this.addcreditsEndpoint;
-//     authenticateURL: string = this.apiUrl + this.loginEndpoint;
-//     registerURL: string = this.apiUrl + this.registerEndpoint;
-//     user!: User;
-//     authenticated: boolean = false;
-//     users!: User[];
-//     loggedInUser: User | null = null;
-
-
-//     private userDetailsUrl = `${this.apiUrl}/user`;  
- 
-//     private changePasswordUrl = `${this.apiUrl}/user/change-password`;
-//     private closeAccountUrl = `${this.apiUrl}/user/close-account`;
-//     private userReviewsUrl = `${this.apiUrl}/user/reviews`;
-
-//     constructor(private http: HttpClient, private router: Router) {}
-
 import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
@@ -67,8 +28,8 @@ export class UserService {
   registerEndpoint = "/user/auth/register";
   getcreditsEndpoint="/user/get-user-credits/{userid}";
   addcreditsEndpoint = "/user/add-credits/{userid}/{amount}";
-  forgotPasswordEndpoint = "/user/forgot-password";
-  resetPasswordEndpoint = "/user/reset-password";
+  forgotPasswordEndpoint = "/user/auth/forgot-password";
+  resetPasswordEndpoint = "/user/auth/reset-password";
 
   getcreitdsurl:string=this.apiUrl+this.getcreditsEndpoint;
   addcreitdsurl:string=this.apiUrl+this.addcreditsEndpoint;
@@ -155,12 +116,12 @@ export class UserService {
     }
 
  
-    getUserDetails(userId: number): Observable<UserDetailsResponse> { // Expect UserDetailsResponse
+    getUserDetails(userId: number): Observable<UserDetailsResponse> { 
         return this.http.get<UserDetailsResponse>(`${this.userDetailsUrl}/${userId}/details`);
       }
     
       updateUser(userId: number, updatedUser: Partial<User>): Observable<any> {
-        return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser); // Keep this for basic user info
+        return this.http.put<any>(`${this.userDetailsUrl}/${userId}`, updatedUser); 
       }
     
       // New method to update user details with profile image
@@ -210,7 +171,11 @@ export class UserService {
     }
 
     closeAccount(userId: number): Observable<any> {
-        return this.http.delete<any>(`${this.closeAccountUrl}/${userId}`);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`  
+      });
+       
+      return this.http.delete<any>(`${this.apiUrl}/user/admin/deleteUser/${userId}`, { headers });
     }
 
     forgotPassword(email: string): Observable<string> {
@@ -220,7 +185,7 @@ export class UserService {
     
     
     resetPassword(resetData: { token: string, newPassword: string, confirmPassword: string }): Observable<string> {
-      return this.http.post(this.resetPasswordURL, resetData, { responseType: 'text' }); // Specify responseType as 'text'
+      return this.http.post(this.resetPasswordURL, resetData, { responseType: 'text' }); 
     }
 
     isUserLoggedIn(): boolean {

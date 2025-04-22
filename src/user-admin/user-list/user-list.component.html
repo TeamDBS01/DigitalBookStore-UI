@@ -21,8 +21,19 @@
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
           <td class="actions">
-            <button class="edit-button" (click)="editUser(user)">Edit</button>
-            <button class="delete-button" (click)="deleteUser(user)">Delete</button>
+            <button class="edit-button1" (click)="editUser(user)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="button-icon edit-icon">
+                <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.082.286a.75.75 0 0 1-.69 1.036h-.75a.75.75 0 0 1-.75-.75v-.75a.75.75 0 0 1 1.036-.69l.286-.082a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
+              </svg>
+              
+            </button>
+            <button class="delete-button1" (click)="deleteUser(user)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="button-icon delete-icon">
+                <path fill-rule="evenodd" d="M16.5 4.478v.227a.75.75 0 0 1-1.5 0V4.478c-.03-.227-.248-.405-.486-.405H9.486c-.238 0-.456.179-.486.405v.227a.75.75 0 0 1-1.5 0V4.478A2.25 2.25 0 0 1 8.25 2.25h7.5A2.25 2.25 0 0 1 17.25 4.478v-.003Z" clip-rule="evenodd" />
+                <path d="M6.75 9.75a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75h-9a.75.75 0 0 1-.75-.75v-7.5ZM9.75 12a.75.75 0 0 0-.75.75v3a.75.75 0 0 0 1.5 0v-3a.75.75 0 0 0-.75-.75Zm4.5 0a.75.75 0 0 0-.75.75v3a.75.75 0 0 0 1.5 0v-3a.75.75 0 0 0-.75-.75ZM5.25 9a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-12a.75.75 0 0 1-.75-.75V9Z" />
+              </svg>
+            
+            </button>
           </td>
         </tr>
         <tr *ngIf="displayedUsers.length === 0 && searchTerm">
@@ -86,8 +97,8 @@
         text-align: left;
         padding: 12px;
         font-weight: bold;
-        color: #3f51b5;
-        border-bottom: 2px solid #3f51b5;
+        color: #000000;
+        border-bottom: 2px solid #000000;
       }
     }
 
@@ -135,15 +146,15 @@
       cursor: pointer;
 
       &.active {
-        background-color: #3f51b5;
+        background-color: #909195;
         color: white;
-        border-color: #3f51b5;
+        border-color: #212225;
       }
     }
   }
 
   .actions {
-    button {
+    /* button {
       padding: 8px 12px;
       margin-left: 5px;
       border-radius: 4px;
@@ -168,7 +179,43 @@
           background-color: darken(#f44336, 10%);
         }
       }
-    }
+    } */
   }
 }
+
+.edit-button1,
+  .delete-button1 {
+    display: inline-flex;  
+    align-items: center;  
+    gap: 0.5rem;  
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .edit-button1 {
+    background-color: #f5f5f5;
+    color: rgb(0, 0, 0);
+    margin-right: 0.5rem;
+  }
+
+  
+
+  .delete-button1 {
+    background-color: #f5f5f5;
+    color: rgb(0, 0, 0);
+  }
+
+  
+
+  .button-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: rgb(0, 0, 0); 
+  }
+
+
   </style>

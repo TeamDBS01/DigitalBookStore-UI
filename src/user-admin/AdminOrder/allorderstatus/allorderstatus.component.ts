@@ -45,7 +45,7 @@ export class AllorderstatusComponent implements OnInit {
 
   loadAllOrders(): void {
     this.loading = true;
-    this.http.get<Order[]>('http://localhost:8082/dbs/order/admin/all') // Replace with your API endpoint
+    this.http.get<Order[]>('http://localhost:8082/dbs/order/admin/all')  
       .pipe(
         catchError((error) => {
           this.errorMessage = 'Error loading orders.';

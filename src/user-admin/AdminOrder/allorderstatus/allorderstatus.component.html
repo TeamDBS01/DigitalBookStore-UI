@@ -19,7 +19,7 @@
   <tbody>
     <tr *ngFor="let order of orders">
       <td>{{ order.orderId }}</td>
-      <td>{{ order.orderDate | date }}</td> <td>{{ order.totalAmount | currency }}</td> <td>
+      <td>{{ order.orderDate | date }}</td> <td>{{ order.totalAmount | currency:'INR'  }}</td> <td>
         <select [(ngModel)]="order.status" (change)="updateOrderStatus(order.orderId, order.status)">
           <option *ngFor="let status of orderStatuses" [value]="status">{{ status }}</option>
         </select>
