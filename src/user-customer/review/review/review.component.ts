@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Review } from '../model/Review';
 import { ReviewService } from '../service/review.service';
 
@@ -8,7 +8,7 @@ import { ReviewService } from '../service/review.service';
     styleUrls: ['./review.component.sass'],
     standalone: false
 })
-export class ReviewComponent {
+export class ReviewComponent implements OnInit {
     @Input() review!: Review;
     @Input() canModify = false;
     @Input() userView = false;
@@ -17,7 +17,7 @@ export class ReviewComponent {
     @Input() restoreDisplay = 'none';
     @Output() editing = new EventEmitter<boolean>();
     reasonsForDelete = ["Choose a Reason", "Invalid", "Irrelevant", "Spam", "Bad Language"];
-    reasonForDelete = this.reasonsForDelete[0];
+    reasonForDelete!: string;
     reasonValidation = false;
     error?: string;
 
@@ -28,6 +28,9 @@ export class ReviewComponent {
     closeRestoreModal() { this.restoreDisplay = 'none' }
 
     constructor(private reviewService: ReviewService) { }
+    ngOnInit(): void {
+        this.reasonForDelete = this.reasonsForDelete[0];
+    }
 
     editReview() {
         this.editing.emit(true);
@@ -65,7 +68,7 @@ export class ReviewComponent {
             error: err => {
                 this.error = "Error occurred, Please try Again!"
                 console.log(err);
-                
+
             },
         })
     }

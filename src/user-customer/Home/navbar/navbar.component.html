@@ -7,27 +7,29 @@
             </div>
             <a routerLink="home">Home</a>
             <a routerLink="/search" [queryParams]="{'searchQuery':''}">Books</a>
-            <a target="_self" (click)="scroll('categoryBooksSection')">Category</a>
-            <a target="_self" (click)="scroll('dealOfTheDay')" >Deal of The Day</a>
-            <a target="_self" (click)="scroll('editorspick')">Editor's Picks</a>
-            <a target="_self" (click)="scroll('footer1')">Contact Us</a>
+            <a routerLink="home" (click)="scroll('categoryBooksSection')">Category</a>
+            <a routerLink="home" (click)="scroll('dealOfTheDay')">Deal of The Day</a>
+            <a routerLink="home" (click)="scroll('editorspick')">Editor's Picks</a>
+            <a routerLink="home" (click)="scroll('footer1')">Contact Us</a>
             <a routerLink="/order/cart" class="cart-link">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <span *ngIf="cartItemCount > 0" class="cart-badge">{{ cartItemCount }}</span>
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span *ngIf="cartItemCount > 0" class="cart-badge">{{ cartItemCount }}</span>
             </a>
-                <a routerLink="/order/list"> My Orders </a>
+            <a routerLink="/order/list"> My Orders </a>
         </nav>
         <div class="user-actions">
             <button class="signinbtn" *ngIf="!isLoggedIn()" routerLink="/login">Sign In</button>
 
             <div *ngIf="isLoggedIn()" class="profile-dropdown">
-              <!-- <button (click)="toggleProfileMenu()">profile</button> -->
+                <!-- <button (click)="toggleProfileMenu()">profile</button> -->
                 <div class="profile-icon" (click)="toggleProfileMenu()">
-                    <i class="fa-solid fa-user-circle"></i> </div>
+                    <i class="fa-solid fa-user-circle"></i>
+                </div>
                 <div *ngIf="isProfileMenuOpen" class="dropdown-menu">
                     <div class="user-info">
                         <div class="profile-circle">
-                            <span>{{ getInitials() }}</span> </div>
+                            <span>{{ getInitials() }}</span>
+                        </div>
                         <p>Hi, {{ getLoggedInUserName() }}!</p>
                         <!-- <p>{{ getLoggedInUserEmail() }}</p> -->
                     </div>

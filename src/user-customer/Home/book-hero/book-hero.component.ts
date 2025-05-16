@@ -14,7 +14,7 @@ export class BookHeroComponent {
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
-    this.loadHeroBook('B009');
+    this.loadHeroBook('ISBN-1212');
   }
 
   loadHeroBook(bookId: string): void {

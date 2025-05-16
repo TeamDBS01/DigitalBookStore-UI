@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ReviewService } from '../service/review.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { ReviewService } from '../service/review.service';
   styleUrls: ['./average-rating.component.sass'],
   standalone: false
 })
-export class AverageRatingComponent {
+export class AverageRatingComponent implements OnInit {
     constructor(private reviewService: ReviewService) {}
 
     @Input() bookId!: string;

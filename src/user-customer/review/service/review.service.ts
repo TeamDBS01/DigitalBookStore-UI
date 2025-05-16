@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Review } from '../model/Review';
     
 @Injectable({
@@ -58,9 +58,6 @@ export class ReviewService {
         return this.http.get<Review[]>(this.retreiveAllReviewsByUserIdUrl);
     }
 
-    // getReviewById(reviewId: number) {
-    //     return this.http.get<Review>(this.apiReviewUrl + "/" + reviewId);
-    // }
 
     getAverageRating(bookId: string) {
         return this.http.get<Array<number>>(this.averageRatingUrl + bookId);

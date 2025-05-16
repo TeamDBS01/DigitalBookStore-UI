@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReviewService } from '../service/review.service';
 import { Review } from '../model/Review';
 
@@ -8,7 +8,7 @@ import { Review } from '../model/Review';
     styleUrls: ['./all-reviews.component.sass'],
     standalone: false
 })
-export class AllReviewsComponent {
+export class AllReviewsComponent implements OnInit {
 
     constructor(private reviewService: ReviewService) { }
 
@@ -31,7 +31,6 @@ export class AllReviewsComponent {
         });
     }
 
-
     filteredReviews(): Review[] {
         return this.reviews.filter(review =>
             review.userName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
@@ -39,23 +38,26 @@ export class AllReviewsComponent {
         );
     }
 
-
     totalPages(): number {
         return Math.ceil(this.filteredReviews().length / this.itemsPerPage);
     }
+
     previousPage(): void {
         if (this.page > 1) {
             this.page--;
         }
     }
+
     nextPage(): void {
         if (this.page < this.totalPages()) {
             this.page++;
         }
     }
+
     goToPage(pageNumber: number): void {
         this.page = pageNumber;
     }
+
     pagesArray(): number[] {
         return Array(this.totalPages()).fill(0).map((x, i) => i + 1);
     }
